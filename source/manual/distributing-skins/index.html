@@ -156,26 +156,22 @@ title: 'Distributing Skins (.rmskin)'
 		<p>Use the <a href="!settings/skin-sections/#WindowXY">"From right" and "From bottom"</a> options to make sure your skins are loaded in the correct position regardless of the user's screen resolution. If you need to determine the skin's position in a more complex way, you can edit the "Rainmeter.ini" settings file for your layout and write your own formulas for the <a href="!settings/skin-sections/#WindowXY">WindowX, WindowY,</a> <a href="!settings/skin-sections/#AnchorXY">AnchorX and AnchorY</a> options for each skin section, using <a href="!variables/built-in-variables/">built-in variables</a>. Here are some basic formulas you can use:</p>
 
 		<ul>
-			<li><p>Center a skin on the desktop Work Area:<br>
-				<code>WindowX=([$DisplayWorkAreaX] + ([$DisplayWorkAreaW]  / 2 ) - (SkinWidth / 2) + Offset)</code><sup>1</sup><br>
-				<code>WindowY=([$DisplayWorkAreaY] + ([$DisplayWorkAreaH] / 2 ) - (SkinHeight / 2) + Offset)</code></p></li>
 			<li><p>Center a skin on the screen:<br>
-				<code>WindowX=(([$DisplayW]  / 2) - (SkinWidth / 2) + Offset)</code><br>
-				<code>WindowY=(([$DisplayH] / 2) - (SkinHeight / 2) + Offset)</code></p></li>
-			<li><p>Align relative to the left edge of the desktop Work Area:<br>
-				<code>WindowX=([$DisplayWorkAreaX] + Offset)</code></p></li>
+				<code>WindowX=50%</code><br>
+				<code>WindowY=50%</code><br>
+				or<br>
+				<code>WindowX=(([$DisplayW]  / 2) - (SkinWidth<sup>1</sup> / 2))</code><br>
+				<code>WindowY=(([$DisplayH] / 2) - (SkinHeight / 2))</code><br>
+				and in either case<br>
+				<code>AnchorX=50%</code><br>
+				<code>AnchorY=50%</code><br></li>
+
 			<li><p>Align relative to the right edge of the screen:<br>
-				<code>WindowX=(Offset + SkinWidth)R</code><br>
-				or desktop Work Area:<br>
-				<code>WindowX=([$DisplayWorkAreaX] + [$DisplayWorkAreaW] - SkinWidth - Offset)</code></p></li>
-			<li><p>Align relative to the top edge of the desktop Work Area:<br>
-				<code>WindowY=([$DisplayWorkAreaY] + Offset)</code></p></li>
+				<code>WindowX=(Offset + SkinWidth)R</code></li>
 			<li><p>Align relative to the bottom edge of the screen:<br>
 				<code>WindowY=(Offset + SkinHeight)B</code><br>
-				or desktop Work Area:<br>
-				<code>WindowY=([$DisplayWorkAreaY] + [$DisplayWorkAreaH] - SkinHeight - Offset)</code></p></li>
 		</ul>
 
-		<p class="footnote">1. "Offset" should be a number, e.g. <code>25R</code>, <code>-10B</code>, <code>([$DisplayWorkAreaX] + 75)</code>. If you don't need an offset (the skin is exactly centered or adjacent to the edge of the screen), leave it out. "SkinWidth" and "SkinHeight" should be the probable width and height of the skin.</p>
+		<p class="footnote">1. "SkinWidth" and "SkinHeight" should be the width and height of the skin. "Offset" should be a number, e.g. <code>25R</code>, <code>-10B</code>, <code>([$DisplayX] + 75)</code>. If you don't need an offset (the skin is exactly centered or adjacent to the edge of the screen), leave it out.</p>
 	</li>
 </ul>
