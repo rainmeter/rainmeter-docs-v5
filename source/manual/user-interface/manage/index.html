@@ -231,13 +231,6 @@ title: 'Manage'
 <a href="!img/user-interface/GameMode04.png" data-fancybox><img src="!img/user-interface/GameMode04.png"></a>
 </div>
 
-<p>Game mode can also be started and stopped manually, as well as fully configured, from the Rainmeter tray icon context menu.</p>
-
-<div class="exampleprev">
-<a href="!img/user-interface/GameModeContext01.png" data-fancybox><img src="!img/user-interface/GameModeContext01.png"></a>
-</div>
-
-<p><em><b>Note</b> that if you manually start or stop Game mode, the checkboxes for automatic triggering will be turned off, and you will need to enable them again, either from the context menu, or from Manage.</em></p>
 
 <h2 id="SettingsTab">The Settings tab</h2>
 
@@ -251,6 +244,7 @@ title: 'Manage'
 <ul>
 <li><b>Language:</b><br>Use the pull-down menu to select the desired language for all Rainmeter user interfaces. This does not have any effect on languages used in skins.</li>
 <li><b>Editor:</b><br>Enter or browse to the text editor that will be used when "Edit skin" or "Edit settings" is selected.</li>
+<li><b>Default zoom:</b><br>The zoom value in a percentage (1 - 500) for all loaded skins. This can be forced and not allowd to change, with the <code>Force</code> radio button. This defaults to 100%.</li>
 <li><b>Check for updates</b><br>When started, Rainmeter will check for a newer version. A notification will be raised to alert the user to the new version, and clicking on the notification will take the user to https://www.rainmeter.net in the default browser, where the new version can be manually downloaded and installed if desired.</li>
 <li><b>Automatically install updates</b><br>If both this checkbox and "Check for updates" are enabled, Rainmeter will automatically download and install any new version of the software it finds when started. If "Check for updates" is not checked, this setting is disabled and ignored.</li>
 <li><b>Disable dragging</b><br>If selected, automatically sets the <b>draggable</b> state of all active skins to prevent dragging skins with the mouse.</li>
@@ -261,9 +255,9 @@ title: 'Manage'
 <br>
 
 <h3 id="Logging">Logging</h3>
-<p>In addition to the real-time logging of errors, warnings and notices in the <a href="!user-interface/about/#LogTab">Log</a> tab of the Rainmeter <a href="!user-interface/about/">About</a> window, Rainmeter can log activity to a <b>Rainmeter.log</b> text file, which will be created in the <a href="!variables/built-in-variables/#SETTINGSPATH">settings folder</a>.</p>
+<p>In addition to the real-time logging of errors, warnings and notices in the <a href="!user-interface/debug/#LogTab">Log</a> tab of the Rainmeter <a href="!user-interface/debug/">Debug</a> window, Rainmeter can log activity to a <b>Rainmeter.log</b> text file, which will be created in the <a href="!variables/built-in-variables/#SETTINGSPATH">settings folder</a>.</p>
 <ul>
-<li><b>Debug mode</b><br>If selected, a more detailed logging mode will be used in the <a href="!user-interface/about/#LogTab">About</a> window, and when <b>Log to file</b> is active. This should only be used when debugging a problem, as leaving this level of detailed logging on can impact Rainmeter performance.</li>
+<li><b>Debug mode</b><br>If selected, a more detailed logging mode will be used in the <a href="!user-interface/debug/#LogTab">Debug</a> window when <b>Log to file</b> is active. This should only be used when debugging a problem, as leaving this level of detailed logging on can impact Rainmeter performance.</li>
 <li><b>Log to file</b><br>If selected, Rainmeter will append log entries to the Rainmeter.log file while running. Unchecking this item will turn off logging, but the Rainmeter.log file will be retained.</li>
 <li><b>Show log file</b><br>If clicked, the Rainmeter.log file will be loaded in the text editor associated with .log files.</li>
 <li><b>Delete log file</b><br>If clicked, the Rainmeter.log file will be deleted. If <b>Log to file</b> is currently active, it will automatically be turned off.</li>

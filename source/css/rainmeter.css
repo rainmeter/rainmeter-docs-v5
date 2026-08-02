@@ -542,6 +542,7 @@ blockquote {
   vertical-align: middle;
   -ms-interpolation-mode: bicubic;
   border: 0;
+  object-fit: contain; clip-path: inset(0 round 8px);
 }
 .center .exampleprev {
   display: block;

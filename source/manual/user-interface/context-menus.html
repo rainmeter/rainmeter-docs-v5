@@ -20,6 +20,7 @@ title: 'Context Menus'
 
 <ul>
 <li><b>Manage</b>: Loads the <a href="!user-interface/manage/">Manage</a> window.</li>
+<li><b>Debug</b>: Loads the <a href="!user-interface/debug/">Debug</a> window.</li>
 <li><b>About</b>: Loads the <a href="!user-interface/about/">About</a> window.</li>
 <li><b>Help</b>: Opens the Rainmeter <a href="/">documentation</a> site in the default web browser.</li>
 <li><b>Skins</b>: Displays a list of all <a href="!skins/#FilesFolders">skins</a> found when Rainmeter was started or refreshed. The list consists of the <a href="!skins/#Config">config</a> folder for each skin, which expand to the skin .ini files in each. Clicking on a .ini file will load the skin in Rainmeter.</li>
@@ -29,7 +30,6 @@ title: 'Context Menus'
 <li><b>Refresh all</b>: Refresh the entire Rainmeter application, including all currently active skins.</li>
 <li><b>Logging</b>: Control Rainmeter <a href="!user-interface/manage/#Logging">logging</a>.</li><br>
 <li><b>ConfigNames</b>: (e.g. illustro\Welcome) Each currently loaded skin <a href="!skins/#Config">config</a> will be listed. Provides control of settings and actions for each using the same items as <a href="#SkinContextMenus">Skin context menus</a> below.</li><br>
-<li><b>Game mode</b>: Toggles Rainmeter into "Game mode", where all skins are unloaded and no CPU or GPU will be used. Toggling this back off loads all previously running skins, and restores all normal behavior.</li><br/>
 <li><b>Exit</b>: Exits Rainmeter.</li>
 </ul>
 
@@ -80,6 +80,14 @@ title: 'Context Menus'
 <li><b>Y as percentage</b>: The <a href="!settings/skin-sections/#WindowXY">WindowY</a> of the skin will be expressed as a percentage of the screen height.</li>
 </ul>
 <p><b>Note:</b> See <a href="!settings/skin-sections/">settings - skin sections</a> for details on these settings.</p>
+
+<h3 id="Zoom">Zoom</h3>
+
+<div class="center">
+<a href="!img/user-interface/Context03a.png" data-fancybox><img src="!img/user-interface/Context03a.png"></a>
+</div>
+
+<p>The amount of <code>Zoom</code>, expressed as a range of percentages, that the skin will be displayed with on the screen. This Zoom factor can be set other ways, either by CTRL-ALT selecting the skin(s) and dragging them by an edge or corner to the desired size, or by explicitly setting the value for <code>Zoom=</code> in the [ConfigName] section for the skin in Rainmeter.ini.</p>
 
 <h3 id="Transparency">Transparency</h3>
 

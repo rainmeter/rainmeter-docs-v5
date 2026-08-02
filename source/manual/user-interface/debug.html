@@ -1,0 +1,156 @@
+---
+layout: docs
+permalink: manual/user-interface/debug/
+title: 'Debug'
+---
+<p>The Debug interface in Rainmeter is much more than the usual version number and link to a website. It is a powerful tool for finding and fixing problems with Rainmeter and skins. It consists of four main tabs:</p>
+
+<ul>
+<li><b><a href="#LogTab">Log</a></b>: Displays a running log of notifications and errors.</li>
+<li><b><a href="#SkinsTab">Skins</a></b>: Real-time display of important information about active skins.</li>
+<li><b><a href="#PluginsTab">Plugins</a></b>: Information about built-in and 3rd-party plugins installed in Rainmeter.</li>
+</ul>
+
+<p>Debug is accessed in several ways:</p>
+
+<ul>
+<li><b>Right-Click the Rainmeter icon in the Windows Notification Area on the taskbar and select "Debug".</b></li>
+<li>Click the <b>Open log</b> button in the <a href="!user-interface/manage/">Manage window</a>.</li>
+<li>Using the <a href="!bangs/#Debug">!Debug bang</a> as an <a href="!skins/option-types/#Action">action</a> in a skin or from the command line as a parameter to Rainmeter.exe.</li>
+<li>Right-Click any running skin on the desktop and select "Debug skin".</li>
+</ul>
+
+<h2 id="LogTab">The Log tab</h2>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug01.png" data-fancybox><img src="!img/user-interface/Debug01.png"></a>
+</div>
+
+<p>When opened, the list displays the last 20 messages logged by Rainmeter. While left open, the log continues to add new messages to the top of the list.</p>
+
+<p>The log has four columns of information:</p>
+<ul>
+<li><b>Type</b>: The category of message:<br>&nbsp;<br>
+<b>Error</b> - An error impacting the functionality of Rainmeter or a skin.<br>
+<b>Warning</b> - An warning that some functionality is outside of normal parameters.<br>
+<b>Notice</b> - Normal activity logged to provide information about the success of some action.<br>
+<b>Debug</b> - Messages generated when Rainmeter or a skin is in <a href="!user-interface/manage/#SettingsTab">Debug mode</a>.<br>&nbsp;</li>
+<li><b>Time</b>: The system time when the message was logged in <code>Hours:Minutes:Seconds.Milliseconds</code>.</li>
+<li><b>Source</b>: The source of the log message (if available) in the form of <code>Config\Skin.ini - [Section]</code>.</li>
+<li><b>Message</b>: The text of the log message. Select a line and hit <b>CTRL-C</b> to copy the message to the Windows clipboard.</li>
+</ul>
+
+<p>The types of messages that are displayed by the log can be controlled with the checkboxes at the bottom of the list. This can be used to filter the display to only certain kinds of new messages.</p>
+
+<p>Click <b>Clear</b> to remove the current contents of the log panel.</p>
+
+<p><b>Note:</b> Custom log entries can be created using the <a href="!bangs/#Log">!Log bang</a> from a skin, or the <a href="!lua-scripting/#Log">print()</a> function in the <a href="!lua-scripting/">Lua scripting language</a>. This can be very useful for debugging purposes.</p>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug01a.png" data-fancybox><img src="!img/user-interface/Debug01a.png"></a>
+</div>
+
+<p>Use the "Log file" pull-down to manage saving all logging to a <code>Rainmeter.log</code> file in <code>#APPDATA#\Rainmeter</code>.</p>
+<ul>
+<li><b>Start logging</b>: Start saving all logging to Rainmeter.log.</li>
+<li><b>Stop logging</b>: Stop saving all logging to Rainmeter.log.</li>
+<li><b>Show log file</b>: View the contents of Rainmeter.log in your default text editor.</li>
+<li><b>Delete log file</b>: Delete Rainmeter.log.</li>
+</ul>
+
+&nbsp;
+<p><i>Note that the level of logging detail that is provided is controlled by Logging / <a href="!user-interface/manage/#Logging">Debug mode</a> in the Manage dialog.</i></p>
+
+<h2 id="SkinsTab">The Skins tab</h2>
+
+<p>Extremely powerful tool displaying real-time information about currently active skins. The tab displays a list of currently active skin <a href="!skins/#Config">config</a> names in the pull-down on the top left. Selecting one from the list will display important information about the skin in real time, in the panel on the right.</p>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug02.png" data-fancybox><img src="!img/user-interface/Debug02.png"></a>
+</div>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug02a.png" data-fancybox><img src="!img/user-interface/Debug02a.png"></a>
+</div>
+
+<ul>
+<li><b>Measures</b>: Information about <a href="!measures/">measures</a> in the selected skin.<br>&nbsp;<br>
+<b>Name</b> - The name of the measure.<br>
+<b>Number</b> - The current <a href="!measures/#Values">number value</a> of the measure.<br>
+<i>Hovering over the Number column will display the current <a href="!measures/general-options/#MinValue">MinValue</a> and <a href="!measures/general-options/#MaxValue">MaxValue</a> values for the measure, expressed as a range of values.</i><br>
+<b>String</b> - The current <a href="!measures/#Values">string value</a> of the measure.<br><br>
+The line will reflect the current <a href="!measures/general-options/#Disabled">Disabled</a> or <a href="!measures/general-options/#Paused">Paused</a> state of the measure using color highlighting, with <span class="grayscale">disabled measures grayed out</span>, and <span class="yellowback">paused measures having a yellow background</span>.<br><br>
+The measure name, range, number or string values may be separately copied to the Windows clipboard by right clicking the line. Note that while the information displayed in the panel is limited to 512 characters, the entire measure value will be copied.<br><br></li>
+
+<li><b>Variables</b>: Information about <a href="!variables/">variables</a> in the selected skin.<br>&nbsp;<br>
+<b>Name</b> - The name of the variable.<br>
+<b>Value</b> - The current value of the variable. The value may be copied to the clipboard by right-clicking.</li>
+</ul>
+
+&nbsp;
+<p>Use the <code>Jump to</code> pull-down to quickly move between the Measures, Variables, and Watch sections.</p>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug02c.png" data-fancybox><img src="!img/user-interface/Debug02c.png"></a>
+</div>
+
+&nbsp;
+<p>Double-click any Measure or Variable row to set a <code>Watch</code> at the bottom of the panel. Set as many these as you like, to have a convenient place to view selected values in real time.</p>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug02aa.png" data-fancybox><img src="!img/user-interface/Debug02aa.png"></a>
+</div>
+
+&nbsp;
+<p>Set both Measure or Variable Watches and evaluate formulas using Measures and / or Variables by clicking the <code>Add watch</code> button.</p>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug02b.png" data-fancybox><img src="!img/user-interface/Debug02b.png"></a>
+</div>
+
+<p>Right click any <code>Watch</code> to edit or delete it.</p>
+
+&nbsp;
+<p>Use the <code>Skin</code> button to display and use the skin context menu for the current skin.</p>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug02d.png" data-fancybox><img src="!img/user-interface/Debug02d.png"></a>
+</div>
+
+<h2 id="DisplayTab">The Display tab</h2>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug03.png" data-fancybox><img src="!img/user-interface/Debug03.png"></a>
+</div>
+
+<p>Provides a list of all system Displays (Monitors) and display Devices (GPU Ports). Shows names, DPI scaling factors, scaled and unscaled screen sizes and work area metrics.</p>
+
+<h2 id="NetworkTab">The Network tab</h2>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug04.png" data-fancybox><img src="!img/user-interface/Debug04.png"></a>
+</div>
+
+<p>Lists all active and inactive network adapter (NIC) names on the system.<p>
+<ul>
+<li><b>Interface Index</b>: The numeric index number assigned by Window at system start</li>
+<li><b>Description</b>: The name of the adapter</li>
+<li><b>Alias</b>: The network alias assigned to the adapter</li>
+<li><b>Type</b>: The type of adapter (generally Ethernet or Wireless)</li>
+<li><b>Status</b>: The Connected / Up or Disconnected / Down status of the adapter</li>
+</ul>
+
+
+<h2 id="PluginsTab">The Plugins tab</h2>
+
+<div class="exampleprev">
+<a href="!img/user-interface/Debug05.png" data-fancybox><img src="!img/user-interface/Debug05.png"></a>
+</div>
+
+<p>Information about the built-in and 3rd-party <a href="!plugins/">plugins</a> installed in Rainmeter.</p>
+<ul>
+<li><b>Name</b>: The name of the plugin .dll file.</li>
+<li><b>Version</b>: The version number of the plugin .dll file.</li>
+<li><b>Author</b>: The author name and other copyright information about the plugin.</li>
+</ul>
+<p><b>Note:</b> The list contains all plugins installed in Rainmeter. It does not reflect whether a particular plugin is actually loaded or running in a skin.</p>
