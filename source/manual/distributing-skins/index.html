@@ -153,7 +153,7 @@ title: 'Distributing Skins (.rmskin)'
 	<li><p>Remove <a href="!settings/skin-sections/">[Skin] sections</a> that don't belong to your suite. An easy way to keep only the sections you need is to check the "Exclude unloaded skins" option when <a href="!user-interface/manage/#SaveNewLayout">saving the layout</a>.</p></li>
 	<li><p>Remove options from your skin sections if they are unchanged from Rainmeter's default settings, such as <a href="!settings/skin-sections/#Draggable">Draggable</a> or <a href="!settings/skin-sections/#SnapEdges">SnapEdges</a>. This will both reduce the size of your layout file, and make it easier to keep track of your code if you need to edit any layout settings by hand.</p></li>
 	<li>
-		<p>Use the <a href="!settings/skin-sections/#WindowXY">"From right" and "From bottom"</a> options to make sure your skins are loaded in the correct position regardless of the user's screen resolution. If you need to determine the skin's position in a more complex way, you can edit the "Rainmeter.ini" settings file for your layout and write your own formulas for the <a href="!settings/skin-sections/#WindowXY">WindowX, WindowY,</a> <a href="!settings/skin-sections/#AnchorXY">AnchorX and AnchorY</a> options for each skin section, using <a href="!variables/built-in-variables/">built-in variables</a>. Here are some basic formulas you can use:</p>
+		<p>Use the <a href="!settings/skin-sections/#WindowXY">"From right" and "From bottom"</a> options to make sure your skins are loaded in the correct position regardless of the user's screen resolution. If you need to determine the skin's position in a more complex way, you can edit the "Rainmeter.ini" settings file for your layout and write your own formulas for the <a href="!settings/skin-sections/#WindowXY">WindowX, WindowY,</a> <a href="!settings/skin-sections/#AnchorXY">AnchorX and AnchorY</a> options for each skin section, using <a href="!variables/built-in-variables/">built-in variables</a>. Here are some examples you can use:</p>
 
 		<ul>
 			<li><p>Center a skin on the screen:<br>
@@ -172,6 +172,6 @@ title: 'Distributing Skins (.rmskin)'
 				<code>WindowY=(Offset + SkinHeight)B</code><br>
 		</ul>
 
-		<p class="footnote">1. "SkinWidth" and "SkinHeight" should be the width and height of the skin. "Offset" should be a number, e.g. <code>25R</code>, <code>-10B</code>, <code>([$DisplayX] + 75)</code>. If you don't need an offset (the skin is exactly centered or adjacent to the edge of the screen), leave it out.</p>
+		<p class="footnote">1. "SkinWidth" and "SkinHeight" are the width and height of the skin. "Offset" is a number, e.g. <code>25R</code>, <code>-10B</code>, <code>([$DisplayX] + 75)</code> of optional additional space. If you don't need an offset (the skin is exactly centered or adjacent to the edge of the screen), leave it out.</p>
 	</li>
 </ul>
