@@ -157,25 +157,25 @@ title: 'Distributing Skins (.rmskin)'
 
 		<ul>
 			<li><p>Center a skin on the desktop Work Area:<br>
-				<code>WindowX=([$DisplayWorkAreaX] + ([$DisplayWorkAreaW]  / 2 ) - ([$SkinW] / 2) + Offset)</code><sup>1</sup><br>
-				<code>WindowY=([$DisplayWorkAreaY] + ([$DisplayWorkAreaH] / 2 ) - ([$SkinH] / 2) + Offset)</code></p></li>
+				<code>WindowX=([$DisplayWorkAreaX] + ([$DisplayWorkAreaW]  / 2 ) - (SkinWidth / 2) + Offset)</code><sup>1</sup><br>
+				<code>WindowY=([$DisplayWorkAreaY] + ([$DisplayWorkAreaH] / 2 ) - (SkinHeight / 2) + Offset)</code></p></li>
 			<li><p>Center a skin on the screen:<br>
-				<code>WindowX=(([$DisplayW]  / 2) - ([$SkinW] / 2) + Offset)</code><br>
-				<code>WindowY=(([$DisplayH] / 2) - ([$SkinH] / 2) + Offset)</code></p></li>
+				<code>WindowX=(([$DisplayW]  / 2) - (SkinWidth / 2) + Offset)</code><br>
+				<code>WindowY=(([$DisplayH] / 2) - (SkinHeight / 2) + Offset)</code></p></li>
 			<li><p>Align relative to the left edge of the desktop Work Area:<br>
 				<code>WindowX=([$DisplayWorkAreaX] + Offset)</code></p></li>
 			<li><p>Align relative to the right edge of the screen:<br>
-				<code>WindowX=(Offset + [$SkinW])R</code><br>
-				or the desktop Work Area:<br>
-				<code>WindowX=([$DisplayWorkAreaX] + [$DisplayWorkAreaW] - [$SkinW] - Offset)</code></p></li>
+				<code>WindowX=(Offset + SkinWidth)R</code><br>
+				or desktop Work Area:<br>
+				<code>WindowX=([$DisplayWorkAreaX] + [$DisplayWorkAreaW] - SkinWidth - Offset)</code></p></li>
 			<li><p>Align relative to the top edge of the desktop Work Area:<br>
 				<code>WindowY=([$DisplayWorkAreaY] + Offset)</code></p></li>
 			<li><p>Align relative to the bottom edge of the screen:<br>
-				<code>WindowY=(Offset + [$SkinH])B</code><br>
+				<code>WindowY=(Offset + SkinHeight)B</code><br>
 				or desktop Work Area:<br>
-				<code>WindowY=([$DisplayWorkAreaY] + [$DisplayWorkAreaH] - [$SkinH] - Offset)</code></p></li>
+				<code>WindowY=([$DisplayWorkAreaY] + [$DisplayWorkAreaH] - SkinHeight - Offset)</code></p></li>
 		</ul>
 
-		<p class="footnote">1. "Offset" should be a number, e.g. <code>25R</code>, <code>-10B</code>, <code>([$DisplayWorkAreaX] + 75)</code>. If you don't need an offset (the skin is exactly centered or adjacent to the edge of the screen), leave it out.</p>
+		<p class="footnote">1. "Offset" should be a number, e.g. <code>25R</code>, <code>-10B</code>, <code>([$DisplayWorkAreaX] + 75)</code>. If you don't need an offset (the skin is exactly centered or adjacent to the edge of the screen), leave it out. "SkinWidth" and "SkinHeight" should be the probable width and height of the skin.</p>
 	</li>
 </ul>
