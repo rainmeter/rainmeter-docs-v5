@@ -40,6 +40,16 @@ title: '[Rainmeter] section'
 		<p>If set to <code>1</code>, <code>DesktopWorkArea</code> will be define margins relative to the edges of the screen.</p>
 		<p><b>Example:</b> With <code>DesktopWorkAreaType=0</code> and <code>DesktopWorkArea=10,20,600,500</code>, maximized windows will use an area of 600x500 pixels, which is located 10 pixels from the left and 20 pixels from the top of the screen. With <code>DesktopWorkAreaType=1</code> and <code>DesktopWorkArea=10,20,30,40</code>, the area for maximized windows will be 10 pixels from the left, 20 pixels from the top, 30 pixels from the right, and 40 pixels from the bottom of the screen.</p>
 	</dd>
+	
+	<dt id="DefaultZoom"><code>DefaultZoom</code> <small>Default: <code>100</code></small></dt>
+	<dd>
+		<p>A default amount of Zoom that will be applied to every loaded skin. This is a percentage from 10% to 500%. This can be overridden at the skin level.</p>
+	</dd>
+	
+	<dt id="ForceDefaultZoom"><code>ForceDefaultZoom</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>If set to <code>1</code>, the amount of Zoom defined in DefaultZoom will be locked, and individual skins will not be able to override the value.<i>This should be used with caution.</i></p>
+	</dd>	
 
 	<dt id="Logging"><code>Logging</code> <small>Default: <code>0</code></small></dt>
 	<dd>
@@ -66,7 +76,7 @@ title: '[Rainmeter] section'
 		<p>If set to <code>1</code>, sets the draggable state of <b>all</b> active skins to prevent dragging skins with the mouse.</p>
 	</dd>
 
-	<dt id="SelectedColor"><code>SelectedColor</code> <small>Default: <code>255,0,0,90</code></small></dt>
+	<dt id="SelectedColor"><code>SelectedColor</code> <small>Default: <code>173,216,230,90</code></small></dt>
 	<dd>
 		<p>A <a href="!skins/option-types/#Color">color code</a> used to define the color and transparency of the overlay when a skin is selected in a <a href="!arranging-skins/#Multiple">Drag Group</a>.</p>
 	</dd>
