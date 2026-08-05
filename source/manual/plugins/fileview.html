@@ -384,8 +384,8 @@ Y=5R
 W=380
 H=([Index1Icon:H] > [Index1Info:H] ? [Index1Icon:H] : [Index1Info:H])
 DynamicVariables=1
-MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"][!UpdateMeter #CURRENTSECTION#][!Redraw]
-MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""][!UpdateMeter #CURRENTSECTION#][!Redraw]
+MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""]
 
 [InfoStyle]
 X=5R
@@ -923,8 +923,8 @@ X=5
 Y=10R
 Text=Page Up
 LeftMouseDoubleClickAction=[!CommandMeasure mPath "PageUp"][!UpdateMeasure mPath][!UpdateMeasureGroup Children][!UpdateMeter *][!Redraw]
-MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"][!UpdateMeter #CURRENTSECTION#][!Redraw]
-MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""][!UpdateMeter #CURRENTSECTION#][!Redraw]
+MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""]
 
 [PageDown]
 Meter=String
@@ -934,8 +934,8 @@ X=10R
 Y=r
 Text=Page Down
 LeftMouseDoubleClickAction=[!CommandMeasure mPath "PageDown"][!UpdateMeasure mPath][!UpdateMeasureGroup Children][!UpdateMeter *][!Redraw]
-MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"][!UpdateMeter #CURRENTSECTION#][!Redraw]
-MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""][!UpdateMeter #CURRENTSECTION#][!Redraw]
+MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""]
 
 [PreviousFolder]
 Meter=String
@@ -945,6 +945,6 @@ X=10R
 Y=r
 Text=Previous Folder
 LeftMouseDoubleClickAction=[!CommandMeasure mPath "PreviousFolder"][!UpdateMeasure mPath][!UpdateMeasureGroup Children][!UpdateMeter *][!Redraw]
-MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"][!UpdateMeter #CURRENTSECTION#][!Redraw]
-MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""][!UpdateMeter #CURRENTSECTION#][!Redraw]
+MouseOverAction=[!SetOption #CURRENTSECTION# SolidColor "50,50,255,150"]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# SolidColor ""]
 ```
