@@ -31,6 +31,18 @@ title: 'Line meter'
 	<dd>
 		Width of the line(s) in pixels.
 	</dd>
+	
+	<dt id="LineJoin"><code>LineWidth</code> <small>Default: <code>Miter</code></small></dt>
+	<dd>
+		Joins the ends of the line segments using one of:
+			<ul>
+				<li><code>Miter</code> : Mitered corners. The corner will be mitered up to the point of MiterLimit, then squared off.</li>
+				<li><code>Bevel</code> : Beveled or squared corners.</li>
+				<li><code>Round</code> : Rounded corners.</li>
+				<li><code>MiterOrBevel</code> : Miter is used unless the default or defined value of MiterLimit would be exceeded, in which case Bevel is used.</li>
+				An optional MiterLimit can be used to specify how sharp Miter joins are allowed to be (default is 10.0).
+			</ul>
+	</dd>
 
 	<dt id="Scale"><code>Scale</code>, <code>Scale2</code>, ..., <code>Scale<em>N</em></code> <small>Default: <code>1.0</code></small></dt>
 	<dd>

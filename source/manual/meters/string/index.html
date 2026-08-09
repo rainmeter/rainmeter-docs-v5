@@ -96,6 +96,7 @@ Text=This is text containing %1 and %2.
 		<li><code>Left</code>, <code>Right</code>, <code>Center</code> (or <code>LeftTop</code>, <code>RightTop</code>, <code>CenterTop</code>)</li>
 		<li><code>LeftCenter</code>, <code>RightCenter</code>, <code>CenterCenter</code></li>
 		<li><code>LeftBottom</code>, <code>RightBottom</code>, <code>CenterBottom</code></li>
+		<li><code>Justify</code></li>
 		</ul>
 		<p>The string will be aligned using the values of the <code>X</code> and or <code>Y</code> settings as the anchor point. So to CenterCenter align a string within a meter with a width and height of 100, set <code>X=50</code>, <code>Y=50</code> and <code>StringAlign=CenterCenter</code>.</p>
 		
@@ -115,6 +116,10 @@ Text=This is text containing %1 and %2.
 		<==========X</p>
 
 		<p>The only important thing to remember to use StringAlign is that it is <b>always</b> based on the value of X or Y. The String meter with StringAlign is the one case where X or Y doesn't really mean "starts at", but rather means "is anchored at". </p>
+
+		<p><b>StringAlign=Justify</b><br/>
+		When there is a defined W or ClipStringW and <code>ClipString=2</code>, this will wrap and justify the text at the value of W, and will grow the meter to fill all the text vertically, unless there is a defined H or ClipStringH, in which case it will wrap to fill the size of H and then be clipped with an added ellipsis ...</p>
+		
 	</dd>
 
 	<dt id="StringStyle"><code>StringStyle</code> <small>Default: <code>Normal</code></small></dt>
