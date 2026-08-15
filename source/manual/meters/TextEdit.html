@@ -52,3 +52,55 @@ title: 'TextEdit meter'
 <li>TrailingSpaces</li>
 <li>InlineSetting / InlinePattern</li>
 </ul>
+
+<p><b>In addition:</b></p>
+
+	<dt id="InitialText"><code>InitialText</code></dt>
+	<dd>
+		<p>Default / initial text value displayed in the meter.</p>
+	</dd>
+	
+	<dt id="PlaceholderText"><code>PlaceholderText</code></dt>
+	<dd>
+		<p>Label shown if the <code>InitialText</code> option is not defined or the current visible meter text is "".</p>
+	</dd>
+	
+	<dt id="PlaceholderOptions"><code>PlaceholderFontColor</code>,&nbsp;<code>PlaceholderFontFace</code>,&nbsp;<code>PlaceholderFontSize</code>,&nbsp;<code>PlaceholderStringStyle</code></dt>
+	<dd>
+		<p>Formatting options that are similar to the String meter options, but only apply to <code>PlaceHolderText</code>.</p>
+	</dd>
+	
+	<dt id="CaretColor"><code>CaretColor</code> <small>Default: <code>255,255,255,255</code></small></dt>
+	<dd>
+		<p>Color of the blinking cursor caret when the field has focus.</p>
+	</dd>
+	
+	<dt id="SelectionColor"><code>SelectionColor</code> <small>Default: <code>0,60,107,255</code></small></dt>
+	<dd>
+		<p>Color of the background when text is selected in the input area.</p>
+	</dd>
+	
+	<dt id="FocusBorderWidth"><code>FocusBorderWidth</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>If larger than 0, and <code>FocusBorderColor</code> is defined, a border is drawn around the text area.</p>
+	</dd>
+	
+	<dt id="FocusBorderColor"><code>FocusBorderColor</code> <small>Default: <code>0,60,107,255</code></small></dt>
+	<dd>
+		<p>If <code>FocusBorderWidth</code> is larger than 0, the color of the border.</p>
+	</dd>
+	
+	<dt id="MaxWidth"><code>MaxWidth</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>If larger than 0, the maximum amount of characters that can be typed / pasted into the field.</p>
+	</dd>
+	
+	<dt id="StringCase"><code>StringCase</code></dt>
+	<dd>
+		<p>Sets the case of both the InitialText option and the text as it is being entered to Upper or Lower.</p>
+	</dd>
+	
+	<dt id="InputCase"><code>InputCase</code></dt>
+	<dd>
+		<p>If <code>StringCase</code> is not defined, this will set the case of just the text as it is being entered to Upper or Lower.</p>
+	</dd>
