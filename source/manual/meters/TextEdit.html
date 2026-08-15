@@ -23,5 +23,32 @@ title: 'TextEdit meter'
 <p>The width of the meter will grow as text is entered, or you may set a fixed input field size with <code>W</code> or limit the growing input field with <code>ClipStringW</code> and <code>ClipString=2</code>. The text will scroll if typing continues past the defined width.</p>
 
 <p>Note that if <code>Multiline=1</code>, then you will need to create a way to execute <code>[!TextEdit:Submit (meter)]</code> to submit the input, as Enter, CTRL-Enter and SHIFT-Enter will all create new lines. Either that, or have <code>OnDismissAction</code> replace <code>OnSubmitAction</code> in your design, and just clicking away from the meter will take the actions. The <code>[$Input]</code> variable is created by any of the Action types.</p>
+<br>
 
-<h2>Options</h2>
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+<p>Note that the StringEdit meter requires <code>AccurateText=1</code> in the <code>[Rainmeter]</code> section of the skin.</p>
+</div>
+
+<h2>Formating Options</h2>
+
+<p>All of the <a href="!meters/general-options/">General Meter Options</a> are available on the meter.<p>
+
+<p>The StringEdit meter has most of the standard formatting capabilities that a String meter has.</p>
+<p>See the <a href="!meters/string/">String meter</a> for details on String formatting options.</p>
+
+<ul>
+<li>FontFace</li>
+<li>FontSize</li>
+<li>FontColor</li>
+<li>FontWeight</li>
+<li>StringAlign</li>
+<li>StringStyle</li>
+<li>StringEffect</li>
+<li>FontEffectColor</li>
+<li>ClipString</li>
+<li>ClipStringW</li>
+<li>ClipStringH</li>
+<li>TrailingSpaces</li>
+<li>InlineSetting / InlinePattern</li>
+</ul>
