@@ -104,3 +104,27 @@ title: 'TextEdit meter'
 	<dd>
 		<p>If <code>StringCase</code> is not defined, this will set the case of just the text as it is being entered to Upper or Lower.</p>
 	</dd>
+	
+	<dt id="Password"><code>Password</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>If set to 1, masks the input / pasted text and keeps it off the clipboard.</p>
+	</dd>
+	
+	<dt id="InputFilter"><code>InputFilter</code></dt>
+	<dd>
+		<p>Restricts what the user can type or paste into the field.</p>
+<pre>
+InputFilter=Integer						; e.g. -12
+InputFilter=Decimal						; e.g. -1.5
+InputFilter=Numeric						; e.g. 123
+	
+InputFilter=RegExp
+InputRegExp=[0-9]{1,3}(\.[0-9]{1,3}){3}		; an IPv4 address
+
+InputFilter=RegExp
+InputRegExp=#[0-9A-Fa-f]{6}				; a hex color
+
+InputFilter=RegExp
+InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
+</pre>
+	</dd>
