@@ -1,6 +1,27 @@
 ---
 layout: docs
 permalink: manual/meters/textedit/
-title: 'Text Edit meter'
+title: 'TextEdit meter'
 ---
 
+<p><code>Meter=TextEdit</code> captures and displays text input from a user and acts on the result with various actions.</p>
+
+<p>When clicked on with the mouse or given focus with the <code>[!TextEdit:Focus (MeterName)]</code> bang, the meter will accept text input from the user. Actions can take place when the text input is submitted, using the value of the current visible meter text as a <code>[$Input]</code> variable in the Actions.</p>
+
+<p>The input area will accept all Widows text entering conventions, such as CTRL-Z to "undo" before submitting, pasting text from the Windows clipboard, scrolling through the text with arrow keys, and selecting text to copy, cut or delete using the keyboard or mouse.</p>
+
+<h2>Single or Multiline Input</h2>
+
+<p>The meter can be designed as either a single line input "field", or a multiline input "box".</p>
+
+<p><code>Multiline</code>: If 1, the field may hold more than one line. Default 0.
+
+<p><code>SubmitOnEnter</code>: If 1, the enter key submits instead of adding a line. Default 0 when <code>Multiline=1</code>, otherwise 1.</p>
+
+<p>If set to MultiLine, the meter will grow in height as lines are added, or you may set a fixed input box size with <code>H</code> or limit the growing input box with <code>ClipStringH</code> and <code>ClipString=2</code>. The text will scroll if typing continues past the defined height.</p>
+
+<p>The width of the meter will grow as text is entered, or you may set a fixed input field size with <code>W</code> or limit the growing input field with <code>ClipStringW</code> and <code>ClipString=2</code>. The text will scroll if typing continues past the defined width.</p>
+
+<p>Note that if <code>Multiline=1</code>, then you will need to create a way to execute <code>[!TextEdit:Submit (meter)]</code> to submit the input, as Enter, CTRL-Enter and SHIFT-Enter will all create new lines. Either that, or have <code>OnDismissAction</code> replace <code>OnSubmitAction</code> in your design, and just clicking away from the meter will take the actions. The <code>[$Input]</code> variable is created by any of the Action types.</p>
+
+<h2>Options</h2>
