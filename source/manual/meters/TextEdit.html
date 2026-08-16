@@ -47,7 +47,7 @@ title: 'TextEdit meter'
 <li><a href="!meters/string/inline/">InlineSetting / InlinePattern</a></li>
 </ul>
 
-<h2>Meter Options</h2>
+<h2>Meter Specific Options</h2>
 
 <br>
 	<dt id="InitialText"><code>InitialText</code></dt>
@@ -129,44 +129,122 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 </pre>
 	</dd>
 
-<h2>Meter Bangs</h2>
+<h2>Meter Specific Bangs</h2>
 
-<p><ul>
-<li><b><code>[!TextEdit:Focus (meter)]</code></b><br>
-Gives the named or current meter the focus and begins entry.<br>
-OnFocusAction is executed.</li>
-<li><b><code>[!TextEdit:Submit (meter)]</code></b><br>
-Submits the entered string on the named or current meter.<br>
-OnSubmitAction is executed.</li>
-<li><b><code>[!TextEdit:Dismiss (meter)]</code></b><br>
-Dismisses the focus from the named or current meter.<br>
-OnDismissAction is executed</li>
-<li><b><code>[!TextEdit:Clear (meter)]</code></b><br>
-Sets the visible meter text on the named or current meter to "".</li>
-<li><b><code>[!TextEdit:Reset (meter)]</code></b><br>
-Sets the visible meter text on the named or current meter to the value in InitialText.</li>
-<li><b><code>[!TextEdit:SetText (meter) "Some Text"]</code></b><br>
-Sets the visible meter text on the named or current meter to a value.</li>
-<li><b><code>[!TextEdit:ScrollByLine (meter) numLines]</code></b><br>
-Number of lines to move multiline text by (positive towards the end, negative towards the start.</li>
-<li><b><code>[!TextEdit:ResetScroll (meter)]</code></b><br>
-Reset the scroll to the start for both multi-line and single-line meters.</li>
-<li><b><code>[!TextEdit:Select (meter) startposition length]</code></b> ; -1 as length will select until the end<br>
-Selects and highlights a measured portion of the visible meter text on the named or current meter.</li>
-<li><b><code>[!TextEdit:SelectAll (meter)]</code></b><br>
-Selects and highlights the entire visible meter text on the named or current meter.</li>
-</ul></p>
+<dl>
+	<dt id=":Focus"><code>!TextEdit:Focus</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
+	<dd>
+		Gives the named or current meter the focus and begins entry. <code>OnFocusAction</code> is executed.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:Focus]</code></code>
+	</dd>
+	
+	<dt id=":Submit"><code>!TextEdit:Submit</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
+	<dd>
+		Submits the entered string on the named or current meter. <code>OnSubmitAction</code> is executed.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:Submit]</code></code>
+	</dd>
+	
+	<dt id=":Dismiss"><code>!TextEdit:Dismiss</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
+	<dd>
+		Dismisses the focus from the named or current meter. <code>OnDismissAction</code> is executed.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:Dismiss]</code></code>
+	</dd>
 
-<h2>Meter Actions</h2>
+	<dt id=":Clear"><code>!TextEdit:Clear</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
+	<dd>
+		Sets the visible meter text on the named or current meter to "".
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:Clear]</code></code>
+	</dd>
+	
+	<dt id=":Reset"><code>!TextEdit:Reset</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
+	<dd>
+		Sets the visible meter text on the named or current meter to the value in InitialText.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:Reset]</code></code>
+	</dd>
 
-<p><ul>
-<li><b><code>OnFocusAction</code></b>:<br>
-Executed when the meter is given focus by clicking on it,<br>or with the <code>[!TextEdit:Focus MeterName]</code> bang.</li><br>
-<li><b><code>OnSubmitAction</code></b>:<br>
-Executed when SubmitOnEnter=1 and Enter is pressed,<br>or when submitted with the <code>[!TextEdit:Submit MeterName]</code> bang.</li><br>
-<li><b><code>OnDismissAction</code></b>:<br>
-Executed when the meter loses focus by clicking away from it,<br>or with the <code>[!TextEdit:Dismiss MeterName]</code> bang.</li>
-</ul></p>
+	<dt id=":SetText"><code>!TextEdit:SetText</code> <small>Parameters: <code><b>MeterName</b></code> <code><b>Text</b></code></small></dt>
+	<dd>
+		Sets the visible meter text on the named or current meter to a value.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		<li><code>Text</code> (required): Text string to set the value.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:SetText InputMeter "Hello World"]</code></code>
+	</dd>
+	
+	<dt id=":ScrollByLine"><code>!TextEdit:ScrollByLine</code> <small>Parameters: <code><b>MeterName</b></code> <code><b>NumLines</b></code></small></dt>
+	<dd>
+		Number of lines to move multiline text. Positive toward the end, negative toward the start.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		<li><code>NumLines</code> (required): Positive or negative integer.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:ScrollByLine -5]</code></code>
+	</dd>
+	
+	<dt id=":ResetScroll"><code>!TextEdit:ResetScroll</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
+	<dd>
+		Reset the scroll to the start for both multi-line and single-line meters.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:ResetScroll]</code></code>
+	</dd>
+
+	<dt id=":SelectAll"><code>!TextEdit:SelectAll</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
+	<dd>
+		Selects and highlights the entire visible meter text.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:SelectAll]</code></code>
+	</dd>
+	
+	<dt id=":Select"><code>!TextEdit:Select</code> <small>Parameters: <code><b>MeterName</b></code> <code><b>StartPosition</b></code> <code><b>Length</b></code></small></dt>
+	<dd>
+		Selects and highlights a measured portion of the visible meter text.
+		<ul>
+		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
+		<li><code>StartPosition</code> (required): Starting character position.</li>
+		<li><code>Length</code> (required): Number of characters. <code>-1</code> will select to the end.</li>
+		</ul>
+		<br><b>Example:</b> <code><code>[!TextEdit:Select 3 -1]</code></code>
+	</dd>
+
+<h2>Meter Specific Actions</h2>
+
+	<dt id="OnFocusAction"><code>OnFocusAction</code></dt>
+	<dd>
+		Executed when the meter is given focus by clicking on it, or with <code>[!TextEdit:Focus]</code>.
+		<br><br><b>Example:</b> <code>OnFocusAction=[!Log "Given Focus!"]</code>
+	</dd>
+
+	<dt id="OnSubmitAction"><code>OnSubmitAction</code></dt>
+	<dd>
+		Executed when SubmitOnEnter=1 and Enter is pressed, or when submitted with <code>[!TextEdit:Submit]</code>.
+		<br><br><b>Example:</b> <code>OnFocusAction=[!Log "Input Submitted"]</code>
+	</dd>
+
+	<dt id="OnDismissAction"><code>OnDismissAction</code></dt>
+	<dd>
+		Executed when the meter loses focus by clicking away from it, or with <code>[!TextEdit:Dismiss]</code>.
+		<br><br><b>Example:</b> <code>OnDismissAction=[!Log "Input Dismissed"]</code>
+	</dd>
 
 <div class="alert alert-info alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
