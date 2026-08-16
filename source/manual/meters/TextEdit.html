@@ -4,19 +4,21 @@ permalink: manual/meters/textedit/
 title: 'TextEdit meter'
 ---
 
-<p><code>Meter=TextEdit</code> captures and displays text input from a user and acts on the result with various actions.</p>
+<p><code>Meter=TextEdit</code> is a meter designed to capture, display, and act upon user text input.</p>
 
-<p>When clicked on with the mouse or given focus with the <code>[!TextEdit:Focus (MeterName)]</code> bang, the meter will accept text input from the user. Actions can take place when the text input is submitted, using the value of the current visible meter text as a <code>[$Input]</code> variable in the Actions.</p>
+<p>Clicking the meter or executing the <code>[!TextEdit:Focus (MeterName)]</code> bang grants the meter focus and initiates text entry.
 
-<p>The input area will accept all Widows text entering conventions, such as CTRL-Z to "undo" before submitting, pasting text from the Windows clipboard, scrolling through the text with arrow keys, and selecting text to copy, cut or delete using the keyboard or mouse.</p>
+<p>Actions can take place when the text input is submitted, using the value of the current visible meter text as a <code>[$Input]</code> variable in the Actions.</p>
+
+<p>Supports standard Windows text conventions, including CTRL-Z (undo), clipboard pasting, arrow-key navigation, and selection for copy, cut, or delete operations.</p>
 
 <h2>Single or Multiline Input</h2>
 
 <p>The meter can be designed as either a single line input "field", or a multiline input "box".</p>
 
-<p><code>Multiline</code>: If 1, the field may hold more than one line. Default 0.
+<p><code>Multiline</code>: Determines whether the field can hold multiple lines (1) or a single line (0, default).</p>
 
-<p><code>SubmitOnEnter</code>: If 1, the enter key submits instead of adding a line. Default 0 when <code>Multiline=1</code>, otherwise 1.</p>
+<p><code>SubmitOnEnter</code>: Controls whether the Enter key submits the input (1) or creates a new line (0). Defaults to 1 for single-line fields and 0 for multiline boxes.</p>
 
 <p>If set to MultiLine, the meter will grow in height as lines are added, or you may set a fixed input box size with <code>H</code> or limit the growing input box with <code>ClipStringH</code> and <code>ClipString=2</code>. The text will scroll if typing continues past the defined height.</p>
 
@@ -38,17 +40,11 @@ title: 'TextEdit meter'
 <p>See the <a href="!meters/string/">String meter</a> for details on String formatting options.</p>
 
 <ul>
-<li>FontFace</li>
-<li>FontSize</li>
-<li>FontColor</li>
-<li>FontWeight</li>
+<li>FontFace, FontSize, FontColor, FontWeight</li>
 <li>StringAlign</li>
 <li>StringStyle</li>
-<li>StringEffect</li>
-<li>FontEffectColor</li>
-<li>ClipString</li>
-<li>ClipStringW</li>
-<li>ClipStringH</li>
+<li>StringEffect, FontEffectColor</li>
+<li>ClipString, ClipStringW, ClipStringH</li>
 <li>TrailingSpaces</li>
 <li><a href="!meters/string/inline/">InlineSetting / InlinePattern</a></li>
 </ul>
@@ -61,14 +57,14 @@ title: 'TextEdit meter'
 		<p>Default / initial text value displayed in the meter.</p><br>
 		<div class="alert alert-info alert-tight" role="alert">
 		<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-		<p><code>InitialText</code> cannot be changed with <code>!SetOption</code> or <code>!TextEdit:SetText</code>.</p>
+		<p><code>InitialText</code> cannot be dynamically changed with <code>!SetOption</code> or <code>!TextEdit:SetText</code>.</p>
 </div>
 
 	</dd>
 	
 	<dt id="PlaceholderText"><code>PlaceholderText</code></dt>
 	<dd>
-		<p>Label shown if the <code>InitialText</code> option is not defined or the current visible meter text is "".</p>
+		<p>Displays a label when <code>InitialText</code> is undefined or the current visible text is empty ("").</p>
 	</dd>
 	
 	<dt id="PlaceholderOptions"><code>PlaceholderFontColor</code>,&nbsp;&nbsp;<code>PlaceholderFontFace</code>,&nbsp;&nbsp;<code>PlaceholderFontSize</code>,&nbsp;&nbsp;<code>PlaceholderStringStyle</code></dt>
@@ -78,7 +74,7 @@ title: 'TextEdit meter'
 	
 	<dt id="CaretColor"><code>CaretColor</code> <small>Default: <code>255,255,255,255</code></small></dt>
 	<dd>
-		<p>Color of the blinking cursor caret when the field has focus.</p>
+		<p>Sets the color of the blinking cursor.</p>
 	</dd>
 	
 	<dt id="SelectionColor"><code>SelectionColor</code> <small>Default: <code>0,60,107,255</code></small></dt>
@@ -113,7 +109,7 @@ title: 'TextEdit meter'
 	
 	<dt id="Password"><code>Password</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>If set to 1, masks the input / pasted text and keeps it off the clipboard.</p>
+		<p>If set to 1, masks input characters and prevents text from being copied to the clipboard</p>
 	</dd>
 	
 	<dt id="InputFilter"><code>InputFilter</code></dt>
@@ -138,39 +134,39 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 <h2>Meter Bangs</h2>
 
 <p><ul>
-<li><code>[!TextEdit:Focus (meter)]</code><br>
+<li><b><code>[!TextEdit:Focus (meter)]</code></b><br>
 Gives the named or current meter the focus and begins entry.<br>
 OnFocusAction is executed.</li>
-<li><code>[!TextEdit:Submit (meter)]</code><br>
+<li><b><code>[!TextEdit:Submit (meter)]</code></b><br>
 Submits the entered string on the named or current meter.<br>
 OnSubmitAction is executed.</li>
-<li><code>[!TextEdit:Dismiss (meter)]</code><br>
+<li><b><code>[!TextEdit:Dismiss (meter)]</code></b><br>
 Dismisses the focus from the named or current meter.<br>
 OnDismissAction is executed</li>
-<li><code>[!TextEdit:Clear (meter)]</code><br>
+<li><b><code>[!TextEdit:Clear (meter)]</code></b><br>
 Sets the visible meter text on the named or current meter to "".</li>
-<li><code>[!TextEdit:Reset (meter)]</code><br>
+<li><b><code>[!TextEdit:Reset (meter)]</code></b><br>
 Sets the visible meter text on the named or current meter to the value in InitialText.</li>
-<li><code>[!TextEdit:SetText (meter) "Some Text"]</code><br>
+<li><b><code>[!TextEdit:SetText (meter) "Some Text"]</code></b><br>
 Sets the visible meter text on the named or current meter to a value.</li>
-<li><code>[!TextEdit:ScrollByLine (meter) numLines]</code><br>
+<li><b><code>[!TextEdit:ScrollByLine (meter) numLines]</code></b><br>
 Number of lines to move multiline text by (positive towards the end, negative towards the start.</li>
-<li><code>[!TextEdit:ResetScroll (meter)]</code><br>
+<li><b><code>[!TextEdit:ResetScroll (meter)]</code></b><br>
 Reset the scroll to the start for both multi-line and single-line meters.</li>
-<li><code>[!TextEdit:Select (meter) startposition length]</code> ; -1 as length will select until the end<br>
+<li><b><code>[!TextEdit:Select (meter) startposition length]</code></b> ; -1 as length will select until the end<br>
 Selects and highlights a measured portion of the visible meter text on the named or current meter.</li>
-<li><code>[!TextEdit:SelectAll (meter)]</code><br>
+<li><b><code>[!TextEdit:SelectAll (meter)]</code></b><br>
 Selects and highlights the entire visible meter text on the named or current meter.</li>
 </ul></p>
 
 <h2>Meter Actions</h2>
 
 <p><ul>
-<li><code>OnFocusAction</code>:<br>
+<li><b><code>OnFocusAction</code></b>:<br>
 Executed when the meter is given focus by clicking on it,<br>or with the <code>[!TextEdit:Focus MeterName]</code> bang.</li><br>
-<li><code>OnSubmitAction</code>:<br>
+<li><b><code>OnSubmitAction</code></b>:<br>
 Executed when SubmitOnEnter=1 and Enter is pressed,<br>or when submitted with the <code>[!TextEdit:Submit MeterName]</code> bang.</li><br>
-<li><code>OnDismissAction</code>:<br>
+<li><b><code>OnDismissAction</code></b>:<br>
 Executed when the meter loses focus by clicking away from it,<br>or with the <code>[!TextEdit:Dismiss MeterName]</code> bang.</li>
 </ul></p>
 
