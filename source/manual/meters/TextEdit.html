@@ -49,7 +49,6 @@ title: 'TextEdit meter'
 
 <h2>Meter Specific Options</h2>
 
-<br>
 	<dt id="InitialText"><code>InitialText</code></dt>
 	<dd>
 		<p>Default / initial text value displayed in the meter.</p><br>
@@ -134,7 +133,7 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 <dl>
 	<dt id=":Focus"><code>!TextEdit:Focus</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
 	<dd>
-		Gives the named or current meter the focus and begins entry. <code>OnFocusAction</code> is executed.
+		Gives the named or current meter the focus and begins entry. <a href="#OnFocusAction">OnFocusAction</a> is executed.
 		<ul>
 		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
 		</ul>
@@ -143,7 +142,7 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 	
 	<dt id=":Submit"><code>!TextEdit:Submit</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
 	<dd>
-		Submits the entered string on the named or current meter. <code>OnSubmitAction</code> is executed.
+		Submits the entered string on the named or current meter. <a href="#OnSubmitAction">OnSubmitAction</a> is executed.
 		<ul>
 		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
 		</ul>
@@ -152,7 +151,7 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 	
 	<dt id=":Dismiss"><code>!TextEdit:Dismiss</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
 	<dd>
-		Dismisses the focus from the named or current meter. <code>OnDismissAction</code> is executed.
+		Dismisses the focus from the named or current meter. <a href="#OnDismissAction">OnDismissAction</a> is executed.
 		<ul>
 		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
 		</ul>
