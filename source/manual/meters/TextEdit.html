@@ -10,7 +10,12 @@ title: 'TextEdit meter'
 
 <p>When the text input is submitted, a <code>[$Input]</code> variable will be created with the current visible meter text, and will be available for use in <a href="#Actions">meter actions</a>.</p>
 
-<p>Supports standard Windows text conventions, including CTRL-Z (undo), clipboard pasting, arrow-key navigation, and selection for copy, cut, or delete operations.</p>
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+<p>The TextEdit meter requires <code>AccurateText=1</code> in the <code>[Rainmeter]</code> section of the skin.</p>
+</div>
+
+<p>Supports standard Windows text field conventions, including CTRL-Z (undo), clipboard pasting, arrow-key navigation, and selection for copy, cut, or delete operations.</p>
 
 <h2 id="Multiline">Single or Multiline Input</h2>
 
@@ -25,12 +30,6 @@ title: 'TextEdit meter'
 <p>The width of the meter will grow as text is entered, or you may set a fixed input field size with <code>W</code> or limit the growing input field with <code>ClipStringW</code> and <code>ClipString=2</code>. The text will scroll if typing continues past the defined width.</p>
 
 <p>If <code>Multiline=1</code>, then you will need to create a way to execute <code>[!TextEdit:Submit (meter)]</code> to submit the input, as Enter, CTRL-Enter and SHIFT-Enter will all create new lines. Either that, or have <code>OnDismissAction</code> replace <code>OnSubmitAction</code> in your design, and just clicking away from the meter will take the actions. The <code>[$Input]</code> variable is created by any of the Action types.</p>
-<br>
-
-<div class="alert alert-info alert-tight" role="alert">
-	<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-<p>The TextEdit meter requires <code>AccurateText=1</code> in the <code>[Rainmeter]</code> section of the skin.</p>
-</div>
 
 <h2 id="Formatting">Formatting Options</h2>
 
@@ -54,64 +53,73 @@ title: 'TextEdit meter'
 		<p>Default / initial text value displayed in the meter.</p><br>
 		<div class="alert alert-info alert-tight" role="alert">
 		<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-		<p><code>InitialText</code> cannot be dynamically changed with <code>!SetOption</code> or <code>!TextEdit:SetText</code>.</p>
-</div>
-
+		<p><code>InitialText</code> cannot be dynamically changed with <code>!SetOption</code> or <code>!TextEdit:SetText</code>.
+		</div>
 	</dd>
 	
+	<dt id="Multiline"><code>Multiline</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		Determines whether the field can hold multiple lines (1) or a single line (0, default).
+	</dd>
+	
+	<dt id="SubmitOnEnter"><code>SubmitOnEnter</code> <small>Default: <code>1</code></small></dt>
+	<dd>
+		Controls whether the Enter key submits the input (1) or creates a new line (0). Defaults to 1 for single-line fields and 0 for multiline boxes.
+	</dd>
+
 	<dt id="PlaceholderText"><code>PlaceholderText</code></dt>
 	<dd>
-		<p>Displays a label when <code>InitialText</code> is undefined or the current visible text is empty ("").</p>
+		Displays a label when <code>InitialText</code> is undefined or the current visible text is empty ("").
 	</dd>
 	
 	<dt id="PlaceholderOptions"><code>PlaceholderFontColor</code>,&nbsp;&nbsp;<code>PlaceholderFontFace</code>,&nbsp;&nbsp;<code>PlaceholderFontSize</code>,&nbsp;&nbsp;<code>PlaceholderStringStyle</code></dt>
 	<dd>
-		<p>Formatting options that are similar to the String meter options, but only apply to <code>PlaceholderText</code>.</p>
+		Formatting options that are similar to the String meter options, but only apply to <code>PlaceholderText</code>.
 	</dd>
 	
 	<dt id="CaretColor"><code>CaretColor</code> <small>Default: <code>255,255,255,255</code></small></dt>
 	<dd>
-		<p>Sets the color of the blinking cursor.</p>
+		Sets the color of the blinking cursor.
 	</dd>
 	
 	<dt id="SelectionColor"><code>SelectionColor</code> <small>Default: <code>0,60,107,255</code></small></dt>
 	<dd>
-		<p>Color of the background when text is selected in the input area.</p>
+		Color of the background when text is selected in the input area.
 	</dd>
 	
 	<dt id="FocusBorderWidth"><code>FocusBorderWidth</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>If larger than 0, and <code>FocusBorderColor</code> is defined, a border is drawn around the text area.</p>
+		If larger than 0, and <code>FocusBorderColor</code> is defined, a border is drawn around the text area.
 	</dd>
 	
 	<dt id="FocusBorderColor"><code>FocusBorderColor</code></dt>
 	<dd>
-		<p>If <code>FocusBorderWidth</code> is larger than 0, the color of the border.</p>
+		If <code>FocusBorderWidth</code> is larger than 0, the color of the border.
 	</dd>
 	
 	<dt id="MaxWidth"><code>MaxWidth</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>If larger than 0, the maximum amount of characters that can be typed / pasted into the field.</p>
+		If larger than 0, the maximum amount of characters that can be typed / pasted into the field.
 	</dd>
 	
 	<dt id="StringCase"><code>StringCase</code></dt>
 	<dd>
-		<p>Sets the case of both the <code>InitialText</code> option and the text as it is being entered to Upper or Lower.</p>
+		Sets the case of both the <code>InitialText</code> option and the text as it is being entered to Upper or Lower.
 	</dd>
 	
 	<dt id="InputCase"><code>InputCase</code></dt>
 	<dd>
-		<p>If <code>StringCase</code> is not defined, this will set the case of just the text as it is being entered to Upper or Lower.</p>
+		If <code>StringCase</code> is not defined, this will set the case of just the text as it is being entered to Upper or Lower.
 	</dd>
 	
 	<dt id="Password"><code>Password</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>If set to 1, masks input characters and prevents text from being copied to the clipboard</p>
+		If set to 1, masks input characters and prevents text from being copied to the clipboard
 	</dd>
 	
 	<dt id="InputFilter"><code>InputFilter</code></dt>
 	<dd>
-		<p>Restricts what the user can type or paste into the field.</p>
+		Restricts what the user can type or paste into the field.
 <pre>
 InputFilter=Integer						; e.g. -12
 InputFilter=Decimal						; e.g. -1.5
