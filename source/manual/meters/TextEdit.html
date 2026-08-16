@@ -58,8 +58,12 @@ title: 'TextEdit meter'
 <br>
 	<dt id="InitialText"><code>InitialText</code></dt>
 	<dd>
-		<p>Default / initial text value displayed in the meter.</p>
-		<p>Note that InitialText cannot be changed with <code>!SetOption</code> or <code>!TextEdit:SetText</code>.</p>
+		<p>Default / initial text value displayed in the meter.</p><br>
+		<div class="alert alert-info alert-tight" role="alert">
+		<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+		<p><code>InitialText</code> cannot be changed with <code>!SetOption</code> or <code>!TextEdit:SetText</code>.</p>
+</div>
+
 	</dd>
 	
 	<dt id="PlaceholderText"><code>PlaceholderText</code></dt>
@@ -161,8 +165,6 @@ Selects and highlights the entire visible meter text on the named or current met
 
 <h2>Meter Actions</h2>
 
-<p>When any of the Actions are executed a [$Input] variable is populated with the current visible meter text and is available for use during the Actions.</p>
-
 <p><ul>
 <li><code>OnFocusAction</code>:<br>
 Executed when the meter is given focus by clicking on it,<br>or with the <code>[!TextEdit:Focus MeterName]</code> bang.</li><br>
@@ -171,6 +173,11 @@ Executed when SubmitOnEnter=1 and Enter is pressed,<br>or when submitted with th
 <li><code>OnDismissAction</code>:<br>
 Executed when the meter loses focus by clicking away from it,<br>or with the <code>[!TextEdit:Dismiss MeterName]</code> bang.</li>
 </ul></p>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+	<p>When any of the Actions are executed a <code>[$Input]</code> variable is populated with the current visible meter text and is available for use during the Actions.</p>
+</div>
 
 <h2>Examples</h2>
 
