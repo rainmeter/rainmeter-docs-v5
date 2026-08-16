@@ -50,11 +50,12 @@ title: 'TextEdit meter'
 <li>ClipStringW</li>
 <li>ClipStringH</li>
 <li>TrailingSpaces</li>
-<li>InlineSetting / InlinePattern</li>
+<li><a href="!meters/string/inline/">InlineSetting / InlinePattern</a></li>
 </ul>
 
-<p><b>In addition:</b></p>
+<h2>Meter Options</h2>
 
+<br>
 	<dt id="InitialText"><code>InitialText</code></dt>
 	<dd>
 		<p>Default / initial text value displayed in the meter.</p>
@@ -128,3 +129,217 @@ InputFilter=RegExp
 InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 </pre>
 	</dd>
+
+<h2>Meter Bangs</h2>
+
+<p><ul>
+<li><code>[!TextEdit:Focus (meter)]</code><br>
+Gives the named or current meter the focus and begins entry.<br>
+OnFocusAction is executed.</li>
+<li><code>[!TextEdit:Submit (meter)]</code><br>
+Submits the entered string.<br>
+OnSubmitAction is executed.</li>
+<li><code>[!TextEdit:Dismiss (meter)]</code><br>
+Dismisses the focus from the named or current meter.<br>
+OnDismissAction is executed</li>
+<li><code>[!TextEdit:Clear (meter)]</code><br>
+Sets the visible meter text on the named or current meter to "".</li>
+<li><code>[!TextEdit:Reset (meter)]</code><br>
+Sets the visible meter text on the named or current meter to the value in InitialText.</li>
+<li><code>[!TextEdit:SetText (meter) "Some Text"]</code><br>
+Sets the visible meter text on the named or current meter to a value.</li>
+<li><code>[!TextEdit:ScrollByLine (meter) numLines]</code><br>
+Number of lines to move multiline text by (positive towards the end, negative towards the start.</li>
+<li><code>[!TextEdit:ResetScroll (meter)]</code><br>
+Reset the scroll to the start for both multi-line and single-line meters.</li>
+<li><code>[!TextEdit:Select (meter) startposition length]</code> ; -1 as length will select until the end<br>
+Selects and highlights a measured portion of the visible meter text on the named or current meter.</li>
+<li><code>[!TextEdit:SelectAll (meter)]</code><br>
+Selects and highlights the entire visible meter text on the named or current meter.</li>
+</ul></p>
+
+<h2>Meter Actions</h2>
+
+<p>When any of the Actions are executed a [$Input] variable is populated with the current visible meter text and is available for use during the Actions.</p>
+
+<p><ul>
+<li><code>OnFocusAction</code>:<br>
+Executed when the meter is given focus by clicking on it,<br>or with the <code>[!TextEdit:Focus MeterName]</code> bang.</li><br>
+<li><code>OnSubmitAction</code>:<br>
+Executed when SubmitOnEnter=1 and Enter is pressed,<br>or when submitted with the <code>[!TextEdit:Submit MeterName]</code> bang.</li><br>
+<li><code>OnDismissAction</code>:<br>
+Executed when the meter loses focus by clicking away from it,<br>or with the <code>[!TextEdit:Dismiss MeterName]</code> bang.</li>
+</ul></p>
+
+<h2>Examples</h2>
+
+<p>Example of a single line input field:</p>
+
+<a href="!examples/ExampleTextEditSingle.rmskin" class="download"></a>
+``` ini
+[Rainmeter]
+Update=1000
+DynamicWindowSize=1
+AccurateText=1
+
+[MeterEdit]
+Meter=TextEdit
+; No W or H are set, so the meter will grow to accommodate PlaceholderText or grow / shrink to accommodate the entered or InitalText
+W=200
+FontColor=255,134,87,255
+SolidColor=0,0,0,255
+FontSize=13
+Padding=5,5,5,5
+AntiAlias=1
+; PlaceholderText is a way to set a "label" on the field that isn't editable or involved in the value
+; It is only used if the visible meter text is ""
+; It disappears as soon as you start typing
+; It is also a way to set a default / starting W for the meter if the visible meter text is ""
+PlaceholderText=No Text, Enter Some
+PlaceholderFontColor=150,150,150,255
+PlaceholderStringStyle=Italic
+; InitialText is the starting / default value
+; If the value is set to "", then PlaceholderText will be shown
+InitialText=Initial Value of the text
+; Just demonstrating that formatting like InlineSetting will be applied to the visible meter text
+; before, during and after you edit it. Apply a gradient. 
+; Note that this is applied once per "update" while entering, so a lower Update value
+; can make this effect a bit "smoother"
+; Note that InitalText cannot be altered with !SetOption.
+; Use [!TextEdit:SetText MeterName "Some Text"] to change the visble meter text
+InlineSetting=GradientColor | 180 | 255,222,161,255 ; 0.1 | 240,108,95,255 ; 1.0
+OnFocusAction=[!SetUpdate 16][!Log "Focus [$Input]"][!TextEdit:SelectAll]
+OnDismissAction=[!SetUpdate 1000][!Log "Dismiss [$Input]"][!Update]
+OnSubmitAction=[!SetUpdate 1000][!Log "Entered [$Input]"][!SetOption MeterDisplay Text "Current Value: [$Input]"][!Update]
+
+[MeterSet]
+Meter=String
+Y=10R
+FontColor=255,255,255,255
+FontSize=12
+SolidColor=0,0,0,1
+Text=Set Value
+AntiAlias=1
+LeftMouseUpAction=[!TextEdit:SetText MeterEdit "Value Set By Bang"][!SetOption MeterDisplay Text ""][!Update]
+
+[MeterClear]
+Meter=String
+Y=r
+X=15R
+FontColor=255,255,255,255
+FontSize=12
+SolidColor=0,0,0,1
+Text=Clear Value
+AntiAlias=1
+LeftMouseUpAction=[!TextEdit:Clear MeterEdit][!SetOption MeterDisplay Text ""][!Update]
+
+[MeterReset]
+Meter=String
+Y=r
+X=15R
+FontColor=255,255,255,255
+FontSize=12
+SolidColor=0,0,0,1
+Text=Reset Value
+AntiAlias=1
+LeftMouseUpAction=[!TextEdit:Reset MeterEdit][!SetOption MeterDisplay Text ""][!Update]
+
+[MeterDisplay]
+Meter=String
+Y=15R
+X=0
+FontColor=255,255,255,255
+FontSize=12
+SolidColor=0,0,0,1
+AntiAlias=1
+```
+
+<div class="exampleprev">
+	<a href="!img/example-meters/ExampleTextEditSingle.gif" data-fancybox><img src="!img/example-meters/ExampleTextEditSingle.gif"></a>
+	<p>An example skin demonstrating a single line input field.</p>
+</div>
+
+<br><br>
+<p>Example of a multiline input box:</p>
+
+<a href="!examples/ExampleTextEditMulti.rmskin" class="download"></a>
+``` ini
+[Rainmeter]
+Update=1000
+AccurateText=1
+
+[Variables]
+PlaceHolderText=Enter some data -- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies fringilla velit a auctor. venenatis, orci vel sollicitudin convallis, lorem nulla aliquam sem, sollicitudin imperdiet massa felis in lorem. Duis gravida diam non sem fermentum, acluctus sapien tempus. Phasellus.
+
+SetText=Half a league, half a league, #CRLF#Half a league onward, #CRLF#All in the valley of Death #CRLF#Rode the six hundred. #CRLF#Forward, the Light Brigade! #CRLF#Charge for the guns! he said: #CRLF#Into the valley of Death #CRLF#Rode the six hundred. 
+
+[MeterInput]
+Meter=TextEdit
+H=160
+W=300
+ClipString=2
+FontSize=15
+FontColor=255,237,188,255
+SolidColor=47,47,47,255
+Padding=10,10,10,10
+AntiAlias=1
+MultiLine=1
+PlaceHolderText=#PlaceHolderText#
+PlaceholderStringStyle=Italic
+PlaceholderFontSize=13
+PlaceholderFontColor=170,170,170,255
+InitialText=#SetText#
+OnFocusAction=[!Log "Focus [$Input]"][!TextEdit:SelectAll]
+OnSubmitAction=[!Log "Submit [$Input]"][!SetOption MeterDisplay Text "[$Input]"][!Update]
+OnDismissAction=[!Log "Dismiss [$Input]"]
+
+[MeterSubmit]
+Meter=String
+X=20R
+Y=r
+FontSize=13
+FontColor=255,255,255,255
+SolidColor=0,0,0,1
+AntiAlias=1
+Text=Submit Value
+LeftMouseUpAction=[!TextEdit:Submit MeterInput][!Update]
+
+[MeterClear]
+Meter=String
+X=r
+Y=20R
+FontSize=13
+FontColor=255,255,255,255
+SolidColor=0,0,0,1
+AntiAlias=1
+Text=Clear Value
+LeftMouseUpAction=[!TextEdit:Clear MeterInput][!SetOption MeterDisplay Text ""][!Update]
+
+[MeterReset]
+Meter=String
+X=r
+Y=20R
+FontSize=13
+FontColor=255,255,255,255
+SolidColor=0,0,0,1
+AntiAlias=1
+Text=Reset Value
+LeftMouseUpAction=[!TextEdit:Reset MeterInput][!SetOption MeterDisplay Text ""][!Update]
+
+[MeterDisplay]
+Meter=String
+W=300
+H=60
+ClipString=1
+X=r
+Y=20R
+FontSize=13
+FontColor=255,255,255,255
+SolidColor=0,0,0,1
+AntiAlias=1
+```
+
+<div class="exampleprev">
+	<a href="!img/example-meters/ExampleTextEditMulti.gif" data-fancybox><img src="!img/example-meters/ExampleTextEditMulti.gif"></a>
+	<p>An example skin demonstrating a multiline input box.</p>
+</div>
