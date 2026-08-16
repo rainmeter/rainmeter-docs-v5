@@ -8,11 +8,11 @@ title: 'TextEdit meter'
 
 <p>Clicking the meter or executing the <code>[!TextEdit:Focus (MeterName)]</code> bang grants the meter focus and initiates text entry.
 
-<p>Actions can take place when the meter is focused, submitted or dismissed, using the current visible meter text as a <code>[$Input]</code> variable in the Actions.</p>
+<p>When the text input is submitted a <code>[$Input]</code> variable will be created with the current visible meter text, and will available for use in <a href="#Actions">meter actions</a>.</p>
 
 <p>Supports standard Windows text conventions, including CTRL-Z (undo), clipboard pasting, arrow-key navigation, and selection for copy, cut, or delete operations.</p>
 
-<h2>Single or Multiline Input</h2>
+<h2 id="Multiline">Single or Multiline Input</h2>
 
 <p>The meter can be designed as either a single line input "field", or a multiline input "box".</p>
 
@@ -32,7 +32,7 @@ title: 'TextEdit meter'
 <p>The TextEdit meter requires <code>AccurateText=1</code> in the <code>[Rainmeter]</code> section of the skin.</p>
 </div>
 
-<h2>Formating Options</h2>
+<h2 id="Formatting">Formating Options</h2>
 
 <p>All of the <a href="!meters/general-options/">General Meter Options</a> are available on the meter.<p>
 
@@ -47,7 +47,7 @@ title: 'TextEdit meter'
 <li><a href="!meters/string/inline/">InlineSetting / InlinePattern</a></li>
 </ul>
 
-<h2>Meter Specific Options</h2>
+<h2 id="Options">Meter Specific Options</h2>
 
 	<dt id="InitialText"><code>InitialText</code></dt>
 	<dd>
@@ -128,7 +128,7 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 </pre>
 	</dd>
 
-<h2>Meter Specific Bangs</h2>
+<h2 id="Bangs">Meter Specific Bangs</h2>
 
 <dl>
 	<dt id=":Focus"><code>!TextEdit:Focus</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
@@ -225,7 +225,7 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 		<br><b>Example:</b> <code><code>[!TextEdit:Select 3 -1]</code></code>
 	</dd>
 
-<h2>Meter Specific Actions</h2>
+<h2 id="Actions">Meter Specific Actions</h2>
 
 	<dt id="OnFocusAction"><code>OnFocusAction</code></dt>
 	<dd>
