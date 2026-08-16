@@ -24,7 +24,7 @@ title: 'TextEdit meter'
 
 <p>The width of the meter will grow as text is entered, or you may set a fixed input field size with <code>W</code> or limit the growing input field with <code>ClipStringW</code> and <code>ClipString=2</code>. The text will scroll if typing continues past the defined width.</p>
 
-<p>Note that if <code>Multiline=1</code>, then you will need to create a way to execute <code>[!TextEdit:Submit (meter)]</code> to submit the input, as Enter, CTRL-Enter and SHIFT-Enter will all create new lines. Either that, or have <code>OnDismissAction</code> replace <code>OnSubmitAction</code> in your design, and just clicking away from the meter will take the actions. The <code>[$Input]</code> variable is created by any of the Action types.</p>
+<p>If <code>Multiline=1</code>, then you will need to create a way to execute <code>[!TextEdit:Submit (meter)]</code> to submit the input, as Enter, CTRL-Enter and SHIFT-Enter will all create new lines. Either that, or have <code>OnDismissAction</code> replace <code>OnSubmitAction</code> in your design, and just clicking away from the meter will take the actions. The <code>[$Input]</code> variable is created by any of the Action types.</p>
 <br>
 
 <div class="alert alert-info alert-tight" role="alert">
