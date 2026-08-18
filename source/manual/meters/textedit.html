@@ -53,7 +53,7 @@ title: 'TextEdit meter'
 		<p>Default / initial text value displayed in the meter.</p><br>
 		<div class="alert alert-info alert-tight" role="alert">
 		<h2 class="alert-heading h5" id="SolidColor"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-		<p><code>InitialText</code> cannot be dynamically changed with <code>!SetOption</code> or <code>!TextEdit:SetText</code>.
+		<p><code>InitialText</code> can be dynamically changed with the <code>!SetOption</code> bang,<br>but will only be re-read when <code>[!TextEdit:Reset]</code> is used.
 		</div>
 	</dd>
 	
@@ -177,7 +177,7 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 	
 	<dt id=":Reset"><code>!TextEdit:Reset</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
 	<dd>
-		Sets the visible meter text on the named or current meter to the value in <a href="#InitialText">InitialText</a>.
+		Sets the visible meter text on the named or current meter to the value in <a href="#InitialText">InitialText</a>. The bang re-reads the value of <a href="#InitialText">InitialText</a> in case it has been changed.
 		<ul>
 		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
 		</ul>
