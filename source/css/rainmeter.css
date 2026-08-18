@@ -1046,3 +1046,17 @@ table#quickjump td {
 .error404 .container {
   z-index: 2;
 }
+
+/* Table formatting */
+
+.docs-table table {
+  width: 85%;
+}
+
+.docs-table th, td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid black;
+}

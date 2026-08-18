@@ -1,0 +1,95 @@
+﻿---
+layout: docs
+permalink: manual/measures/webparser/jsonpointer/
+title: 'JSON parsing'
+---
+<p>Used to parse individual elements of JSON data in a <a href="!measures/webparser/">WebParser</a> measure. The retrieval can be in any order, since the exact position of the data in the JSON "tree" is given in the option.</p>
+ 
+<h2>Options</h2>
+
+<br><p>The <code>JSONPointer</code> option is used with normal <a href="!measures/webparser/">WebParser</a> measure(s), and supports all WebParser options except RegExp and StringIndex.</p>
+
+<dl>
+	<dt id="URL"><code>URL</code></dt>
+	<dd>
+		Formatted exactly the same as any <a href="!measures/webparser/">WebParser</a> measure.<br><br>
+		If <code>URL=[SomeMeasure]</code> then the measure is a "child" to the "parent" <code>[SomeMeasure]</code>. Thus the skin will only need to go out and retrieve the site or file information once per <code>UpdateRate</code>.
+	</dd>
+		<dt id="JSONPointer"><code>JSONPointer</code></dt>
+	<dd>
+		Replaces RegExp and StringIndex options.<br><br>
+		Uses JSONPointer functionality to reach directly into the JSON code, picking off individual elements of data based on the JSON "tree" hierarchy.<br><br>
+		It uses forward slashes <code>/</code> to separate keys (for objects) or numbers (for zero-based arrays).<br><br>
+		Any literal <code>/</code> or <code>~</code> inside a JSON key name must be escaped:<br>
+		<code>~1</code> represents a literal forward slash <code>~0</code> represents a literal tilde <code>~</code><br><br>
+		If set to <code>1</code>, the measure will act as a traditional WebParser "parent". Not required, as any measure with a URL to a resource is at once a "parent" and a "child" if JSONPointer is defined as a key/element.<br><br>
+		Example:<br>
+		<code>JSONPointer=/books/1/title</code><br>
+		Will return the "title" of the second element of the "books" array.
+	</dd>
+</dl>
+
+<h2>Basic Navigation Examples</h2>
+
+<p><b>The following example evaluates against this JSON document:</b></p>
+
+``` txt
+{
+  "store": "Central Market",
+  "books": [
+    { "title": "The Hobbit", "author": "Tolkien" },
+    { "title": "1984", "author": "Orwell" }
+  ]
+}
+```
+
+<p><b>Using these measures:</b></p>
+
+``` ini
+[MeasureJSONParent]
+Measure=WebParser
+URL=file://#@#SomeJSON.txt
+JsonPointer=1
+
+[MeasureStore]
+Measure=WebParser
+URL=[MeasureJSONParent]
+JsonPointer=/store
+
+[MeasureFirstAuthor]
+Measure=WebParser
+URL=[MeasureJSONParent]
+JsonPointer=/books/0/author
+
+[MeasureSecondTitle]
+Measure=WebParser
+URL=[MeasureJSONParent]
+JsonPointer=/books/1/title
+```
+
+<p><b>With these results:</b></p>
+
+<div class="docs-table">
+	<table>
+	<tr>
+	<th>JSON Pointer</th>
+	<th>Evaluated Value</th>
+	<th>Explanation</th>
+	</tr>
+	<tr>
+	<td>/store</td>
+	<td>"Central Market"</td>
+	<td>Accesses the "store" key of the root object.</td>
+	</tr>
+	<tr>
+	<td>/books/0/author</td>
+	<td>"Tolkien"</td>
+	<td>Accesses the first element (index 0) of the "books" array, then fetches its "author" key.</td>
+	</tr>
+	<tr>
+	<td>/books/1/title</td>
+	<td>"1984"</td>
+	<td>Navigates to the second array element, then fetches its "title" key.</td>
+	<tr>
+	</table>
+</div>
