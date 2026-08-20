@@ -56,7 +56,8 @@ title: 'TextEdit meter'
 	<dt id="InitialText"><code>InitialText</code></dt>
 	<dd>
 		Default / initial text value displayed in the meter.</dt><br><br>
-		<code>InitialText</code> can be dynamically changed with the <code>!SetOption</code> bang,<br>but will only be re-read when <code>[!TextEdit:Reset]</code> is used.
+		
+		If <code>DynamicVariables=1</code>, <code>InitialText</code> can be dynamically changed until the meter gets focus. Then it cannot be changed until <a href="#:Reset">!TextEdit:Reset</a> is applied.
 	</dd>
 	
 	<dt id="Multiline"><code>Multiline</code> <small>Default: <code>0</code></small></dt>
@@ -179,7 +180,7 @@ InputRegExp=[^@]+@[^@]+\.[A-Za-z]{2,}		; an email address
 	
 	<dt id=":Reset"><code>!TextEdit:Reset</code> <small>Parameter: <code><b>MeterName</b></code></small></dt>
 	<dd>
-		Sets the visible meter text on the named or current meter to the value in <a href="#InitialText">InitialText</a>. The bang re-reads the value of <a href="#InitialText">InitialText</a> in case it has been changed.
+		Sets the visible meter text on the named or current meter to the value in <a href="#InitialText">InitialText</a>. The bang makes the value of <a href="#InitialText">InitialText</a> changeable until the meter receives focus.
 		<ul>
 		<li><code>MeterName</code> (optional): The name of a meter, defaults to current section.</li>
 		</ul>
