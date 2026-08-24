@@ -80,15 +80,92 @@ title: 'Built-In Variables'
 		<p><a href="!skins/#Config">Config</a> name of current skin.</p>
 	</dd>
 
-	<dt id="CURRENTCONFIGXYWH"><code>#CURRENTCONFIGX#</code>, <code>#CURRENTCONFIGY#</code>, <code>#CURRENTCONFIGWIDTH#</code>, <code>#CURRENTCONFIGHEIGHT#</code></dt>
+	<dt id="SKINXYWH"><code>[$SkinX]</code>,&nbsp;&nbsp;<code>[$SkinY]</code>,&nbsp;&nbsp;<code>[$SkinW]</code>,&nbsp;&nbsp;<code>[$SkinH]</code></dt>
 	<dd>
-		<p>Position and size of the current skin.<br><br><b>Note:</b> These variables are <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where they are used to reflect changing values.</p>
+		Position and size of the current skin.<br><br>
+		These are all in logical DPI/zoom unscaled units.<br><br>
+		<b>Note:</b> These variables are <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where they are used to reflect changing values.<br>
+		<b>Note:</b> These variables names are equal to and replace the deprecated:<br>#CURRENTCONFIGX#, #CURRENTCONFIGY#, #CURRENTCONFIGWIDTH#, #CURRENTCONFIGHEIGHT#
 	</dd>
-	<dt id="CURRENTCONFIGZPOS"><code>#CURRENTCONFIGZPOS#</code></dt>
+	
+	<dt id="SKINPXYWH"><code>[$SkinPhysicalX]</code>,&nbsp;&nbsp;<code>[$SkinPhysicalY]</code>,&nbsp;&nbsp;<code>[$SkinPhysicalW]</code>,&nbsp;&nbsp;<code>[$SkinPhysicalH]</code></dt>
 	<dd>
-		<p><a href="https://docs.rainmeter.net/manual/settings/skin-sections/#AlwaysOnTop">Z-Position</a> (front to back) of the current skin.<br><br><b>Note:</b> This variable is <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where it is used to reflect changing values.</p>
+		Position and size of the current skin.<br><br>
+		Equal to e.g. [$SkinW] multiplied by [$SkinZoomFactor] and [$SkinDpiFactor]. Represents the actual pixel position or width / height on the physical screen.<br><br>
+		<b>Note:</b> These variables are <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where they are used to reflect changing values.
+	</dd>
+	
+	<dt id="SKINZOOMEDWH"><code>[$SkinZoomedW]</code>,&nbsp;&nbsp;<code>[$SkinZoomedH]</code></dt>
+	<dd>
+		Equal to e.g. [$SkinW] multiplied by [$SkinZoomFactor].<br>Useful with !Move/!SetWindowPosition bangs.<br><br>
+
+		<b>Note:</b> These variables are <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where they are used to reflect changing values.
+	</dd>
+	
+	<dt id="SKINDPIFACTOR"><code>[$SkinDpiFactor]</code></dt>
+	<dd>
+		Skin window DPI as a scale factor (e.g. 125% DPI = 1.25).<br><br>
+
+		<b>Note:</b> This variable is <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where it is used to reflect changing values.
+	</dd>
+	
+	<dt id="SKINZOOMFACTOR"><code>[$SkinZoomFactor]</code></dt>
+	<dd>
+		Skin zoom as a scale factor (e.g. 150% zoom = 1.5).<br><br>
+
+		<b>Note:</b> This variable is <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where  it is used to reflect changing values.
+	</dd>
+	
+	<dt id="SKINZPOS"><code>[$SkinZPos]</code></dt>
+	<dd>
+		<a href="https://docs.rainmeter.net/manual/settings/skin-sections/#AlwaysOnTop">Z-Position</a> (front to back) of the current skin.<br><br><b>Note:</b> This variable is <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where it is used to reflect changing values.<br>
+		<b>Note:</b> This variables name is equal to and replace the deprecated: #ZPOS#
+	</dd>
+	
+	<dt id="SKINVISIBLE"><code>[$SkinVisible]</code></dt>
+	<dd>
+		Returns <code>1</code> when the skin is visible and uncovered on the screen and <code>0</code> otherwise.<br><br>
+		<b>Note:</b> This variable is <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where it is used to reflect changing values.
 	</dd>
 </dl>
+
+<br><p><b>The following is a chart from user Yincognito that lays out the meaning of the new Skin metrics:</b></p>
+
+<details>
+  <summary>Click to toggle chart</summary>
+<pre>
+> Windows (DPI) scaling, i.e. the scale factor: e.g. 1.5
+[$SkinDpiFactor] = _.___ = (DPI / 96)
+
+> Skin (own) zooming, i.e. the zoom factor: e.g. 2.55
+[$SkinZoomFactor] = _.___
+
+> Logical / theoretical, i.e. not scaled and not zoomed [integer]:
+[$SkinX] = #CURRENTCONFIGX#
+[$SkinY] = #CURRENTCONFIGY#
+[$SkinW] = #CURRENTCONFIGWIDTH#
+[$SkinH] = #CURRENTCONFIGHEIGHT#
+
+> Zoomed / resized, i.e. not scaled but zoomed [integer]:
+[$SkinZoomedW] = [$SkinW] * [$SkinZoomFactor] = #CURRENTCONFIGWIDTH#  * [$SkinZoomFactor]
+[$SkinZoomedH] = [$SkinH] * [$SkinZoomFactor] = #CURRENTCONFIGHEIGHT# * [$SkinZoomFactor]
+
+> Physical / actual, i.e. scaled but not zoomed if coordinates,
+	scaled and zoomed if dimensions [integer]:
+	
+[$SkinPhysicalX] = [$SkinX] * [$SkinDpiFactor]
+	#CURRENTCONFIGX#      * [$SkinDpiFactor]
+	
+[$SkinPhysicalY] = [$SkinX] * [$SkinDpiFactor]
+	#CURRENTCONFIGY#      * [$SkinDpiFactor]
+	
+[$SkinPhysicalW] = [$SkinW] * [$SkinDpiFactor] * [$SkinZoomFactor]
+	#CURRENTCONFIGWIDTH#  * [$SkinDpiFactor] * [$SkinZoomFactor]
+	
+[$SkinPhysicalH] = [$SkinH] * [$SkinDpiFactor] * [$SkinZoomFactor]
+	#CURRENTCONFIGHEIGHT# * [$SkinDpiFactor] * [$SkinZoomFactor]
+</pre>
+</details>
 
 <h3 id="MiscVariables">Miscellaneous variables</h3>
 <dl>
