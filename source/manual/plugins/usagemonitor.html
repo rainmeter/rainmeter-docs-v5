@@ -75,9 +75,9 @@ title: 'UsageMonitor plugin'
 	<p>All instances for the counter are evaluated, totaled, averaged and sorted in an indexed list from highest value to lowest value. Index is used to return the total, average, or one of these indexed values based on the position in the list. This list will include all instances that are not excluded by a Blacklist on the measure.</p><br>
 	
 	<ul>
-	<li><code>Index=Count</code><br>Returns the count of all instances, and the string "Count".</li>
 	<li><code>Index=Sum</code><br>Returns the sum total of all instances, and the string "Total". This is the default for Index, and is not necessarily related to the instance named <code>_Total</code>. This is equivalent to <code>Index=0</code>.</li>
-	<li><code>Index=Average</code><br>Returns the average of all instances, and the string "Average". This is equivalent to <code>Index=-1</code>.</li><br>
+	<li><code>Index=Average</code><br>Returns the average of all instances, and the string "Average". This is equivalent to <code>Index=-1</code>.</li>
+	<li><code>Index=Count</code><br>Returns the count of all instances, and the string "Count".</li><br>
 	<li><code>Index=1</code>, <code>Index=2</code> etc.<br>Returns the value of the instance in that position in the sorted list, and the name of the corresponding instance as the string value.</li>
 	</ul>
 	<br><p><b>Note:</b> Any Index which returns a current value of <code>0</code> will return an empty string as the string value. An instance without a value can't be sorted, and can't exist in this indexed list, as it is indistinguishable from all other instances that are <code>0</code>.
