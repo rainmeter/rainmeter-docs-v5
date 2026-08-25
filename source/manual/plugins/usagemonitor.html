@@ -70,13 +70,15 @@ title: 'UsageMonitor plugin'
 		<br><p><b>Examples:</b> <code>Counter=% Processor Time</code>, <code>Counter=Bytes Read/sec</code></p>
 	</dd>
 
-<dt id="Index"><code>Index</code> <small>Default: <code>0</code></small></dt>
+<dt id="Index"><code>Index</code> <small>Default: <code>Sum</code></small></dt>
 	<dd>
 	<p>All instances for the counter are evaluated, totaled, averaged and sorted in an indexed list from highest value to lowest value. Index is used to return the total, average, or one of these indexed values based on the position in the list. This list will include all instances that are not excluded by a Blacklist on the measure.</p>
 	
-	<br/><p><code>Index=0</code><br/>This will always return the sum total of all instances, and the string "Total". This is the default for Index, and is not necessarily related to the instance named <code>_Total</code>.</p>
-	<p><code>Index=-1</code><br/>This will always return the average of all instances, and the string "Average".</p>
-	<p><code>Index=1</code>, <code>Index=2</code> etc.<br/>This will return the value of the instance in that position in the sorted list, and the name of the corresponding instance as the string value.</p>
+	<br/><p><code>Index=Count</code><br/>This will return the count of all instances, and the string "Count".</p>
+	
+	<p><code>Index=Sum</code><br/>This will always return the sum total of all instances, and the string "Total". This is the default for Index, and is not necessarily related to the instance named <code>_Total</code>.</p>
+	<p><code>Index=Average</code><br/>This will always return the average of all instances, and the string "Average".</p>
+	<br/><p><code>Index=1</code>, <code>Index=2</code> etc.<br/>This will return the value of the instance in that position in the sorted list, and the name of the corresponding instance as the string value.</p>
 	
 	<br/><p><b>Note:</b> Any Index which returns a current value of <code>0</code> will return an empty string as the string value. An instance without a value can't be sorted, and can't exist in this indexed list, as it is indistinguishable from all other instances that are <code>0</code>.
 	</dd>
