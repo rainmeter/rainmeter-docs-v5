@@ -6,18 +6,18 @@ title: 'Advanced .rmskin Options'
 <p>There are times that you want to release a new version of a skin or "suite" of skins. This might be to:</p>
 
 
-<b>Completely replace the skin or suite of skins.</b><br/>
+<b>Completely replace the skin or suite of skins.</b><br>
 <ul>
 <li>Simply create a new .rmskin with all files.</li>
 <li>The installing user may or may not have installed the previous version of your .rmskin. It is just a "new" install if not, and a "replace" if so.</li>
 </ul>
-<b>Change only some files in a suite of skins while leaving others alone.</b><br/>
+<b>Change only some files in a suite of skins while leaving others alone.</b><br>
 <ul>
 <li>Create a new .rmskin, with the same root config folder, but only the files you want to replace in the folder tree. You must use <b>Merge skins</b>. (See below for instructions)</li>
 <li>The installing user must have installed the previous version of your .rmskin.</li>
 </ul>
 
-<b>Add new skins and / or other files to an existing installation.</b><br/>
+<b>Add new skins and / or other files to an existing installation.</b><br>
 <ul>
 <li>Create a new .rmskin, with the same root config folder, but only the files you want to add in the folder tree. You must use <b>Merge skins</b>. (See below for instructions)</li>
 <li>The installing user must have installed the previous version of your .rmskin.</li>
@@ -33,7 +33,7 @@ title: 'Advanced .rmskin Options'
 
 <p>Create your .rsmkin from the <b>Manage</b> dialog. Once you have selected the root config folder for the skin or suite of skin, click <b>Next</b>. Set any options on the <b>Options</b> tab before continuing.</p>
 
-<p>Select the <b>Advanced</b> tab on this dialog:<br/>
+<p>Select the <b>Advanced</b> tab on this dialog:<br>
 <div class="exampleprev">
 	<a href="!img/advanced-rmskin-options/Advanced.jpg" data-fancybox><img src="!img/advanced-rmskin-options/Advanced.jpg"></a>
 </div>
@@ -47,10 +47,10 @@ title: 'Advanced .rmskin Options'
 
 <p>Specify the file location starting with the root config folder. Multiple files can be added by separating them with the pipe <code>|</code> symbol.</p>
 
-<p><b>Format:</b> <code>RootConfigFolder\Folder\MyVars.inc | RootConfigFolder\Folder\MySkin.ini</code><br/>
+<p><b>Format:</b> <code>RootConfigFolder\Folder\MyVars.inc | RootConfigFolder\Folder\MySkin.ini</code><br>
 <b>Example:</b> <code>MySuite\@Resources\Includes\SuiteVars.inc | MySuite\Clock\AnalogClock.ini</code></p>
 
-<p><b>Result:</b><br/>
+<p><b>Result:</b><br>
 <ul>
 <li>Any existing variables that are in both the current file(s) and the .rmskin are left unchanged.</li>
 <li>Any existing lines that are in both the current file(s) and the .rmskin and are not variables are replaced.</li>
@@ -67,7 +67,7 @@ title: 'Advanced .rmskin Options'
 	<a href="!img/advanced-rmskin-options/AdvancedMerge.jpg" data-fancybox><img src="!img/advanced-rmskin-options/AdvancedMerge.jpg"></a>
 </div>
 
-<p><b>Result:</b><br/>
+<p><b>Result:</b><br>
 <ul>
 <li>The root config folder is not removed or backed up.</li>
 <li>Any new files in the .rmskin are added.</li>
@@ -80,7 +80,7 @@ title: 'Advanced .rmskin Options'
 <h3>Both Variables files and Merge skins:</h3>
 <p>One or more .ini (or .inc) files are listed in Variables files, and Merge skins is checked.</p>
 
-<p><b>Result:</b><br/>
+<p><b>Result:</b><br>
 <ul>
 <li>These options are not compatible with each other.</li>
 <li>The "Merge skins" option is executed (see above).</li>
@@ -90,7 +90,7 @@ title: 'Advanced .rmskin Options'
 
 <h3>Neither advanced option:</h3>
 
-<p><b>Result:</b><br/>
+<p><b>Result:</b><br>
 <ul>
 <li>The root config folder is backed up and removed.</li>
 <li>All files are completely replaced.</li>

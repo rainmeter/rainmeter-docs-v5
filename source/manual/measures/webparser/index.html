@@ -48,13 +48,13 @@ StringIndex=2
 
 		<p>If you want to use the current value of a measure in a dynamic way as a <a href="!variables/section-variables/">Section Variable</a>, rather than as a reference to a "parent" WebParser measure, you must prefix the name of the measure with the <code>&</code> character.</p>
 
-		<p>Example: <code>URL=https://somesite.com/[&WebMeasure]</code></p><br/>
+		<p>Example: <code>URL=https://somesite.com/[&WebMeasure]</code></p><br>
 
-		<p><b>A note on URL encoding:</b> WebParser will automatically <a href="http://www.blooberry.com/indexdot/html/topics/urlencoding.htm">URL-Encode</a>, also known as Percent Encoding, any characters <em>after</em> the <code>protocol://host/path/</code> portion of the URL that are <b>not</b> one of the following:<br/><br/>
-		Unreserved URL-safe characters:<br/><code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~</code><br/>Reserved URL-delimiter characters:<br/><code>!*'();:@&amp;=+$,/?%#[]</code></p><br/>
-		<p>This means that a URL like:<br/><code>https://somesite.com?search=I live in München</code><br/>
-		Would be sent as:<br/>
-		<code>https://somesite.com?search=I%20live%20in%20M%C3%BCnchen</code></p><br/>
+		<p><b>A note on URL encoding:</b> WebParser will automatically <a href="http://www.blooberry.com/indexdot/html/topics/urlencoding.htm">URL-Encode</a>, also known as Percent Encoding, any characters <em>after</em> the <code>protocol://host/path/</code> portion of the URL that are <b>not</b> one of the following:<br><br>
+		Unreserved URL-safe characters:<br><code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~</code><br>Reserved URL-delimiter characters:<br><code>!*'();:@&amp;=+$,/?%#[]</code></p><br>
+		<p>This means that a URL like:<br><code>https://somesite.com?search=I live in München</code><br>
+		Would be sent as:<br>
+		<code>https://somesite.com?search=I%20live%20in%20M%C3%BCnchen</code></p><br>
 		<p>This encoding is transparently done before the URL is sent to the remote site. <em>This is not done when the protocol is <code>file://</code>.</em></p>
 	</dd>
 
@@ -88,7 +88,7 @@ StringIndex=2
 
 		<p><code>LeftMouseUpAction=[!SetOption WebMeasure URL "https://SomeNewSite.com"][!CommandMeasure WebMeasure Update]</code></p>
 
-		<br/>
+		<br>
 		<p>More information on <code>UpdateRate</code> is at <a href="https://docs.rainmeter.net/tips/webparser-updaterate/">WebParser: How UpdateRate Works</a>.</p>
 	</dd>
 
@@ -248,37 +248,37 @@ UserAgent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
 	<dd>
 		<p>Specifies one or more flags to be used by a parent WebParser measure. These flags control some aspects of how WebParser connects to the remote resource via HTTP/HTTPS.</p>
 
-		<br/><p>Multiple flags are set by separating them with the <code>|</code> pipe character.</p>
+		<br><p>Multiple flags are set by separating them with the <code>|</code> pipe character.</p>
 
-		<br/><p>Supported <code>Flags</code> are:
+		<br><p>Supported <code>Flags</code> are:
 
 		<ul>
-		<li><b>Resync</b><br/>
+		<li><b>Resync</b><br>
 		Only downloads if the resource has been modified since the last time it was downloaded. Otherwise the cache is used. This is the default if no Flags are set.</li>
-		<li><b>ForceReload</b><br/>
+		<li><b>ForceReload</b><br>
 		Forces a download of the requested resource from the origin server, not from the cache.</li>
-		<li><b>NoCookies</b><br/>
+		<li><b>NoCookies</b><br>
 		Does not add cookie headers to requests, and does not add any cookies set by the resource to the cookie database. Does not "send" or "accept" cookies from any resource.</li>
-		<li><b>NoCacheWrite</b><br/>
+		<li><b>NoCacheWrite</b><br>
 		Does not add the returned resource data to the cache.</li>
-		<li><b>Hyperlink</b><br/>
+		<li><b>Hyperlink</b><br>
 		Forces a download if there was no Expires time and no LastModified time returned from the server when determining whether to reload the item from the network.</li>
-		<li><b>TempFile</b><br/>
+		<li><b>TempFile</b><br>
 		Causes a temporary file to be created if the file cannot be cached.</li>
-		<li><b>NoAuth</b><br/>
+		<li><b>NoAuth</b><br>
 		Does not attempt URL-based authentication.</li>
-		<li><b>PragmaNoCache</b><br/>
+		<li><b>PragmaNoCache</b><br>
 		Forces the request to be resolved by the origin server, even if a cached copy exists on a proxy.</li>
-		<li><b>Secure</b><br/>
+		<li><b>Secure</b><br>
 		Uses secure transaction semantics. This translates to using Secure Sockets Layer/Private Communications Technology (SSL/PCT) and is only meaningful in HTTP requests.</li>
-		<li><b>IgnoreCertName</b><br/>
+		<li><b>IgnoreCertName</b><br>
 		Disables checking of SSL/PCT-based certificates that are returned from the server against the host name given in the request. WinINet functions use a simple check against certificates by comparing for matching host names and simple wildcarding rules. Use with caution.</li>
-		<li><b>IgnoreCertDate</b><br/>
+		<li><b>IgnoreCertDate</b><br>
 		Disables checking of SSL/PCT-based certificates for proper validity dates. Use with caution.</li>
-		<li><b>IgnoreHTTPRedirect</b><br/>
+		<li><b>IgnoreHTTPRedirect</b><br>
 		Disables detection of this special type of redirect. When this flag is used, WinINet transparently allows redirects from HTTPS to HTTP URLs. Use with caution.</li>
-		<li><b>IgnoreHTTPSRedirect</b><br/>
-		Disables the detection of this special type of redirect. When this flag is used, WinINet transparently allows redirects from HTTP to HTTPS URLs. Use with caution.</li><br/>
+		<li><b>IgnoreHTTPSRedirect</b><br>
+		Disables the detection of this special type of redirect. When this flag is used, WinINet transparently allows redirects from HTTP to HTTPS URLs. Use with caution.</li><br>
 		</ul>
 
 
@@ -357,7 +357,7 @@ Flags=ForceReload | NoCookies
 
 		<p>Example: <code>[!CommandMeasure MeasureName "Update"]</code></p>
 
-		<br/>
+		<br>
 		<p>More information on <code>UpdateRate</code> is at <a href="https://docs.rainmeter.net/tips/webparser-updaterate/">WebParser: How UpdateRate Works</a>.</p>
 	</dd>
 

@@ -61,17 +61,17 @@ set CERTKEY=certpassword
 <p>Then you will want to download the <a href="https://github.com/rainmeter/rainmeter-plugin-sdk">Rainmeter Plugin SDK</a> to a folder on your PC. The SDK contains the API code needed to create plugins, as well as some starting and sample plugin code for C++ and C#:</p>
 
 <ul>
-<li><b>PluginEmpty</b><br/>
+<li><b>PluginEmpty</b><br>
 An empty plugin template you can use as a starting point for your code.</li>
-<li><b>PluginSystemVersion</b><br/>
+<li><b>PluginSystemVersion</b><br>
 An example plugin that returns the Windows system version to a skin.</li>
-<li><b>PluginParentChild</b><br/>
+<li><b>PluginParentChild</b><br>
 An example plugin demonstrating how to do "parent-child" functions in your plugin.</li>
-<li><b>PluginSectionVariables</b><br/>
+<li><b>PluginSectionVariables</b><br>
 An example plugin demonstrating how to implement functions to use as section variables in your plugin.</li>
-<li><b>PluginRmExecute</b><br/>
+<li><b>PluginRmExecute</b><br>
 An example plugin demonstrating how to make an option be read and execute the bang within.</li>
-<li><b>PluginDataHandling</b><br/>
+<li><b>PluginDataHandling</b><br>
 An example plugin demonstrating how to keep data across functions calls and also storing data in the <a href="/manual/settings/#RainmeterData">Rainmeter.data</a> file for presistant access across skin reloads and even measures.</li>
 </ul>
 
@@ -114,7 +114,7 @@ HWND GetSkinWindow(const WCHAR* configName)
 }
 ```
 
-<p>AutoIT code:<br/></p>
+<p>AutoIT code:<br></p>
 ``` autoit
 ; Usage: $Return = GetSkinWindow("ConfigName")
 ; Return value will be 0 if config not found
@@ -143,7 +143,7 @@ EndFunc
 
 <p>The following code demonstrates how to retrieve important application path information for Rainmeter from your external application.</p>
 
-<p>AutoIT code:<br/></p>
+<p>AutoIT code:<br></p>
 ``` autoit
 #include <SendMessage.au3>
 #include <GUIConstantsEx.au3>

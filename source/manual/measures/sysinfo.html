@@ -59,18 +59,18 @@ title: 'SysInfo'
 			<li><code>DOMAIN_WORKGROUP</code> : [String] The computer's network domain or workgroup name.</li>
 			<li><code>DNS_SERVER</code> : [String] The computer's network primary DNS server IP address.</li>
 			<li><code>ADAPTER_DESCRIPTION</code> : [String] The description (name) of the network adapter specified by <code>SysInfoData</code>.</li>
-			<li><code>ADAPTER_TYPE</code> : [String and Number] The type of network adapter specified by <code>SysInfoData</code>.<br/><br/>The string value will be one of <code>Ethernet</code>, <code>Wireless</code> or <code>Other</code>. The number value will be one of <code>6</code> (Ethernet), <code>71</code> (Wireless), or some other number in the range 0-280 (Other). The meaning of numeric codes other than 6 and 71 can be found at: <a href="https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_info">learn.microsoft.com Adapter Info</a>.<br/><br/></li>
+			<li><code>ADAPTER_TYPE</code> : [String and Number] The type of network adapter specified by <code>SysInfoData</code>.<br><br>The string value will be one of <code>Ethernet</code>, <code>Wireless</code> or <code>Other</code>. The number value will be one of <code>6</code> (Ethernet), <code>71</code> (Wireless), or some other number in the range 0-280 (Other). The meaning of numeric codes other than 6 and 71 can be found at: <a href="https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_info">learn.microsoft.com Adapter Info</a>.<br><br></li>
 			<li><code>ADAPTER_ALIAS</code> : [String] The network interface connected to by the network adapter specified by <code>SysInfoData</code>. Examples are <code>Ethernet 1</code> or <code>WiFi 3</code>.</li>
 			<li><code>ADAPTER_GUID</code> : [String] The GUID of the network adapter specified by <code>SysInfoData</code>.</li>
 			<li><code>ADAPTER_STATE</code> : [String and Number] Gets the "media connected state" of the network adapter specified by <code>SysInfoData</code>. This works for physical and non-physical adapters. The number value will return 1 for connected, and -1 for disconnected. The string value will return Connected or Disconnected. Any other state returns 0 and Unknown.</li>
-			<li><code>ADAPTER_STATUS</code> : [String and Number]  The operational status of the network adapter specified by <code>SysInfoData</code>. This works for physical and non-physical adapters. The values returned are:<br/><br/>
-			Number: <code>-3</code> String: <code>Not Present</code><br/>
-			Number: <code>-2</code> String: <code>Lower Layer Down</code><br/>
-			Number: <code>-1</code> String: <code>Down</code><br/>
-			Number: &nbsp;<code>0</code> String: <code>Unknown</code><br/>
-			Number: &nbsp;<code>1</code> String: <code>Up</code><br/>
-			Number: &nbsp;<code>2</code> String: <code>Dormant</code><br/>
-			Number: &nbsp;<code>3</code> String: <code>Testing</code><br/><br/></li>
+			<li><code>ADAPTER_STATUS</code> : [String and Number]  The operational status of the network adapter specified by <code>SysInfoData</code>. This works for physical and non-physical adapters. The values returned are:<br><br>
+			Number: <code>-3</code> String: <code>Not Present</code><br>
+			Number: <code>-2</code> String: <code>Lower Layer Down</code><br>
+			Number: <code>-1</code> String: <code>Down</code><br>
+			Number: &nbsp;<code>0</code> String: <code>Unknown</code><br>
+			Number: &nbsp;<code>1</code> String: <code>Up</code><br>
+			Number: &nbsp;<code>2</code> String: <code>Dormant</code><br>
+			Number: &nbsp;<code>3</code> String: <code>Testing</code><br><br></li>
 			<li><code>ADAPTER_TRANSMIT_SPEED</code> : [Number] The currently supported outbound speed of the network adapter specified by <code>SysInfoData</code>. This is in bits per second, and if scaled, should be scaled by 1000 <a href="https://docs.rainmeter.net/manual/meters/string/#AutoScale">(AutoScale=2)</a> to be consistent with Control Panel.</li>
 			<li><code>ADAPTER_RECEIVE_SPEED</code> : [Number] The currently supported inbound speed of the network adapter specified by <code>SysInfoData</code>. This is in bits per second, and if scaled, should be scaled by 1000 <a href="https://docs.rainmeter.net/manual/meters/string/#AutoScale">(AutoScale=2)</a> to be consistent with Control Panel.</li>
 			<li><code>MAC_ADDRESS</code> : [String] The physical MAC address of the network adapter specified by <code>SysInfoData</code>.</li>
@@ -106,22 +106,22 @@ title: 'SysInfo'
 
 		<h4 id="TimeZoneValues">Time Zone values</h4>
 		<ul>
-		<li><code>TIMEZONE_ISDST</code><br/>
-		[Number] A flag indicating the current state of Daylight Savings Time for the local computer.<br/>
-		Possible return values are:<br/>
-		<code>1</code> : Daylight Savings Time is currently in effect<br/>
-		<code>0</code> : Daylight Savings Time is currently not in effect<br/>
+		<li><code>TIMEZONE_ISDST</code><br>
+		[Number] A flag indicating the current state of Daylight Savings Time for the local computer.<br>
+		Possible return values are:<br>
+		<code>1</code> : Daylight Savings Time is currently in effect<br>
+		<code>0</code> : Daylight Savings Time is currently not in effect<br>
 		<code>-1</code> : The local region does not use Daylight Savings Time, or the functionality is disabled in Windows.</li>
-		<li><code>TIMEZONE_BIAS</code><br/>
+		<li><code>TIMEZONE_BIAS</code><br>
 		[Number] The difference, in minutes, between standard local time and Coordinated Universal Time (UTC). This is the difference <em>from</em> the standard local time <em>to</em> UTC, or <code>UTC = standard local time + time zone bias</code>.</li>
-		<li><code>TIMEZONE_STANDARD_NAME</code><br/>
+		<li><code>TIMEZONE_STANDARD_NAME</code><br>
 		[String] The full name of the local computer's Time Zone when Daylight Savings Time is not in effect. For example, "Eastern Standard Time".</li>
-		<li><code>TIMEZONE_STANDARD_BIAS</code><br/>
+		<li><code>TIMEZONE_STANDARD_BIAS</code><br>
 		[Number] The difference in minutes between standard local time and the local time when Daylight Savings Time is not in effect. For most areas, this will always be zero. Adding this to the value of TIMEZONE_BIAS will produce the total actual difference in minutes between the local computer and UTC when Daylight Savings Time is not in effect, or <code>UTC = standard local time + time zone bias + standard bias</code>.</li>
-		<li><code>TIMEZONE_DAYLIGHT_NAME</code><br/>
+		<li><code>TIMEZONE_DAYLIGHT_NAME</code><br>
 		[String] The full name of the local computer's Time Zone when Daylight Savings Time is in effect. For example, "Eastern Daylight Time".</li>
-		<li><code>TIMEZONE_DAYLIGHT_BIAS</code><br/>
-		[Number] The difference in minutes between standard local time and the local time when Daylight Savings Time is in effect. For most areas, this will always be -60. Adding this to the value of TIMEZONE_BIAS will produce the total actual difference in minutes between the local computer and UTC when Daylight Savings Time is in effect, or <code>UTC = standard local time + time zone bias + daylight bias</code>.<br/><br/>
+		<li><code>TIMEZONE_DAYLIGHT_BIAS</code><br>
+		[Number] The difference in minutes between standard local time and the local time when Daylight Savings Time is in effect. For most areas, this will always be -60. Adding this to the value of TIMEZONE_BIAS will produce the total actual difference in minutes between the local computer and UTC when Daylight Savings Time is in effect, or <code>UTC = standard local time + time zone bias + daylight bias</code>.<br><br>
 		<b>Note:</b> Also see Daylight Savings Time <a href="!measures/time/#TimeStamp">TimeStamp</a> options on <a href="!measures/time/">Time</a> measures.</li>
 		</ul>
 	</dd>

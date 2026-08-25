@@ -59,8 +59,8 @@ title: 'Installing Rainmeter'
 <p>Rainmeter can be installed "silently" from a command prompt, either a <b>cmd.exe</b> command window or a <b>PowerShell</b> window.</p>
 
 <h3 id="Notes">Notes</h3>
-<p><b>Important!</b> In order to have the installation be entirely "silent", the command prompt window must be run "As Administrator". If not, the installer will open a UAC confirmation dialog when run.<br/><br/>
-If an error occurs, a file named "Rainmeter.SilentInstall.log" is created on the desktop with information on the problem. If the desktop cannot be written to, the log file will be written to the user folder i.e. <code>C:\Users\YourName</code>.<br/><br/>
+<p><b>Important!</b> In order to have the installation be entirely "silent", the command prompt window must be run "As Administrator". If not, the installer will open a UAC confirmation dialog when run.<br><br>
+If an error occurs, a file named "Rainmeter.SilentInstall.log" is created on the desktop with information on the problem. If the desktop cannot be written to, the log file will be written to the user folder i.e. <code>C:\Users\YourName</code>.<br><br>
 Rainmeter will restart after the installation if it was running when the installation was started.</p>
 
 <h3 id="Parameters">Parameters</h3>
@@ -84,7 +84,7 @@ Rainmeter will restart after the installation if it was running when the install
 <p></p>
 
 <ul>
-<li><code>/D=</code> : Defines the installation folder.<br/>
+<li><code>/D=</code> : Defines the installation folder.<br>
 <ul>
 <li>This is <em>required</em> for "portable" installations. It is <em>ignored</em> on "normal" installations.</li>
 <li>When installing in "normal" mode this is ignored, and will be forced to the <code>%PROGRAMFILES%</code> (generally C:\Program Files) folder for the account, in a \Rainmeter subfolder.</li>
@@ -101,7 +101,7 @@ Rainmeter will restart after the installation if it was running when the install
 Rainmeter-4.5.0.exe /S /AUTOSTARTUP=0 /VERSION=32
 Rainmeter-4.5.0.exe /S /RESTART=0
 Rainmeter-4.5.0.exe /S /PORTABLE=1 /D=E:\MyRainmeter
-</pre><br/>
+</pre><br>
 
 <h2 id="WinGetInstallation">WinGet Installation</h2>
 
@@ -113,13 +113,13 @@ Rainmeter-4.5.0.exe /S /PORTABLE=1 /D=E:\MyRainmeter
 
 <h3 id="Usage">Usage</h3>
 
-<p><code>winget install Rainmeter</code><br/>
+<p><code>winget install Rainmeter</code><br>
 This will force a new or overlay install of Rainmeter. It will use the currently defined or default <a href="#SilentInstallation">Silent Installation</a> parameters listed above.</p>
 
-<p><code>winget upgrade Rainmeter</code><br/>
+<p><code>winget upgrade Rainmeter</code><br>
 This will only install Rainmeter if a newer version than what is currently installed is available. It will use the currently defined or default <a href="#SilentInstallation">Silent Installation</a> parameters listed above.</p>
 
-<p><code>winget install Rainmeter --override "/S /PORTABLE=1 /D=E:\MyRainmeter"</code><br/>
+<p><code>winget install Rainmeter --override "/S /PORTABLE=1 /D=E:\MyRainmeter"</code><br>
 Using the <code>--override</code> parameter on the WinGet command line will allow setting any of the <a href="#SilentInstallation">Silent Installation</a> parameters listed above. Enclose the string of parameters in "quotes". <em>Don't forget to use the <code>/S</code> parameter when overriding the default behavior.</em></p>
 <p><b>Note:</b> The "upgrade" command is not supported with a "portable" installation of Rainmeter. Always use "install" and the <code>--override</code> parameter with a "portable" installation of Rainmeter.</p>
 

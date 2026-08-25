@@ -19,7 +19,7 @@ title: 'Time measure'
 
 		<p>An example might be:</p>
 		<ul>
-		<li><code>Format=%A, %B %#d, %Y %#I:%M %p</code><br/>
+		<li><code>Format=%A, %B %#d, %Y %#I:%M %p</code><br>
 		<em>Tuesday, January 27, 2015 3:22:30 PM</em></li>
 		</ul>
 
@@ -42,19 +42,19 @@ title: 'Time measure'
 
 		<p>This can be one of several TimeStamp codes that represent various Daylight Saving Time values.</p>
 		<ul>
-		<li>TimeStamp=<code>DSTNextStart</code><br/>
+		<li>TimeStamp=<code>DSTNextStart</code><br>
 		Returns the local date and time of the <em>next</em> start of Daylight Saving Time.</li>
-		<li>TimeStamp=<code>DSTNextEnd</code><br/>
+		<li>TimeStamp=<code>DSTNextEnd</code><br>
 		Returns the local date and time of the <em>next</em> end of Daylight Saving Time.</li>
-		<li>TimeStamp=<code>DSTStart</code><br/>
+		<li>TimeStamp=<code>DSTStart</code><br>
 		Returns the local date and time of the start of Daylight Saving Time for the <em>current</em> year.</li>
-		<li>TimeStamp=<code>DSTEnd</code><br/>
+		<li>TimeStamp=<code>DSTEnd</code><br>
 		Returns the local date and time of the end of Daylight Saving Time for the <em>current</em> year.</li>
-		<li>TimeStamp=<code>DSTStartYYYY</code><br/>
-		Returns the local date and time of the start of Daylight Saving Time for a <em>defined</em> year.<br/>
+		<li>TimeStamp=<code>DSTStartYYYY</code><br>
+		Returns the local date and time of the start of Daylight Saving Time for a <em>defined</em> year.<br>
 		Example: <code>TimeStamp=DSTStart2016</code></li>
-		<li>TimeStamp=<code>DSTEndYYYY</code><br/>
-		Returns the local date and time of the end of Daylight Saving Time for a <em>defined</em> year.<br/>
+		<li>TimeStamp=<code>DSTEndYYYY</code><br>
+		Returns the local date and time of the end of Daylight Saving Time for a <em>defined</em> year.<br>
 		Example: <code>TimeStamp=DSTEnd2016</code></li>
 		</ul>
 		<p><b>Notes:</b>These values cannot be modified with the <a href="#TimeZone">TimeZone</a> option to obtain valid Daylight Saving Time information for another location. These are always based on the information for the local computer.</p>
@@ -105,8 +105,8 @@ title: 'Time measure'
 		<p>This will allow a TimeStamp formatted string that is in a particular language / locale to be properly resolved when TimeStampFormat is defined. The TimeStamp and TimeStampFormat options are required to use this option.</p>
 
 		<p>An example might be:<p>
-		<p><code>TimeStamp=Montag, 16. Februar 2015 13:10:45</code><br/>
-		<code>TimeStampFormat=%A, %d. %b %Y %H:%M:%S</code><br/>
+		<p><code>TimeStamp=Montag, 16. Februar 2015 13:10:45</code><br>
+		<code>TimeStampFormat=%A, %d. %b %Y %H:%M:%S</code><br>
 		<code>TimeStampLocale=de-DE</code></p>
 
 		<p>The values for this option can be found at <a href="https://learn.microsoft.com/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c">[MS-LCID]: Windows Language Code Identifier (LCID) Reference</a>. The values in the columns "Culture Name" or "Language Name Abbreviation" or "Language" can be used. Be sure to select your Windows version from the pull-down on the top left to get the most accurate information.<p>
@@ -115,11 +115,11 @@ title: 'Time measure'
 
 		<p>Some examples might be:</p>
 		<ul>
-		<li><code>TimeStampLocale=de-DE</code><br/>
+		<li><code>TimeStampLocale=de-DE</code><br>
 		<em>The "Culture Name" value for German - Germany</em></li>
-		<li><code>TimeStampLocale=FRA</code><br/>
+		<li><code>TimeStampLocale=FRA</code><br>
 		<em>The "Language Name Abbreviation" for French</em></li>
-		<li><code>TimeStampLocale=Russian_Russia.1251</code><br/>
+		<li><code>TimeStampLocale=Russian_Russia.1251</code><br>
 		<em>The "Language"_"Country"."ANSI Codepage" for Russian - Russia using codepage 1251</em></li>
 		</ul>
 	</dd>
@@ -135,18 +135,18 @@ title: 'Time measure'
 		<p>In addition, using the value <code>Local</code>, e.g. <code>FormatLocale=Local</code> on the measure will cause the output format to automatically use the date / time "locale" language and format set in Windows for the machine the skin is running on, rather than defaulting to a standard platform-agnostic "English" representation.</p>
 
 		<p>Examples might be:</p>
-		<p><code>TimeStamp=Wednesday, February 18, 2015 at 01:07:40</code><br/>
-		<code>TimeStampFormat=%A, %B %#d, %Y at %H:%M:%S</code><br/>
-		<code>TimeStampLocale=en-US</code><br/>
-		<code>FormatLocale=de-DE</code><br/>
-		<code>Format=%#c</code><br/>
+		<p><code>TimeStamp=Wednesday, February 18, 2015 at 01:07:40</code><br>
+		<code>TimeStampFormat=%A, %B %#d, %Y at %H:%M:%S</code><br>
+		<code>TimeStampLocale=en-US</code><br>
+		<code>FormatLocale=de-DE</code><br>
+		<code>Format=%#c</code><br>
 		Result in a String meter: <em>Mittwoch, 18. Februar 2015 01:07:40</em></p>
 
-		<p><code>TimeStamp=Wednesday, February 18, 2015 at 01:07:40</code><br/>
-		<code>TimeStampFormat=%A, %B %#d, %Y at %H:%M:%S</code><br/>
-		<code>TimeStampLocale=en-US</code><br/>
-		<code>FormatLocale=Local</code><br/>
-		<code>Format=%#c</code><br/>
+		<p><code>TimeStamp=Wednesday, February 18, 2015 at 01:07:40</code><br>
+		<code>TimeStampFormat=%A, %B %#d, %Y at %H:%M:%S</code><br>
+		<code>TimeStampLocale=en-US</code><br>
+		<code>FormatLocale=Local</code><br>
+		<code>Format=%#c</code><br>
 		The result in a String meter will be the language and format representation appropriate for the system the skin is running on.</p>
 
 		<b>Note:</b> While any Format string desired can be used, the codes like <code>%#c</code> that return long or short representations of the date and/or time for the system locale or the locale defined by TimeStampLocale or FormatLocale are particularly useful for easily changing between locale values from the "input" to the "output". Not only will it use the language defined by the locale, but also with the appropriate order, structure and punctuation.</p>
@@ -215,11 +215,11 @@ title: 'Time measure'
 
 <p><b>Note:</b> <code>%z</code> and <code>%Z</code> cannot be used in the <a href="#TimeStampFormat">TimeStampFormat</a> option.</p>
 
-<p><b>#</b> modifier: Removes leading zeros in the following numeric codes:<br/>
+<p><b>#</b> modifier: Removes leading zeros in the following numeric codes:<br>
 <code>%#d, %#H, %#I, %#j, %#m, %#M, %#S, %#U, %#w, %#W, %#y, %#Y</code></p>
-<p><b>E</b> modifier: Uses the system locale alternative representation for the following codes:<br/>
+<p><b>E</b> modifier: Uses the system locale alternative representation for the following codes:<br>
 <code>%Ec, %EC, %Ex, %EX, %Ey, %EY</code></p>
-<p><b>O</b> modifier: Uses the system locale alternative representation for the following codes:<br/>
+<p><b>O</b> modifier: Uses the system locale alternative representation for the following codes:<br>
 <code>%Od, %Oe, %OH, %OI, %Om, %OM, %OS, %Ou, %OU, %OV, %Ow, %OW, %Oy</code></p>
 
 <h2>Example</h2>

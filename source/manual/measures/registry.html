@@ -14,7 +14,7 @@ title: 'Registry measure'
 
 	<dt id="RegHKey"><code>RegHKey</code> <small>Default: <code>HKEY_CURRENT_USER</code></small></dt>
 	<dd>
-		<p>Name of the root key. Valid values are:<br/>
+		<p>Name of the root key. Valid values are:<br>
 		<ul>
 		<li><code>HKEY_CURRENT_CONFIG</code></li>
 		<li><code>HKEY_CURRENT_USER</code></li>
@@ -34,7 +34,7 @@ title: 'Registry measure'
 	<dt id="RegValue"><code>RegValue</code></dt>
 	<dd>
 		<p>Name of the value to return. If not specified, the default value is retrieved.</p>
-		<p><b>Note:</b> The <a href="https://en.wikipedia.org/wiki/Windows_Registry">registry key value types</a> supported are:<br/>
+		<p><b>Note:</b> The <a href="https://en.wikipedia.org/wiki/Windows_Registry">registry key value types</a> supported are:<br>
 		<ul>
 			<li><code>REG_SZ</code> (string): A string usually UTF-16LE encoded. If the string represents a number, both the string and number <a href="!measures/#Values">measure values</a> will be set.</li>
 			<li><code>REG_EXPAND_SZ</code> (string): An "expandable" string similar to <code>REG_SZ</code> that can contain <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a>.</li>
@@ -50,7 +50,7 @@ title: 'Registry measure'
 <dl>
 	<dt id="OutputType"><code>OutputType</code> <small>Default: <code>Value</code></small></dt>
 	<dd>
-		<p>Allows the default behavior where the named value is returned - to be changed - to return either a list of all subkeys for the defined key, or a list of all value names for the defined key. Valid values are:<br/>
+		<p>Allows the default behavior where the named value is returned - to be changed - to return either a list of all subkeys for the defined key, or a list of all value names for the defined key. Valid values are:<br>
 		<ul>
 			<li><code>Value</code>: Retrieves the value defined by <a href="!measures/registry/#RegValue">RegValue</a></li>
 			<li><code>SubKeyList</code>: Retrieves a list of subkey names under the key defined by <code>RegKey</code>. <em><code>RegValue</code> is ignored.</em></li>

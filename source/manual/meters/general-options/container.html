@@ -8,13 +8,13 @@ title: 'Container'
 <p><b>The intent of this is two-fold:</b></p>
 
 <ul>
-	<li>A meter that has a Container option will in effect be put "inside" the container meter. It will be positioned relative to the container, and will be visibly constrained by it. Only the part of the content that is "inside" the container will be drawn.<br/><br/>
+	<li>A meter that has a Container option will in effect be put "inside" the container meter. It will be positioned relative to the container, and will be visibly constrained by it. Only the part of the content that is "inside" the container will be drawn.<br><br>
 
-	<em>Think sliding content, a menu or launcher for instance, into view without needing to start outside the entire skin.</em><br/><br/></li>
+	<em>Think sliding content, a menu or launcher for instance, into view without needing to start outside the entire skin.</em><br><br></li>
 
-	<li>The content will be "masked" into any solid pixels in the container meter. So only the part of the content that is masked into a solid pixel in the container will be drawn.<br/><br/>
+	<li>The content will be "masked" into any solid pixels in the container meter. So only the part of the content that is masked into a solid pixel in the container will be drawn.<br><br>
 
-	<em>Think masking an image into a String meter, or an image into a Shape meter.</em><br/><br/></li>
+	<em>Think masking an image into a String meter, or an image into a Shape meter.</em><br><br></li>
 </ul>
 
 <dl>
@@ -26,26 +26,26 @@ title: 'Container'
 
 <h2 id="Usage">Usage Notes</h2>
 
-<b>Visibility</b><br/>
+<b>Visibility</b><br>
 <ul>
-<li>Content is only drawn within the rectangular W and H boundaries of the container meter.<br/>
+<li>Content is only drawn within the rectangular W and H boundaries of the container meter.<br>
 <em>Content outside the container is truncated, and in effect doesn't exist.</em></li>
-<li>Content is only drawn on solid pixels of the container.<br/>
+<li>Content is only drawn on solid pixels of the container.<br>
 <em>The container meter itself is not drawn, just the content.</em></li>
 <li>Any transparency of both the container and the content is cumulative.</li>
 </ul>
 
-<b>Relativity</b><br/>
+<b>Relativity</b><br>
 
 <ul>
-<li>The first content meter in a container is automatically relative to the top left of the container.<br/>
+<li>The first content meter in a container is automatically relative to the top left of the container.<br>
 <em>"r" is assumed and "R" is ignored.</em></li>
-<li>Subsequent content meters in a container are relative to each other.<br/>
+<li>Subsequent content meters in a container are relative to each other.<br>
 <em>"r" and "R" function normally.</em></li>
 <li>Meters that are not content are relative to the immediately preceding meter that is not content.</li>
 </ul>
 
-<b>Other Rules</b><br/>
+<b>Other Rules</b><br>
 
 <ul>
 <li>Any meter type can be a container and any meter type can be content.</li>
@@ -61,7 +61,7 @@ title: 'Container'
 	<p><b>Download the .rmskin.</b></p>	
 </div>
 
-<br/><br/><p><b>Sliding a "content" meter in and out of a "container" meter.</b></p>
+<br><br><p><b>Sliding a "content" meter in and out of a "container" meter.</b></p>
 ``` ini
 [Rainmeter]
 Update=1000
@@ -129,7 +129,7 @@ DynamicVariables=1
 	<p><img src="!img/container/HelloWorld.gif"/></p>
 </div>
 
-<br/><br/>
+<br><br>
 
 <p><b>Masking an image "content" meter into a string "container" meter.</b></p>
 ``` ini

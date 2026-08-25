@@ -74,18 +74,18 @@ Text=This is text containing %1 and %2.
 	<dt id="FontWeight"><code>FontWeight</code></dt>
 	<dd>
 		<p>The weight of the font in the range 1-999.</p>
-		<p>The following are common values and their meanings. If the value is supported by the font family, it will be used. If not, the closest value that is supported by the font family will be used.<br/><br/>
-		<b>100</b> - Thin (Hairline)<br/>
-		<b>200</b> - Extra Light (Ultra Light)<br/>
-		<b>300</b> - Light<br/>
-		<b>350</b> - Semi Light<br/>
-		<b>400</b> - Regular (Normal)<br/>
-		<b>500</b> - Medium<br/>
-		<b>600</b> - Semi Bold (Demi Bold)<br/>
-		<b>700</b> - Bold<br/>
-		<b>800</b> - Extra Bold (Ultra Bold)<br/>
-		<b>900</b> - Black (Heavy)<br/>
-		<b>950</b> - Extra Black (Ultra Black)<br/><br/>
+		<p>The following are common values and their meanings. If the value is supported by the font family, it will be used. If not, the closest value that is supported by the font family will be used.<br><br>
+		<b>100</b> - Thin (Hairline)<br>
+		<b>200</b> - Extra Light (Ultra Light)<br>
+		<b>300</b> - Light<br>
+		<b>350</b> - Semi Light<br>
+		<b>400</b> - Regular (Normal)<br>
+		<b>500</b> - Medium<br>
+		<b>600</b> - Semi Bold (Demi Bold)<br>
+		<b>700</b> - Bold<br>
+		<b>800</b> - Extra Bold (Ultra Bold)<br>
+		<b>900</b> - Black (Heavy)<br>
+		<b>950</b> - Extra Black (Ultra Black)<br><br>
 		If the font does not support any additional weights, then 500 and below will use the font's normal weight, and 600 and above will simulate a bold effect.</p>
 	</dd>
 
@@ -100,24 +100,24 @@ Text=This is text containing %1 and %2.
 		</ul>
 		<p>The string will be aligned using the values of the <code>X</code> and or <code>Y</code> settings as the anchor point. So to CenterCenter align a string within a meter with a width and height of 100, set <code>X=50</code>, <code>Y=50</code> and <code>StringAlign=CenterCenter</code>.</p>
 		
-		<br/><p><b>StringAlign=Left</b> (the default)<br/>
-		The string starts at X, and is drawn from there out to the right.<br/>
-		<em>The result is that the string <b>begins at X</b>, and ends where it ends based on the length of the string.</em><br/>
+		<br><p><b>StringAlign=Left</b> (the default)<br>
+		The string starts at X, and is drawn from there out to the right.<br>
+		<em>The result is that the string <b>begins at X</b>, and ends where it ends based on the length of the string.</em><br>
 		X ==========></p>
 
-		<p><b>StringAlign=Center</b><br/>
-		The string starts at X, and is drawn 1/2 back to the left, and 1/2 out to the right.<br/>
-		<em>The result is that the string is <b>centered on X</b>. It begins where it begins and ends where it ends based on the length of the string.</em><br/>
+		<p><b>StringAlign=Center</b><br>
+		The string starts at X, and is drawn 1/2 back to the left, and 1/2 out to the right.<br>
+		<em>The result is that the string is <b>centered on X</b>. It begins where it begins and ends where it ends based on the length of the string.</em><br>
 		<=====X=====></p>
 
-		<p><b>StringAlign=Right</b><br/>
-		The string starts at X, and is drawn from there back to the left.<br/>
-		<em>The result is that the string <b>ends at X</b>, and begins where it begins based on the length of the string.</em><br/>
+		<p><b>StringAlign=Right</b><br>
+		The string starts at X, and is drawn from there back to the left.<br>
+		<em>The result is that the string <b>ends at X</b>, and begins where it begins based on the length of the string.</em><br>
 		<==========X</p>
 
 		<p>The only important thing to remember to use StringAlign is that it is <b>always</b> based on the value of X or Y. The String meter with StringAlign is the one case where X or Y doesn't really mean "starts at", but rather means "is anchored at". </p>
 
-		<p><b>StringAlign=Justify</b><br/>
+		<p><b>StringAlign=Justify</b><br>
 		When there is a defined W or ClipStringW and <code>ClipString=2</code>, this will wrap and justify the text at the value of W, and will grow the meter to fill all the text vertically, unless there is a defined H or ClipStringH, in which case it will wrap to fill the size of H and then be clipped with an added ellipsis ...</p>
 		
 	</dd>

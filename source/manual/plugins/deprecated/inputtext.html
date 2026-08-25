@@ -6,7 +6,7 @@ title: 'InputText plugin'
 <h2>Plugin Deprecated</h2>
 
 <p>This plugin has been deprecated, and should not be used in new skins.</p>
-<p>The <a href="!meters/textedit/">TextEdit</a> meter should be used in place of this.</p><br/>
+<p>The <a href="!meters/textedit/">TextEdit</a> meter should be used in place of this.</p><br>
 
 <p><code>Plugin=InputText</code> executes bangs with user input.</p>
 
@@ -29,7 +29,7 @@ title: 'InputText plugin'
 
 		<p>If the macro string <code>$UserInput$</code> is repeated in a command series, multiple input boxes will be created in sequence. However, a single value input by the user can be used multiple times in different bangs in the same command series by using the string value of the InputText [MeasureName] as a <a href="!variables/section-variables/#MeasureParameters">section variable</a>.</p>
 
-		<p><code>Command1=[!WriteKeyValue Variables SomeVar "$UserInput$"]</code><br/>
+		<p><code>Command1=[!WriteKeyValue Variables SomeVar "$UserInput$"]</code><br>
 		<code>Command2=[!SetVariable SomeVar "[MeasureName]"]</code></p>
 
 		<p>In addition, a command can override the values of options in this measure when an option="value" pair is added as a parameter to a <code>Command</code> option.</p>

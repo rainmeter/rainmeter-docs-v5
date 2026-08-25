@@ -17,22 +17,22 @@ title: 'Skin sections'
 	<dd>
 		<p>The X and Y position of the skin. The value is in pixels.</p>
 		
-		<br/><p>A trailing <code>%</code> sign indicates that the value is a percentage of the screen width, rather than pixels.</p>
+		<br><p>A trailing <code>%</code> sign indicates that the value is a percentage of the screen width, rather than pixels.</p>
 		<p><code>WindowX=50%</code></p>
 		
-		<br/><p>A trailing <code>R</code> with <code>WindowX</code> will make the position relative to the right edge of the screen instead of the left.</p>
+		<br><p>A trailing <code>R</code> with <code>WindowX</code> will make the position relative to the right edge of the screen instead of the left.</p>
 		<p>A trailing <code>B</code> with <code>WindowY</code> will make the position relative to the bottom edge of the screen instead of the top.</p>
 		<p><code>WindowX=100R</code></p>
 		<p><code>WindowY=50B</code></p>
 		
-		<br/><p>The <code>%</code> and <code>R</code> / <code>B</code> modifiers can be used together.</p>
+		<br><p>The <code>%</code> and <code>R</code> / <code>B</code> modifiers can be used together.</p>
 		<p><code>WindowX=20%R</code></p>
 		
-		<br/><p>Both <code>WindowX</code> and <code>WindowY</code> will accept <a href="!formulas/">formulas</a>.<br/>
+		<br><p>Both <code>WindowX</code> and <code>WindowY</code> will accept <a href="!formulas/">formulas</a>.<br>
 		The formula must be enclosed in (parenthese), with any trailing <code>% / R / B</code> at the end, and outside the (parentheses).</p>
 		<p><code>WindowX=(100 / 2)%</code></p>
 		
-		<br/><p>By default the position is relative to the <a href="!user-interface/manage/#Monitors">primary screen</a>. You can override this with <code>@<em>N</em></code> where <em>N</em> is 0 to 32 and denotes which screen to position the skin on (1-32) or the virtual desktop (0). The screen selection will apply to both <code>WindowX</code> and <code>WindowY</code> if the value is set on only one of them.</p>
+		<br><p>By default the position is relative to the <a href="!user-interface/manage/#Monitors">primary screen</a>. You can override this with <code>@<em>N</em></code> where <em>N</em> is 0 to 32 and denotes which screen to position the skin on (1-32) or the virtual desktop (0). The screen selection will apply to both <code>WindowX</code> and <code>WindowY</code> if the value is set on only one of them.</p>
 		<p><code>WindowX=200@2</code></p>
 	</dd>
 
@@ -40,22 +40,22 @@ title: 'Skin sections'
 	<dd>
 		<p>By default <code>WindowX</code> and <code>WindowY</code> control the position of the upper left corner of the config window. <code>AnchorX</code> and <code>AnchorY</code> allow that anchor position to be changed. The value is in pixels.<p>
 
-		<br/><p>A trailing <code>%</code> sign indicates that the value is a percentage of the config window width, rather than pixels.</p>
+		<br><p>A trailing <code>%</code> sign indicates that the value is a percentage of the config window width, rather than pixels.</p>
 		<p><code>AnchorX=50%</code></p>
 		
-		<br/><p>A trailing <code>R</code> with <code>AnchorX</code> will make the position relative to the right edge of the config window instead of the left.</p>
+		<br><p>A trailing <code>R</code> with <code>AnchorX</code> will make the position relative to the right edge of the config window instead of the left.</p>
 		<p>A trailing <code>B</code> with <code>AnchorY</code> will make the position relative to the bottom edge of the config window instead of the top.</p>
 		<p><code>AnchorX=100R</code></p>
 		<p><code>AnchorY=50B</code></p>
 		
-		<br/><p>The <code>%</code> and <code>R</code> / <code>B</code> modifiers can be used together.</p>
+		<br><p>The <code>%</code> and <code>R</code> / <code>B</code> modifiers can be used together.</p>
 		<p><code>AnchorX=20%R</code></p>
 		
-		<br/><p>Both <code>AnchorX</code> and <code>AnchorY</code> will accept <a href="!formulas/">formulas</a>.<br/>
+		<br><p>Both <code>AnchorX</code> and <code>AnchorY</code> will accept <a href="!formulas/">formulas</a>.<br>
 		The formula must be enclosed in (parenthese), with any trailing <code>% / R / B</code> at the end, and outside the (parentheses).</p>
 		<p><code>AnchorX=(100 / 2)%</code></p>
 
-		<br/><p>As an example, by setting <code>WindowX</code>, <code>WindowY</code>, <code>AnchorX</code> and <code>AnchorY</code> all to 50% the config will be truly centered in the primary monitor regardless of screen resolution or aspect ratio.</p>
+		<br><p>As an example, by setting <code>WindowX</code>, <code>WindowY</code>, <code>AnchorX</code> and <code>AnchorY</code> all to 50% the config will be truly centered in the primary monitor regardless of screen resolution or aspect ratio.</p>
 	</dd>
 
 	<dt id="SavePosition"><code>SavePosition</code> <small>Default: <code>1</code></small></dt>

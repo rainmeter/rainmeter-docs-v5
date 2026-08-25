@@ -23,12 +23,12 @@ title: 'Skins'
 
 <p>If a single folder contains multiple <code><em>SkinName1</em>.ini</code>, <code><em>SkinName2</em>.ini</code> ...etc. files, they are each considered <b>variants</b> of the same skin. Only one variant can be active at a time, and all variants use the same <a href="!settings/skin-sections/">settings</a>. Separate skins not to be treated as variants must be stored in separate folders.</p>
 
-<p>Variants:<br/>
-<code>C:\Users\YourName\Documents\Rainmeter\Skins\illustro\Clock\<b>12HrClock.ini</b></code><br/>
+<p>Variants:<br>
+<code>C:\Users\YourName\Documents\Rainmeter\Skins\illustro\Clock\<b>12HrClock.ini</b></code><br>
 <code>C:\Users\YourName\Documents\Rainmeter\Skins\illustro\Clock\<b>24HrClock.ini</b></code></p>
 
-<p>Separate skins:<br/>
-<code>C:\Users\YourName\Documents\Rainmeter\Skins\illustro\<b>12HrClock\</b>Clock.ini</code><br/>
+<p>Separate skins:<br>
+<code>C:\Users\YourName\Documents\Rainmeter\Skins\illustro\<b>12HrClock\</b>Clock.ini</code><br>
 <code>C:\Users\YourName\Documents\Rainmeter\Skins\illustro\<b>24HrClock\</b>Clock.ini</b></code></p>
 
 <h3 id="Resources">@Resources</h3>
@@ -53,7 +53,7 @@ title: 'Skins'
 
 <p>For example, the following skins belong to the "illustro" suite:</p>
 
-<p><code>C:\Users\YourName\Documents\Rainmeter\Skins\<b>illustro\Clock\Clock.ini</b></code><br/>
+<p><code>C:\Users\YourName\Documents\Rainmeter\Skins\<b>illustro\Clock\Clock.ini</b></code><br>
 	<code>C:\Users\YourName\Documents\Rainmeter\Skins\<b>illustro\Network\Network.ini</b></code></p>
 
 <p>This means that they are both located in the same root config folder, "illustro," in the main Skins directory.</p>
@@ -64,7 +64,7 @@ title: 'Skins'
 
 <p>Each skin has a unique config name:</p>
 
-<p><code>illustro\Clock</code><br/>
+<p><code>illustro\Clock</code><br>
 	<code>illustro\Network</code></p>
 
 <p>But since they belong to the same root config, they share the same @Resources folder:</p>
@@ -85,17 +85,17 @@ Key=Value
 <p>Each property of the skin is defined by a section. Each key is an <a href="!skins/option-types/">option</a> that modifies that property. The following sections may be used in skins:</p>
 
 <ul>
-	<li><p><a href="!skins/rainmeter-section/">[Rainmeter]</a><br/>
+	<li><p><a href="!skins/rainmeter-section/">[Rainmeter]</a><br>
 		Defines options that affect the entire skin.</p></li>
-	<li><p><a href="!variables/">[Variables]</a><br/>
+	<li><p><a href="!variables/">[Variables]</a><br>
 		Defines text strings that can be used throughout the skin.</p></li>
-	<li><p><a href="!measures/">Measures</a><br/>
+	<li><p><a href="!measures/">Measures</a><br>
 		Objects that retrieve (or "measure") information of some kind.</p></li>
-	<li><p><a href="!meters/">Meters</a><br/>
+	<li><p><a href="!meters/">Meters</a><br>
 		Objects that display information and other visual elements.</p></li>
-	<li><p><a href="!meters/general-options/#MeterStyle">MeterStyles</a><br/>
+	<li><p><a href="!meters/general-options/#MeterStyle">MeterStyles</a><br>
 		Define options that may be used by several meters.</p></li>
-	<li><p><a href="!skins/metadata-section/">[Metadata]</a><br/>
+	<li><p><a href="!skins/metadata-section/">[Metadata]</a><br>
 		Defines the name, version, license, and other non-functional information about the skin.</p></li>
 </ul>
 

@@ -26,7 +26,7 @@ title: 'Uptime measure'
 		The following modify the codes:
 		<ul>
 		<li><code>!i!</code>: Putting this after the format code shows the numbers with no leading zeros.</li>
-		<li><code>!02i!</code>: Putting this after the format code shows the numbers with leading zeros.<br/>
+		<li><code>!02i!</code>: Putting this after the format code shows the numbers with leading zeros.<br>
 		The number following the <code>0</code>, as in <code>!02i!</code> above, defines the total length you want for the value, padded with zeros as needed to achieve the length.</li>
 		</ul>
 	</dd>
@@ -38,7 +38,7 @@ title: 'Uptime measure'
 
 	<dt id="SecondsValue"><code>SecondsValue</code></dt>
 	<dd>
-		This will override the default behavior of the measure. Instead of measuring the time since the last restart of the system, this option will define a number of seconds. The Format option can then be used to format that number of seconds to days, hours, minutes and/or seconds as desired.<br/><br/>
+		This will override the default behavior of the measure. Instead of measuring the time since the last restart of the system, this option will define a number of seconds. The Format option can then be used to format that number of seconds to days, hours, minutes and/or seconds as desired.<br><br>
 
 		<p>An example might be:</p>
 ``` ini
@@ -79,10 +79,10 @@ Text="Uptime: %1"
 
 	<p>Windows (and thus Uptime) does not see this as a full shutdown of your system. So the system uptime value will not be reset to zero. If you want more control over this, you can create two shortcuts, and use the one you want depending on whether you wish a "full" shut down, or the normal "hybrid" one.</p>
 
-	<p>Normal / Hybrid Shut Down:<br/>
+	<p>Normal / Hybrid Shut Down:<br>
 	<code>%windir%\System32\shutdown.exe /s /hybrid /f /t 00</code></p>
 
-	<p>Full Shut Down:<br/>
+	<p>Full Shut Down:<br>
 	<code>%windir%\System32\shutdown.exe /s /f /t 00</code></p>
 
 	<p>You can create these shortcuts, and put them on your desktop or pin them to your Windows 10 Start menu. <em>"Restart" always does a full system restart and is not affected.</em></p>

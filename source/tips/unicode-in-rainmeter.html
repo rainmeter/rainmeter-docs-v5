@@ -24,11 +24,11 @@ title: 'Unicode in Rainmeter'
 <p>There are several ways that characters are encoded in the Unicode standard. The ones you will see most often, and which we will deal with below are:</p>
 
 <ul>
-<li><b>Unicode / UTF-16 LE / UCS-2 Little Endian</b><br/>
+<li><b>Unicode / UTF-16 LE / UCS-2 Little Endian</b><br>
 This 16-bit encoding standard is what Windows uses by default, to manage and display information in all Windows applications.</li>
-<li><b>UTF-8</b><br/>
+<li><b>UTF-8</b><br>
 This 8-bit encoding standard is the most popular way of encoding text in the World-Wide-Web.</li>
-<li><b>UTF-8 With BOM</b><br/>
+<li><b>UTF-8 With BOM</b><br>
 A variant of the UTF-8 standard with a <a href="https://en.wikipedia.org/wiki/Byte_order_mark">Byte Order Mark</a>.</li>
 </ul>
 
@@ -119,7 +119,7 @@ A variant of the UTF-8 standard with a <a href="https://en.wikipedia.org/wiki/By
 
 <h3>Reading and writing in Lua example:</h3>
 
-<p>LuaUTF8.ini (not encoded in anything special, just ANSI):<br/>
+<p>LuaUTF8.ini (not encoded in anything special, just ANSI):<br>
 ``` ini
 [Rainmeter]
 Update=1000
@@ -152,7 +152,7 @@ AntiAlias=1
 ```
 </p>
 
-<p>LuaUTF8.lua (encoded in UTF-16 LE):<br/>
+<p>LuaUTF8.lua (encoded in UTF-16 LE):<br>
 ``` lua
 function Initialize()
 
@@ -198,7 +198,7 @@ end
 ```
 </p>
 
-<p>TestIn.txt (encoded in UTF-8 with BOM):<br/>
+<p>TestIn.txt (encoded in UTF-8 with BOM):<br>
 ``` txt
 Испытание некоторых русский текст
 ```

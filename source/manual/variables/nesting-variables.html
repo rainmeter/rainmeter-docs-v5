@@ -8,10 +8,10 @@ title: 'Nesting Variables'
 
 <p>So for instance, the goal might be to have things like:</p>
 <p>
-<code>Text=#MyVar#MyOtherVar##</code><br/>
-<code>Text=#MyVar[MyMeasure]#</code><br/>
-<code>Text=[MyMeasure#MyVar#]</code><br/>
-<code>Text=[MyMeasure[MyOtherMeasure]]</code><br/>
+<code>Text=#MyVar#MyOtherVar##</code><br>
+<code>Text=#MyVar[MyMeasure]#</code><br>
+<code>Text=[MyMeasure#MyVar#]</code><br>
+<code>Text=[MyMeasure[MyOtherMeasure]]</code><br>
 </p>
 
 <p>This creates ambiguities that simply can't be reliably parsed and understood by Rainmeter, and can't work.</p>
@@ -24,14 +24,14 @@ title: 'Nesting Variables'
 	<tr><td><b>[#VarName]</b></td><td>&nbsp;&nbsp;&nbsp;</td><td>Replaces: #VarName#</td></tr>
 	<tr><td><b>[&MeasureName]</b></td><td>&nbsp;&nbsp;&nbsp;</td><td>Replaces: [MeasureName]</td></tr>
 	<tr><td><b>[$MouseVar]</b></td><td>&nbsp;&nbsp;&nbsp;</td><td>Replaces: $MouseVar$</td></tr>
-</table></p><br/>
+</table></p><br>
 
 <p>So our examples above would look like:</p>
 <p>
-<code>Text=[#MyVar[#MyOtherVar]]</code><br/>
-<code>Text=[#MyVar[&MyMeasure]]</code><br/>
-<code>Text=[&MyMeasure[#MyVar]]</code><br/>
-<code>Text=[&MyMeasure[&MyOtherMeasure]]</code><br/>
+<code>Text=[#MyVar[#MyOtherVar]]</code><br>
+<code>Text=[#MyVar[&MyMeasure]]</code><br>
+<code>Text=[&MyMeasure[#MyVar]]</code><br>
+<code>Text=[&MyMeasure[&MyOtherMeasure]]</code><br>
 </p>
 
 <p id="Guidelines"><b>Guidelines:</b></p>
@@ -45,7 +45,7 @@ title: 'Nesting Variables'
 
 <p>If you are <a href="!variables/#Escape">escaping a variable</a> and need to use the nested form, the syntax is:</p>
 
-<p><b>[#*VarName*]<br/>
+<p><b>[#*VarName*]<br>
 [&*MeasureName*]</b></p>
 
 <h2>Examples</h2>

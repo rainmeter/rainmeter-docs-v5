@@ -43,7 +43,7 @@ title: 'Version History'
 
 <h3 id="r3835">April 11, 2025 - 4.5.22 - Revision 3835</h3>
 <ul>
-	<li><span class="badge badge-added">Added</span><b>Rainmeter Plugin API:</b> Added the ability for 3rd-party plugins, either C++ or C#, to access the string or number/formula value of any <code>[SectionName]</code> option.<br/>
+	<li><span class="badge badge-added">Added</span><b>Rainmeter Plugin API:</b> Added the ability for 3rd-party plugins, either C++ or C#, to access the string or number/formula value of any <code>[SectionName]</code> option.<br>
 	See <a href="https://docs.rainmeter.net/developers/plugin/cpp/api/">C++ API reference</a> or <a href="https://docs.rainmeter.net/developers/plugin/csharp/api/">C# API reference</a> for details.</li>
 	<li><span class="badge badge-fixed">Fixed</span><b>Rainmeter:</b> Fixed a problem with Windows 11 version 24H2 or later, that didn't allow Rainmeter skins to remain visible when the WIN-D (Show Desktop) function of Windows was used.</li>
 </ul>
@@ -130,16 +130,16 @@ title: 'Version History'
 
 <h3 id="r3663">September 6, 2022 - 4.5.14 - Revision 3663</h3>
 <ul>
-	<li><span class="badge badge-changed">Changed</span><b>Lua Scripting:</b> Allow the Lua Update() function to return 2 values (number and string). The order is unimportant. Example: <code>return 'twenty-five', 25</code><br/>Suggested by user <b>@deathcrafter</b>.</li>
-	<li><span class="badge badge-fixed">Fixed</span><b>Rainmeter:</b> Fixed a typo in Internet.cpp (Issue <a href="https://github.com/rainmeter/rainmeter/pull/306">#306</a>).<br/>Submitted by user <b>@redstarbird</b>.</li>
+	<li><span class="badge badge-changed">Changed</span><b>Lua Scripting:</b> Allow the Lua Update() function to return 2 values (number and string). The order is unimportant. Example: <code>return 'twenty-five', 25</code><br>Suggested by user <b>@deathcrafter</b>.</li>
+	<li><span class="badge badge-fixed">Fixed</span><b>Rainmeter:</b> Fixed a typo in Internet.cpp (Issue <a href="https://github.com/rainmeter/rainmeter/pull/306">#306</a>).<br>Submitted by user <b>@redstarbird</b>.</li>
 	<li><span class="badge badge-changed">Changed</span><b>String meter/Inline shadow:</b> Treat the shadow drawing surface as the size of the meter itself instead of using the underlying bitmap of the skin's bounds (in case SkinWidth/Height is truncating the drawing of the meter).</li>
-	<li><span class="badge badge-changed">Changed</span><b>C# Plugins:</b> Use latest ilasm.exe in DLLExporter (Issue <a href="https://github.com/rainmeter/rainmeter/pull/310">#310</a>)<br/>This fixes assembly errors when using latest .NET Framework libraries in your plugin.<br/>Submitted by user <b>@deathcrafter</b>.</li>
+	<li><span class="badge badge-changed">Changed</span><b>C# Plugins:</b> Use latest ilasm.exe in DLLExporter (Issue <a href="https://github.com/rainmeter/rainmeter/pull/310">#310</a>)<br>This fixes assembly errors when using latest .NET Framework libraries in your plugin.<br>Submitted by user <b>@deathcrafter</b>.</li>
 	<li><span class="badge badge-changed">Changed</span><b>Rainmeter.ini:</b> Add an extra empty line before appending a new section at the end of the settings file. Note: This is for newly added sections, not existing sections.</li>
-	<li><span class="badge badge-changed">Changed</span><b>Rainmeter:</b> Convert font enumeration from Gdiplus to DirectWrite.<br/>		Note: This is just for logging purposes and does not change any font loading for the String meter. In general, this will log more font families since font faces will now be included in the list. Also: In debug mode, this will also enumerate any fonts loaded with LocalFont and the fonts in "@Resources\Fonts" folder when a skin loads. This will help skin authors find the correct font name to use with the FontFace option.</li>
+	<li><span class="badge badge-changed">Changed</span><b>Rainmeter:</b> Convert font enumeration from Gdiplus to DirectWrite.<br>		Note: This is just for logging purposes and does not change any font loading for the String meter. In general, this will log more font families since font faces will now be included in the list. Also: In debug mode, this will also enumerate any fonts loaded with LocalFont and the fonts in "@Resources\Fonts" folder when a skin loads. This will help skin authors find the correct font name to use with the FontFace option.</li>
 	<li><span class="badge badge-changed">Changed</span><b>MathParser:</b> Increased base conversion limitations. See <a href="https://forum.rainmeter.net/viewtopic.php?t=41135#p209189">Forum Thread</a> for details.</li>
 	<li><span class="badge badge-fixed">Fixed</span><b>Dialogs:</b> Fix icon loading. See <a href="https://forum.rainmeter.net/viewtopic.php?t=41131">Forum Thread</a> for details.</li>
 	<li><span class="badge badge-changed">Changed</span><b>GameMode:</b> Tweak the logic when Rainmeter exits while in game mode. See <a href="https://forum.rainmeter.net/viewtopic.php?t=41099">Forum Thread</a> for details.</li>
-	<li><span class="badge badge-changed">Changed</span><b>SkinInstaller:</b> Adjust the enabled/disabled state of some GUI elements.<br/>The "Load included layout" / "Load included skins" checkbox will now become disabled and unchecked if the entire group (Skins or Layouts) is unchecked. This prevents the attempted loading of a non-installed skin/layout once Rainmeter re-starts. Note: The last checked state of the "Load included layout" / "Load included skins" checkbox will be remembered in case any of the Skins/Layout groups checkboxes get enabled again. This "remembering" only happens while the SkinInstaller is open, and is NOT persistent. The "Install" button will now be disabled if all items in the list are unchecked.</li>
+	<li><span class="badge badge-changed">Changed</span><b>SkinInstaller:</b> Adjust the enabled/disabled state of some GUI elements.<br>The "Load included layout" / "Load included skins" checkbox will now become disabled and unchecked if the entire group (Skins or Layouts) is unchecked. This prevents the attempted loading of a non-installed skin/layout once Rainmeter re-starts. Note: The last checked state of the "Load included layout" / "Load included skins" checkbox will be remembered in case any of the Skins/Layout groups checkboxes get enabled again. This "remembering" only happens while the SkinInstaller is open, and is NOT persistent. The "Install" button will now be disabled if all items in the list are unchecked.</li>
 	<li><span class="badge badge-fixed">Fixed</span><b>Skin:</b> Fixed issue where the incorrect monitor was selected when using the monitor flag on WindowY only (not defined on WindowX). See <a href="https://forum.rainmeter.net/viewtopic.php?t=40881">Forum Thread</a> for details.</li>
 	<li><span class="badge badge-fixed">Fixed</span><b>GeneralImage:</b> Fixed "ImageCrop" formula parsing. See <a href="https://forum.rainmeter.net/viewtopic.php?t=40682#p207510">Forum Thread</a> for details.</li>
 	<li><span class="badge badge-fixed">Fixed</span><b>Rainmeter:</b> Fixed bug with random number generators.</li>
@@ -255,20 +255,20 @@ title: 'Version History'
 	<li><span class="badge badge-fixed">Fixed</span><b>SysInfo:</b> Fixed an inconsistency with how an empty string value is returned for <code>SysInfoType=IP_ADDRESS</code>.</li>
 	<li><span class="badge badge-changed">Changed</span><b>SysInfo:</b> Corrected About/Version and SysInfo to properly see the right version on Windows 11.</li>
 	<li><span class="badge badge-changed">Changed</span><b>SysInfo:</b> SysInfo is now a "measure" instead of a "plugin".</li>
-	<li><span class="badge badge-added">Added</span><b>SysInfo:</b> Added several new <code>SysInfoType</code> values:<br/><br/>
-	ADAPTER_ALIAS<br/>
-	ADAPTER_GUID<br/>
-	ADAPTER_STATE<br/>
-	ADAPTER_STATUS<br/>
-	ADAPTER_TRANSMIT_SPEED<br/>
-	ADAPTER_RECEIVE_SPEED<br/>
-	GATEWAY_ADDRESS_V4<br/>
-	GATEWAY_ADDRESS_V6<br/>
-	INTERNET_CONNECTIVITY_V4<br/>
-	INTERNET_CONNECTIVITY_V6<br/>
-	LAN_CONNECTIVITY_V4<br/>
-	LAN_CONNECTIVITY_V6<br/>
-	MAC_ADDRESS<br/><br/>
+	<li><span class="badge badge-added">Added</span><b>SysInfo:</b> Added several new <code>SysInfoType</code> values:<br><br>
+	ADAPTER_ALIAS<br>
+	ADAPTER_GUID<br>
+	ADAPTER_STATE<br>
+	ADAPTER_STATUS<br>
+	ADAPTER_TRANSMIT_SPEED<br>
+	ADAPTER_RECEIVE_SPEED<br>
+	GATEWAY_ADDRESS_V4<br>
+	GATEWAY_ADDRESS_V6<br>
+	INTERNET_CONNECTIVITY_V4<br>
+	INTERNET_CONNECTIVITY_V6<br>
+	LAN_CONNECTIVITY_V4<br>
+	LAN_CONNECTIVITY_V6<br>
+	MAC_ADDRESS<br><br>
 	See <a href="https://docs.rainmeter.net/manual/measures/sysinfo/">SysInfo Measure</a> for details.</li>
 </ul>
 
@@ -664,7 +664,7 @@ title: 'Version History'
 	<li><span class="badge badge-added">Added</span><b>Languages:</b> Added Arabic to supported localization languages.</li>
 	<li><span class="badge badge-changed">Changed</span><b>Rainmeter:</b> Changed the file encoding of Rainmeter.ini from ANSI to UTF-16 LE (Unicode). Existing installations will be converted if needed when Rainmeter is started or Layouts are loaded.</li>
 	<li><span class="badge badge-changed">Changed</span><b>FileView plugin:</b> Relative paths are now supported with the ContextMenu command.</li>
-	<li><span class="badge badge-changed">Changed</span><b>Manage dialog:</b> Removed the "Archive plugins to @Vault" option in the Settings dialog. This is not something most users will want to change.<br/><br/>Note: This can still be controlled if desired, by using the following in Rainmeter.data:<br/><code>[SkinInstaller]</code><br/><code>ArchivePlugins=0/1</code></li>
+	<li><span class="badge badge-changed">Changed</span><b>Manage dialog:</b> Removed the "Archive plugins to @Vault" option in the Settings dialog. This is not something most users will want to change.<br><br>Note: This can still be controlled if desired, by using the following in Rainmeter.data:<br><code>[SkinInstaller]</code><br><code>ArchivePlugins=0/1</code></li>
 </ul>
 
 <h3 id="r3074">June 1, 2018 - Revision 3074</h3>
@@ -1186,7 +1186,7 @@ title: 'Version History'
   <li><span class="badge badge-added">Added</span><b> Time:</b> Added new <a href="/manual/measures/time#TimeStampFormat">TimeStampFormat</a> and <a href="/manual/measures/time#TimeStampLocale">TimeStampLocale</a> options to support the changes to TimeStamp above.</li>
   <li><span class="badge badge-added">Added</span><b> Time:</b> Added new <a href="/manual/measures/time#FormatLocale">FormatLocale</a> option to support formatting a Time measure in any defined language / locale.</li>
   <li><span class="badge badge-added">Added</span><b> UpTime:</b> Added a new <a href="/manual/measures/uptime#SecondsValue">SecondsValue</a> option to allow formatting any defined number of seconds into "days, hours, minutes, seconds" as desired. This will override the default behavior of the UpTime measure.</li>
-  <li><span class="badge badge-added">Added</span><b> Section Variables:</b> Added a new <a href="/manual/variables/section-variables#Timestamp">:Timestamp</a> section variable measure modifier. This will return the Windows timestamp value of the named Time measure, and overcomes a limitation with getting and using this number when a Time measure has a Format option.<br/><br/>
+  <li><span class="badge badge-added">Added</span><b> Section Variables:</b> Added a new <a href="/manual/variables/section-variables#Timestamp">:Timestamp</a> section variable measure modifier. This will return the Windows timestamp value of the named Time measure, and overcomes a limitation with getting and using this number when a Time measure has a Format option.<br><br>
 All of the above additions and changes are related to new functionality for getting and using date / time information in skins. As well as support for Language / Locale values in Time measures. Details and examples can be found at <a href="https://forum.rainmeter.net/viewtopic.php?f=114&t=20398">Change Announcements</a>.</li>
 </ul>
 

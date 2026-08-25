@@ -18,11 +18,11 @@ title: 'UsageMonitor plugin'
 <p>The UsageMonitor plugin will allow you to define <em>instance</em> in the measure in one of two ways:</p>
 
 <ul>
-<li><b>Name</b><br/>This will be the specific (case sensitive) text name of a single given instance, and will return the current value for that specific instance of a counter.</li>
-<li><b>Index</b><br/>This will be either <code>Index=0</code>, which will always return the current sum total of all instances for a given counter, <code>Index=-1</code>, which will always return the current average of all instances for a given counter, or <code>Index=N</code>, which will return the instance at the defined point in a sorted list of all instances, with their values ordered from most to least. So for example, <code>Index=1</code> would return the current value and name of the instance with the highest value for that counter.</li>
+<li><b>Name</b><br>This will be the specific (case sensitive) text name of a single given instance, and will return the current value for that specific instance of a counter.</li>
+<li><b>Index</b><br>This will be either <code>Index=0</code>, which will always return the current sum total of all instances for a given counter, <code>Index=-1</code>, which will always return the current average of all instances for a given counter, or <code>Index=N</code>, which will return the instance at the defined point in a sorted list of all instances, with their values ordered from most to least. So for example, <code>Index=1</code> would return the current value and name of the instance with the highest value for that counter.</li>
 </ul>
 
-<br/>
+<br>
 <p>The measure will return the current <em>number</em> value of the instance, and the current <em>string</em> value of the name of the instance. So each measure will have distinct number and string values.</p>
 
 <p>The UsageMonitor plugin will optionally allow you to select common counters with a single <b>Alias</b>, rather than the specific, case-sensitive Category and Counter names. <em>Additional Alias values may be supported over time.</em></p>
@@ -37,18 +37,18 @@ title: 'UsageMonitor plugin'
 	<dt id="Alias"><code>Alias</code><small>Default: <em>None</em></small></dt>
 	<dd>
 		<p>Alias or "shortcut" for a particular Category and Counter combination. This may optionally be used in place of specific Category and Counter options on the measure.</p>
-		<br/>
+		<br>
 		<p>The currently supported Alias names and what they reference are:</p>
 		<table class="table-striped">
-			<tr><td><p>Alias=<b>CPU</b><br/>Category: <em>Process</em> | Counter: <em>% Processor Time</em><br/>CPU usage of each process, across all cores, as a percentage of total CPU.</p></td></tr>
-			<tr><td><p>Alias=<b>RAM</b><br/>Category: <em>Process</em> | Counter: <em>Working Set - Private</em><br/>Bytes of Private Working Set RAM used by each process.</p></td></tr>
-			<tr><td><p>Alias=<b>RAMSHARED</b><br/>Category: <em>Process</em> | Counter: <em>Working Set</em><br/>Bytes of shared Working Set RAM used by each process.</p></td></tr>
-			<tr><td><p>Alias=<b>IO</b><br/>Category: <em>Process</em> | Counter: <em>IO Data Bytes/sec</em><br/>Bytes per second of read and write usage by each process, across all disks.</p></td></tr>
-			<tr><td><p>Alias=<b>IOREAD</b><br/>Category: <em>Process</em> | Counter: <em>IO Read Bytes/sec</em><br/>Bytes per second of read usage by each process, across all disks.</p></td></tr>
-			<tr><td><p>Alias=<b>IOWRITE</b><br/>Category: <em>Process</em> | Counter: <em>IO Write Bytes/sec</em><br/>Bytes per second of write usage by each process, across all disks.</p></td></tr>
-			<tr><td><p>Alias=<b>GPU</b><br/>Category: <em>GPU Engine</em> | Counter: <em>Utilization Percentage</em><br/>Percentage of GPU usage of each process, across all GPU engines.<br/><b>Note:</b> Requires Windows 10 Fall Creators Update or later.</p></td></tr>
-			<tr><td><p>Alias=<b>VRAM</b><br/>Category: <em>GPU Process Memory</em> | Counter: <em>Dedicated Usage</em><br/>Bytes of private video RAM usage of each process, across all GPU engines.<br/><b>Note:</b> Requires Windows 10 Fall Creators Update or later.</p></td></tr>
-			<tr><td><p>Alias=<b>VRAMSHARED</b><br/>Category: <em>GPU Process Memory</em> | Counter: <em>Shared Usage</em><br/>Bytes of shared video RAM usage of each process, across all GPU engines.<br/><b>Note:</b> Requires Windows 10 Fall Creators Update or later.</p></td></tr>
+			<tr><td><p>Alias=<b>CPU</b><br>Category: <em>Process</em> | Counter: <em>% Processor Time</em><br>CPU usage of each process, across all cores, as a percentage of total CPU.</p></td></tr>
+			<tr><td><p>Alias=<b>RAM</b><br>Category: <em>Process</em> | Counter: <em>Working Set - Private</em><br>Bytes of Private Working Set RAM used by each process.</p></td></tr>
+			<tr><td><p>Alias=<b>RAMSHARED</b><br>Category: <em>Process</em> | Counter: <em>Working Set</em><br>Bytes of shared Working Set RAM used by each process.</p></td></tr>
+			<tr><td><p>Alias=<b>IO</b><br>Category: <em>Process</em> | Counter: <em>IO Data Bytes/sec</em><br>Bytes per second of read and write usage by each process, across all disks.</p></td></tr>
+			<tr><td><p>Alias=<b>IOREAD</b><br>Category: <em>Process</em> | Counter: <em>IO Read Bytes/sec</em><br>Bytes per second of read usage by each process, across all disks.</p></td></tr>
+			<tr><td><p>Alias=<b>IOWRITE</b><br>Category: <em>Process</em> | Counter: <em>IO Write Bytes/sec</em><br>Bytes per second of write usage by each process, across all disks.</p></td></tr>
+			<tr><td><p>Alias=<b>GPU</b><br>Category: <em>GPU Engine</em> | Counter: <em>Utilization Percentage</em><br>Percentage of GPU usage of each process, across all GPU engines.<br><b>Note:</b> Requires Windows 10 Fall Creators Update or later.</p></td></tr>
+			<tr><td><p>Alias=<b>VRAM</b><br>Category: <em>GPU Process Memory</em> | Counter: <em>Dedicated Usage</em><br>Bytes of private video RAM usage of each process, across all GPU engines.<br><b>Note:</b> Requires Windows 10 Fall Creators Update or later.</p></td></tr>
+			<tr><td><p>Alias=<b>VRAMSHARED</b><br>Category: <em>GPU Process Memory</em> | Counter: <em>Shared Usage</em><br>Bytes of shared video RAM usage of each process, across all GPU engines.<br><b>Note:</b> Requires Windows 10 Fall Creators Update or later.</p></td></tr>
 		</table><br>
 	</dd>
 
@@ -72,15 +72,15 @@ title: 'UsageMonitor plugin'
 
 <dt id="Index"><code>Index</code> <small>Default: <code>Sum</code></small></dt>
 	<dd>
-	<p>All instances for the counter are evaluated, totaled, averaged and sorted in an indexed list from highest value to lowest value. Index is used to return the total, average, or one of these indexed values based on the position in the list. This list will include all instances that are not excluded by a Blacklist on the measure.</p><br/>
+	<p>All instances for the counter are evaluated, totaled, averaged and sorted in an indexed list from highest value to lowest value. Index is used to return the total, average, or one of these indexed values based on the position in the list. This list will include all instances that are not excluded by a Blacklist on the measure.</p><br>
 	
 	<ul>
-	<li><code>Index=Count</code><br/>Returns the count of all instances, and the string "Count".</li>
-	<li><code>Index=Sum</code><br/>Returns the sum total of all instances, and the string "Total". This is the default for Index, and is not necessarily related to the instance named <code>_Total</code>. This is equivalent to <code>Index=0</code>.</li>
-	<li><code>Index=Average</code><br/>Returns the average of all instances, and the string "Average". This is equivalent to <code>Index=-1</code>.</li><br/>
-	<li><code>Index=1</code>, <code>Index=2</code> etc.<br/>Returns the value of the instance in that position in the sorted list, and the name of the corresponding instance as the string value.</li>
+	<li><code>Index=Count</code><br>Returns the count of all instances, and the string "Count".</li>
+	<li><code>Index=Sum</code><br>Returns the sum total of all instances, and the string "Total". This is the default for Index, and is not necessarily related to the instance named <code>_Total</code>. This is equivalent to <code>Index=0</code>.</li>
+	<li><code>Index=Average</code><br>Returns the average of all instances, and the string "Average". This is equivalent to <code>Index=-1</code>.</li><br>
+	<li><code>Index=1</code>, <code>Index=2</code> etc.<br>Returns the value of the instance in that position in the sorted list, and the name of the corresponding instance as the string value.</li>
 	</ul>
-	<br/><p><b>Note:</b> Any Index which returns a current value of <code>0</code> will return an empty string as the string value. An instance without a value can't be sorted, and can't exist in this indexed list, as it is indistinguishable from all other instances that are <code>0</code>.
+	<br><p><b>Note:</b> Any Index which returns a current value of <code>0</code> will return an empty string as the string value. An instance without a value can't be sorted, and can't exist in this indexed list, as it is indistinguishable from all other instances that are <code>0</code>.
 	</dd>
 	
 	<dt id="Name"><code>Name</code> <small>Default: <em>None</em></small></dt>
@@ -114,16 +114,16 @@ title: 'UsageMonitor plugin'
 	<dd>
 	<p>When set to the default <code>1</code>, this will cause a process that spawns multiple copies of itself to be rolled-up into a single process, rather than the individual processName#1, processName#2 etc. If set to <code>0</code>, the separate processes are treated an individuals.</p>
 	
-	<br/><p>This will be common with applications like chrome, firefox, or dropbox, and some internal Windows processes like explorer, RunTimeBroker, or svchost.</p>
+	<br><p>This will be common with applications like chrome, firefox, or dropbox, and some internal Windows processes like explorer, RunTimeBroker, or svchost.</p>
 	</dd>
 	
 	<dt id="Percent"><code>Percent</code> <small>Default: <code>0</code></small></dt>
 	<dd>
 	<p>This should be set to <code>1</code> when the counter you are getting does not return the value as a percentage from 0-100, and it has a _Total instance, and you want to return the value as a percentage of the _Total instance.</p>
 	
-	<br/><p>It will not work, and should not be used, if the counter has no _Total instance, or already returns the value as a percentage value from 0-100 in the perfmon GUI.</p>
+	<br><p>It will not work, and should not be used, if the counter has no _Total instance, or already returns the value as a percentage value from 0-100 in the perfmon GUI.</p>
 	
-	<br/><p><b>Note:</b> This is automatically set to <code>1</code> when <code>Alias=CPU</code> is used, but may be manually forced to <code>0</code> if desired.</p>
+	<br><p><b>Note:</b> This is automatically set to <code>1</code> when <code>Alias=CPU</code> is used, but may be manually forced to <code>0</code> if desired.</p>
 	</dd>
 
 	<dt id="RawValue"><code>RawValue</code> <small>Default: <code>0</code></small></dt>
@@ -135,7 +135,7 @@ title: 'UsageMonitor plugin'
 	<dd>
 	<p>When set to <code>1</code>, this will lookup and return the text name of the process associated with any PID returned as the value of an instance.</p>
 	
-	<br/><p><b>Note:</b> This is automatically set to <code>1</code> when <code>Alias=GPU</code>, <code>Alias=VRAM</code>, or <code>Alias=VRAMSHARED</code> is used, but may be manually forced to <code>0</code> if desired.</p>
+	<br><p><b>Note:</b> This is automatically set to <code>1</code> when <code>Alias=GPU</code>, <code>Alias=VRAM</code>, or <code>Alias=VRAMSHARED</code> is used, but may be manually forced to <code>0</code> if desired.</p>
 	</dd>
 </dl>
 

@@ -32,7 +32,7 @@ StringIndex=34
 
 <p><em>As you can see, the measure [MeasureCurrentWeatherConditions] is using as its "Url=" the result of [MeasureYahooWeather] (our first main RSS measure) and specifically asking for StringIndex 34, the index in the array of returned values which holds the first of the "Weather Condition" values, in this case the "Current Conditions".</em></p>
 <p>Since Weather.com / Yahoo Weather return these values in English, you may want to translate them to your native language. To do so, add a line at the end of each of the measures that specifically return "Weather Conditions" text. In our current example, after the line "StringIndex=34".</p>
-<p><b>RegExpSubstitute=1</b><br/>
+<p><b>RegExpSubstitute=1</b><br>
 <b>Substitute="(?i)^Cloudy$":"Bewölkt","^Partly Cloudy$":"Teilweise Bewölkt"</b></p>
 <p>And so on... Continuing with the pattern:</p>
 <p><b>Substitute="Thing to replace":"Thing to replace with","Thing to replace":"Thing to replace with"</b></p>
