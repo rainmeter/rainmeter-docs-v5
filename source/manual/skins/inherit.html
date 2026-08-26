@@ -1,0 +1,63 @@
+---
+layout: docs
+permalink: manual/skins/inherit/
+title: '@Inherit'
+---
+<p>Measure and Meter sections can use option values from other sections. Using the <code>@Inherit</code> option, one section may <b>inherit</b> options from one or more "parent" sections.</p>
+
+<p>The goal is to help reduce the amount of code needed to define options that may be used on multiple measures or meters. Define options once, then use them on many sections with an <code>@Inherit</code> option.</p>
+
+<p><code>@Inherit</code> can be used with any type of measure or meter.</p>
+
+<h2 id="Usage">Usage</h2>
+
+<p>If an option is given on both the parent section and the child section, the child's setting overrides the parent's for that section. If multiple parents are given, separated by pipes (<code>|</code>), options on later parents override those on earlier parents.</p>
+
+<p>Inherited options are used just as if they were explicitly written in the child section. For example, if the <a href="!variables/built-in-variables/#CURRENTSECTION">#CURRENTSECTION#</a> variable is used in an inherited option, it resolves as the name of the child section, not the parent. Similarly, if a <a href="!meters/general-options/#XY">relative position</a> is used, such as <code>X=5R</code>, the meter immediately previous to the child meter is used, not the parent's.</p>
+
+<p>The only options that cannot be inherited are:</p>
+
+<ul>
+	<li><p><a href="!meters/general-options/#Meter">Meter</a> and <a href="!measures/general-options/#Measure">Measure</a>. The type must be explicitly set in order to identify a section.</p></li>
+	<li><p><code>@Inherit</code> itself. This means that @Inherit cannot be inherited through more than one generation. In other words, sections cannot have "grandparents."</p></li>
+</ul>
+
+<h2 id="StyleSections">@Inherit Sections</h2>
+
+<p>Measures and Meters may inherit options from sections that are not measures or meters. A skin section of any name<sup>1</sup> that does not have the <code>Meter</code> or <code>Measure</code> option is treated as an @Inherit section. An @Inherit section is completely ignored by Rainmeter unless it is referenced in the <code>@Inherit</code> option of a measure or meter. Options that are not valid for the child section are also simply ignored, which means that the parent and child can be different types.</p>
+
+<p class="footnote">1. Aside from [Rainmeter] and [Variables], which are <a href="!skins/#Format">reserved for special purposes</a>.</p>
+
+<h2 id="Example">Example</h2>
+
+``` ini
+[Rainmeter]
+Update=1000
+DynamicWindowSize=1
+AccurateText=1
+
+[MyFirstParent]
+Meter=String
+Text=This is a parent!
+X=10
+FontColor=255,0,0
+FontFace=Segoe UI
+FontSize=15
+SolidColor=47,47,47,190
+Padding=5,2,5,5
+AntiAlias=1
+FontWeight=700
+
+[MySecondParent]
+StringStyle=Italic
+FontColor=0,255,0
+
+[MyChild]
+Meter=String
+@Inherit=MyFirstParent | MySecondParent
+X=0R
+FontColor=62,189,255
+Text=This is a child!
+```
+
+<p><em>MyChild</em> inherits all options from the <em>MyFirstParent</em> meter and the <em>MySecondParent</em> @Inherit. This means it is displayed with all of the same font, color, size and other options given for those sections. The second parent's <code>StringStyle</code> option overrides the first parent's, which means the child meter displays italic text. Likewise, the child meter's <code>FontColor</code> option overrides both parents', so the text displays with a color of <code>62,189,255</code>.</p>
