@@ -3,7 +3,30 @@ layout: docs
 permalink: manual/measures/usagemonitor/
 title: 'UsageMonitor measure'
 ---
-<p><code>Plugin=UsageMonitor</code> retrieves information from the <a href="https://learn.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd744567(v=ws.10)">Windows Performance Monitor</a>.</p>
+<p><code>Measure=UsageMonitor</code> retrieves information from the <a href="https://learn.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd744567(v=ws.10)">Windows Performance Monitor</a>.</p>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: UsageMonitor was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=UsageMonitor
+	or
+	Plugin=UsageMonitor.dll
+	or
+	Plugin=Plugins\UsageMonitor.dll
+	```
+	<p>UsageMonitor still works with those forms, and changing existing skins to the new <code>Measure=UsageMonitor</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. UsageMonitor is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=UsageMonitor
+	```
+	</details>
+</div>
 
 <p>The Windows Performance Monitor exposes counters, which monitor various kinds of system metrics in different categories, and tracks their usage. All available counters can be viewed using the Performance Monitor application. To open it, run Perfmon.exe.</p>
 
@@ -15,7 +38,7 @@ title: 'UsageMonitor measure'
 <li><b>Instance</b> - Counters may have individual <em>instances</em> like "Rainmeter" or "C:"</li>
 </ul>
 
-<p>The UsageMonitor plugin will allow you to define <em>instance</em> in the measure in one of two ways:</p>
+<p>The UsageMonitor measure will allow you to define <em>instance</em> in the measure in one of two ways:</p>
 
 <ul>
 <li><b>Name</b><br>This will be the specific (case sensitive) text name of a single given instance, and will return the current value for that specific instance of a counter.</li>
@@ -25,7 +48,7 @@ title: 'UsageMonitor measure'
 <br>
 <p>The measure will return the current <em>number</em> value of the instance, and the current <em>string</em> value of the name of the instance. So each measure will have distinct number and string values.</p>
 
-<p>The UsageMonitor plugin will optionally allow you to select common counters with a single <b>Alias</b>, rather than the specific, case-sensitive Category and Counter names. <em>Additional Alias values may be supported over time.</em></p>
+<p>The UsageMonitor measure will optionally allow you to select common counters with a single <b>Alias</b>, rather than the specific, case-sensitive Category and Counter names. <em>Additional Alias values may be supported over time.</em></p>
 
 <h2>Options</h2>
 <dl>
@@ -155,8 +178,7 @@ title: 'UsageMonitor measure'
 
 ``` ini
 [MeasureHighestUsedRAM]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=RAM
 Index=1
 
@@ -178,13 +200,13 @@ Text=%1 : %2B
 
 <h2 id="Performance">A note on performance</h2>
 
-<p>UsageMonitor is very much more efficient in its use of CPU than the PerfMon and AdvancedCPU plugins. It is strongly recommended that this plugin be used exclusively in place of them. The difference in the CPU used, and how smoothly other things in Rainmeter work when this is running, is dramatic.</p>
+<p>UsageMonitor is very much more efficient in its use of CPU than the PerfMon and AdvancedCPU measures. It is strongly recommended that this measure be used exclusively in place of them. The difference in the CPU used, and how smoothly other things in Rainmeter work when this is running, is dramatic.</p>
 
-<p>The way UsageMonitor works is to spawn a single separate thread, independent of Rainmeter, for each <b>Category</b> that is asked for by any measures in any skin, in all of Rainmeter. The plugin is then gathering information for that Category, once a second, and is not dependent on, nor reacts to, any setting for Update on the skin, or UpdateDivider on the measure. UpdateDivider should only be used on the measure if you want to control how often actions like OnChangeAction or OnUpdateAction are executed, or how often comparisons like IfCondition or IfMatch are done.</p>
+<p>The way UsageMonitor works is to spawn a single separate thread, independent of Rainmeter, for each <b>Category</b> that is asked for by any measures in any skin, in all of Rainmeter. The measure is then gathering information for that Category, once a second, and is not dependent on, nor reacts to, any setting for Update on the skin, or UpdateDivider on the measure. UpdateDivider should only be used on the measure if you want to control how often actions like OnChangeAction or OnUpdateAction are executed, or how often comparisons like IfCondition or IfMatch are done.</p>
 
-<p>The plugin is always gathering data, and the measure is simply used to retrieve a single element of data from it. The plugin is not told "when to do its work" by the measure.</p>
+<p>The measure is always gathering data, and the measure is simply used to retrieve a single element of data from it. The measure is not told "when to do its work" by the measure.</p>
 
-<p>Individual Category threads are disposed of when no plugin measures in any skins are using them, and the plugin is entirely unloaded when no running skins have measures using it.</p>
+<p>Individual Category threads are disposed of when no measure measures in any skins are using them, and the measure is entirely unloaded when no running skins have measures using it.</p>
 
 <h2 id="Localization">A note on localization</h2>
 
@@ -199,29 +221,26 @@ Text=%1 : %2B
 
 <h2>Examples</h2>
 
-<p>Some common uses for the UsageMonitor plugin might be:</p>
+<p>Some common uses for the UsageMonitor measure might be:</p>
 
 <p><b>Total CPU used</b></p>
 ``` ini
 [MeasureCPU]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Index=0
 ```
 <p><b>Top process CPU usage and name</b></p>
 ``` ini
 [MeasureTop]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Index=1
 ```
 <p><b>CPU usage for a given process name</b></p>
 ``` ini
 [MeasureRainmeter]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Name=Rainmeter
 ```
@@ -241,28 +260,24 @@ Browser=firefox
 ;Browser=chrome
 
 [MeasureCPU]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Index=0
 
 [MeasureMyApps]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Index=1
 Whitelist=Rainmeter|#Browser#|hexchat|CCleaner64
 
 [MeasureTop1byAlias]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Index=1
 Blacklist=_Total|Idle|dwm|wmpnetwk|csrss|svchost|lsass|System|system|Memory Compression|wininit|RemindersServer|spoolsv|IpOverUsbSvc
 
 [MeasureTop1byCounter]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Category=Process
 Counter=% Processor Time
 Index=1
@@ -270,27 +285,23 @@ Percent=1
 Blacklist=_Total|Idle|dwm|wmpnetwk|csrss|svchost|lsass|System|system|Memory Compression|wininit|RemindersServer|spoolsv|IpOverUsbSvc
 
 [MeasureRainmeter]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Name=Rainmeter
 
 [MeasureBrowser]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=CPU
 Name=#Browser#
 
 [TotalThreads]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Category=System
 Counter=Threads
 Index=0
 
 [Core0Usage]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Category=Processor
 Counter=% Processor Time
 Name=0
@@ -298,8 +309,7 @@ MinValue=0
 MaxValue=100
 
 [Core1Usage]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Category=Processor
 Counter=% Processor Time
 Name=1
@@ -307,8 +317,7 @@ MinValue=0
 MaxValue=100
 
 [TopGPU]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=GPU
 Index=1
 MinValue=0
@@ -316,8 +325,7 @@ MaxValue=100
 Blacklist=dwm|csrss
 
 [TotalVRAM]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=VRAM
 Index=0
 MinValue=0
@@ -328,8 +336,7 @@ Measure=Calc
 Formula=TotalVRAM
 
 [RainmeterIO]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=IO
 Name=Rainmeter
 
@@ -338,8 +345,7 @@ Measure=Calc
 Formula=RainmeterIO
 
 [TopIORead]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=IO
 Index=1
 
@@ -348,8 +354,7 @@ Measure=Calc
 Formula=TopIORead
 
 [BrowserIOWrite]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=IOWrite
 Name=#Browser#
 
@@ -358,8 +363,7 @@ Measure=Calc
 Formula=BrowserIOWrite
 
 [BrowserRAM]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Alias=RAM
 Name=#Browser#
 
@@ -368,8 +372,7 @@ Measure=Calc
 Formula=BrowserRAM
 
 [NetworkIn]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Category=Network Adapter
 Counter=Bytes Received/sec
 Index=1
@@ -381,8 +384,7 @@ IfAboveValue=0
 IfAboveAction=[!SetOption MeterNetworkName Text "[NetworkIn]"][!UpdateMeter *][!Redraw]
 
 [NetworkOut]
-Measure=Plugin
-Plugin=UsageMonitor
+Measure=UsageMonitor
 Category=Network Adapter
 Counter=Bytes Sent/sec
 Index=1
@@ -639,7 +641,7 @@ ClipString=1
 <div class="alert alert-info alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="RebuildingCounters"><i class="fa-solid fa-thumbtack"></i> Note: Rebuilding Counters Database</h2>
 
-	<p>While rare, it is possible for the database of counters that is maintained by Performance Monitor in Windows to become damaged, which will cause the UsageMonitor plugin to stop functioning correctly.</p>
+	<p>While rare, it is possible for the database of counters that is maintained by Performance Monitor in Windows to become damaged, which will cause the UsageMonitor measure to stop functioning correctly.</p>
 
 	<p>In many cases, this can be corrected by "rebuilding" the database from the Windows command line.</p>
 

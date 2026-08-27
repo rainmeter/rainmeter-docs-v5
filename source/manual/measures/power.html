@@ -3,7 +3,30 @@ layout: docs
 permalink: manual/measures/power/
 title: 'Power measure'
 ---
-<p><code>Plugin=PowerPlugin</code> measures power related information.</p>
+<p><code>Measure=Power</code> measures power related information.</p>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: Power was previously a <em>plugin</em> measure named PowerPlugin.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=PowerPlugin
+	or
+	Plugin=PowerPlugin.dll
+	or
+	Plugin=Plugins\PowerPlugin.dll
+	```
+	<p>Power still works with those forms, and changing existing skins to the new <code>Measure=Power</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. Power is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=Power
+	```
+	</details>
+</div>
 
 <h2>Options</h2>
 <dl>
@@ -41,8 +64,7 @@ BackgroundMode=2
 SolidColor=0,0,0,255
 
 [MeasureBatteryPercent]
-Measure=Plugin
-Plugin=PowerPlugin
+Measure=Power
 PowerState=Percent
 
 [MeterBatteryPercent]

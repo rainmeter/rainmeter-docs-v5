@@ -3,28 +3,51 @@ layout: docs
 permalink: manual/measures/runcommand/
 title: 'RunCommand measure'
 ---
-<p><code>Plugin=RunCommand</code></p>
+<p><code>Measure=RunCommand</code></p>
 
 <p>Executes an external command or program in Windows, allowing the skin to obtain and use any output from the program.</p>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: RunCommand was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=RunCommand
+	or
+	Plugin=RunCommand.dll
+	or
+	Plugin=Plugins\RunCommand.dll
+	```
+	<p>RunCommand still works with those forms, and changing existing skins to the new <code>Measure=RunCommand</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. RunCommand is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=RunCommand
+	```
+	</details>
+</div>
 
 <p>There are several important differences between this and just executing a command with something like:</p>
 <p><code>LeftMouseUpAction=["SomePath\SomeProgram.exe" "SomeParameters"]</code></p>
 
 <ul>
 <li>The command can be run with a <em>hidden</em> initial state, to eliminate the cmd.exe (DOS) Command Prompt window that is created when an external command-line command or program is executed normally from Rainmeter.</li>
-<li>Any output of the command to STDOUT (the "Standard Out" string output of a program in a cmd.exe Command Prompt window) can be captured, either directly, as the the value of the plugin measure, or piped to a text file for additional processing as needed.</li>
-<li>The plugin can detect that a command is "finished", and your skin can in effect wait for the command to be done before taking some action and using any returned value.</li>
-<li>The plugin can detect that a command caused a set of "error" return codes, and the skin can take some action based on success or failure of the command and the type of error.</li>
-<li>The plugin can be set with a "timeout" value, which will automatically end the external command or program when the timeout value is reached.</li>
+<li>Any output of the command to STDOUT (the "Standard Out" string output of a program in a cmd.exe Command Prompt window) can be captured, either directly, as the the value of the measure measure, or piped to a text file for additional processing as needed.</li>
+<li>The measure can detect that a command is "finished", and your skin can in effect wait for the command to be done before taking some action and using any returned value.</li>
+<li>The measure can detect that a command caused a set of "error" return codes, and the skin can take some action based on success or failure of the command and the type of error.</li>
+<li>The measure can be set with a "timeout" value, which will automatically end the external command or program when the timeout value is reached.</li>
 </ul>
 
 <p><b>Overview</b></p>
 
-<p>What the plugin does when triggered with <code>[!CommandMeasure MeasureName "Run"]</code> is to execute what is defined in the measure's <code>Program</code> option, appending any program parameters defined in the <code>Parameter</code> option.</p>
+<p>What the measure does when triggered with <code>[!CommandMeasure MeasureName "Run"]</code> is to execute what is defined in the measure's <code>Program</code> option, appending any program parameters defined in the <code>Parameter</code> option.</p>
 
-<p>In most cases, the purpose of the plugin is to execute a Command Line Interface (CLI) program that takes some action or returns some value. Command-line programs by their nature always run in a cmd.exe Command Prompt window.</p>
+<p>In most cases, the purpose of the measure is to execute a Command Line Interface (CLI) program that takes some action or returns some value. Command-line programs by their nature always run in a cmd.exe Command Prompt window.</p>
 
-<p>The plugin will monitor the program defined in the <code>Program</code> option, and when it ends, when the executable terminates, any string output the program did to STDOUT (Standard Out) will be captured and set as the string value of the plugin measure.</p>
+<p>The measure will monitor the program defined in the <code>Program</code> option, and when it ends, when the executable terminates, any string output the program did to STDOUT (Standard Out) will be captured and set as the string value of the measure measure.</p>
 
 <p><b>The string value of the measure</b></p>
 
@@ -73,9 +96,9 @@ title: 'RunCommand measure'
 		 Attempts to start the program maximized.</li>
 		</ul>
 
-		<p><b>Notes:</b> If <code>State=Hide</code>, the plugin will automatically "kill" any program it executed, when either the skin is refreshed or unloaded, or Rainmeter is exited.</p>
+		<p><b>Notes:</b> If <code>State=Hide</code>, the measure will automatically "kill" any program it executed, when either the skin is refreshed or unloaded, or Rainmeter is exited.</p>
 
-		<p>A few programs with a windowed GUI user-interface (for instance Calc.exe) explicitly show themselves and will not respond to initial state requests like Hidden or Minimized. This will be a rare problem, as normally there is no useful reason to use this plugin to execute GUI programs from the command line. They will likely take no desirable independent action, and will have no STDOUT "output" in any case.</p>
+		<p>A few programs with a windowed GUI user-interface (for instance Calc.exe) explicitly show themselves and will not respond to initial state requests like Hidden or Minimized. This will be a rare problem, as normally there is no useful reason to use this measure to execute GUI programs from the command line. They will likely take no desirable independent action, and will have no STDOUT "output" in any case.</p>
 	</dd>
 
 	<dt id="FinishAction"><code>FinishAction</code> <small>Default: <code>None</code></small></dt>
@@ -121,18 +144,18 @@ title: 'RunCommand measure'
 <p><b>Example:</b> Program=""C:\Program Files\Some Program\Something with a space.exe""</p>
 </div>
 
-<h2 id="PluginCommands">Plugin Commands</h2>
+<h2 id="MeasureCommands">Measure Commands</h2>
 <dl>
 	<dt id="Run"><code>Run</code></dt>
 	<dd>
-		<p>Runs the program. <b>The plugin will take no action unless triggered with this command.</b></p>
+		<p>Runs the program. <b>The measure will take no action unless triggered with this command.</b></p>
 		<p><b>Example:</b> <code>LeftMouseUpAction=[!CommandMeasure MeasureName "Run"]</code></p>
 	</dd>
 
 	<dt id="Close"><code>Close</code></dt>
 	<dd>
 		<p>Sends a normal "close" message to the program.</p>
-		<p>The program may produce an "are you sure?" prompt before closing. Some programs can cancel the closing of the program, in which case the plugin will continue to gather any output.</p>
+		<p>The program may produce an "are you sure?" prompt before closing. Some programs can cancel the closing of the program, in which case the measure will continue to gather any output.</p>
 		<p><b>Example:</b> <code>LeftMouseUpAction=[!CommandMeasure MeasureName "Close"]</code></p>
 	</dd>
 
@@ -145,20 +168,20 @@ title: 'RunCommand measure'
 
 <h2 id="ErrorCodes">Error codes</h2>
 
-<p>Here is a list of possible error codes returned by the plugin:<p>
+<p>Here is a list of possible error codes returned by the measure:<p>
 <ul>
-<li><b>100</b> Unknown command. This happens when an invalid !CommandMeasure command was sent to the plugin.</li>
+<li><b>100</b> Unknown command. This happens when an invalid !CommandMeasure command was sent to the measure.</li>
 <li><b>101</b> Program still running. This happens when trying to Run the program again before it has finished running.</li>
 <li><b>102</b> Program not running. This happens when trying to Close or Kill a program that is not running.</li>
 <li><b>103</b> Cannot start program. This happens when the Program option is invalid. Usually a wrong path or typo in the Program option is the cause. Note that cmd.exe may start perfectly well but be unable to execute a command or program passed as a Parameter option. That will not trigger this error code.</li>
-<li><b>104</b> Cannot save file. This happens when there is an error saving the file. This could happen if writing to a locked location or file. The string value of the plugin will still contain any output of the program.</li>
+<li><b>104</b> Cannot save file. This happens when there is an error saving the file. This could happen if writing to a locked location or file. The string value of the measure will still contain any output of the program.</li>
 <li><b>105</b> Cannot terminate process. There was an error when attempting to close or kill the program. This should rarely happen. If so, it might be necessary to open the Windows Task Manager and manually close the program.</li>
-<li><b>106</b> Cannot create pipe. This happens when the plugin cannot create a pipe to the program trying to run. The program will not run if this error happens. This error should rarely happen.</li>
+<li><b>106</b> Cannot create pipe. This happens when the measure cannot create a pipe to the program trying to run. The program will not run if this error happens. This error should rarely happen.</li>
 </ul>
 
 <div class="alert alert-info alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="ErrorCodesNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-	<p>These error codes are produced by the plugin, and have nothing to do with any error encountered by the executed program itself. Errors from the program will generally be displayed in the STDOUT output, and can be tested for and reacted to there.</p>
+	<p>These error codes are produced by the measure, and have nothing to do with any error encountered by the executed program itself. Errors from the program will generally be displayed in the STDOUT output, and can be tested for and reacted to there.</p>
 </div>
 
 <h2>Example</h2>
@@ -170,8 +193,7 @@ DynamicWindowSize=1
 AccurateText=1
 
 [MeasureRun]
-Measure=Plugin
-Plugin=RunCommand
+Measure=RunCommand
 Program=PowerShell
 Parameter=(Get-CimInstance -ClassName Win32_Processor -Property Name).Name
 State=Hide
@@ -200,7 +222,7 @@ AntiAlias=1
 ```
 <p>This example will run the program powershell.exe, which is in the Windows %PATH% and thus needs no path on the command itself.</p>
 <p>PowerShell will use the parameter of "(Get-CimInstance -ClassName Win32_Processor -Property Name).Name". The program will be run in a "hidden" PowerShell Command Prompt window, and nothing visible will happen.</p>
-<p>The output of the PowerShell program (the "name" of your CPU in this case) will be written to STDOUT in the hidden PowerShell window, which will be captured by the plugin and set as the string value of the [MeasureRun] measure.</p>
+<p>The output of the PowerShell program (the "name" of your CPU in this case) will be written to STDOUT in the hidden PowerShell window, which will be captured by the measure and set as the string value of the [MeasureRun] measure.</p>
 <p><em>The Substitute option is being used to strip off some trailing spaces and a linefeed in the output.</em></p>
 <p>Additionally, the file defined in OutputFile will contain the entire output of the command, which in this example might be:</p>
 
@@ -208,4 +230,4 @@ AntiAlias=1
 Name
 AMD Ryzen 7 2700X Eight-Core Processor
 ```
-<p>Additional parsing of this file could be done with the WebParser plugin or String measures if you wanted for instance to obtain multiple separate values from the single command output.</p>
+<p>Additional parsing of this file could be done with the WebParser measure or String measures if you wanted for instance to obtain multiple separate values from the single command output.</p>

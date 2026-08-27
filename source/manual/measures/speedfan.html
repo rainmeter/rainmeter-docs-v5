@@ -3,7 +3,37 @@ layout: docs
 permalink: manual/measures/speedfan/
 title: 'SpeedFan measure'
 ---
-<p><code>Plugin=SpeedFanPlugin</code> retrieves information from the <a href="https://www.almico.com/speedfan.php">SpeedFan</a> application. The SpeedFan application <b>must</b> be running in the background.</p>
+<p><code>Measure=SpeedFan</code> retrieves information from the <a href="https://www.almico.com/speedfan.php">SpeedFan</a> application. The SpeedFan application <b>must</b> be running in the background.</p>
+
+<h2>Measure Deprecated</h2>
+
+<p>This Measure has been deprecated, and should not be used in new skins.</p>
+<p style="color: red;">The SpeedFan application is no longer actively maintained, and has gotten out of date.</p>
+<p>The <a href="!measures/coretemp/">CoreTemp</a> measure or a external method like <a href="https://forum.rainmeter.net/viewtopic.php?t=37160#p189233">HWiNFO</a> should be used in place of this.</p><br>
+
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: SpeedFan was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=SpeedFan
+	or
+	Plugin=SpeedFan.dll
+	or
+	Plugin=Plugins\SpeedFan.dll
+	```
+	<p>SpeedFan still works with those forms, and changing existing skins to the new <code>Measure=SpeedFan</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. SpeedFan is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=SpeedFan
+	```
+	</details>
+</div>
 
 <div class="alert alert-info alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="MinMaxNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
@@ -55,15 +85,13 @@ BackgroundMode=2
 SolidColor=0,0,0,255
 
 [MeasureGPUTemp]
-Measure=Plugin
-Plugin=SpeedFanPlugin
+Measure=SpeedFan
 SpeedFanType=Temperature
 SpeedFanNumber=0
 SpeedFanScale=C
 
 [MeasureFanSpeed]
-Measure=Plugin
-Plugin=SpeedFanPlugin
+Measure=SpeedFan
 SpeedFanType=Fan
 SpeedFanNumber=3
 
