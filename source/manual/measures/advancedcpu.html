@@ -1,14 +1,37 @@
 ---
 layout: docs
-permalink: manual/plugins/deprecated/advancedcpu/
-title: 'AdvancedCPU plugin'
+permalink: manual/measures/advancedcpu/
+title: 'AdvancedCPU measure'
 ---
-<p><code>Plugin=AdvancedCPU</code> measures CPU usage by processes.</p>
+<p><code>Measure=AdvancedCPU</code> measures CPU usage by processes.</p>
 
-<h2>Plugin Deprecated</h2>
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: AdvancedCPU was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=AdvancedCPU
+	or
+	Plugin=AdvancedCPU.dll
+	or
+	Plugin=Plugins\AdvancedCPU.dll
+	```
+	<p>AdvancedCPU still works with those forms, and changing existing skins to the new <code>Measure=AdvancedCPU</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. AdvancedCPU is a measure, and not a plugin.</p>
 
-<p>This plugin has been deprecated, and should not be used in new skins.</p>
-<p>The <a href="!plugins/usagemonitor">UsageMonitor</a> plugin should be used in place of this.</p><br>
+	``` ini
+	[MeasureParent]
+	Measure=AdvancedCPU
+	```
+	</details>
+</div>
+
+<h2>Measure Deprecated</h2>
+
+<p>This Measure has been deprecated, and should not be used in new skins.</p>
+<p>The <a href="!Measures/usagemonitor">UsageMonitor</a> Measure should be used in place of this.</p><br>
 
 <p><b>Note:</b> The value is a calculation of process CPU time scaled by the number of CPU cores. In order to use the value as a <a href="!measures/#Percentage">percentage</a> in meters, it must have the <a href="!measures/general-options/#MaxValue">MaxValue</a> of the measure dynamically set to the current value of an AdvancedCPU measure which has no <code>CPUInclude</code> or <code>CPUExclude</code> options. See the <a href="#Example">Example</a> below.</p>
 
@@ -50,28 +73,24 @@ SolidColor=0,0,0,255
 
 ;Measure maximum CPU time for use in MaxValue in other measures
 [MeasureCPUMax]
-Measure=Plugin
-Plugin=AdvancedCPU
+Measure=AdvancedCPU
 
 ;Measure current CPU usage with MaxValue set
 [MeasureCPU]
-Measure=Plugin
-Plugin=AdvancedCPU
+Measure=AdvancedCPU
 CPUExclude=Idle
 MaxValue=[MeasureCPUMax]
 DynamicVariables=1
 
 ;Measure Name of top process
 [MeasureTopName]
-Measure=Plugin
-Plugin=AdvancedCPU
+Measure=AdvancedCPU
 CPUExclude=Idle
 TopProcess=2
 
 ;Measure CPU usage of top process with MaxValue set
 [MeasureTop%]
-Measure=Plugin
-Plugin=AdvancedCPU
+Measure=AdvancedCPU
 CPUExclude=Idle
 TopProcess=1
 MaxValue=[MeasureCPUMax]
@@ -115,7 +134,7 @@ Text=(%1)
 
 <p id="RebuildCounters"><b>Note:</b></p>
 
-<p>While rare, it is possible for the database of "counters" that is maintained by Performance Monitor in Windows to become damaged, which will cause the plugin to stop functioning correctly.</p>
+<p>While rare, it is possible for the database of "counters" that is maintained by Performance Monitor in Windows to become damaged, which will cause the Measure to stop functioning correctly.</p>
 
 <p>In many cases, this can be corrected by "rebuilding" the database from the Windows command line.</p>
 

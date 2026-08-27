@@ -1,14 +1,14 @@
 ---
 layout: docs
-permalink: manual/plugins/deprecated/perfmon/
-title: 'PerfMon plugin'
+permalink: manual/measures/perfmon/
+title: 'PerfMon measure'
 ---
-<p><code>Plugin=PerfMon</code> retrieves infromation from the <a href="https://learn.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd744567(v=ws.10)">Windows Performance Monitor</a>.</p>
+<p><code>Measure=PerfMon</code> retrieves information from the <a href="https://learn.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd744567(v=ws.10)">Windows Performance Monitor</a>.</p>
 
-<h2>Plugin Deprecated</h2>
+<h2>Measure Deprecated</h2>
 
-<p>This plugin has been deprecated, and should not be used in new skins.</p>
-<p>The <a href="!plugins/usagemonitor">UsageMonitor</a> plugin should be used in place of this.</p><br>
+<p>This Measure has been deprecated, and should not be used in new skins.</p>
+<p>The <a href="!measures/usagemonitor">UsageMonitor</a> Measure should be used in place of this.</p><br>
 
 <p>The Performance Monitor exposes several counters, which track various information. All available counters can be viewed using the Performance Monitor application. To open it, either run PerfMon.msc or type it in the Start menu.</p>
 
@@ -54,16 +54,14 @@ SolidColor=0,0,0,255
 
 [MeasureProcessCount]
 ; Measures the number of processes running.
-Measure=Plugin
-Plugin=PerfMon
+Measure=PerfMon
 PerfMonObject=System
 PerfMonCounter=Processes
 PerfMonDifference=0
 
 [MeasureDiskAccess]
 ; Measures disk access of the C: drive.
-Measure=Plugin
-Plugin=PerfMon
+Measure=PerfMon
 PerfMonObject=LogicalDisk
 PerfMonCounter=Disk Bytes/sec
 PerfMonInstance=C:
@@ -92,7 +90,7 @@ Text=Disk access: %1B/sec
 
 <p id="RebuildCounters"><b>Note:</b></p>
 
-<p>While rare, it is possible for the database of "counters" that is maintained by Performance Monitor in Windows to become damaged, which will cause the Perfmon plugin to stop functioning correctly.</p>
+<p>While rare, it is possible for the database of "counters" that is maintained by Performance Monitor in Windows to become damaged, which will cause the Perfmon Measure to stop functioning correctly.</p>
 
 <p>In many cases, this can be corrected by "rebuilding" the database from the Windows command line.</p>
 

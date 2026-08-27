@@ -1,18 +1,31 @@
 ---
 layout: docs
-permalink: manual/plugins/coretemp/
-title: 'CoreTemp plugin'
+permalink: manual/measures/coretemp/
+title: 'CoreTemp measure'
 ---
-<p><code>Plugin=CoreTemp</code> retrieves infromation from the <a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a> application. The latest CoreTemp application <b>must</b> be running in the background.</p>
+<p><code>Measure=CoreTemp</code> retrieves information from the <a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a> application. The latest CoreTemp application <b>must</b> be running in the background.</p>
 
 <div class="alert alert-info alert-tight" role="alert">
-	<h2 class="alert-heading h5" id="UpdateNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-	<p>By default CoreTemp will return temperature values in Celsius. Check the box in Settings / Display in the application GUI to set the return values to Fahrenheit.</p>
-</div>
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: NowPlaying was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=NowPlaying
+	or
+	Plugin=NowPlaying.dll
+	or
+	Plugin=Plugins\NowPlaying.dll
+	```
+	<p>NowPlaying still works with those forms, and changing existing skins to the new <code>Measure=NowPlaying</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. NowPlaying is a measure, and not a plugin.</p>
 
-<div class="alert alert-info alert-tight" role="alert">
-	<h2 class="alert-heading h5" id="MinMaxNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-	<p>If the value of the measure is to be used in a meter which requires a <a href="!measures/#Percentage">percentage</a>, then appropriate <a href="!measures/general-options/#MinValue">MinValue</a> and/or <a href="!measures/general-options/#MaxValue">MaxValue</a> options must be added to the measure.</p>
+	``` ini
+	[MeasureParent]
+	Measure=NowPlaying
+	```
+	</details>
 </div>
 
 <h2>Options</h2>
@@ -53,6 +66,16 @@ title: 'CoreTemp plugin'
 	<dd>Zero-based index of the core to measure. The first core is <code>0</code>, the second core is <code>1</code>, etc.</dd>
 </dl>
 
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="UpdateNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+	<p>By default CoreTemp will return temperature values in Celsius. Check the box in Settings / Display in the application GUI to set the return values to Fahrenheit.</p>
+</div>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="MinMaxNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+	<p>If the value of the measure is to be used in a meter which requires a <a href="!measures/#Percentage">percentage</a>, then appropriate <a href="!measures/general-options/#MinValue">MinValue</a> and/or <a href="!measures/general-options/#MaxValue">MaxValue</a> options must be added to the measure.</p>
+</div>
+
 <h2>Example</h2>
 ``` ini
 [Rainmeter]
@@ -61,19 +84,16 @@ BackgroundMode=2
 SolidColor=0,0,0,255
 
 [MeasureMaxTemp]
-Measure=Plugin
-Plugin=CoreTemp
+Measure=CoreTemp
 CoreTempType=MaxTemperature
 
 [MeasureCore1Temp]
-Measure=Plugin
-Plugin=CoreTemp
+Measure=CoreTemp
 CoreTempType=Temperature
 CoreTempIndex=0
 
 [MeasureCpuSpeed]
-Measure=Plugin
-Plugin=CoreTemp
+Measure=CoreTemp
 CoreTempType=CpuSpeed
 
 [MeterMaxTemp]

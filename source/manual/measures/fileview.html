@@ -1,11 +1,35 @@
 ---
 layout: docs
-permalink: manual/plugins/fileview/
-title: 'FileView plugin'
+permalink: manual/measures/fileview/
+title: 'FileView measure'
 ---
-<p><code>Plugin=FileView</code> retrieves information about folders and files.</p>
+<p><code>Measure=FileView</code> retrieves information about folders and files.</p>
 
-<p>The plugin gathers all the folder and file names, sizes, dates and icons in the selected folder. It counts the number of files and folders and obtains the combined size. It can also search recursively through all the subfolders of the selected folder to obtain the totals for count and size.</p>
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: FileView was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=FileView
+	or
+	Plugin=FileView.dll
+	or
+	Plugin=Plugins\FileView.dll
+	```
+	<p>FileView still works with those forms, and changing existing skins to the new <code>Measure=FileView</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. FileView is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=FileView
+	```
+	</details>
+</div>
+
+
+<p>The measure gathers all the folder and file names, sizes, dates and icons in the selected folder. It counts the number of files and folders and obtains the combined size. It can also search recursively through all the sub-folders of the selected folder to obtain the totals for count and size.</p>
 
 <p>FileView operates with a "parent / child" approach. A main "parent" FileView measure is used to obtain all the information for a selected folder, and then "child" measures are used to read individual entries from the parent using the <code>Path=</code> option.
 
@@ -17,8 +41,7 @@ Update=1000
 DynamicWindowSize=1
 
 [MeasureFolder]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path="C:\Program Files\Rainmeter"
 ShowDotDot=0
 ShowFolder=0
@@ -27,22 +50,19 @@ Count=3
 <p id="ParentChild">In this example, this "parent" measure will obtain name, size, date and icon information about all files in the selected folder, then create three <a href="#Index">Index</a> values for the first three files. The information is used in subsequent "child" FileView measures:</p>
 ``` ini
 [MeasureChild1]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[MeasureFolder]
 Type=FileName
 Index=1
 
 [MeasureChild2]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[MeasureFolder]
 Type=FileName
 Index=2
 
 [MeasureChild3]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[MeasureFolder]
 Type=FileName
 Index=3
@@ -52,38 +72,34 @@ Index=3
 <p>Another way to use the information in child measures is:</p>
 ``` ini
 [MeasureChild1]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[MeasureFolder]
 Type=FileName
 Index=1
 
 [MeasureChild2]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[MeasureFolder]
 Type=FileSize
 Index=1
 
 [MeasureChild3]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[MeasureFolder]
 Type=FileDate
 Index=1
 ```
 <p>The values of the three child measures are now the FileName, FileSize and FileDate information from the first file (Index 1) of the parent measure.</p>
 
-<p>In these examples, three indexes are created due to the <code>Count=3</code> option on the parent measure. However, the information for all files and / or folders are obtained by the plugin, and subsequent or previous entries can be assigned to the three indexes by using !CommandMeasure statements described below. This will allow a skin to "scroll" through the files and / or folders in a dynamic way.</p>
+<p>In these examples, three indexes are created due to the <code>Count=3</code> option on the parent measure. However, the information for all files and / or folders are obtained by the Measure, and subsequent or previous entries can be assigned to the three indexes by using !CommandMeasure statements described below. This will allow a skin to "scroll" through the files and / or folders in a dynamic way.</p>
 
 <div class="alert alert-warning alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="RereadAlert"><i class="fa-solid fa-bomb"></i> Alert:</h2>
-	<p>A FileView measure will not re-read the disk information on a normal update cycle or using <a href="/tips/update-guide/">UpdateDivider</a> on the measure, nor when the <a href="!bangs/#Update">!Update</a> / <a href="!bangs/#UpdateMeasure">!UpdateMeasure</a> bangs are used. If the options on the parent measure are changed dynamically with <a href="!bangs/#SetVariable">!SetVariable</a> or <a href="!bangs/#SetOption">!SetOption</a>, the <a href="#Update">Update plugin command</a> will need to be used to update the values.<p>
+	<p>A FileView measure will not re-read the disk information on a normal update cycle or using <a href="/tips/update-guide/">UpdateDivider</a> on the measure, nor when the <a href="!bangs/#Update">!Update</a> / <a href="!bangs/#UpdateMeasure">!UpdateMeasure</a> bangs are used. If the options on the parent measure are changed dynamically with <a href="!bangs/#SetVariable">!SetVariable</a> or <a href="!bangs/#SetOption">!SetOption</a>, the <a href="#Update">Update Measure command</a> will need to be used to update the values.<p>
 
 ``` ini
 [MeasureFolder]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path="C:\ImageFolder"
 Count=3
 
@@ -98,12 +114,11 @@ LeftMouseUpAction=[!SetOption MeasureFolder Path "C:\VideoFolder"][!CommandMeasu
 
 <div class="alert alert-warning alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="UpdateAlert"><i class="fa-solid fa-bomb"></i> Alert:</h2>
-	<p>If it is desired that a folder be monitored for new or changed files, the <a href="#Update">Update plugin command</a> should be used in conjunction with an <a href="!measures/general-options/#OnUpdateAction">OnUpdateAction</a> statement to keep the measure current with changing disk information. Be aware that having the plugin physically access the disk has a performance cost, and care should be taken to use an appropriate <a href="/tips/update-guide/">UpdateDivider</a>.</p> 
+	<p>If it is desired that a folder be monitored for new or changed files, the <a href="#Update">Update measure command</a> should be used in conjunction with an <a href="!measures/general-options/#OnUpdateAction">OnUpdateAction</a> statement to keep the measure current with changing disk information. Be aware that having the measure physically access the disk has a performance cost, and care should be taken to use an appropriate <a href="/tips/update-guide/">UpdateDivider</a>.</p> 
 
 ``` ini
 [MeasureFolder]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path="C:\ImageFolder"
 Count=3
 UpdateDivider=5
@@ -132,13 +147,13 @@ OnUpdateAction=!CommandMeasure MeasureFolder Update
 <dl>
 	<dt id="FinishAction"><code>FinishAction</code></dt>
 	<dd>
-		<p><a href="!skins/option-types/#Action">Action</a> to execute when the plugin has completed reading the folders and files. This can be used to ensure that a large folder structure is fully read before other actions are taken.</p>
+		<p><a href="!skins/option-types/#Action">Action</a> to execute when the measure has completed reading the folders and files. This can be used to ensure that a large folder structure is fully read before other actions are taken.</p>
 	</dd>
 
 	<dt id="Recursive"><code>Recursive</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>If set to <code>1</code>, the plugin searches all sub-folders updating only the file count, folder count and overall folder size. This option does not index specific files in sub-folders.</p>
-		<p>If set to <code>2</code>, the plugin indexes all files in the folder tree defined in <a href="#Path">Path</a>. Folders are not indexed. <a href="#PluginCommands">Plugin commands</a> <a href="#FollowPath">FollowPath</a> and <a href="#PreviousFolder">PreviousFolder</a> are disabled, and <a href="#ShowFile">ShowFile</a>, <a href="#ShowFolder">ShowFolder</a>, and <a href="#ShowDotDot">ShowDotDot</a> options have no effect.</p>
+		<p>If set to <code>1</code>, the measure searches all sub-folders updating only the file count, folder count and overall folder size. This option does not index specific files in sub-folders.</p>
+		<p>If set to <code>2</code>, the measure indexes all files in the folder tree defined in <a href="#Path">Path</a>. Folders are not indexed. <a href="#MeasureCommands">Measure commands</a> <a href="#FollowPath">FollowPath</a> and <a href="#PreviousFolder">PreviousFolder</a> are disabled, and <a href="#ShowFile">ShowFile</a>, <a href="#ShowFolder">ShowFolder</a>, and <a href="#ShowDotDot">ShowDotDot</a> options have no effect.</p>
 	</dd>
 
 	<dt id="Count"><code>Count</code> <small>Default: <code>1</code></small></dt>
@@ -258,7 +273,7 @@ OnUpdateAction=!CommandMeasure MeasureFolder Update
 	</dd>
 </dl>
 
-<h2 id="PluginCommands">Plugin Commands</h2>
+<h2 id="MeasureCommands">Measure Commands</h2>
 
 <h3 id="ParentCommands">Parent measure commands</h3>
 <dl>
@@ -399,29 +414,25 @@ AntiAlias=1
 ;----------------------------------------------------
 
 [mPath]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path="C:"
 Count=8
 FinishAction=[!UpdateMeter *][!Redraw]
 
 [mFolderCount]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FolderCount
 Group=Children
 
 [mFileCount]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileCount
 Group=Children
 
 [mFolderSize]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FolderSize
 Group=Children
@@ -430,32 +441,28 @@ Group=Children
 ; Index 1
 
 [mIndex1Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=1
 Group=Children
 
 [mIndex1Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=1
 Group=Children
 
 [mIndex1Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=1
 Group=Children
 
 [mIndex1Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#
@@ -466,32 +473,28 @@ Group=Children
 ; Index 2
 
 [mIndex2Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=2
 Group=Children
 
 [mIndex2Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=2
 Group=Children
 
 [mIndex2Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=2
 Group=Children
 
 [mIndex2Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#
@@ -502,32 +505,28 @@ Group=Children
 ; Index 3
 
 [mIndex3Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=3
 Group=Children
 
 [mIndex3Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=3
 Group=Children
 
 [mIndex3Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=3
 Group=Children
 
 [mIndex3Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#
@@ -538,32 +537,28 @@ Group=Children
 ; Index 4
 
 [mIndex4Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=4
 Group=Children
 
 [mIndex4Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=4
 Group=Children
 
 [mIndex4Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=4
 Group=Children
 
 [mIndex4Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#
@@ -574,32 +569,28 @@ Group=Children
 ; Index 5
 
 [mIndex5Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=5
 Group=Children
 
 [mIndex5Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=5
 Group=Children
 
 [mIndex5Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=5
 Group=Children
 
 [mIndex5Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#
@@ -610,32 +601,28 @@ Group=Children
 ; Index 6
 
 [mIndex6Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=6
 Group=Children
 
 [mIndex6Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=6
 Group=Children
 
 [mIndex6Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=6
 Group=Children
 
 [mIndex6Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#
@@ -646,32 +633,28 @@ Group=Children
 ; Index 7
 
 [mIndex7Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=7
 Group=Children
 
 [mIndex7Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=7
 Group=Children
 
 [mIndex7Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=7
 Group=Children
 
 [mIndex7Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#
@@ -682,32 +665,28 @@ Group=Children
 ; Index 8
 
 [mIndex8Name]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileName
 Index=8
 Group=Children
 
 [mIndex8Size]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileSize
 Index=8
 Group=Children
 
 [mIndex8Date]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=FileDate
 Index=8
 Group=Children
 
 [mIndex8Icon]
-Measure=Plugin
-Plugin=FileView
+Measure=FileView
 Path=[mPath]
 Type=Icon
 IconSize=#IconSize#

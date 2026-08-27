@@ -9,22 +9,25 @@ title: 'MediaKey measure'
 
 <div class="alert alert-info alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: MediaKey was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
 	<p>In many existing skins you might see the syntax:</p>
 	``` ini
-	[MeasureMedia]
+	[MeasureParent]
 	Measure=Plugin
 	Plugin=MediaKey
 	or
 	Plugin=MediaKey.dll
 	or
 	Plugin=Plugins\MediaKey.dll
-		```
+	```
 	<p>MediaKey still works with those forms, and changing existing skins to the new <code>Measure=MediaKey</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. MediaKey is a measure, and not a plugin.</p>
 
 	``` ini
-	[MeasureMedia]
+	[MeasureParent]
 	Measure=MediaKey
 	```
+	</details>
 </div>
 
 <h2>Options</h2>

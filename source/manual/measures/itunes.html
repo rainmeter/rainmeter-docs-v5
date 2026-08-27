@@ -1,14 +1,37 @@
 ---
 layout: docs
-permalink: manual/plugins/deprecated/itunes/
-title: 'iTunes plugin'
+permalink: manual/measures/itunes/
+title: 'iTunes measure'
 ---
-<p><code>Plugin=iTunesPlugin</code> retrieves the currently playing track infromation from the iTunes application.</p>
+<p><code>Measure=iTunes</code> retrieves the currently playing track information from the iTunes application.</p>
 
-<h2>Plugin Deprecated</h2>
+<h2>Measure Deprecated</h2>
 
-<p>This plugin has been deprecated, and should not be used in new skins.</p>
+<p>This Measure has been deprecated, and should not be used in new skins.</p>
 <p>The <a href="!measures/nowplaying/">NowPlaying</a> measure should be used in place of this.</p><br>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: iTunes was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=iTunes
+	or
+	Plugin=iTunes.dll
+	or
+	Plugin=Plugins\iTunes.dll
+	```
+	<p>iTunes still works with those forms, and changing existing skins to the new <code>Measure=iTunes</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. iTunes is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=iTunes
+	```
+	</details>
+</div>
 
 <h2>Options</h2>
 <dl>

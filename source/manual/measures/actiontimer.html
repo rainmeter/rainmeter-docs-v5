@@ -1,12 +1,35 @@
 ---
 layout: docs
-permalink: manual/plugins/actiontimer/
-title: 'ActionTimer plugin'
+permalink: manual/measures/actiontimer/
+title: 'ActionTimer measure'
 ---
-<p><code>Plugin=ActionTimer</code></p>
+<p><code>Measure=ActionTimer</code></p>
 
 <p>Executes a series of Rainmeter actions independent of the normal skin Update cycle. This can allow the series of actions to be executed faster (or slower) than the rate defined in Update in [Rainmeter] and can be executed as fast as 1 millisecond apart. 
 </p>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: ActionTimer was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=ActionTimer
+	or
+	Plugin=ActionTimer.dll
+	or
+	Plugin=Plugins\ActionTimer.dll
+	```
+	<p>ActionTimer still works with those forms, and changing existing skins to the new <code>Measure=ActionTimer</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. ActionTimer is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=ActionTimer
+	```
+	</details>
+</div>
 
 <h2 id="OverView">Overview</h2>
 
@@ -33,11 +56,11 @@ title: 'ActionTimer plugin'
 
 <p>What ActionTimer does is execute the list of actions defined in ActionList<em>N</em>, one after the other, in a separate thread outside the normal Update cycle, as fast as it possibly can. This is REALLY fast. The <em>Wait N</em> values that you put in between each action in the list is what stops them from appearing to just happen all at once, and allows you to completely control the speed of the series of actions. <em>Wait</em> can be any number, from 1 (one millisecond) to whatever you need.</p>
 
-<p>Since the actions in ActionList<em>N</em> are executed in a separate thread from the main Rainmeter process, the skin will carry on updating normally, while the ActionTimer plugin will control the actions in the list.</p>
+<p>Since the actions in ActionList<em>N</em> are executed in a separate thread from the main Rainmeter process, the skin will carry on updating normally, while the ActionTimer measure will control the actions in the list.</p>
 
 <div class="alert alert-warning alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="ImportantNote"><i class="fa-solid fa-bomb"></i> Alert: Important Notes</h2>
-	<p>While ActionTimer is very CPU efficient, it is not "free". The actions are executed by the plugin in a separate thread from the rest of the Rainmeter skin, allowing the skin to continue to process normally while the plugin actions are executing, with the plugin communicating with the skin via window "messages" to the Rainmeter message queue. This allows the plugin to instruct the skin to "do this now", much as a MouseOverAction is recognized and acted upon immediately.</p>
+	<p>While ActionTimer is very CPU efficient, it is not "free". The actions are executed by the measure in a separate thread from the rest of the Rainmeter skin, allowing the skin to continue to process normally while the measure actions are executing, with the measure communicating with the skin via window "messages" to the Rainmeter message queue. This allows the measure to instruct the skin to "do this now", much as a MouseOverAction is recognized and acted upon immediately.</p>
 
 	<p>Some care must be taken however, not to overwhelm the message queue. Things done with ActionTimer in general should be short targeted actions, like a meter transition or short animation. Ensure that there is at least some "wait" time between actions, so Rainmeter has time to handle other messages in the message queue. In addition, keep in mind that <code>!Redraw</code> actions can be relatively CPU expensive, particularly if a lot of image resizing is involved.</p>
 
@@ -56,14 +79,14 @@ title: 'ActionTimer plugin'
 	<dd>
 		<p>A numbered option, starting with ActionList1.</p>
 
-		<p>Each ActionList<em>N</em> will execute one or more <code>Actions</code> separated by the pipe <code>|</code> character. In addition there are two list commands, Repeat and Wait, that can be used in the ActionList. In a sense, this option is a "script" of what you want the plugin to do when the ActionList is triggered. In its most simple expression, it is</p>
+		<p>Each ActionList<em>N</em> will execute one or more <code>Actions</code> separated by the pipe <code>|</code> character. In addition there are two list commands, Repeat and Wait, that can be used in the ActionList. In a sense, this option is a "script" of what you want the measure to do when the ActionList is triggered. In its most simple expression, it is</p>
 
 		<p><code>ActionList1=<em>Do this</em> | <em>Wait this long</em> | <em>Do that</em></code></p>
 
 		<p><b>ActionList components</b></p>
 		<ul>
 		<li><em>Action name</em><br>
-		The plugin will execute what is defined in the named <em>Action</em> option. The action name can be anything. This is simply the name of the <em>Action</em> option, and should never be actual bangs or commands itself. The actual skin bangs or commands to be executed are defined in the <a href="#Action">Action</a> option.</li>
+		The measure will execute what is defined in the named <em>Action</em> option. The action name can be anything. This is simply the name of the <em>Action</em> option, and should never be actual bangs or commands itself. The actual skin bangs or commands to be executed are defined in the <a href="#Action">Action</a> option.</li>
 		<li><b>Repeat</b> <em>Action name</em>, <em>Wait time number</em>, <em>Repeat count number</em><br>
 		This will repeat the named <em>Action</em> option <em>Repeat count</em> times, with a wait of <em>Wait time</em> milliseconds between each. Note that <em>Wait time</em> is not applied after the last execution of <em>Action name</em>, only between each.</li>
 		<li><b>Wait</b> <em>number of milliseconds</em><br>
@@ -83,7 +106,7 @@ title: 'ActionTimer plugin'
 
 	<dt id="Action"><code><em>Action</em></code> <small><code>Any unique name=[!bang or command]</code></small></dt>
 	<dd>
-		<p>These can be any unique name, in any order. They will contain the skin bangs or other actions that will be executed by the plugin when the named action is called by an <a href="#ActionList">ActionList</a>.</p>
+		<p>These can be any unique name, in any order. They will contain the skin bangs or other actions that will be executed by the measure when the named action is called by an <a href="#ActionList">ActionList</a>.</p>
 
 		<p>They are defined and executed exactly the same as any other <a href="!skins/option-types/#Action">Action option</a> in Rainmeter, for instance <code>LeftMouseUpAction</code> or <code>OnChangeAction</code>.</p>
 
@@ -91,8 +114,7 @@ title: 'ActionTimer plugin'
 
 ``` ini
 [MeasureChangeFont]
-Measure=Plugin
-Plugin=ActionTimer
+Measure=ActionTimer
 ActionList1=SetFontSmall | Wait 1000 | SetFontBig
 SetFontSmall=[!SetOption SomeMeter FontSize "10"][!UpdateMeter SomeMeter][!Redraw]
 SetFontBig=[!SetOption SomeMeter FontSize "15"][!UpdateMeter SomeMeter][!Redraw]
@@ -100,7 +122,7 @@ SetFontBig=[!SetOption SomeMeter FontSize "15"][!UpdateMeter SomeMeter][!Redraw]
 	<p><b>Notes:</b></p>
 	<ul>
 	<li>Since the actions are being done independent of the <code>Update</code> cycle of the skin, you must explicitly do any <code>!UpdateMeter</code> and <code>!Redraw</code> commands needed to have the skin actually reflect any changes to meters made in the action.</li>
-	<li>If you are using <code>!SetVariable</code> to change and use any dynamic #Variables# in the action, you will need to <code>!UpdateMeasure</code> the plugin measure between each execution of the action option, to ensure the measure has the most current value for the #Variable#.</li>
+	<li>If you are using <code>!SetVariable</code> to change and use any dynamic #Variables# in the action, you will need to <code>!UpdateMeasure</code> the measure measure between each execution of the action option, to ensure the measure has the most current value for the #Variable#.</li>
 	</ul>
 	<p>This can be simplified by setting and using a #Variable# that will take the appropriate update actions, and then just execute that #Variable# at the end of each action option.</p>
 
@@ -109,8 +131,7 @@ SetFontBig=[!SetOption SomeMeter FontSize "15"][!UpdateMeter SomeMeter][!Redraw]
 U=[!UpdateMeasure MeasureChangeFont][!UpdateMeter *][!Redraw]
 
 [MeasureChangeFont]
-Measure=Plugin
-Plugin=ActionTimer
+Measure=ActionTimer
 ActionList1=SetFontSmall | Wait 1000 | SetFontBig
 SetFontSmall=[!SetOption SomeMeter FontSize "10"]#U#
 SetFontBig=[!SetOption SomeMeter FontSize "15"]#U#
@@ -129,8 +150,8 @@ SetFontBig=[!SetOption SomeMeter FontSize "15"]#U#
 	</dd>
 </dl>
 
-<h2 id="PluginCommands">Plugin Commands</h2>
-<p><b>The plugin will take no action unless triggered with one of these commands.</b></p>
+<h2 id="measureCommands">measure Commands</h2>
+<p><b>The measure will take no action unless triggered with one of these commands.</b></p>
 
 <dl>
 
@@ -154,7 +175,7 @@ SetFontBig=[!SetOption SomeMeter FontSize "15"]#U#
 </dl>
 
 <h2>Examples</h2>
-<div><p>Several example skins are included in the .rmskin download. Take a look at the code to see some different ways you might use the plugin.</p></div>
+<div><p>Several example skins are included in the .rmskin download. Take a look at the code to see some different ways you might use the measure.</p></div>
 
 <a href="!examples/ExamplesActionTimer.rmskin" class="download"></a>
 ``` ini
@@ -169,8 +190,7 @@ U=[!UpdateMeasureGroup Sizers][!UpdateMeter MeterText][!Redraw]
 Size=8
 
 [MeasureSizeUp]
-Measure=Plugin
-Plugin=ActionTimer
+Measure=ActionTimer
 Group=Sizers
 ActionList1=ChangeSizeStart|Wait #W#|Repeat ChangeSizeCalc,#W#,11
 ChangeSizeStart=[!SetVariable Size "#Size#"]#U#
@@ -184,8 +204,7 @@ IfTrueAction3=[!SetOption MeterText Text "BIG"]#U#
 DynamicVariables=1
 
 [MeasureSizeDown]
-Measure=Plugin
-Plugin=ActionTimer
+Measure=ActionTimer
 Group=Sizers
 ActionList1=ChangeSizeStart|Wait #W#|Repeat ChangeSizeCalc,#W#,11
 ChangeSizeStart=[!SetVariable Size "#Size#"]#U#

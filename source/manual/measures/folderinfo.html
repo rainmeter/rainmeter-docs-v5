@@ -1,13 +1,31 @@
 ---
 layout: docs
-permalink: manual/plugins/folderinfo/
-title: 'FolderInfo plugin'
+permalink: manual/measures/folderinfo/
+title: 'FolderInfo measure'
 ---
-<p><code>Plugin=FolderInfo</code> retrieves information about folders.</p>
+<p><code>Measure=FolderInfo</code> retrieves information about folders.</p>
 
-<div class="alert alert-warning alert-tight" role="alert">
-	<h2 class="alert-heading h5" id="LargeFoldersAlert"><i class="fa-solid fa-bomb"></i> Alert:</h2>
-	<p>Measuring a folder with a very large number of folders and files (e.g. C:\Users\YourName\Documents) can cause Rainmeter to have erratic or even unstable behavior.</p>
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: FolderInfo was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=FolderInfo
+	or
+	Plugin=FolderInfo.dll
+	or
+	Plugin=Plugins\FolderInfo.dll
+	```
+	<p>FolderInfo still works with those forms, and changing existing skins to the new <code>Measure=FolderInfo</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. FolderInfo is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=FolderInfo
+	```
+	</details>
 </div>
 
 <h2>Options</h2>
@@ -58,6 +76,11 @@ title: 'FolderInfo plugin'
 	</dd>
 </dl>
 
+<div class="alert alert-warning alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="LargeFoldersAlert"><i class="fa-solid fa-bomb"></i> Alert:</h2>
+	<p>Measuring a folder with a very large number of folders and files (e.g. C:\Users\YourName\Documents) can cause Rainmeter to have erratic or even unstable behavior.</p>
+</div>
+
 <h2>Example</h2>
 ``` ini
 [Rainmeter]
@@ -66,8 +89,7 @@ BackgroundMode=2
 SolidColor=0,0,0,255
 
 [MeasureFolder]
-Measure=Plugin
-Plugin=FolderInfo
+Measure=FolderInfo
 Folder=#SKINSPATH#
 InfoType=FolderSize
 IncludeHiddenFiles=1
@@ -77,8 +99,7 @@ RegExpFilter=.*
 UpdateDivider=10
 
 [MeasureFileCount]
-Measure=Plugin
-Plugin=FolderInfo
+Measure=FolderInfo
 Folder=[MeasureFolder]
 InfoType=FileCount
 UpdateDivider=10

@@ -3,18 +3,25 @@ layout: docs
 permalink: manual/measures/plugin/
 title: 'Plugin measure'
 ---
-<p><code>Measure=Plugin</code> allows interactation with various DLL <a href="!plugins/">plugins</a> specifically written to work with Rainmeter.</p>
+<p><code>Measure=Plugin</code> allows interactation with various DLL plugins specifically written to work with Rainmeter.</p>
+
+<p>Plugins are dynamic link library (.dll) programs specifically written to provide additional functionality not built into Rainmeter.</p>
+
+<h2>Usage</h2>
+<p>Plugins are used with a <a href="!measures/plugin/">Plugin measure</a> in the skin. All of the <a href="!measures/general-options/">general measure options</a> are valid with the measure, as well as additional options which are specific to each plugin.</p>
+
+<h2 id="Custom">Custom Plugins</h2>
+<p>3rd-party plugins developed for Rainmeter may be used. Normally these would be distributed with a skin and installed using the <a href="!installing-skins/">Rainmeter Skin Installer</a>, but may be manually installed by placing the .dll file in the <code>Plugins</code> folder under the <a href="!variables/built-in-variables/#SETTINGSPATH">settings path</a> for the Rainmeter installation.</p>
+
+<p><b>Note:</b> Any 3rd-party plugin .dll must have been compiled for the same 32bit or 64bit architecture as the version of Rainmeter it is used with.</p>
+
+<p>Those interested in creating 3rd-party plugins for Rainmeter can find more information and source code templates for both C++ and C# at <a href="/developers/#CreatePlugin">Developers</a>.</p>
 
 <h2>Options</h2>
 <dl>
 	<dt>General measure options</dt>
 	<dd>
 		All <a href="!measures/general-options/">general measure options</a> are valid.
-	</dd>
-
-	<dt>Plugin specific options</dt>
-	<dd>
-		 Plugins have their own specific options that must be placed in the measure section. For more information, refer to the <a href="!plugins/">Plugins</a> entry for each.
 	</dd>
 
 	<dt id="Plugin"><code>Plugin</code></small></dt>
@@ -24,6 +31,11 @@ title: 'Plugin measure'
 		<h2 class="alert-heading h5" id="PluginName"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
 		<p>The name of the plugin may not be changed dynamically.</p>
 		</div>
+	</dd>	
+
+	<dt>Plugin specific options</dt>
+	<dd>
+		 Plugins have their own specific options that must be placed in the measure section. For more information, refer to the documentation for each.
 	</dd>
 </dl>
 
@@ -34,18 +46,18 @@ Update=1000
 BackgroundMode=2
 SolidColor=0,0,0,255
 
-[MeasureUserName]
+[MeasureValue]
 Measure=Plugin
-Plugin=SysInfo
-SysInfoType=USER_NAME
+Plugin=My3rdPartyPlugin
+MyOption=SomeValue
 
 [MeterText]
 Meter=String
-MeasureName=MeasureUserName
+MeasureName=MeasureValue
 X=5
 Y=5
 W=100
 H=25
 FontColor=255,255,255,255
-Text="User: %1"
+Text="Value: %1"
 ```

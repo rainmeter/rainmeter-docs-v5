@@ -1,19 +1,42 @@
 ---
 layout: docs
-permalink: manual/plugins/audiolevel/
-title: 'AudioLevel plugin'
+permalink: manual/measures/audiolevel/
+title: 'AudioLevel measure'
 ---
-<p><code>Plugin=AudioLevel</code> monitors and analyzes streams of audio sound to or from an audio endpoint.</p>
+<p><code>Measure=AudioLevel</code> monitors and analyzes streams of audio sound to or from an audio endpoint.</p>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: AudioLevel was previously a <em>plugin</em> measure.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=AudioLevel
+	or
+	Plugin=AudioLevel.dll
+	or
+	Plugin=Plugins\AudioLevel.dll
+	```
+	<p>AudioLevel still works with those forms, and changing existing skins to the new <code>Measure=AudioLevel</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. AudioLevel is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=AudioLevel
+	```
+	</details>
+</div>
 
 <p>AudioLevel will monitor, filter and analyze the amplitude (volume level) of sound input or output on the default or defined device and channels. The value returned will be a number from 0.0 to 1.0, which will be treated as a <a href="/manual/measures#Percentage">percentage</a> for use in meters.</p>
 
 <p>This can be used to create a volume level <a href="https://en.wikipedia.org/wiki/VU_meter">VU Meter</a> for defined channels, or optionally can filter the audio stream into distinct <a href="https://en.wikipedia.org/wiki/Audio_frequency">frequency</a> bands to create a <a href="https://en.wikipedia.org/wiki/Spectrum_analyzer">Spectrum Analyzer</a>.</p>
 
-<p><em>The plugin monitors the amplitude of the post-mixer signal at a Windows audio endpoint. (i.e. sound card speaker output, USB audio interface, headphone port, microphone input) It does this by creating a <a href="https://learn.microsoft.com/windows/win32/coreaudio/wasapi">WASAPI</a> capture client in <a href="https://learn.microsoft.com/windows/win32/coreaudio/loopback-recording">loopback mode</a>. The capture client streams audio data to the plugin where it can be filtered and measured. The resulting volume level is returned by the plugin for use in Rainmeter measures and meters.</em></p>
+<p><em>The measure monitors the amplitude of the post-mixer signal at a Windows audio endpoint. (i.e. sound card speaker output, USB audio interface, headphone port, microphone input) It does this by creating a <a href="https://learn.microsoft.com/windows/win32/coreaudio/wasapi">WASAPI</a> capture client in <a href="https://learn.microsoft.com/windows/win32/coreaudio/loopback-recording">loopback mode</a>. The capture client streams audio data to the measure where it can be filtered and measured. The resulting volume level is returned by the measure for use in Rainmeter measures and meters.</em></p>
 
 <div class="alert alert-info alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="UpdateNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
-	<p>Creating meters that display sound levels in real-time will require that the skin be set with a fairly low <a href="!skins/rainmeter-section/#Update">Update</a> rate in the [Rainmeter] section of the skin. While the plugin is quite resource friendly and efficient, some care should be taken when deciding how much analysis should be done on the signal, and it is recommended that this plugin be used in a skin dedicated to it, and not as a part of a larger skin where the low update rate may cause higher CPU usage.</p>
+	<p>Creating meters that display sound levels in real-time will require that the skin be set with a fairly low <a href="!skins/rainmeter-section/#Update">Update</a> rate in the [Rainmeter] section of the skin. While the measure is quite resource friendly and efficient, some care should be taken when deciding how much analysis should be done on the signal, and it is recommended that this measure be used in a skin dedicated to it, and not as a part of a larger skin where the low update rate may cause higher CPU usage.</p>
 </div>
 
 <h2>Usage</h2>
@@ -23,21 +46,18 @@ title: 'AudioLevel plugin'
 ``` ini
 ; This parent measure processes the default audio output.
 [MeasureAudioRaw]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 
 ; This child measure gets the current RMS value of the left channel (0.0 to 1.0).
 [MeasureAudioRMS_L]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudioRaw
 Channel=L
 Type=RMS
 
 ; This child measure gets the current RMS value of the right channel (0.0 to 1.0).
 [MeasureAudioRMS_R]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudioRaw
 Channel=R
 Type=RMS
@@ -75,7 +95,7 @@ Type=RMS
 	<dd>
 		<p>Specifies the audio device to measure.</p>
 
-		<p>If not set, it will use the default device for the specified <a href="#Port">Port</a>. If you specify <code>Port=Output</code> and no <code>ID</code>, the plugin will connect to the default audio output device defined in Windows.</p>
+		<p>If not set, it will use the default device for the specified <a href="#Port">Port</a>. If you specify <code>Port=Output</code> and no <code>ID</code>, the measure will connect to the default audio output device defined in Windows.</p>
 
 		<p>To specify a device other than the default, you will need to find the Windows device ID. See the <code>DeviceList</code> child measure option for more info.</p>
 
@@ -154,7 +174,7 @@ Type=RMS
 
 		<p>This will be an even integer greater than or equal to 0, usually a power of 2. Typical values are 256, 512, or 1024, with the higher the number the greater the frequency resolution.<p>
 
-		<p><b>Note:</b> It should be kept in mind that as this number increases, more CPU resources and time will be needed to analyze the audio stream. A very high number here can both impact CPU usage and potentially cause some "lag" between the sound generation and the measurement by the plugin.</p>
+		<p><b>Note:</b> It should be kept in mind that as this number increases, more CPU resources and time will be needed to analyze the audio stream. A very high number here can both impact CPU usage and potentially cause some "lag" between the sound generation and the measurement by the measure.</p>
 	</dd>
 
 	<dt id="FFTOverlap"><code>FFTOverlap</code> <small>Default: <code>0</code></small></dt>
@@ -199,7 +219,7 @@ Type=RMS
 <dl>
 	<dt id="Parent"><code>Parent</code> <small><code>Required</code></small></dt>
 	<dd>
-		<p>Defines the parent AudioLevel plugin measure to read values from.</p>
+		<p>Defines the parent AudioLevel measure measure to read values from.</p>
 
 		<p>Example: <code>Parent=SomeMeasureName</code></p>
 	</dd>
@@ -269,23 +289,20 @@ DynamicWindowSize=1
 AccurateText=1
 
 [MeasureAudio]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Port=Output
 RMSAttack=100
 RMSDecay=300
 RMSGain=2.5
 
 [MeasureL]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Channel=L
 Type=RMS
 
 [MeasureR]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Channel=R
 Type=RMS
@@ -341,7 +358,7 @@ UpdateDivider=-1
 <p>Simple Left/Right volume levels using RMS and Bitmap meters:</p>
 
 <div class="exampleprev">
-	<p><img src="!img/example-plugins/ExampleAudioLevelBitmap.gif"/></p>
+	<p><img src="!img/example-measures/ExampleAudioLevelBitmap.gif"/></p>
 </div>
 
 <a href="!examples/ExampleAudioLevelSpectrum.rmskin" class="download"></a>
@@ -352,8 +369,7 @@ DynamicWindowSize=1
 AccurateText=1
 
 [MeasureAudio]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Port=Output
 FFTSize=1024
 FFTAttack=15
@@ -361,71 +377,61 @@ FFTDecay=250
 Bands=10
 
 [MeasureBand0]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=0
 
 [MeasureBand1]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=1
 
 [MeasureBand2]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=2
 
 [MeasureBand3]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=3
 
 [MeasureBand4]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=4
 
 [MeasureBand5]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=5
 
 [MeasureBand6]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=6
 
 [MeasureBand7]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=7
 
 [MeasureBand8]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=8
 
 [MeasureBand9]
-Measure=Plugin
-Plugin=AudioLevel
+Measure=AudioLevel
 Parent=MeasureAudio
 Type=Band
 BandIdx=9
@@ -549,5 +555,5 @@ BarOrientation=Vertical
 <p>Simple spectrum visualization using FFT/Bands and Bar meters:</p>
 
 <div class="exampleprev">
-	<p><img src="!img/example-plugins/ExampleAudioLevelSpectrum.gif"/></p>
+	<p><img src="!img/example-measures/ExampleAudioLevelSpectrum.gif"/></p>
 </div>

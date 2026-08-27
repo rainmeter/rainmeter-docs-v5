@@ -1,9 +1,33 @@
 ---
 layout: docs
-permalink: manual/plugins/ping/
-title: 'Ping plugin'
+permalink: manual/measures/ping/
+title: 'Ping measure'
 ---
-<p><code>Plugin=PingPlugin</code> measures the latency between the computer and a host in milliseconds.</p>
+<p><code>Measure=Ping</code> measures the latency between the computer and a host in milliseconds.</p>
+
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note: Ping was previously a <em>plugin</em> measure named PingPlugin.</h2>
+	<details>
+	<summary>Toggle</summary >
+	<p>In many existing skins you might see the syntax:</p>
+	``` ini
+	[MeasureParent]
+	Measure=Plugin
+	Plugin=PingPlugin
+	or
+	Plugin=PingPlugin.dll
+	or
+	Plugin=Plugins\PingPlugin.dll
+	```
+	<p>Ping still works with those forms, and changing existing skins to the new <code>Measure=Ping</code> syntax is entirely optional. However, new skins created going forward should use the correct syntax for accuracy and clarity. Ping is a measure, and not a plugin.</p>
+
+	``` ini
+	[MeasureParent]
+	Measure=Ping
+	```
+	</details>
+</div>
 
 <h2>Options</h2>
 <dl>
@@ -46,8 +70,7 @@ BackgroundMode=2
 SolidColor=0,0,0,255
 
 [MeasurePing]
-Measure=Plugin
-Plugin=PingPlugin
+Measure=Ping
 DestAddress=www.google.com
 
 [MeterPing]
