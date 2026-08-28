@@ -1,0 +1,245 @@
+---
+layout: docs
+permalink: manual/measures/dragdrop/
+title: 'DragDrop measure'
+---
+
+<br><p><code>Measure=DragDrop</code> will detect and react to files and folders being dragged from outside of Rainmeter and dropped on a Rainmeter skin.</p>
+
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="PreviouslyPlugin"><i class="fa-solid fa-thumbtack"></i>  Note:</h2>
+<p>The DragDrop measure is based on the plugin Drag&Drop by <a href="https://forum.rainmeter.net/memberlist.php?mode=viewprofile&u=36393">theAzack9</a>.</p>
+</div>
+
+<h2>Options</h2>
+<dl>
+	<dt>General measure options</dt>
+	<dd>
+		<p>All <a href="!measures/general-options/">general measure options</a> are valid.</p>
+	</dd>
+</dl>	
+<br>
+ 
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="UpdateNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+	<p>The value of the measure will always be the path of the last dropped file or folder.</p>
+</div>
+
+<h2>Parent and child options</h2>
+
+<p><b>These options can be used on both parent and child measures.</b></p>
+
+<dl>
+<dt id="Action"><code>Action</code> <small>Default: <code>Path</code></small></dt>
+	<dd>
+		<p>The action defines what function the measure has, there are currently five options:</p>
+
+	<ul>
+		<li> <b>Move</b><br>Moves the file / folder dropped to the path specified in the Path option.</li>
+		<li> <b>Copy</b><br>Copies the file / folder dropped to the path specified in the Path option.</li>
+		<li> <b>Shortcut</b><br>Creates a shortcut file (.lnk) to the file / folder dropped to the path specified in the Path option.</li>
+		<li> <b>Delete</b><br>This moves the file / folder to the recycle bin.</li>
+		<li> <b>Path</b><br>This is used to get information about the file dropped.</li>
+	</ul>
+	<br><p>Example: <code>Action=Path</code></p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="Path"><code>Path</code></dt>
+	<dd>
+		<p>The full path to the folder you want the measure to move / copy to or create shortcut in.</p>
+		<br><p><b>Note:</b> If the target folder does not exist it will be created when a file / folder is moved to it</p>
+		<br><p>Example: <code>Path=#@#Shortcuts\</code></p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="Silent"><code>Silent</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>A value of <code>1</code> stops the measure from showing any delete confirmation dialogs.</p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="ReplaceIfExists"><code>ReplaceIfExists</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>A value of <code>1</code> allows the measure to overwrite existing files.</p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="FancyRenderer"><code>FancyRenderer</code> <small>Default: <code>1</code></small></dt>
+	<dd>
+		<p>A value of <code>0</code> disables the object preview rendered while dragging a file or folder.</p>
+		<br><b>Note:</b> This option is only valid on a parent measure.</p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="ProcessAllFiles"><code>ProcessAllFiles</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>A value of <code>1</code> tells the measure to repetitively execute the action option on all files when multiple are dragged. Each file can be enumerated with the <code>$FileNr$</code> substitute. If this is set to <code>0</code>, <code>$FileNr$</code> will be <code>1</code>.</p>
+	</dd>
+</dl>
+
+<h2>Child options</h2>
+
+<p><b>These options can be used on child measures.</b></p>
+
+<dl>
+<dt id="Parent"><code>Parent</code></dt>
+	<dd>
+		<p>Defines the parent measure for the current measure.</p>
+		<br><p>Example: <code>Parent=MyParentMeasure</code></p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="Bounds"><code>Bounds</code></dt>
+	<dd>
+		<p>The target bounds in the skin where it is possible to drop file(s) or folder(s) for the child measure.</p>
+		<p>This will take one of two forms:</p>
+		<ul>
+		<li> A definition of a target area as <code>X,Y,W,H</code> relative to the skin.<br>
+				Example: <code>Bounds=0,0,100,200</code></li>
+		<li> The name of a meter in the skin to use as the target area.<br>
+				Example: <code>Bounds=MyMeter</code></li>
+		</ul>
+		<br><p><b>Note:</b> If <code>Bounds</code> is not defined, then the entire skin becomes the target.</p>
+	</dd>
+</dl>
+
+<h2>Action options</h2>
+
+<p><b>These options can be used on both parent and child measures.</b></p>
+
+<dl>
+<dt id="OnDropAction"><code>OnDropAction</code></dt>
+	<dd>
+		<p>Action to execute when the file is dropped on the target.</p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="OnEnterAction"><code>OnEnterAction</code></dt>
+	<dd>
+		<p>Action to execute when the cursor enters the target area while dragging file(s) or folder(s).</p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="OnLeaveAction"><code>OnLeaveAction</code></dt>
+	<dd>
+		<p>Action to execute when the cursor leaves the target area while dragging file(s) or folder(s).</p>
+	</dd>
+</dl>
+
+<dl>
+<dt id="OnOverAction"><code>OnOverAction</code></dt>
+	<dd>
+		<p>Action to execute while the cursor is hovering over the target area while dragging file(s) or folder(s).</p>
+		<br><p><b>Note:</b> This action will be called approximately every 20ms while hovering.</p>
+	</dd>
+</dl>
+
+<dl>
+	<dt></dt>
+	<dd>
+		<p><b>The following variables will be created and available for use inside:</b></p><br>
+		<p><code>OnDropAction</code>, <code>OnEnterAction</code>, <code>OnLeaveAction</code>, <code>OnOverAction</code></p><br>
+		<ul>
+			<li> <b>$Name$</b><br>
+					Replaced with the file name</li>
+			<li> <b>$Directory$</b><br>
+					Replaced with the folder name</li>
+			<li> <b>$Type$</b><br>
+					Replaced with the file extension. (e.g exe, lnk, txt)</li>
+			<li> <b>$File$</b><br>
+					Replaced with the full file or folder path and name.</li>
+			<li> <b>$FileNr$</b><br>
+					Replaced with the number of the currently processed file.</li>
+			<li> <b>$MouseX$</b><br>
+					X position of the mouse</li>
+			<li> <b>$MouseY$</b><br>
+					Y position of the mouse</li>
+		</ul>
+		<br><p>Example: <code>OnDropAction=[!Log "You dropped the file $File$ on the target."]</code></p>
+	</dd>
+</dl>
+
+<h3>Example</h3>
+
+``` ini
+[Rainmeter]
+Update=1000
+AccurateText=1
+DynamicWindowSize=1
+SkinWidth=260
+SkinHeight=180
+BackgroundMode=2
+SolidColor=47,47,47,255
+
+[MeasureParent]
+Measure=DragDrop
+
+[MeasureTarget1]
+Measure=DragDrop
+Parent=MeasureParent
+Action=Path
+Bounds=MeterTarget1
+OnDropAction=[!log "You dropped the file: $Directory$\$Name$.$Type$ on MeterTarget1"][!SetOption MeterSkinLabel Text "$Name$.$Type$"][!UpdateMeter *][!Redraw]
+
+[MeterTarget1]
+Meter=Image
+X=20
+Y=20
+W=100
+H=100
+SolidColor=255,255,255,255
+
+[MeasureTargetImage]
+Measure=DragDrop
+Parent=MeasureParent
+Action=Path
+Bounds=MeterTargetImage
+OnDropAction=[!Log "Updating image on MeterTargetImage with $File$"][!SetOption MeterSkinLabel Text "$Name$.$Type$"][!UpdateMeter *][!Redraw]
+
+[MeterTargetImage]
+Meter=Image
+MeasureName=MeasureTargetImage
+X=20R
+Y=r
+W=100
+H=100
+SolidColor=255,255,255
+PreserveAspectRatio=2
+
+[MeterSkinLabel]
+Meter=String
+FontSize=13
+FontColor=255,255,255,255
+X=235
+StringAlign=Right
+Y=140
+AntiAlias=1
+
+[MeterTarget1Label]
+Meter=String
+FontSize=12
+FontColor=47,47,47,255
+X=28
+Y=40
+AntiAlias=1
+Text=Target1:#CRLF#Drop File
+
+[MeterTargetImageLabel]
+Meter=String
+FontSize=12
+FontColor=47,47,47,255
+X=148
+Y=40
+AntiAlias=1
+Text=Drop Image
+```
+
