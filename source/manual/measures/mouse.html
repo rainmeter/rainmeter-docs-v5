@@ -139,8 +139,7 @@ IfConditionMode=1
 ; MeasureMouse is the meat and potatoes of creating a slider. MeasurePercent is used to turn the position into a percentage for use various places.
 
 [MeasureMouse]
-Measure=Plugin
-Plugin=Mouse
+Measure=Mouse
 LeftMouseDragAction=[!SetOption MeterSlider X "(Clamp($MouseX$,20,200))"][!UpdateMeasure MeasurePercent][!UpdateMeter *][!Redraw]
 LeftMouseUpAction=[!CommandMeasure MeasureMouse "Stop"]
 RelativeToSkin=1
