@@ -1,0 +1,202 @@
+---
+layout: docs
+permalink: manual/measures/mouse/
+title: 'Mouse measure'
+---
+<p><code>Measure=Mouse</code> detects mouse events and does two things. First, it can execute actions for each kind of mouse event, and second, it will return variables containing the X and Y coordinates of the cursor, relative to either the screen or the skin.</p>
+
+<h2>Mouse Events</h2>
+
+<p>The following mouse actions are triggered by the corresponding mouse events anywhere on the skin:</p>
+
+<ul>
+	<li><b>MouseMoveAction</b><br>
+			Triggered when the measure is active and the mouse is moved</li>
+	<li><b>LeftMouseDownAction</b></li>
+	<li><b>LeftMouseUpAction</b></li>
+	<li><b>LeftMouseDragAction</b><br>
+			Triggered when the measure is active and the mouse is dragged with the button down</li>
+	<li><b>RightMouseDownAction</b></li>
+	<li><b>RightMouseUpAction</b></li>
+	<li><b>RightMouseDragAction</b><br>
+			Triggered when the measure is active and the mouse is dragged with the button down</li>
+	<li><b>MiddleMouseDownAction</b></li>
+	<li><b>MiddleMouseUpAction</b></li>
+	<li><b>MiddleMouseDragAction</b><br>
+			Triggered when the measure is active and the mouse is dragged with the button down</li>
+	<li><b>X1MouseDownAction</b></li>
+	<li><b>X1MouseUpAction</b></li>
+	<li><b>X1MouseDragAction</b><br>
+			Triggered when the measure is active and the mouse is dragged with the button down</li>
+	<li><b>X2MouseDownAction</b></li>
+	<li><b>X2MouseUpAction</b></li>
+	<li><b>X2MouseDragAction</b><br>
+			Triggered when the measure is active and the mouse is dragged with the button down</li>
+</ul>
+
+<br>
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="SkinMeter"><i class="fa-solid fa-thumbtack"></i>  Note:</h2>
+	<p>Many of these <a href="!mouse-actions/">Mouse Actions</a> are the same as those supported on the skin background or a meter.</p>
+	<p>The actions executed by the Mouse measure will happen in addition to any actions defined on the skin background or a meter. Some care should be taken to anticipate possible conflicts.</p>
+	<p><code>MouseMoveAction</code> will be executed before any mouse drag actions.</p>
+</div>
+
+<h2>Mouse Variables</h2>
+
+<p>During the Mouse Actions, temporary variables <code>$MouseX$</code> and <code>$MouseY$</code> are set with the mouse X and Y coordinates. The variables are only created and used in the context the action. Primarily, they will be used as a parameter to a <a href="https://docs.rainmeter.net/manual/bangs/">Bang</a>.</p>
+
+<p>Example: <code>LeftMouseUpAction=[!SetOption SomeMeter X $MouseX$][!UpdateMeter *][!Redraw]</code></p>
+
+	<h2>Options</h2>
+<dl>
+	<dt>General measure options</dt>
+	<dd>
+		All <a href="!measures/general-options/">general measure options</a> <b>except</b> <code>MaxValue</code> are valid.
+	</dd>
+
+	<dt id="RelativeToSkin"><code>RelativeToSkin</code> <small>Default: <code>1</code></small></dt>
+	<dd>
+		If set to <code>1</code>, the coordinates returned are relative to the skin. If set to <code>0</code>, the coordinates returned are relative to the current monitor.
+	</dd>
+	
+	<dt id="RequireDragging"><code>RequireDragging</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		If set to <code>0</code>, the measure is constantly monitoring the mouse position and capturing mouse events. If set to <code>1</code> then dragging can be facilitated by turning the measure on and off with the <a href="!bangs/#CommandMeasure">!CommandMeasure</a> bang, commanding <code>Start</code> or <code>Stop</code>:<br><br>
+``` txt
+LeftMouseDownAction=[!CommandMeasure MeasureName "Start"]
+LeftMouseDragAction=[!Log "The mouse is at $MouseX$, $MouseY$"]
+LeftMouseUpAction=[!CommandMeasure MeasureName "Stop"]
+```
+</dl>
+
+<h2>Examples</h2>
+``` ini
+[Rainmeter]
+Update=-1
+BackgroundMode=2
+SolidColor=0,0,0,255
+ContextTitle=toggle
+ContextAction=[!ToggleMeasure MeasureMouse][!UpdateMeasure MeasureMouse][!SetOption Text Text "disabled"][!UpdateMeter Text][!Redraw]
+ContextTitle2=toggle relative
+ContextAction2=[!UpdateMeasure RelativeState][!UpdateMeasure MeasureMouse]
+
+[RelativeState]
+Measure=Calc
+Formula=(RelativeState + 1) & 1
+;1 at startup, either 0 or 1
+
+[MeasureMouse]
+Measure=Mouse
+MouseMoveAction=[!SetOption Text Text "mouse move#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+LeftMouseDownAction=[!SetOption Text Text "Left mouse down#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+LeftMouseUpAction=[!SetOption Text Text "Left mouse up#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+LeftMouseDragAction=[!SetOption Text Text "Left mouse drag#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+RightMouseDownAction=[!SetOption Text Text "Right mouse down#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+RightMouseUpAction=[!SetOption Text Text "Right mouse up#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+RightMouseDragAction=[!SetOption Text Text "Right mouse drag#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+MiddleMouseDownAction=[!SetOption Text Text "Middle mouse down#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+MiddleMouseUpAction=[!SetOption Text Text "Middle mouse up#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+MiddleMouseDragAction=[!SetOption Text Text "Middle mouse drag#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+X1MouseDownAction=[!SetOption Text Text "X1 mouse down#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+X1MouseUpAction=[!SetOption Text Text "X1 mouse up#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+X1MouseDragAction=[!SetOption Text Text "X1 mouse drag#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+X2MouseDownAction=[!SetOption Text Text "X2 mouse down#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+X2MouseUpAction=[!SetOption Text Text "X2 mouse up#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+X2MouseDragAction=[!SetOption Text Text "X2 mouse drag#CRLF#$mouseX$, $mouseY$"][!UpdateMeter Text][!Redraw]
+DynamicVariables=1
+RelativeToSkin=[RelativeState]
+
+[Text]
+Meter=String
+X=60
+Y=20
+W=120
+H=40
+AntiAlias=1
+StringAlign=CenterCenter
+FontColor=255,255,255,255
+FontSize=8
+Text=nothing#CRLF#0, 0
+LeftMouseUpAction=[!Log "Clicked on the meter Text"]
+```
+
+``` ini
+[Rainmeter]
+Update=500
+DynamicWindowSize=1
+AccurateText=1
+
+[Variables]
+VolumeIncrement=1
+
+[MeasureAudio]
+Measure=Audio
+IfCondition=MeasureAudio = -1
+IfFalseAction=[!SetOption MeterSlider X "(([MeasureAudio:] * (200 - 20) / 100) + 20)"][!UpdateMeter *][!Redraw]
+IfConditionMode=1
+
+; MeasureMouse is the meat and potatoes of creating a slider. MeasurePercent is used to turn the position into a percentage for use various places.
+
+[MeasureMouse]
+Measure=Plugin
+Plugin=Mouse
+LeftMouseDragAction=[!SetOption MeterSlider X "(Clamp($MouseX$,20,200))"][!UpdateMeasure MeasurePercent][!UpdateMeter *][!Redraw]
+LeftMouseUpAction=[!CommandMeasure MeasureMouse "Stop"]
+RelativeToSkin=1
+RequireDragging=1
+DynamicVariables=1
+
+[MeasurePercent]
+Measure=Calc
+Formula=[MeterSlider:X]
+MinValue=20
+MaxValue=200
+DynamicVariables=1
+IfCondition=MeasureAudio > -1
+IfTrueAction=[!CommandMeasure "MeasureAudio" "SetVolume [MeasurePercent:%,0]"]
+IfConditionMode=1
+
+[MeterSkinBack]
+Meter=Shape
+Shape=Rectangle 0.5,0.5,238,75,12 | Fill Color 0,0,0,255 | StrokeWidth 1.5 | Stroke Color 150,150,150,255
+W=251
+H=76
+MouseActionCursor=0
+MouseScrollDownAction=[!CommandMeasure MeasureAudio "ChangeVolume -#VolumeIncrement#"][!Update]
+MouseScrollUpAction=[!CommandMeasure MeasureAudio "ChangeVolume +#VolumeIncrement#"][!Update]
+UpdateDivider=-1
+
+[MeterSlideBack]
+Meter=Shape
+X=20
+Y=20
+Shape=Rectangle 0,0,200,10,5 | Fill Color 150,150,150,255 | StrokeWidth 0
+LeftMouseDownAction=[!CommandMeasure MeasureMouse "Start"]
+
+[MeterSlideBar]
+Meter=Shape
+X=20
+Y=20
+Shape=Rectangle 0,0,[MeterSlider:X],10,5 | Fill Color 56,150,51,255 | StrokeWidth 0
+DynamicVariables=1
+
+[MeterSlider]
+Meter=Shape
+Y=15
+Shape=Ellipse 10,10,10,10 | Fill Color 106,222,100,255 | StrokeWidth 0
+
+[MeterPercent]
+Meter=String
+X=22
+Y=45
+FontSize=11
+FontWeight=700
+FontColor=255,255,255,255
+Percentual=1
+NumOfDecimals=0
+AntiAlias=1
+DynamicVariables=1
+Text=Volume: [MeasurePercent:%,0]%
+```
+
