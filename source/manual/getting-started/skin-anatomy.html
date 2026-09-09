@@ -75,8 +75,8 @@ FontColor=#MyFontColor#
 
 <p><a href="!variables/#Section">[Variables]</a> section details.</p>
 
-<p><b>[MeterStyles]</b><br>
-These sections can have any unique name, and are similar to [Variables] in function. They allow you to set up "styles" for meters where you can for instance define some or all of the "formatting" options for your meters, and use the MeterStyle in many meters while again allowing you to only have to change it in one place. A simple example might be:</p>
+<p><b>[@Inherit]</b><br>
+These sections can have any unique name, and are similar to [Variables] in function. They allow you to set up "styles" for meters and measures where you can for instance define some or all of the "formatting" options for your meters, and use the @Inherit in many meters while again allowing you to only have to change it in one place. A simple example might be:</p>
 
 ``` ini
 [MyTextStyle]
@@ -87,14 +87,14 @@ AntiAlias=1
 
 [MeterOne]
 Meter=String
-MeterStyle=MyTextStyle
+@Inherit=MyTextStyle
 
 [MeterTwo]
 Meter=String
-MeterStyle=MyTextStyle
+@Inherit=MyTextStyle
 ```
 
-<p><a href="!meters/general-options/meterstyles/">[MeterStyle]</a> section details.</p>
+<p><a href="!skins/inherit/">[@Inherit]</a> section details.</p>
 
 <p><b>[Measures]</b><br>
 These sections can have any unique name, and are used to "measure" some system or other information. There are many measure types, defined by the value of the <code>Measure=MeasureType</code> option on the section.</p>
