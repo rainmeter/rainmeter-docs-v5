@@ -6,7 +6,6 @@
  * 2017 - Rainmeter
 */
 
-
 /* General styling  */
 
 :root {
@@ -19,11 +18,11 @@
   --color-surface-muted: rgba(0, 0, 0, .03);
   --color-text: #4f5c72;
   --color-text-muted: #7e8b8c;
-  --color-heading: #2b86c6;
+  --color-heading: #123a6f;
   --color-heading-subtle: #354b60;
   --color-link: #0058cc;
   --color-link-hover: #0056b3;
-  --color-navbar-bg: #2b86c6;
+  --color-navbar-bg: #123a6f;
   --color-anchor: #00a21a;
   --color-dt-anchor: #8bff96;
   --color-border: rgba(0, 0, 0, .15);
@@ -31,7 +30,7 @@
   --color-code-button-bg: var(--color-page);
   --color-code-block-bg: rgba(0, 0, 0, .03);
   --color-code: #4155bd;
-  --color-dt-bg: #2b86c6;
+  --color-dt-bg: #123a6f;
   --color-dt-sub-bg: #4b607a;
   --color-dt-target-bg: #e09028;
   --color-footer-bg: rgba(0, 0, 0, .03);
