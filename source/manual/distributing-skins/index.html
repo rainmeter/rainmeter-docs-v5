@@ -13,6 +13,16 @@ title: 'Distributing Skins (.rmskin)'
 
 <p>To launch the Skin Packager, open the <a href="!user-interface/manage/">Manage</a> window and click the button labeled <b>Create .rmskin package...</b> in the bottom-left.</p>
 
+<h3 id="LoadPrevious">Load previous</h3>
+
+<p>To package a skin again, select it from the <b>Load previous</b> menu. This restores the settings used when the skin was last packaged, including its name, author, layouts, plugins, header image, and output folder.</p>
+
+<p>Entries in the <b>Load previous</b> menu can be deleted by holding <b>Shift</b>.</p>
+
+<div class="exampleprev">
+	<a href="!img/publishing-skins/load-previous.png" data-fancybox><img src="!img/publishing-skins/load-previous.png" alt="Skin Packager Load previous menu showing a previously packaged skin"></a>
+</div>
+
 <h3>Step 1: Information and Components</h3>
 
 <div class="exampleprev float-right">
@@ -39,7 +49,8 @@ title: 'Distributing Skins (.rmskin)'
 		You may choose any number of <a href="!settings/#Layouts">layouts</a> to be installed along with the skin.</p></li>
 	<li id="AddPlugin">
 		<p><b>Add plugin...</b><br>
-		You may choose any number of <a href="!plugins/">plugins</a> to be installed along with the skin. Only <a href="!plugins/#Custom">custom plugins</a> should be distributed in this way. The <a href="!plugins/">standard plugins</a> described in this manual are included with all versions of Rainmeter, and never need to be installed separately. To include a custom plugin, you must provide both the 32-bit and 64-bit versions of the plugin to ensure compatibility on all systems.</p></li>
+		You may choose any number of <a href="!plugins/">plugins</a> to be installed along with the skin. Only <a href="!plugins/#Custom">custom plugins</a> should be distributed in this way. The <a href="!plugins/">standard plugins</a> described in this manual are included with all versions of Rainmeter, and never need to be installed separately. To include a custom plugin, you must provide both the 32-bit and 64-bit versions of the plugin to ensure compatibility on all systems.</p>
+		<p>When you choose one of the plugin DLLs, the Skin Packager automatically looks for the other version by swapping the architecture in the source folder name, such as <code>32bit</code> and <code>64bit</code>.</p></li>
 </ul>
 
 

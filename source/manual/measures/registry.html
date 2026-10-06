@@ -12,6 +12,16 @@ title: 'Registry measure'
 		<p>All <a href="!measures/general-options/">general measure options</a> are valid.</p>
 	</dd>
 
+	<dt id="NumberConversionFormat"><code>NumberConversionFormat</code> <small>Default: <code>Default</code></small></dt>
+	<dd>
+		<p>Controls how the measure converts a string to its numeric value. Valid values are:</p>
+		<ul>
+			<li><code>Default</code>: Uses the number format used in skin files.</li>
+			<li><code>Locale</code>: Uses the decimal and grouping separators from the user's current locale to read locale-formatted numbers correctly.</li>
+		</ul>
+		<p><b>Example:</b> <code>NumberConversionFormat=Locale</code> converts <code>1.234,56</code> to <code>1234.56</code> in a locale that uses <code>.</code> for grouping and <code>,</code> as the decimal separator.</p>
+	</dd>
+
 	<dt id="RegHKey"><code>RegHKey</code> <small>Default: <code>HKEY_CURRENT_USER</code></small></dt>
 	<dd>
 		<p>Name of the root key. Valid values are:<br>

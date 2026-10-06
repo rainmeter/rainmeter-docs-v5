@@ -77,9 +77,19 @@ title: 'Time measure'
 	<dd>
 		<p>The TimeStampFormat option creates a <em>mask</em> that defines the structure and values used in a matching <a href="#TimeStampString">TimeStamp</a> formatted date and/or time string. If the TimeStamp option is not defined, or if the TimeStampFormat mask does not match the format of the TimeStamp option, an error will be produced.</p>
 
-		<p>The TimeStampFormat is created with any combination of the the Time <a href="#FormatCodes">Format codes</a> and text, to create a mask of the TimeStamp option's formatted date and/or time string.<p>
+		<p>The TimeStampFormat is created with any combination of the Time <a href="#FormatCodes">Format codes</a> and text, to create a mask of the TimeStamp option's formatted date and/or time string.</p>
 
-		<p><b>Note:</b> If the year is <b>not</b> defined in the <code>TimeStamp</code> option, then <b>1900</b> will be used as the default year.
+		<p>TimeStampFormat supports the following parsing behavior:</p>
+		<ul>
+		<li><code>%F</code>, <code>%g</code>, <code>%G</code>, <code>%u</code>, <code>%V</code>, <code>%z</code>, and <code>%Z</code> are supported.</li>
+		<li>Dates can be expressed as ordinal dates (year and day of year), week-number dates, or ISO week dates.</li>
+		<li><code>%z</code> and <code>%Z</code> apply time-zone offsets, converting the parsed timestamp to UTC.</li>
+		<li><code>%c</code>, <code>%x</code>, and <code>%X</code> are parsed using the selected Windows locale and the user's current localized date and time formats.</li>
+		<li>Supported <code>E</code>, <code>O</code>, and <code>#</code> modifiers are recognized.</li>
+		<li>Invalid locales, dates, time zones, format mismatches, conflicting fields, and unsupported modifier combinations produce errors.</li>
+		</ul>
+
+		<p><b>Note:</b> If the year is <b>not</b> defined in the <code>TimeStamp</code> option, then <b>1900</b> will be used as the default year.</p>
 
 		<p>Some examples might be:</p>
 		<ul>
@@ -95,7 +105,7 @@ title: 'Time measure'
 
 		<p>In this usage, the TimeStamp and TimeStampFormat options are used together to turn a formatted string into a valid Windows timestamp. That timestamp value can be used for mathematical comparisons or formulas, or the <a href="#Format">Format</a> and <a href="#FormatLocale">FormatLocale</a> options can be used to format the timestamp any way desired for display.</p>
 
-		<p><b>Note:</b> These values cannot evaluate any time zone information in the string and cannot be modified with the <a href="#TimeZone">TimeZone</a> option. What is internally arrived at by the measure is a resolution of the date and/or time string to a Windows timestamp, which is a number of seconds since January 1, 1601, and independent of any time zone.</p>
+		<p><b>Note:</b> The <a href="#TimeZone">TimeZone</a> option does not modify timestamps parsed with TimeStampFormat. To interpret time-zone information in the string, include <code>%z</code> or <code>%Z</code> in the mask. The resulting Windows timestamp is a number of seconds since January 1, 1601.</p>
 	</dd>
 
 	<dt id="TimeStampLocale"><code>TimeStampLocale</code></dt>
@@ -213,7 +223,7 @@ title: 'Time measure'
 <li><code>locale-time</code>: Default system time for the system locale. This code cannot be modified by using <code>TimeStampLocale</code> or <code>FormatLocale</code>.</li>
 </ul>
 
-<p><b>Note:</b> <code>%z</code> and <code>%Z</code> cannot be used in the <a href="#TimeStampFormat">TimeStampFormat</a> option.</p>
+<p><b>Note:</b> In the <a href="#TimeStampFormat">TimeStampFormat</a> option, <code>%z</code> and <code>%Z</code> apply time-zone offsets and convert the parsed timestamp to UTC.</p>
 
 <p><b>#</b> modifier: Removes leading zeros in the following numeric codes:<br>
 <code>%#d, %#H, %#I, %#j, %#m, %#M, %#S, %#U, %#w, %#W, %#y, %#Y</code></p>

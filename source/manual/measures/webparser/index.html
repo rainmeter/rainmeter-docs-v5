@@ -38,6 +38,16 @@ StringIndex=2
 		<p>All <a href="!measures/general-options/">general measure options</a> are valid.</p>
 	</dd>
 
+	<dt id="NumberConversionFormat"><code>NumberConversionFormat</code> <small>Default: <code>Default</code></small></dt>
+	<dd>
+		<p>Controls how the measure converts a string to its numeric value. Valid values are:</p>
+		<ul>
+			<li><code>Default</code>: Uses the number format used in skin files.</li>
+			<li><code>Locale</code>: Uses the decimal and grouping separators from the user's current locale to read locale-formatted numbers correctly.</li>
+		</ul>
+		<p><b>Example:</b> <code>NumberConversionFormat=Locale</code> converts <code>1.234,56</code> to <code>1234.56</code> in a locale that uses <code>.</code> for grouping and <code>,</code> as the decimal separator.</p>
+	</dd>
+
 	<dt id="URL"><code>URL</code></dt>
 	<dd>
 		<p><a href="https://en.wikipedia.org/wiki/Uniform_resource_locator">URL</a> to the site or file to be downloaded and parsed. If the name of another WebParser measure is used, e.g. <code>URL=[SomeMeasure]</code>, then the value of the <a href="#ParentChild">parent</a> measure is used, generally by referring to a specific <a href="#StringIndex">StringIndex</a> number.</p>
@@ -176,7 +186,7 @@ StringIndex=2
 		<li><code>CodePage=65001</code> : Unicode UTF-8</li>
 		</ul>
 
-		<p>In addition, there are times when an external local file to be parsed with URL=file:// will be encoded in other than the ANSI (really ASCII plus "extended ASCII" specific to the locale of the computer) encoding used as the default in most Windows-based text editors. Primarily this will be in Unicode UFT-16 LE. In this case, the <code>CodePage=1200</code> option must be used to tell WebParer how to interpret the resource being read.</p>
+		<p>For local files read with <code>URL=file://</code>, WebParser automatically detects the file encoding (such as UTF-8 or UTF-16) when using the default <code>CodePage=0</code>. Set <code>CodePage</code> to a specific value to override automatic detection.</p>
 
 		<p>Codepage definitions and more information can be found at <a href="https://learn.microsoft.com/windows/win32/intl/code-page-identifiers">Code Page Identifiers</a>.</p>
 
