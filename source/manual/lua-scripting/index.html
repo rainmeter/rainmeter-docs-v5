@@ -18,6 +18,100 @@ title: 'Lua Scripting'
 
 <p>The rest of this page assumes a basic knowledge of the Lua language.</p>
 
+<h2 id="Unicode">Unicode support</h2>
+
+<p>Lua scripts saved with a UTF-8 or UTF-16 byte order mark (BOM) are read as Unicode. Save the <code>.lua</code> file with a BOM to enable the Unicode string functions below.</p>
+
+<p>The standard Lua string functions operate on bytes. Rainmeter adds <code>uc</code> variants that operate on Unicode codepoints, so multibyte characters can be counted, sliced, searched, and transformed correctly. These functions are available only in Unicode scripts and are slower than their byte-based counterparts; use them when codepoint handling is needed.</p>
+
+<table class="table lua-unicode-table">
+	<thead><tr><th>Unicode function</th><th>Standard counterpart</th></tr></thead>
+	<tbody>
+		<tr><td><code>string.ucfind</code> / <code>s:ucfind</code></td><td><code>string.find</code></td></tr>
+		<tr><td><code>string.ucmatch</code> / <code>s:ucmatch</code></td><td><code>string.match</code></td></tr>
+		<tr><td><code>string.ucgmatch</code> / <code>s:ucgmatch</code></td><td><code>string.gmatch</code></td></tr>
+		<tr><td><code>string.ucgsub</code> / <code>s:ucgsub</code></td><td><code>string.gsub</code></td></tr>
+		<tr><td><code>string.uclen</code> / <code>s:uclen</code></td><td><code>string.len</code></td></tr>
+		<tr><td><code>string.ucsub</code> / <code>s:ucsub</code></td><td><code>string.sub</code></td></tr>
+		<tr><td><code>string.ucreverse</code> / <code>s:ucreverse</code></td><td><code>string.reverse</code></td></tr>
+		<tr><td><code>string.uclower</code> / <code>s:uclower</code></td><td><code>string.lower</code></td></tr>
+		<tr><td><code>string.ucupper</code> / <code>s:ucupper</code></td><td><code>string.upper</code></td></tr>
+		<tr><td><code>string.ucbyte</code> / <code>s:ucbyte</code></td><td><code>string.byte</code></td></tr>
+		<tr><td><code>string.ucchar</code></td><td><code>string.char</code></td></tr>
+	</tbody>
+</table>
+
+<p><b>Example:</b> In a Unicode script, the accented character occupies multiple bytes but is one codepoint:</p>
+
+``` lua
+local text = 'café'
+print(string.len(text))   -- 5 bytes
+print(string.uclen(text)) -- 4 codepoints
+```
+
+<p>Use <a href="#ReadTextFile">SKIN:ReadTextFile</a> and <a href="#WriteTextFile">SKIN:WriteTextFile</a> to read and write text files with automatic Unicode conversion.</p>
+
+<h3 id="UnicodeExample">Unicode file example</h3>
+
+<p>The following example reads a UTF-8 text file containing Cyrillic and Japanese text, displays its second line, and writes a copy. Put <code>data.txt</code> and <code>Unicode.lua</code> in the skin folder. Save <code>Unicode.lua</code> with a UTF-8 or UTF-16 BOM.</p>
+
+<p><b>data.txt:</b></p>
+
+``` txt
+Привет, мир!
+こんにちは世界
+```
+
+<p><b>Skin:</b></p>
+
+``` ini
+[Rainmeter]
+Update=1000
+DynamicWindowSize=1
+
+[MeasureScript]
+Measure=Script
+ScriptFile=Unicode.lua
+UpdateDivider=-1
+
+[MeterText]
+Meter=String
+Text=
+FontSize=12
+FontColor=255,255,255,255
+SolidColor=60,60,60,255
+Padding=10,10,10,10
+AntiAlias=1
+```
+
+<p><b>Unicode.lua:</b></p>
+
+``` lua
+function Initialize()
+    local text, errorMessage = SKIN:ReadTextFile('data.txt')
+    if not text then
+        print(errorMessage)
+        return
+    end
+
+    local lines = {}
+    for line in text:gmatch('[^\n]+') do
+        lines[#lines + 1] = line
+    end
+
+    SKIN:SetOption('MeterText', 'Text', lines[2] or '')
+    SKIN:Bang('!UpdateMeter', 'MeterText')
+    SKIN:Bang('!Redraw')
+
+    local success, writeError = SKIN:WriteTextFile('output.txt', text, 'UTF-8')
+    if not success then
+        print(writeError)
+    end
+
+    print('Codepoints: ' .. string.uclen(text) .. ', bytes: ' .. string.len(text))
+end
+```
+
 <h2 id="ScriptMeasure">Script Measure</h2>
 
 <p>The <a href="!measures/script/">script measure</a> is used to load a Lua script from a file and interface with the script. The <a href="!measures/script/#ScriptFile">script file</a> must be a text file, and typically has the extension <code>.lua</code>.</p>
@@ -134,12 +228,48 @@ end
 		<p><b>Example:</b> <code>MyMeter = SKIN:GetMeter('MeterName')</code></p>
 	</dd>
 
+	<dt id="SetOption"><code>SetOption</code> <small>Parameters: <code><b>SectionName, Option, Value</b></code></small></dt>
+	<dd>
+		<p>Sets an option on a named meter or measure in the current skin, like <a href="!bangs/#SetOption">!SetOption</a>.</p>
+		<p><b>Example:</b> <code>SKIN:SetOption('MeterName', 'Text', 'Hello, world!')</code></p>
+		<p>To set multiple options in one call, replace the <code>Option, Value</code> parameters with one or more tables. Each table contains an option name and its value:</p>
+``` lua
+SKIN:SetOption('MeterName', {'Text', 'Hello, world!'}, {'FontSize', 14})
+SKIN:Bang('!UpdateMeter', 'MeterName')
+SKIN:Bang('!Redraw')
+```
+		<p>Option changes take effect when the meter or measure is updated. Use update and redraw bangs when the changes should be displayed immediately.</p>
+	</dd>
+
+	<dt id="SetOptionGroup"><code>SetOptionGroup</code> <small>Parameters: <code><b>Group, Option, Value</b></code></small></dt>
+	<dd>
+		<p>Sets an option on all meters and measures in the specified <a href="!groups/">group</a> in the current skin, like <a href="!bangs/#SetOptionGroup">!SetOptionGroup</a>.</p>
+		<p><b>Example:</b> <code>SKIN:SetOptionGroup('TextMeters', 'FontSize', 14)</code></p>
+		<p>Multiple options can be set by passing one or more <code>{Option, Value}</code> tables:</p>
+``` lua
+SKIN:SetOptionGroup('TextMeters', {'FontSize', 14}, {'FontColor', '255,255,255,255'})
+SKIN:Bang('!UpdateMeterGroup', 'TextMeters')
+SKIN:Bang('!Redraw')
+```
+	</dd>
+
 	<dt id="GetVariable"><code>GetVariable</code> <small>Parameter: <code><b>VariableName</b><em>, Default</em></code></small></dt>
 	<dd>
 		<p>Returns the current value of the named variable as a string. If the variable does not exist, returns the given default value, or <code>nil</code> if no default is given.</p>
 		<p><b>Example:</b> <code>MyVariable = SKIN:GetVariable('VariableName', 'n/a')</code></p>
 	</dd>
 	
+	<dt id="SetVariable"><code>SetVariable</code> <small>Parameters: <code><b>VariableName, Value</b></code></small></dt>
+	<dd>
+		<p>Sets a <a href="!variables/">variable</a> in the current skin, like <a href="!bangs/#SetVariable">!SetVariable</a>. The variable name is specified without <code>#</code> characters.</p>
+		<p><b>Example:</b> <code>SKIN:SetVariable('MyFontSize', 14)</code></p>
+		<p>Multiple variables can be set by passing one or more tables, each containing a variable name and its value:</p>
+``` lua
+SKIN:SetVariable({'MyFontSize', 14}, {'MyFontColor', '255,255,255,255'})
+```
+		<p>Meters and measures using these variables need <code>DynamicVariables=1</code> to read the changed values on their next update.</p>
+	</dd>
+
 	<dt id="GetX"><code>GetX</code></dt>
 	<dd>
 		<p>Returns the current X position</a> of the skin window as a number.</p>
@@ -197,6 +327,38 @@ SKIN:Bang('!Redraw')
 	<dd>
 		<p>Converts a relative file path into a full file path. The path will be relative to the skin folder.</p>
 		<p><b>Example:</b> <code>MyPath = SKIN:MakePathAbsolute('MyImage.png')</code></p>
+	</dd>
+
+	<dt id="ReadTextFile"><code>ReadTextFile</code> <small>Parameter: <code><b>File</b></code></small></dt>
+	<dd>
+		<p>Reads a text file and returns its contents as a Lua string, with automatic Unicode conversion. The file's BOM determines its encoding; files without a BOM are read as UTF-8. Relative paths are resolved against the skin folder.</p>
+		<p>Windows line endings (<code>\r\n</code>) are converted to Lua line endings (<code>\n</code>). If reading fails, returns <code>nil</code> and an error message.</p>
+		<p><b>Example:</b></p>
+``` lua
+local text, errorMessage = SKIN:ReadTextFile('data.txt')
+if not text then
+    print(errorMessage)
+    return
+end
+print(string.uclen(text))
+```
+	</dd>
+
+	<dt id="WriteTextFile"><code>WriteTextFile</code> <small>Parameters: <code><b>File, Text</b><em>, Encoding</em></code></small></dt>
+	<dd>
+		<p>Writes a Lua string to a text file with automatic encoding conversion. Relative paths are resolved against the skin folder. The file is created or its existing contents are replaced.</p>
+		<p><code>Encoding</code> can be <code>UTF-8</code>, <code>UTF-16</code>, or <code>ANSI</code>. Specify it explicitly to choose the output format. Lua line endings (<code>\n</code>) are written as Windows line endings (<code>\r\n</code>).</p>
+		<p>Returns <code>true</code> on success, or <code>false</code> and an error message on failure.</p>
+		<p><b>Example:</b></p>
+``` lua
+local text = SKIN:ReadTextFile('data.txt')
+if text then
+    local success, errorMessage = SKIN:WriteTextFile('output.txt', text, 'UTF-8')
+    if not success then
+        print(errorMessage)
+    end
+end
+```
 	</dd>
 
 	<dt id="ReplaceVariables"><code>ReplaceVariables</code> <small>Parameter: <code><b>String</b></code></small></dt>

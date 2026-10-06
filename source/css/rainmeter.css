@@ -1048,6 +1048,11 @@ table#quickjump td {
 
 /* Table formatting */
 
+.table.lua-unicode-table th,
+.table.lua-unicode-table td {
+  border: 1px solid #e9ecef;
+}
+
 .docs-table table {
   width: 85%;
 }

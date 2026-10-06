@@ -198,6 +198,14 @@ OnUpdateAction=!CommandMeasure MeasureFolder Update
 		<p>Semi-colon separated list of file extensions that limits the type of files to be included.</p>
 
 		<p><b>Example:</b> If <code>Extensions="jpg;png"</code>, only .jpg and .png files are included.</p>
+		<p>If both <code>Extensions</code> and <a href="#ExcludeExtensions">ExcludeExtensions</a> are defined, <code>Extensions</code> takes precedence.</p>
+	</dd>
+
+	<dt id="ExcludeExtensions"><code>ExcludeExtensions</code></dt>
+	<dd>
+		<p>Semi-colon separated list of file extensions to exclude.</p>
+		<p><b>Example:</b> If <code>ExcludeExtensions="jpg;png"</code>, .jpg and .png files are excluded.</p>
+		<p>If both <a href="#Extensions">Extensions</a> and <code>ExcludeExtensions</code> are defined, <code>Extensions</code> takes precedence.</p>
 	</dd>
 
 	<dt id="SortType"><code>SortType</code> <small>Default: <code>Name</code></small></dt>

@@ -30,6 +30,16 @@ title: 'Bangs'
 	<li><code>"C:\Program Files\Rainmeter\Rainmeter.exe" !SetVariable "textSize" "12" "illustro\Clock"</code></li>
 </ul>
 <br>
+
+<dl>
+	<dt id="Launch"><code>[!Launch]</code></dt>
+	<dd>
+		<p>Command-line switch that starts Rainmeter if it is not already running, then executes the bangs that follow it. If Rainmeter is already running, the bangs are executed by the running instance.</p>
+		<p><b>Example:</b> <code>Rainmeter.exe [!Launch] [!Bang][!Bang2]</code></p>
+		<p>This first launches Rainmeter, if needed, and then executes <code>[!Bang]</code> and <code>[!Bang2]</code>. Replace these placeholders with the bangs you want to run.</p>
+	</dd>
+</dl>
+<br>
 <p><b>(For programmers)</b> External Applications can send Bangs using the Skin's HWND and the Windows <i>SendMessage</i> function (<i>winuser.h</i>), see <a href="/developers/#SendMessage">the Rainmeter Window Message API</a>.</p>
 
 <div class="alert alert-info alert-tight" role="alert">
@@ -69,6 +79,24 @@ title: 'Bangs'
 		<li><code>TabName</code> (optional): Name of the tab to open. Valid values are: <code>Log</code> (default), <code>Skins</code>, <code>Plugins</code>, and <code>Version</code>. The value <code>Measures</code> is deprecated and will open the <code>Skins</code> tab.</li>
 		</ul>
 		<br><b>Example:</b> <code>!About Skins</code>
+	</dd>
+
+	<dt id="Debug"><code>!Debug</code> <small>Parameters: <code><em>TabName, Config</em></code></small></dt>
+	<dd>
+		<p>Opens the <a href="!user-interface/debug/">Debug</a> dialog.</p>
+		<ul>
+		<li><code>TabName</code> (optional): The tab to open. Valid values are:<br><code>Log</code>, <code>Display</code>, <code>Network</code>, <code>Plugins</code>, and <code>Skin</code>.</li>
+		<li><code>Config</code> (optional): The config name of a loaded skin to select when opening the <code>Skin</code> tab.</li>
+		</ul>
+		<br><b>Examples:</b>
+		<ul>
+		<li><code>[!Debug Log]</code></li>
+		<li><code>[!Debug Display]</code></li>
+		<li><code>[!Debug Network]</code></li>
+		<li><code>[!Debug Plugins]</code></li>
+		<li><code>[!Debug Skin]</code></li>
+		<li><code>[!Debug Skin "illustro\Clock"]</code></li>
+		</ul>
 	</dd>
 
 	<dt id="Manage"><code>!Manage</code> <small>Parameters: <code><em>TabName, Config, File</em></code></small></dt>
@@ -391,6 +419,17 @@ title: 'Bangs'
 		<ul>
 		<li><code>Config</code> (optional)</li>
 		</ul>
+	</dd>
+
+	<dt id="SetUpdate"><code>!SetUpdate</code> <small>Parameters: <code><b>Milliseconds</b><em>, Config</em></code></small></dt>
+	<dd>
+		<p>Dynamically changes the skin's <a href="!skins/rainmeter-section/#Update">Update</a> interval without refreshing the skin.</p>
+		<ul>
+		<li><code>Milliseconds</code> (required): The new update interval in milliseconds. Use <code>-1</code> to stop automatic updates.</li>
+		<li><code>Config</code> (optional): The config name of a loaded skin. Defaults to the current skin. Use <code>*</code> to act on all loaded skins.</li>
+		</ul>
+		<p>Changes only the visible update interval. The <a href="!skins/rainmeter-section/#InvisibleUpdates">Invisible</a> interval remains unchanged. Refreshing the skin restores the <code>Update</code> value defined in the skin file.</p>
+		<br><b>Example:</b> <code>[!SetUpdate 1000]</code>
 	</dd>
 
 	<dt id="Redraw"><code>!Redraw</code> <small>Parameter: <code><em>Config</em></code></small></dt>
@@ -772,6 +811,17 @@ title: 'Bangs'
 		<li><code>Group</code> (required): Name of the group.</li>
 		<li><code>Config</code> (optional)</li>
 		</ul>
+	</dd>
+
+	<dt id="CommandMeasureGroup"><code>!CommandMeasureGroup</code> <small>Parameters: <code><b>Group, Arguments</b><em>, Config</em></code></small></dt>
+	<dd>
+		<p>Group variant of <a href="#CommandMeasure">!CommandMeasure</a>. Sends a command to all <a href="!measures/">measures</a> in the specified <a href="!groups/">group</a>.</p>
+		<ul>
+		<li><code>Group</code> (required): Name of the measure group.</li>
+		<li><code>Arguments</code> (required): Arguments to send to each measure.</li>
+		<li><code>Config</code> (optional): The config name of a loaded skin. Defaults to the current skin.</li>
+		</ul>
+		<br><b>Example:</b> <code>[!CommandMeasureGroup "MouseMeasures" "Stop"]</code>
 	</dd>
 
 	<dt id="UpdateMeasureGroup"><code>!UpdateMeasureGroup</code> <small>Parameters: <code><b>Group</b><em>, Config</em></code></small></dt>

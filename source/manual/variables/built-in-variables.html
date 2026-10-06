@@ -14,7 +14,7 @@ title: 'Built-In Variables'
 
 <p><b>Note:</b> All path variables already contain a trailing slash "\".</p>
 
-<h3 id="PathVariables">Path variables</h3>
+<h3 id="PathVariables" style="font-weight: bold; color: #003366;">Path variables</h3>
 <dl>
 	<dt id="PROGRAMDRIVE"><code>#PROGRAMDRIVE#</code> <small>Example: <code>C:</code> or <code>\\server\Users\</code></small></dt>
 	<dd>
@@ -48,7 +48,7 @@ title: 'Built-In Variables'
 	</dd>
 </dl>
 
-<h3 id="SkinVariables">Skin variables</h3>
+<h3 id="SkinVariables" style="font-weight: bold; color: #003366;">Skin variables</h3>
 <dl>
 	<dt id="@"><code>#@#</code> <small>Example: <code>C:\Users\YourName\Documents\Rainmeter\Skins\illustro\@Resources\</code></small></dt>
 	<dd>
@@ -167,7 +167,7 @@ title: 'Built-In Variables'
 </pre>
 </details>
 
-<h3 id="MiscVariables">Miscellaneous variables</h3>
+<h3 id="MiscVariables" style="font-weight: bold; color: #003366;">Miscellaneous variables</h3>
 <dl>
 	<dt id="CRLF"><code>#CRLF#</code></dt>
 	<dd>
@@ -187,11 +187,72 @@ title: 'Built-In Variables'
 	</dd>
 </dl>
 
-<h3 id="MonitorVariables">Monitor variables</h3>
+<h3 id="MonitorVariables" style="font-weight: bold; color: #003366;">Monitor variables</h3>
 
 <p><span id="MonitorVariablesGuidelines"><b>Guidelines</b></span></p>
 
 <p>Monitor variables are <a href="!variables/#DynamicVariables">dynamic</a>, and <code>DynamicVariables=1</code> will be required to detect changes when used in a skin. The values will be static when used in the [Rainmeter] section of a skin.</p>
+
+<p><code>[$Display]</code> and <code>[$DisplayDevice]</code> refer to the monitor or display device the skin is currently mostly on. You can address a specific display or device by adding its number, such as <code>[$Display2W]</code> or <code>[$DisplayDevice1W]</code>.</p>
+
+<p><b>Display</b> values refer to active attached monitors. <b>Device</b> values refer to the underlying Windows display devices, such as GPU output ports. Their numbers often match, but may differ. Display numbers follow the active monitor order, while device numbers follow the Windows display device order. <code>[$Display1]</code> always refers to the primary monitor, so its identity may change when monitors are connected or reordered. <code>[$DisplayDevice1]</code> refers to the first Windows display device and remains consistent unless the device configuration changes, such as when replacing a GPU.</p>
+
+<dl>
+	<dt id="DISPLAYXYWH"><span><code>[$DisplayX]</code>, <code>[$DisplayY]</code>, <code>[$DisplayW]</code>, <code>[$DisplayH]</code></span></dt>
+	<dd>
+		<p>Logical position and size of the current display. For example, a display that is 1920 physical pixels wide at 150% scaling is 1280 logical pixels wide.</p>
+	</dd>
+
+	<dt id="DISPLAYPHYSICALXYWH"><span><code>[$DisplayPhysicalX]</code>, <code>[$DisplayPhysicalY]</code>, <code>[$DisplayPhysicalW]</code>, <code>[$DisplayPhysicalH]</code></span></dt>
+	<dd>
+		<p>Position and size of the current display in physical pixels, ignoring DPI scaling.</p>
+	</dd>
+
+	<dt id="DISPLAYWORKAREAXYWH"><span><code>[$DisplayWorkAreaX]</code>, <code>[$DisplayWorkAreaY]</code>, <code>[$DisplayWorkAreaW]</code>, <code>[$DisplayWorkAreaH]</code></span></dt>
+	<dd>
+		<p>Logical position and size of the current display's work area, excluding the taskbar and other reserved desktop areas.</p>
+	</dd>
+
+	<dt id="DISPLAYWORKAREAPHYSICALXYWH"><span><code>[$DisplayWorkAreaPhysicalX]</code>, <code>[$DisplayWorkAreaPhysicalY]</code>, <code>[$DisplayWorkAreaPhysicalW]</code>, <code>[$DisplayWorkAreaPhysicalH]</code></span></dt>
+	<dd>
+		<p>Position and size of the current display's work area in physical pixels.</p>
+	</dd>
+
+	<dt id="DISPLAYVIRTUALSCREENXYWH"><span><code>[$DisplayVirtualScreenX]</code>, <code>[$DisplayVirtualScreenY]</code>, <code>[$DisplayVirtualScreenW]</code>, <code>[$DisplayVirtualScreenH]</code></span></dt>
+	<dd>
+		<p>Logical position and size of the virtual screen spanning all displays.</p>
+	</dd>
+
+	<dt id="DISPLAYVIRTUALSCREENPHYSICALXYWH"><span><code>[$DisplayVirtualScreenPhysicalX]</code>, <code>[$DisplayVirtualScreenPhysicalY]</code>, <code>[$DisplayVirtualScreenPhysicalW]</code>, <code>[$DisplayVirtualScreenPhysicalH]</code></span></dt>
+	<dd>
+		<p>Position and size of the virtual screen spanning all displays, in physical pixels.</p>
+	</dd>
+
+	<dt id="DISPLAYDPIFACTOR"><span><code>[$DisplayDpiFactor]</code></span></dt>
+	<dd>
+		<p>The current display's DPI scaling factor. For example, 150% scaling returns <code>1.5</code>.</p>
+	</dd>
+
+	<dt id="DISPLAYNAMENUMBER"><span><code>[$DisplayName]</code>, <code>[$DisplayNumber]</code></span></dt>
+	<dd>
+		<p>The human-readable monitor name and active display number for the current skin.</p>
+	</dd>
+
+	<dt id="DISPLAYDEVICENAMENUMBER"><span><code>[$DisplayDeviceName]</code>, <code>[$DisplayDeviceNumber]</code></span></dt>
+	<dd>
+		<p>The Windows display device identifier, such as <code>\\.\DISPLAY1</code>, and device number for the current skin.</p>
+	</dd>
+
+	<dt id="DISPLAYCOUNT"><span><code>[$DisplayCount]</code>, <code>[$DisplayDeviceCount]</code></span></dt>
+	<dd>
+		<p>The total number of active attached displays and the total number of Windows display devices, respectively.</p>
+	</dd>
+</dl>
+
+<h4 id="DeprecatedMonitorVariables" style="font-weight: bold; color: #003366;">Deprecated</h4>
+
+<p>The following monitor variables are deprecated. Use the display variables above for new skins.</p>
+
 <p>When the variables are used without specifying an <code>@<em>N</em></code> monitor number, by default the values will be based on the primary monitor, where Rainmeter is started. In order to have the values reflect the monitor the skin is currently on, set <a href="!settings/skin-sections/#AutoSelectScreen">AutoSelectScreen</a> to "1" in <a href="!user-interface/manage/#SkinSettings">Manage</a>. or alternately, use the <a href="!bangs/#AutoSelectScreen">!AutoSelectScreen</a> bang in the skin.</p>
 
 <dl>

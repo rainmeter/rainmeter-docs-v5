@@ -94,6 +94,12 @@ Update=1000 | Invisible (60*1000)
 		<p><b>Note:</b> The action(s) defined will take place at the very end of the update cycle. Changes made will generally not be visible until the next update, unless bangs are used to update desired measures and meters and redraw the skin.</p>
 	</dd>
 
+	<dt id="OnDisplayMetricsChange"><code>OnDisplayMetricsChange</code></dt>
+	<dd>
+		<p><a href="!skins/option-types/#Action">Action</a> to execute when display-related metrics change, such as monitor layout, resolution, or DPI scaling. This allows the skin to react automatically to changes in its display environment.</p>
+		<p><b>Note:</b> The action is triggered when metrics change for any display, not just the monitor the skin is currently on.</p>
+	</dd>
+
 	<dt id="OnCloseAction"><code>OnCloseAction</code></dt>
 	<dd>
 		<p><a href="!skins/option-types/#Action">Action</a> to execute when the skin is unloaded or when Rainmeter is closed.</p>
