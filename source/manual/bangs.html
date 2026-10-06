@@ -336,6 +336,23 @@ title: 'Bangs'
 		<br><p><b>As an example, by setting <code>WindowX</code>, <code>WindowY</code>, <code>AnchorX</code> and <code>AnchorY</code> all to 50% the config will be truly centered in the primary monitor regardless of screen resolution or aspect ratio.</b></p>
 	</dd>
 
+	<dt id="SetZoomFactor"><code>!SetZoomFactor</code> <small>Parameters: <code><b>Factor</b><em>, Config</em></code></small></dt>
+	<dd>
+		<p>Sets a skin's zoom factor. See <a href="!scale-and-zoom/">Scale and Zoom</a> for more about zooming skins and setting the default zoom.</p>
+		<ul>
+		<li><code>Factor</code> (required): A zoom factor from <code>0.1</code> (10%) to <code>5.0</code> (500%), such as <code>1.25</code> for 125%. Use <code>Default</code> to reset the skin to the default zoom.</li>
+		<li><code>Config</code> (optional): The <a href="!skins/#Config">config name</a> of a loaded skin. Defaults to the current skin. Use <code>*</code> to act on all loaded skins.</li>
+		</ul>
+		<p>The skin expands or contracts around its current <a href="#SetAnchor">anchor point</a>. A forced default zoom prevents individual skins from changing their zoom.</p>
+		<br><b>Examples:</b>
+		<ul>
+		<li><code>[!SetZoomFactor 1.25 "ConfigName"]</code></li>
+		<li><code>[!SetZoomFactor 1.25 *]</code></li>
+		<li><code>[!SetZoomFactor Default "ConfigName"]</code></li>
+		<li><code>[!SetZoomFactor Default *]</code></li>
+		</ul>
+	</dd>
+
 	<dt id="ActivateConfig"><code>!ActivateConfig</code> <small>Parameters: <code><b>Config</b><em>, File</em></code></small></dt>
 	<dd>
 		Activates a skin.
@@ -502,6 +519,16 @@ title: 'Bangs'
 
 <h3 id="SkinGroup">Skin group bangs:</h3>
 <dl>
+	<dt id="SetZoomFactorGroup"><code>!SetZoomFactorGroup</code> <small>Parameters: <code><b>Factor, Group</b></code></small></dt>
+	<dd>
+		<p>Sets the zoom factor for skins in a <a href="!groups/">skin group</a>. See <a href="!scale-and-zoom/">Scale and Zoom</a> for more about zooming skins.</p>
+		<ul>
+		<li><code>Factor</code> (required): A zoom factor from <code>0.1</code> (10%) to <code>5.0</code> (500%), or <code>Default</code> to reset the skins to the default zoom. See <a href="#SetZoomFactor">!SetZoomFactor</a>.</li>
+		<li><code>Group</code> (required): The name of the skin group.</li>
+		</ul>
+		<br><b>Example:</b> <code>[!SetZoomFactorGroup 1.25 "GroupName"]</code>
+	</dd>
+
 	<dt id="ShowHideToggleGroup"><code>!ShowGroup</code>, <code>!HideGroup</code>, <code>!ToggleGroup</code> <small>Parameter: <code><b>Group</b></code></small></dt>
 	<dd>
 		Shows or hides a <a href="!groups/">group</a> of active skins.

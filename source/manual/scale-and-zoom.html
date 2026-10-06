@@ -1,0 +1,70 @@
+---
+layout: docs
+permalink: manual/scale-and-zoom/
+title: 'Scale and Zoom'
+---
+<p>Rainmeter supports both monitor DPI scaling and zooming individual skins. Skins can resize without requiring <code>#Scale#</code> variables in every meter's <code>W</code>, <code>H</code>, <code>X</code>, <code>Y</code>, or <code>FontSize</code> option.</p>
+
+<h2 id="Scale">Monitor scaling</h2>
+
+<p>Skins follow the monitor's DPI setting. For example, at 125% scaling, skins grow to match the display scale and are rendered at the new size, rather than enlarging a previously rendered skin. There is no need to change the properties of Rainmeter.exe to keep skins small when increasing the monitor's DPI setting.</p>
+
+<h2 id="Zoom">Zooming skins</h2>
+
+<p>Hold down <b>CTRL-ALT</b> and click to select one or more skins. Drag a corner or edge of the selected skin(s) to increase or decrease their size. Rainmeter redraws fonts and images at the new size. See <a href="!arranging-skins/#Multiple">Arranging Skins</a> for more about selecting skins.</p>
+
+<p>Zoom ranges from a minimum of 10% to a maximum of 500%. At very small sizes, the number of available pixels limits how much detail a skin can display.</p>
+
+<p>You can also choose a zoom percentage from the skin context menu under <b>Settings &gt; Zoom</b>. For finer adjustments, edit the skin's <code>Zoom</code> setting in <a href="!settings/#FilesFolders">Rainmeter.ini</a>. A manually entered value is also shown in the context menu. The zoom value is saved with the individual skin's settings in Rainmeter.ini.</p>
+
+<div class="exampleprev">
+	<a href="!img/scale-and-zoom/zoom-menu.jpg" data-fancybox><img src="!img/scale-and-zoom/zoom-menu.jpg" alt="A skin context menu showing Settings and Zoom percentages."></a>
+</div>
+
+<h2 id="Bangs">Zoom bangs</h2>
+
+<dl>
+	<dt id="SetZoomFactor"><code>!SetZoomFactor</code> <small>Parameters: <code><b>Factor</b><em>, Config</em></code></small></dt>
+	<dd>
+		<p>Sets a skin's zoom factor as part of an action.</p>
+		<ul>
+			<li><code>Factor</code> (required): A zoom factor, such as <code>1.25</code> for 125%, or <code>Default</code> to reset the skin to the default zoom.</li>
+			<li><code>Config</code> (optional): The <a href="!skins/#Config">config name</a> of a loaded skin. Defaults to the current skin. Use <code>*</code> to act on all loaded skins.</li>
+		</ul>
+		<br><b>Examples:</b>
+		<ul>
+			<li><code>[!SetZoomFactor 1.25 "ConfigName"]</code></li>
+			<li><code>[!SetZoomFactor 1.25 *]</code></li>
+			<li><code>[!SetZoomFactor Default "ConfigName"]</code></li>
+			<li><code>[!SetZoomFactor Default *]</code></li>
+		</ul>
+	</dd>
+
+	<dt id="SetZoomFactorGroup"><code>!SetZoomFactorGroup</code> <small>Parameters: <code><b>Factor, Group</b></code></small></dt>
+	<dd>
+		<p>Sets the zoom factor for skins in a <a href="!groups/">skin group</a>.</p>
+		<ul>
+			<li><code>Factor</code> (required): The zoom factor, as described above.</li>
+			<li><code>Group</code> (required): The name of the skin group.</li>
+		</ul>
+		<br><b>Example:</b> <code>[!SetZoomFactorGroup 1.25 "GroupName"]</code>
+	</dd>
+</dl>
+
+<h3 id="Anchors">Zoom direction and anchors</h3>
+
+<p>When zoom is changed with a bang, the skin expands or contracts around its current anchor point. The default anchor is the upper left corner, so the skin grows down and to the right.</p>
+
+<p>Use <a href="!bangs/#SetAnchor">!SetAnchor</a> to change <a href="!settings/skin-sections/#AnchorXY">AnchorX and AnchorY</a> in the skin's section of Rainmeter.ini. Setting <code>AnchorX=50%</code> and <code>AnchorY=50%</code> makes the skin zoom outward from its center.</p>
+
+<h2 id="DefaultZoom">Default zoom</h2>
+
+<p>Set <b>Default zoom</b> in <a href="!user-interface/manage/#SettingsTab">Manage &gt; Settings</a> to change the default zoom for all skins. Individual skins can override this value by setting their own zoom or by dragging their edges.</p>
+
+<div class="exampleprev">
+	<a href="!img/scale-and-zoom/default-zoom.jpg" data-fancybox><img src="!img/scale-and-zoom/default-zoom.jpg" alt="The Manage Settings tab showing Default zoom and the Force checkbox."></a>
+</div>
+
+<p>The <b>Force</b> checkbox makes all skins use the default zoom and prevents individual zoom changes. Use this setting sparingly, since it also prevents skins from using zoom as part of their functionality.</p>
+
+<p>These settings are stored in the <code>[Rainmeter]</code> section of Rainmeter.ini as <a href="!settings/rainmeter-section/#DefaultZoom">DefaultZoom</a> and <a href="!settings/rainmeter-section/#ForceDefaultZoom">ForceDefaultZoom</a>.</p>

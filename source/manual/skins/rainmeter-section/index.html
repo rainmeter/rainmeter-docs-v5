@@ -14,13 +14,40 @@ title: '[Rainmeter] section'
 <dl>
 	<dt id="Update"><code>Update</code> <small>Default: <code>1000</code></small></dt>
 	<dd>
-		<p>Defines the update interval of the skin in milliseconds. On each update, measures and meters are updated, and the skin is redrawn.</p>
+		<p>Defines the update interval of the skin in milliseconds. On each update, measures and meters are updated, and the skin is redrawn when visible.</p>
 
 		<p>The lowest possible effective value for Update is "16". Some care should be taken to only use very low update rates (less than 100) when really needed, and to balance a low Update with <a href="#DefaultUpdateDivider">DefaultUpdateDivider</a>, or <a href="!measures/general-options/#UpdateDivider">UpdateDivider</a> on individual measures and meters, in order to keep the CPU usage by Rainmeter as low as possible.</p>
 
 		<p>Using <code>Update=-1</code> will update the skin only once on load (or on refresh). This is a good option when a skin is strictly controlled by mouse actions, like an application menu or launcher. The skin will never update, but will always react to any <a href="!mouse-actions/">mouse actions</a>, where you can use <a href="!bangs/#UpdateMeter">!UpdateMeter</a> and <a href="!bangs/#Redraw">!Redraw</a> to control when the skin is updated and redrawn.</p>
 
 		<p><b>Note:</b> While <code>Update=1000</code> will update the skin "once a second",  Update is not related to the system clock, and if a computer is busy or a complicated skin takes longer than the interval to complete a full update of the skin, updates can be unreliable in relation to elapsed time. Do not use the Update value to control clocks or other timing sensitive functions.</p>
+
+		<h3 id="InvisibleUpdates" style="font-weight: bold; color: #003366;">Invisible Updates</h3>
+
+		<p>Skins are not redrawn while they are fully covered by other windows or a full-screen application. When a skin becomes visible again, it immediately updates and redraws as needed.</p>
+
+		<p>The optional <code>Invisible</code> specifier lets a skin reduce or stop its automatic updates while fully covered, saving CPU usage. Add it after the normal update interval, separated by <code>|</code>:</p>
+		<br>
+
+``` ini
+[Rainmeter]
+Update=1000 | Invisible (60*1000)
+```
+
+		<p>This updates the skin once a second while visible and once a minute while invisible. Both intervals are in milliseconds, and the invisible interval accepts a <a href="!formulas/">formula</a>.</p>
+
+		<ul>
+			<li>Omitting <code>Invisible</code> keeps the normal update interval regardless of visibility.</li>
+			<li><code>Invisible 0</code> stops automatic updates while the skin is invisible.</li>
+			<li><code>Invisible (60*1000)</code> updates once a minute while invisible.</li>
+			<li><code>Invisible (15*60*1000)</code> updates once every 15 minutes while invisible.</li>
+		</ul>
+
+		<p>When an invisible update occurs, the counters for <a href="!measures/general-options/#UpdateDivider">UpdateDivider</a> on measures and meters, and <a href="!measures/webparser/#UpdateRate">UpdateRate</a> on WebParser measures, advance to account for skipped updates. Their timing remains based on the normal update interval, rather than multiplying their dividers by the invisible interval.</p>
+
+		<p>For most skins, an invisible interval of at least one minute is recommended. A longer interval, such as 15 minutes, or <code>Invisible 0</code> may be appropriate. Visualizers and network charts may need to keep updating normally to maintain the history displayed by their meters.</p>
+
+		<p><b>Note:</b> The <code>!SetUpdate</code> bang changes only the visible update interval. It does not change the invisible interval.</p>
 	</dd>
 
 	<dt id="DefaultUpdateDivider"><code>DefaultUpdateDivider</code> <small>Default: <code>1</code></small></dt>

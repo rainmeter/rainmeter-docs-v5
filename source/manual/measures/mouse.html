@@ -68,7 +68,75 @@ LeftMouseDownAction=[!CommandMeasure MeasureName "Start"]
 LeftMouseDragAction=[!Log "The mouse is at $MouseX$, $MouseY$"]
 LeftMouseUpAction=[!CommandMeasure MeasureName "Stop"]
 ```
+	</dd>
+
+	<dt id="CaptureOverlayCursorName"><code>CaptureOverlayCursorName</code> <small>Default: <code>ARROW</code></small></dt>
+	<dd>
+		<p>Chooses the system cursor displayed during click capture. The following cursor values from <a href="!mouse-actions/#MouseCursorOptions">Mouse Cursor Options</a> are supported:</p>
+		<ul style="font-size: 90%;">
+			<li><code>ARROW</code></li>
+			<li><code>HAND</code></li>
+			<li><code>TEXT</code></li>
+			<li><code>HELP</code></li>
+			<li><code>BUSY</code></li>
+			<li><code>CROSS</code></li>
+			<li><code>PEN</code></li>
+			<li><code>NO</code></li>
+			<li><code>SIZE_ALL</code></li>
+			<li><code>SIZE_NESW</code></li>
+			<li><code>SIZE_NS</code></li>
+			<li><code>SIZE_NWSE</code></li>
+			<li><code>SIZE_WE</code></li>
+			<li><code>UPARROW</code></li>
+			<li><code>WAIT</code></li>
+		</ul>
+		<p>Example: <code>CaptureOverlayCursorName=CROSS</code></p>
+	</dd>
 </dl>
+
+<h2>Bangs</h2>
+
+<p>The Mouse measure can capture the next click anywhere on any monitor, including outside the skin, using <code>!Mouse:StartCapture</code> and <code>!Mouse:StopCapture</code>. In the examples below, <code>MeasureMouse</code> is the section name of the Mouse measure.</p>
+
+<dl>
+	<dt id="StartCapture"><code>!Mouse:StartCapture</code> <small>Parameter: <code><em>MeasureName</em></code></small></dt>
+	<dd>
+		<p>Starts a capture that waits for the next mouse click anywhere on any monitor. When the button is released, the capture ends and the measure executes the corresponding <code>LeftMouseUpAction</code>, <code>RightMouseUpAction</code>, <code>MiddleMouseUpAction</code>, <code>X1MouseUpAction</code>, or <code>X2MouseUpAction</code>.</p>
+		<p>The action can use <code>$MouseX$</code> and <code>$MouseY$</code> for the coordinates where the button was released, according to <a href="#RelativeToSkin">RelativeToSkin</a>. The captured click is consumed and does not reach the skin or application underneath.</p>
+		<p>Any mouse buttons already held when capture starts must be released before the next click can be captured. Only one capture can be active at a time; starting another replaces the current capture. The measure must be enabled and unpaused.</p>
+		<p>The cursor displayed during capture is set with <a href="#CaptureOverlayCursorName">CaptureOverlayCursorName</a>.</p>
+		<ul>
+			<li><code>MeasureName</code> (optional): The section name of the Mouse measure in the current skin. If omitted, the bang acts on the Mouse measure from which it is executed.</li>
+		</ul>
+		<br><b>Example:</b> <code>[!Mouse:StartCapture "MeasureMouse"]</code>
+	</dd>
+
+	<dt id="StopCapture"><code>!Mouse:StopCapture</code> <small>Parameter: <code><em>MeasureName</em></code></small></dt>
+	<dd>
+		<p>Cancels an active capture for the specified measure without executing a mouse action. Pressing <code>Esc</code>, disabling or pausing the measure, or unloading the skin also cancels capture.</p>
+		<ul>
+			<li><code>MeasureName</code> (optional): The section name of the Mouse measure in the current skin. If omitted, the bang acts on the Mouse measure from which it is executed.</li>
+		</ul>
+		<br><b>Example:</b> <code>[!Mouse:StopCapture "MeasureMouse"]</code>
+	</dd>
+</dl>
+
+<p><b>Capture Example:</b></p>
+
+``` ini
+[MeasureMouse]
+Measure=Mouse
+RequireDragging=1
+CaptureOverlayCursorName=CROSS
+LeftMouseUpAction=[!Log "Captured click at $MouseX$, $MouseY$"]
+
+[MeterCapture]
+Meter=String
+Text=Click to capture the next screen click
+FontColor=255,255,255,255
+AntiAlias=1
+LeftMouseUpAction=[!Mouse:StartCapture "MeasureMouse"]
+```
 
 <h2>Examples</h2>
 ``` ini
