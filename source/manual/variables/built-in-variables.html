@@ -201,51 +201,61 @@ title: 'Built-In Variables'
 	<dt id="DISPLAYXYWH"><span><code>[$DisplayX]</code>, <code>[$DisplayY]</code>, <code>[$DisplayW]</code>, <code>[$DisplayH]</code></span></dt>
 	<dd>
 		<p>Logical position and size of the current display. For example, a display that is 1920 physical pixels wide at 150% scaling is 1280 logical pixels wide.</p>
+		<p>A specific monitor may be indicated with e.g. <b><code>[$Display2X]</code></b>.</p>
 	</dd>
 
 	<dt id="DISPLAYPHYSICALXYWH"><span><code>[$DisplayPhysicalX]</code>, <code>[$DisplayPhysicalY]</code>, <code>[$DisplayPhysicalW]</code>, <code>[$DisplayPhysicalH]</code></span></dt>
 	<dd>
 		<p>Position and size of the current display in physical pixels, ignoring DPI scaling.</p>
+		<p>A specific monitor may be indicated with e.g. <b><code>[$Display2PhysicalX]</code></b>.</p>
 	</dd>
 
 	<dt id="DISPLAYWORKAREAXYWH"><span><code>[$DisplayWorkAreaX]</code>, <code>[$DisplayWorkAreaY]</code>, <code>[$DisplayWorkAreaW]</code>, <code>[$DisplayWorkAreaH]</code></span></dt>
 	<dd>
 		<p>Logical position and size of the current display's work area, excluding the taskbar and other reserved desktop areas.</p>
+		<p>A specific monitor may be indicated with e.g. <b><code>[$Display2WorkAreaX]</code></b>.</p>
 	</dd>
 
 	<dt id="DISPLAYWORKAREAPHYSICALXYWH"><span><code>[$DisplayWorkAreaPhysicalX]</code>, <code>[$DisplayWorkAreaPhysicalY]</code>, <code>[$DisplayWorkAreaPhysicalW]</code>, <code>[$DisplayWorkAreaPhysicalH]</code></span></dt>
 	<dd>
 		<p>Position and size of the current display's work area in physical pixels.</p>
+		<p>A specific monitor may be indicated with e.g. <b><code>[$Display2WorkAreaPhysicalX]</code></b>.</p>
 	</dd>
 
 	<dt id="DISPLAYVIRTUALSCREENXYWH"><span><code>[$DisplayVirtualScreenX]</code>, <code>[$DisplayVirtualScreenY]</code>, <code>[$DisplayVirtualScreenW]</code>, <code>[$DisplayVirtualScreenH]</code></span></dt>
 	<dd>
 		<p>Logical position and size of the virtual screen spanning all displays.</p>
+		<p>These variables span all displays and do not accept a monitor number.</p>
 	</dd>
 
 	<dt id="DISPLAYVIRTUALSCREENPHYSICALXYWH"><span><code>[$DisplayVirtualScreenPhysicalX]</code>, <code>[$DisplayVirtualScreenPhysicalY]</code>, <code>[$DisplayVirtualScreenPhysicalW]</code>, <code>[$DisplayVirtualScreenPhysicalH]</code></span></dt>
 	<dd>
 		<p>Position and size of the virtual screen spanning all displays, in physical pixels.</p>
+		<p>These variables span all displays and do not accept a monitor number.</p>
 	</dd>
 
 	<dt id="DISPLAYDPIFACTOR"><span><code>[$DisplayDpiFactor]</code></span></dt>
 	<dd>
 		<p>The current display's DPI scaling factor. For example, 150% scaling returns <code>1.5</code>.</p>
+		<p>A specific monitor may be indicated with e.g. <b><code>[$Display2DpiFactor]</code></b>.</p>
 	</dd>
 
 	<dt id="DISPLAYNAMENUMBER"><span><code>[$DisplayName]</code>, <code>[$DisplayNumber]</code></span></dt>
 	<dd>
 		<p>The human-readable monitor name and active display number for the current skin.</p>
+		<p>A specific monitor may be indicated with e.g. <b><code>[$Display2Name]</code></b>.</p>
 	</dd>
 
 	<dt id="DISPLAYDEVICENAMENUMBER"><span><code>[$DisplayDeviceName]</code>, <code>[$DisplayDeviceNumber]</code></span></dt>
 	<dd>
 		<p>The Windows display device identifier, such as <code>\\.\DISPLAY1</code>, and device number for the current skin.</p>
+		<p>A specific display device may be indicated with e.g. <b><code>[$DisplayDevice2Name]</code></b>.</p>
 	</dd>
 
 	<dt id="DISPLAYCOUNT"><span><code>[$DisplayCount]</code>, <code>[$DisplayDeviceCount]</code></span></dt>
 	<dd>
 		<p>The total number of active attached displays and the total number of Windows display devices, respectively.</p>
+		<p>These variables count all displays or display devices and do not accept a monitor number.</p>
 	</dd>
 </dl>
 
