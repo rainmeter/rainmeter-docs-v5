@@ -42,18 +42,8 @@ title: 'Scale and Zoom'
 		<p>If using this bang to control a different skin, consider using the new <code>!Skin:</code> approach rather than specifying <code>config</code> at the end of the older form of the bang.</p>
 		<br><p><b>Example:</b> <code>[!Skin:SetZoomFactor "Illustro\Clock" 1.5]</code></p>
 		<br>
-		<p>When using this bang to control a skin group, consider using this bang instead of the group specific one below, and the new <code>!Skin:</code> approach rather than specifying <code>group</code> at the end of the older form of the bang.</p>
-		<br><p><b>Example:</b> <code>[!Skin:SetZoomFactor Group="GroupName" 1.25]</code></p>
-	</dd>
-
-	<dt id="SetZoomFactorGroup"><code>!SetZoomFactorGroup</code> <small>Parameters: <code><b>Factor, Group</b></code></small></dt>
-	<dd>
-		<p>Sets the zoom factor for skins in a <a href="!groups/">skin group</a>.</p>
-		<ul>
-			<li><code>Factor</code> (required): The zoom factor, as described above.</li>
-			<li><code>Group</code> (required): The name of the skin group.</li>
-		</ul>
-		<br><b>Example:</b> <code>[!SetZoomFactorGroup 1.25 "GroupName"]</code>
+		<p>When using this bang to control a skin group, use this bang and the new <code>!Skin:</code> approach rather than specifying <code>group</code> at the end of the older form of a bang.</p>
+		<br><p><b>Example:</b> <code>[!Skin:SetZoomFactor "Group=GroupName" 1.25]</code></p>
 	</dd>
 </dl>
 
