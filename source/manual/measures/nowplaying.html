@@ -74,15 +74,15 @@ title: 'NowPlaying measure'
 		
 		With measures of type <code>Duration</code> or <code>Position</code>, the string value is in the form <code>MM:SS</code> and the number value is the actual number of seconds.<br><br>
 
-		The <code>Lyrics</code> type will detect and use both the <code>Artist</code> and <code>Title</code> values found for the .mp3 file in its ID3 tags, and will search <em>https://www.letras.mus.br</em> for the lyrics, returning the first match. No match is possible if both Artist and Title are not present in the ID3 tags for the .mp3 file.<br><br>
+		The <code>Lyrics</code> type uses the <code>Artist</code> and <code>Title</code> values supplied by the player to search <em>https://www.letras.mus.br</em> for lyrics, returning the first match. Both values should be available for a successful lookup.<br><br>
 		
-		The <code>PlayerType=Genre</code> option is currently supported with the AIMP, CAD, iTunes, WMP and WinAmp <code>PlayerName</code> values.</p>
+		The <code>PlayerType=Genre</code> option is currently supported with the AIMP, CAD, iTunes, Windows (including the Spotify alias), WMP and WinAmp <code>PlayerName</code> values.
 		
 	</dd>
 
 	<dt id="PlayerPath"><code>PlayerPath</code></dt>
 	<dd>
-		If defined, used to launch the player with the <code>OpenPlayer</code> command. If not defined, the plugin will attempt to automatically detect the path.
+		If defined, used to launch the player with the <code>OpenPlayer</code> command. If not defined, the plugin will attempt to automatically detect the path. This option has no effect with <code>PlayerName=Windows</code> or <code>PlayerName=Spotify</code>.
 	</dd>
 
 	<dt id="TrackChangeAction"><code>TrackChangeAction</code></dt>
@@ -146,12 +146,28 @@ title: 'NowPlaying measure'
 <p>The following players are partially supported. Only some features will work.</p>
 
 <ul class="spaced">
-	<!--
+	<li><b>Windows media sessions</b>: <code>PlayerName=Windows</code><br>
+	Reads and controls the current Windows media session through System Media Transport Controls (SMTC). See <a href="#Windows">Windows media sessions</a> below.</li>
+
 	<li><b>Spotify</b>: <code>PlayerName=Spotify</code><br>
-	Partially supported. Only the types <code>Artist</code>, <code>Title</code> and the bangs <code>Play</code>, <code>PlayPause</code>, <code>Stop</code>, <code>Next</code>, and <code>Previous</code> are available.</li>
-	-->
+	An alias for <code>PlayerName=Windows</code>.
+
 	<li><b>Last.fm Client</b>, <b>TTPlayer</b>, <b>OpenPandora</b>, <b>Zune</b>: <code>PlayerName=WLM</code><br>
 	Partially supported. Even in the best case, only the types <code>Title</code>, <code>Artist</code>, <code>Album</code> and the bangs <code>Play</code>, <code>Pause</code>, <code>PlayPause</code>, <code>Next</code>, <code>Previous</code>, <code>Stop</code> are supported.</li>
+</ul>
+
+<h2 id="Windows">Windows media sessions</h2>
+<p><code>PlayerName=Windows</code> requires an app that publishes a Windows media session. It follows the session selected by Windows; it does not select a specific app.</p>
+<p>Apps that can publish media sessions include modern Windows Media Player, Spotify desktop, and Chrome, Edge, or Firefox, depending on the website. Other players may need SMTC integration enabled or a plugin, such as:</p>
+<ul>
+	<li><a href="https://github.com/clsid2/mpc-hc">MPC-HC (clsid2 fork)</a> with SMTC integration enabled.</li>
+	<li>VLC with a compatible plugin such as <a href="https://github.com/spmn/vlc-win10smtc">vlc-win10smtc</a>.</li>
+</ul>
+<p>Available metadata and controls depend on the app. SMTC support alone does not guarantee cover art, seeking, shuffle, or repeat support.</p>
+<ul class="spaced">
+	<li><b>Supported types:</b> <code>Artist</code>, <code>Title</code>, <code>Album</code>, <code>Genre</code>, <code>Number</code>, <code>Cover</code>, <code>Duration</code>, <code>Position</code>, <code>Progress</code>, <code>State</code>, <code>Status</code>, <code>Shuffle</code>, and <code>Repeat</code>. <code>Status</code> indicates whether the current session is active, rather than whether a particular app is open. <code>Repeat</code> is 1 for either track or list repeat. <code>Lyrics</code> uses the existing online lookup with the session's artist and title.</li>
+	<li><b>Supported commands:</b> <code>Play</code>, <code>Pause</code>, <code>PlayPause</code>, <code>Stop</code>, <code>Next</code>, <code>Previous</code>, <code>SetPosition</code> (absolute or relative percentage), <code>SetShuffle</code> (off, on, or toggle), and <code>SetRepeat</code> (off, list repeat, or toggle), where supported by the app.</li>
+	<li><b>Unsupported features:</b> The <code>File</code>, <code>Year</code>, <code>Rating</code>, and <code>Volume</code> types and the <code>SetRating</code>, <code>SetVolume</code>, <code>OpenPlayer</code>, <code>ClosePlayer</code>, and <code>TogglePlayer</code> commands.</li>
 </ul>
 
 <h2>Example</h2>
