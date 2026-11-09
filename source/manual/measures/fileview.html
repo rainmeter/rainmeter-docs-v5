@@ -259,7 +259,7 @@ OnUpdateAction=!CommandMeasure MeasureFolder Update
 		<li><code>FileDate</code> : System date of indexed object, folder or file. See <code>DateType</code> for possible date types</li>
 		<li><code>FilePath</code> : Full path and name of indexed object, folder or file. No trailing "\" with folders</li>
 		<li><code>PathToFile</code> : Full path up to indexed object, folder or file, with trailing "\")</li>
-		<li><code>Icon</code> : Full path and name of icon extracted from indexed object, folder or file</li>
+		<li><code>Icon</code> : Icon of the indexed object, folder or file</li>
 		</ul>
 
 		<p><b>Note:</b> If <code>Type=Icon</code>, the full path of the icon file is returned. See <a href="#IconPath">IconPath</a> below. This can be used with <code>MeasureName</code> or <code>ImageName</code> in an Image meter to display the icon.</p>
@@ -272,12 +272,13 @@ OnUpdateAction=!CommandMeasure MeasureFolder Update
 
 	<dt id="IconPath"><code>IconPath</code></dt>
 	<dd>
-		<p>Path and filename of the location (relative to the skin folder) to save icons when <code>Type=Icon</code>. If no path is given, the icons are saved in the skin folder and are named "iconX.ico", where "X" is the index number.</p>
+		<p>Path and filename of the <code>.ico</code> file to save when <code>Type=Icon</code>. Relative paths are resolved from the skin folder. The measure returns the full path of the saved file.</p>
+		<p>Only specify <code>IconPath</code> if you need an actual <code>.ico</code> file. If you only need to display the icon using <code>MeasureName</code> or <code>ImageName</code> in an Image meter, leave this option empty to improve performance.</p>
 	</dd>
 
 	<dt id="IconSize"><code>IconSize</code> <small>Default: <code>Medium</code></small></dt>
 	<dd>
-		<p>Size of the icon to save. Valid values are: <code>Small</code> (for 16x16), <code>Medium</code> (for 32x32), <code>Large</code> (for 48x48), <code>ExtraLarge</code> (for 256x256).</p>
+		<p>Size of the icon to display or save. Valid values are: <code>Small</code> (for 16x16), <code>Medium</code> (for 32x32), <code>Large</code> (for 48x48), <code>ExtraLarge</code> (for 256x256).</p>
 	</dd>
 </dl>
 
