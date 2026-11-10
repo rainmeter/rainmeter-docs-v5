@@ -112,8 +112,7 @@ AccurateText=1
 DynamicWindowSize=1
 
 [MeasureGetUserName]
-Measure=Plugin
-Plugin=SysInfo
+Measure=SysInfo
 SysInfoType=USER_NAME
 UpdateDivider=-1
 
@@ -133,7 +132,7 @@ AntiAlias=1
 Text=[&MeasureScript:GetWelcome('[&MeasureGetUserName]')]
 DynamicVariables=1
 ```
-<p>So we have a pretty simple skin, which gets the name of the user account logged into Windows with the <code>SysInfoType=USER_NAME</code> option on the SysInfo plugin measure [MeasureGetUserName].</p>
+<p>So we have a pretty simple skin, which gets the name of the user account logged into Windows with the <code>SysInfoType=USER_NAME</code> option on the SysInfo measure [MeasureGetUserName].</p>
 
 <p>And we have a Script measure, [MeasureScript], which will load and make available the Lua script file SimpleLua.lua. Note that since we don't use or need an Update() function in the Lua, we can just disable this Script measure. There is nothing it can or should return on each update of the measure itself.</p>
 

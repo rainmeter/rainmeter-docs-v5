@@ -133,8 +133,7 @@ SolidColor2=23,46,29,255
 ;[GATHER Network]=================================
 
 [MeasureNetwork]
-Measure=Plugin
-Plugin=WebParser.dll
+Measure=WebParser
 Url=http://www.msftncsi.com/ncsi.txt
 RegExp="^(.*)$"
 UpdateRate=30
@@ -167,14 +166,12 @@ Formula=MeasureNetOut
 ;[Network WEB IP]=================================
 
 [MeasureIPLan]
-Measure=Plugin
-Plugin=Plugins\SysInfo.dll
+Measure=SysInfo
 SysInfoType=IP_ADDRESS
 SysInfoData=Best
 
 [MeasureIPWeb]
-Measure=Plugin
-Plugin=Plugins\WebParser.dll
+Measure=WebParser
 Url=http://checkip.dyndns.org
 RegExp="(?siU)Address: (.*)</body>"
 StringIndex=1

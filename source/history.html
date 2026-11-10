@@ -804,7 +804,7 @@ title: 'Version History'
 
 <h3 id="r3043">April 26, 2018 - Revision 3043</h3>
 <ul>
-	<li><span class="badge badge-added">Added</span><b>UsageMonitor:</b> Added new UsageMonitor plugin to interact with the Windows Performance Monitor. This plugin will deprecate the existing AdvancedCPU and PerfMon plugins, and should be used in place of them going forward. Documentation for this new plugin is at <a href="https://docs.rainmeter.net/manual/plugins/usagemonitor/">UsageMonitor</a>.</li>
+	<li><span class="badge badge-added">Added</span><b>UsageMonitor:</b> Added new UsageMonitor plugin to interact with the Windows Performance Monitor. This plugin will deprecate the existing AdvancedCPU and PerfMon plugins, and should be used in place of them going forward. Documentation for this new plugin is at <a href="https://docs.rainmeter.net/manual/measures/usagemonitor/">UsageMonitor</a>.</li>
 </ul>
 
 <h3 id="r3040">April 19, 2018 - Revision 3040</h3>
@@ -992,7 +992,7 @@ title: 'Version History'
 <ul>
   <li><span class="badge badge-added">Added</span><b> String meter:</b> Added new <a href="https://docs.rainmeter.net/manual/meters/string/#FontWeight">FontWeight</a> option. This will effectively deprecate StringStyle.</li>
   <li><span class="badge badge-added">Added</span><b> Shape meter:</b> Added Path1 alternative of the Path shape. It will use a different form of the <a href="https://www.w3.org/TR/SVG/painting.html#FillProperties">SVG fill-rule</a> when the shape is filled with a color or gradient. This determines what parts of a shape with intersecting segments are "inside" the shape and what are "outside", for purposes of filling the shape with the defined color or gradient. See <a href="https://docs.rainmeter.net/manual/meters/shape/#Path1">Path1 shape</a> for details.</li>
-  <li><span class="badge badge-added">Added</span><b> CoreTemp plugin:</b> The author of both the <a href="https://www.alcpu.com/CoreTemp/">CoreTemp application</a> and Rainmeter plugin, Arthur Liberman, added CPU core-specific values to the data available in the plugin. See <a href="https://docs.rainmeter.net/manual/plugins/coretemp/">CoreTemp plugin</a> for details.</li>
+  <li><span class="badge badge-added">Added</span><b> CoreTemp plugin:</b> The author of both the <a href="https://www.alcpu.com/CoreTemp/">CoreTemp application</a> and Rainmeter plugin, Arthur Liberman, added CPU core-specific values to the data available in the plugin. See <a href="https://docs.rainmeter.net/manual/measures/coretemp/">CoreTemp measure</a> for details.</li>
   <li><span class="badge badge-changed">Changed</span><b> Bitmap meter:</b> Changed the allowable measure value when <a href="https://docs.rainmeter.net/manual/meters/bitmap/#BitmapExtend">BitmapExtend=1</a> from a C-language int data type (2,147,483,647 maximum) to int64 (9,223,372,036,854,775,807 maximum).</li>
   <li><span class="badge badge-fixed">Fixed</span><b> Bangs:</b> Fixed an issue when the config parameter of a bang contained a leading or trailing slash.</li>
   <li><span class="badge badge-fixed">Fixed</span><b> InputText plugin:</b> Fixed a possible Rainmeter crash if an input box is open and the skin is deactivated.</li>
@@ -1153,8 +1153,8 @@ title: 'Version History'
 <h3 id="r2493">December 27, 2015 - Revision 2493</h3>
 <ul>
   <li><span class="badge badge-release">Release</span><b>Release Candidate 1</b></li>
-  <li><span class="badge badge-added">Added</span><b> ActionTimer:</b> Added the ActionTimer plugin to the Rainmeter build. This plugin can be used to support animations and meter transitions. Details and examples can be found at <a href="https://docs.rainmeter.net/manual/plugins/actiontimer/">ActionTimer Plugin</a> and <a href="https://forum.rainmeter.net/viewtopic.php?p=112669#p112669">ActionTimer forum post</a>.</li>
-  <li><span class="badge badge-added">Added</span><b> RunCommand:</b> Added the RunCommand plugin to the Rainmeter build. This plugin can be used to execute and obtain values from external commands and programs. Details and examples can be found at <a href="https://docs.rainmeter.net/manual/plugins/runcommand/">RunCommand Plugin</a> and <a href="https://forum.rainmeter.net/viewtopic.php?p=92974#p92974">RunCommand forum post</a>.</li>
+  <li><span class="badge badge-added">Added</span><b> ActionTimer:</b> Added the ActionTimer plugin to the Rainmeter build. This plugin can be used to support animations and meter transitions. Details and examples can be found at <a href="https://docs.rainmeter.net/manual/measures/actiontimer/">ActionTimer measure</a> and <a href="https://forum.rainmeter.net/viewtopic.php?p=112669#p112669">ActionTimer forum post</a>.</li>
+  <li><span class="badge badge-added">Added</span><b> RunCommand:</b> Added the RunCommand plugin to the Rainmeter build. This plugin can be used to execute and obtain values from external commands and programs. Details and examples can be found at <a href="https://docs.rainmeter.net/manual/measures/runcommand/">RunCommand measure</a> and <a href="https://forum.rainmeter.net/viewtopic.php?p=92974#p92974">RunCommand forum post</a>.</li>
   <li><span class="badge badge-changed">Changed</span><b> Time measure:</b> Added some additional Time measure <a href="https://docs.rainmeter.net/manual/measures/time/#FormatCodes">Format Codes</a>, made possible by the upgrade of the Rainmeter project to Visual Studio 2015. This also corrects some issues with existing codes like %p.</li>
   <li><span class="badge badge-fixed">Fixed</span><b> WebParser:</b> Corrected an issue where WebParser could not read a local file if it was locked open by some other process.</li>
   <li><span class="badge badge-changed">Changed</span><b> Rainmeter Project:</b> Upgraded the project to use the latest Visual Studio 2015 for development.</li>
@@ -1302,7 +1302,7 @@ All of the above additions and changes are related to new functionality for gett
 <h3 id="r2357">February 1, 2015 - Revision 2357</h3>
 <ul>
   <li><span class="badge badge-added">Added</span><b> Formulas:</b> Added Atan2(y, x) math function. Returns the radians of arc tangent between points Y and X in the Cartesian plane. The sign of the elements determines the quadrant.</li>
-  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added a new <em>PathToFile</em> value for the <a href="/manual/plugins/fileview#Type">Type</a> child measure option. This will return just the path the file, including a trailing "\".</li>
+  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added a new <em>PathToFile</em> value for the <a href="/manual/measures/fileview#Type">Type</a> child measure option. This will return just the path the file, including a trailing "\".</li>
 </ul>
 
 <h3 id="r2355">January 27, 2015 - Revision 2355</h3>
@@ -1336,7 +1336,7 @@ All of the above additions and changes are related to new functionality for gett
 
 <h3 id="r2317">September 9, 2014 - Revision 2317</h3>
 <ul>
-  <li><span class="badge badge-added">Added</span><b> Plugins:</b> Added new AudioLevel plugin by author dgrace to the Rainmeter build. This will allow for real-time VU-Meter and Spectrum Analyzer visualizations of sound output. See <a href="/manual/plugins/audiolevel">AudioLevel plugin</a> for full documentation and example skins.</a></li>
+  <li><span class="badge badge-added">Added</span><b> Plugins:</b> Added new AudioLevel plugin by author dgrace to the Rainmeter build. This will allow for real-time VU-Meter and Spectrum Analyzer visualizations of sound output. See <a href="/manual/measures/audiolevel">AudioLevel measure</a> for full documentation and example skins.</a></li>
   <li><span class="badge badge-fixed">Fixed</span><b> AudioLevel plugin:</b> Fixed an issue with the <code>Format</code> child measure option that was not returning a Unicode string value.</li>
 </ul>
 
@@ -1393,7 +1393,7 @@ All of the above additions and changes are related to new functionality for gett
 
 <h3 id="r2269">February 9, 2014 - Revision 2269</h3>
 <ul>
-  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added support for opening the Windows properties or context menu dialogs for file or folder objects. Details at <a href="/manual/plugins/fileview/#OtherCommands">FileView - Other Commands</a>.</li>
+  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added support for opening the Windows properties or context menu dialogs for file or folder objects. Details at <a href="/manual/measures/fileview/#OtherCommands">FileView - Other Commands</a>.</li>
   <li><span class="badge badge-added">Added</span><b> Rainmeter:</b> Added <a href="/manual/bangs/#SkinCustomMenu">!SkinCustomMenu</a> bang to display only user-defined <a href="/manual/skins/rainmeter-section/#Context">context menu</a> items instead of the normal skin context menu.</a></li>
 </ul>
 
@@ -1688,7 +1688,7 @@ All of the above additions and changes are related to new functionality for gett
 <h3 id="r1767">January 21, 2013 - Revision 1767</h3>
 <ul>
   <li><span class="badge badge-added">Added</span><b>Rainmeter:</b> Added new <a href="/manual/variables/mouse-variables/">Mouse Variables</a>.</li>
-  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added new <a href="/manual/plugins/fileview/#FinishAction">FinishAction</a> option to the plugin.
+  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added new <a href="/manual/measures/fileview/#FinishAction">FinishAction</a> option to the plugin.
 </ul>
 
 <h3 id="r1761">January 15, 2013 - Revision 1761</h3>
@@ -1698,7 +1698,7 @@ All of the above additions and changes are related to new functionality for gett
 
 <h3 id="r1758">January 13, 2013 - Revision 1758</h3>
 <ul>
-  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added new <a href="/manual/plugins/fileview/">FileView plugin</a>.</li>
+  <li><span class="badge badge-added">Added</span><b> FileView:</b> Added new <a href="/manual/measures/fileview/">FileView measure</a>.</li>
   <li><span class="badge badge-added">Added</span><b>Rainmeter:</b> Added new OnUpdateAction command to <a href="/manual/skins/rainmeter-section/#OnUpdateAction">Skins</a>, <a href="/manual/meters/general-options/#OnUpdateAction">Meters</a> and <a href="/manual/measures/general-options/#OnUpdateAction">Measures</a>.</li>
   <li><span class="badge badge-added">Added</span><b>Rainmeter:</b> Added new OnChangeAction command to <a href="/manual/measures/general-options/#OnChangeAction">Measures</a>.</li>
 </ul>

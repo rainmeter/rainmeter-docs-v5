@@ -36,7 +36,7 @@ A variant of the UTF-8 standard with a <a href="https://en.wikipedia.org/wiki/By
 
 <h3>Rainmeter skins</h3>
 
-<p>Like all Windows applications (since Windows 98), Rainmeter manages and displays all text using the UTF-16 LE Unicode standard. If you wish to embed Unicode characters in Rainmeter .ini (skin) .inc (include) or text files read by the Quote plugin, simply encode the file as:</p>
+<p>Like all Windows applications (since Windows 98), Rainmeter manages and displays all text using the UTF-16 LE Unicode standard. If you wish to embed Unicode characters in Rainmeter .ini (skin) .inc (include) or text files read by the Quote measure, simply encode the file as:</p>
 
 <ul>
 <li><b>UTF-16 LE</b> (Windows Notepad.exe)</li>
@@ -48,11 +48,11 @@ A variant of the UTF-8 standard with a <a href="https://en.wikipedia.org/wiki/By
 
 <p><i>We will refer to this as UTF-16 from here out. While the naming convention varies from editor to editor, it is basically the same standard in each.</i></p>
 
-<p><i>NEVER encode any of these files in UTF-8. Rainmeter and the Quote plugin will not be able to properly read them.</i></p>
+<p><i>NEVER encode any of these files in UTF-8. Rainmeter and the Quote measure will not be able to properly read them.</i></p>
 
 <h2>Using Unicode with WebParser</h2>
 
-<p>In order to reduce the amount of data that must be transmitted to support Unicode, and to maintain compatibility with the widest range of legacy operating systems and applications, web sites that you access with the WebParser plugin will almost always be encoded in UTF-8. The WebParser plugin automatically uses this encoding standard when retrieving web sites, and converts the text to UTF-16 for Rainmeter to handle. There is nothing you need to do with any local file encoding for this to work correctly and seamlessly on any user's system.</p>
+<p>In order to reduce the amount of data that must be transmitted to support Unicode, and to maintain compatibility with the widest range of legacy operating systems and applications, web sites that you access with the WebParser measure will almost always be encoded in UTF-8. The WebParser measure automatically uses this encoding standard when retrieving web sites, and converts the text to UTF-16 for Rainmeter to handle. There is nothing you need to do with any local file encoding for this to work correctly and seamlessly on any user's system.</p>
 
 <h3>Using the file:// protocol with WebParser to read local files</h3>
 

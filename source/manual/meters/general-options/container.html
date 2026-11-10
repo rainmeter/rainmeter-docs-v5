@@ -115,8 +115,7 @@ LeftMouseUpAction=[!Log "Clicked me!"]
 Container=MeterContainer
 
 [MeasureSlideInOut]
-Measure=Plugin
-Plugin=ActionTimer
+Measure=ActionTimer
 ActionList1=Reset | Wait 1 | Repeat SlideIn, 30, 11
 SlideIn=[!SetVariable OffSet "(Clamp(#OffSet#-12,20,130))"]#U#
 ActionList2=Repeat SlideOut, 30, 11  | Wait 1 | Reset

@@ -9,7 +9,7 @@ title: 'Update with Bangs'
 
 <p><b>For example:</b></p>
 
-<p>You have a Quote plugin that is obtaining random images from some folder. You have the Quote measure set with an UpdateDivider of 30, so combined with an Update of 1000, a new random image is displayed every 30 seconds. However, you might want to have a left-click on the image meter immediately go out and get a new image and display it, but you don't want to wait up to 30 seconds for the new image to display.</p>
+<p>You have a Quote measure that is obtaining random images from some folder. You have the Quote measure set with an UpdateDivider of 30, so combined with an Update of 1000, a new random image is displayed every 30 seconds. However, you might want to have a left-click on the image meter immediately go out and get a new image and display it, but you don't want to wait up to 30 seconds for the new image to display.</p>
 
 <p>There are several bangs that can help make your skins more responsive.</p>
 
@@ -20,7 +20,7 @@ title: 'Update with Bangs'
 
 This is the "brute force" approach, and may be the most simple and effective if you want the entire skin to update on some action. It should be remembered that the !Update bang overrides the Update value in [Rainmeter], but does not override any UpdateDivider options in measures or meters. The design of the skin should be taken into consideration when deciding if this is best, or a more "targetted" approach with the following bangs.</li><br>
 
-<li>You can use <code>!UpdateMeasure</code> to force a single measure to immediately update. Any Update or UpdateDivider settings will be ignored, and the measure will immediately obtain a new current value. In our example about the Quote plugin above, this would be a good way to have the plugin go get a new image "on demand".<br><br>
+<li>You can use <code>!UpdateMeasure</code> to force a single measure to immediately update. Any Update or UpdateDivider settings will be ignored, and the measure will immediately obtain a new current value. In our example about the Quote measure above, this would be a good way to have the measure go get a new image "on demand".<br><br>
 
 <code>LeftMouseUpAction=!UpdateMeasure MeasureRandomImage</code><br><br>
 

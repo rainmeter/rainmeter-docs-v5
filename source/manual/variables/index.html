@@ -75,15 +75,15 @@ MyVar2=https://www.#MyVar1#.net/
 
 <p>Note that any <code>[MeasureName]</code> used in a bang as a <a href="!variables/section-variables/">Section Variable</a> is automatically dynamic, and <code>DynamicVariables=1</code> is not required.</p>
 
-<p>In addition, there are some [Sections] and <a href="!plugins/">plugins</a> which do not support dynamic variables at this time. The following are sections where dynamic variables cannot be used:</p>
+<p>In addition, there are some [Sections] and <a href="!measures/plugin/">plugins</a> which do not support dynamic variables at this time. The following are sections where dynamic variables cannot be used:</p>
 
 <ul>
 	<li><a href="!skins/rainmeter-section/">[Rainmeter]</a></li>
 	<li><a href="!variables/#Section">[Variables]</a></li>
 	<li><a href="!skins/metadata-section/">[Metadata]</a></li>
-	<li><a href="!plugins/deprecated/itunes/">iTunes</a></li>
+	<li><a href="!measures/itunes/">iTunes</a></li>
 	<li><a href="!measures/mediakey/">MediaKey</a></li>
-	<li><a href="!plugins/power/">Power</a></li>
+	<li><a href="!measures/power/">Power</a></li>
 	<li>3rd-party plugins are not guaranteed to support dynamic variables.</li>
 </ul>
 
@@ -103,7 +103,7 @@ MyVar2=https://www.#MyVar1#.net/
 
 <h2 id="EventVariables">Event Variables</h2>
 
-<p>Some <a href="!skins/option-types/#Action">action options</a> allow the use of special variables that are related to the specific event that triggers the action. These variables are referenced by surrounding the name with dollar signs (<code>$</code>), as in <code>$Foo$</code>. Event variables are evaluated at the time the action is triggered, used to execute the action, and then immediately discarded. For example, when using a command with the <a href="!plugins/inputtext/">InputText</a> plugin, the event variable <code>$UserInput$</code> refers to the string that was entered into a text input box by the user.</p>
+<p>Some <a href="!skins/option-types/#Action">action options</a> allow the use of special variables that are related to the specific event that triggers the action. These variables are referenced by surrounding the name with dollar signs (<code>$</code>), as in <code>$Foo$</code>. Event variables are evaluated at the time the action is triggered, used to execute the action, and then immediately discarded. For example, when using a command with the <a href="!measures/inputtext/">InputText</a> measure, the event variable <code>$UserInput$</code> refers to the string that was entered into a text input box by the user.</p>
 
 <h2 id="EnvironmentVariables">Environment Variables</h2>
 

@@ -9,9 +9,9 @@ title: 'WebParser: How UpdateRate Works'
 
 <ul>
 <li>A Webparser parent measure always has an <a href="https://docs.rainmeter.net/manual/measures/webparser/#UpdateRate">UpdateRate</a> option on it. If you don't set one explicitly,  it will default to 600. More on this in a second.</li>
-<li>When a WebParser parent measure is first loaded, or when the skin is refreshed. The plugin sets up an internal counter, let's just call it UpdateCounter. The name isn't important, it's not visible to the skin. The value of UpdateCounter is initialized to zero. This counter is a loop from zero to the value of the <code>UpdateRate</code> option on the measure.</li>
-<li>On each update of the measure, the plugin will evaluate the value of UpdateCounter, and if it is zero, it will access and parse the remote resource. This means it will always do so when the skin is first loaded or when refreshed.</li>
-<li>The plugin will then increment the value of UpdateCounter by one.</li>
+<li>When a WebParser parent measure is first loaded, or when the skin is refreshed. The measure sets up an internal counter, let's just call it UpdateCounter. The name isn't important, it's not visible to the skin. The value of UpdateCounter is initialized to zero. This counter is a loop from zero to the value of the <code>UpdateRate</code> option on the measure.</li>
+<li>On each update of the measure, the measure will evaluate the value of UpdateCounter, and if it is zero, it will access and parse the remote resource. This means it will always do so when the skin is first loaded or when refreshed.</li>
+<li>The measure will then increment the value of UpdateCounter by one.</li>
 <li>If the value of the internal UpdateCounter is equal to the value set for <code>UpdateRate</code> on the measure, then the UpdateCounter loop resets to zero, and the cycle begins again. The remote resource is accessed and parsed, and the UpdateCounter is incremented by one.</li>
 </ul>
 
@@ -35,9 +35,9 @@ title: 'WebParser: How UpdateRate Works'
 
 <p>Normally, you would use an <a href="https://docs.rainmeter.net/manual/bangs/#UpdateMeasure">!UpdateMeasure</a> bang in an action to force a measure to update NOW, rather than waiting for the next normal update. This is not effective on WebParser measures, and should never be used.</p>
 
-<p>While using <code>!UpdateMeasure</code> will cause an immediate update of the measure, all that will do in the WebParser plugin is increment our internal UpdateCounter loop by one. Depending on where the plugin currently is in the  internal UpdateCounter loop, this might be from say 458 to 459, and you are only one measure update closer to your goal. If <ocde>UpdateRate</code> is the default 600, You still have 141 measure updates to go before anything happens.</p>
+<p>While using <code>!UpdateMeasure</code> will cause an immediate update of the measure, all that will do in the WebParser measure is increment our internal UpdateCounter loop by one. Depending on where the measure currently is in the  internal UpdateCounter loop, this might be from say 458 to 459, and you are only one measure update closer to your goal. If <ocde>UpdateRate</code> is the default 600, You still have 141 measure updates to go before anything happens.</p>
 
-<p><code>!UpdateMeasure</code> will not cause the plugin to immediately access the remote resource, and should never be used on WebParser measures.</p>
+<p><code>!UpdateMeasure</code> will not cause the measure to immediately access the remote resource, and should never be used on WebParser measures.</p>
 
 <p><b>So how DO you update the measure immediately?</b></p>
 
@@ -45,7 +45,7 @@ title: 'WebParser: How UpdateRate Works'
 
 <p>Example: <code>LeftMouseUpAction=[!CommandMeasure MeasureName "Update"]</code></p>
 
-<p>What an action like <code>[!CommandMeasure MeasureName "Update"]</code> does is very simple. It immediately sets the value of our internal UpdateCounter in the plugin to zero. That will cause the plugin to immediately access and parse the remote resource, and start the cycle over. This is the only effective way to do this.</p>
+<p>What an action like <code>[!CommandMeasure MeasureName "Update"]</code> does is very simple. It immediately sets the value of our internal UpdateCounter in the measure to zero. That will cause the measure to immediately access and parse the remote resource, and start the cycle over. This is the only effective way to do this.</p>
 
 <p>&nbsp;</p>
 
