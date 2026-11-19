@@ -104,7 +104,7 @@ URL=http://www.tell-my-ip.com/index.html
 RegExp=(?siU)<td.*>Your IP Address.*<td>(.*)</td>.*<td.*>Country:.*<img src="(.*)"> (.*)</td>.*<td>Region.*<td>(.*)</td>.*<td>City.*<td>(.*)</td>.*<td>ISP:.*<td>(.*)</td>.*<td>Latitude:.*<td>(.*)</td>.*<td>Longitude:.*<td>(.*)</td>
 ```
 
-<p>Use <a href="/manual/user-interface/about/#SkinsTab">About / Skins</a> to check that our measures are returning the correct values.</p>
+<p>Use <a href="/manual/user-interface/debug/#SkinsTab">Debug / Skins</a> to check that our measures are returning the correct values.</p>
 
 <div class="exampleprev">
 	<a href="!img/webparser-debugging-regexp/AboutSkins.jpg" data-fancybox><img src="!img/webparser-debugging-regexp/AboutSkins.jpg"></a>
@@ -140,7 +140,7 @@ Debug=2
 
 <h2 id="RainRegExp">RainRegExp</h2>
 
-<p>RainRexExp is an add-on utility you can use with WebParser / Rainmeter to create, test and debug your <code>RegExp</code> regular expression options. The way the tool works is to actually connect to the site you are using in your <code>URL</code> option, download the text exactly as WebParser would see it, (it basically tells the site it IS WebParser) and give you a way to build and test your <code>RegExp</code> while seeing exactly what is being set in the <code>StringIndex</code> values.</p>
+<p>RainRegExp is an add-on utility you can use with WebParser / Rainmeter to create, test and debug your <code>RegExp</code> regular expression options. The way the tool works is to actually connect to the site you are using in your <code>URL</code> option, download the text exactly as WebParser would see it, (it basically tells the site it IS WebParser) and give you a way to build and test your <code>RegExp</code> while seeing exactly what is being set in the <code>StringIndex</code> values.</p>
 
 <p>Get the tool here: <a href="https://github.com/jsmorley/RainRegExp/releases">RainRegExp Releases</a>. Simply unzip the files into any folder you desire, and run the <b>RainRegExp.exe</b> executable.</p>
 
@@ -148,7 +148,7 @@ Debug=2
 	<a href="!img/webparser-debugging-regexp/RainRegExp.jpg" data-fancybox><img src="!img/webparser-debugging-regexp/RainRegExp.jpg"></a>
 </div>
 
-<p><b>(1)</b>: Type or paste in the URL to connect to and press "Connect".</p>
+<p><b>(1)</b>: Type or paste in the URL to connect to and press "Connect", or use "Browse" to open a local HTML / text file. The screenshot uses a local copy of the example HTML with sample values.</p>
 
 <p><b>(2)</b>: The HTML / text returned by the site will be in this panel. You can scroll through it or use the "Search" capability to find the text you want to search for.</p>
 

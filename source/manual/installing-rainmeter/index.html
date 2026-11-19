@@ -3,7 +3,7 @@ layout: docs
 permalink: manual/installing-rainmeter/
 title: 'Installing Rainmeter'
 ---
-<p>Rainmeter will run on Windows 10 build 1903 and above.</p>
+<p>Rainmeter 5.0 requires <b>64-bit Windows 10 version 1903 (OS build 18362) or later, or Windows 11</b>.</p>
 
 <p>To install Rainmeter, download the latest version from <a href="https://www.rainmeter.net">rainmeter.net</a>, then follow the instructions below.</p>
 
@@ -31,7 +31,7 @@ title: 'Installing Rainmeter'
 <li>Install the program to the default or selected <b>Destination folder</b>.</li>
 <li>Create a Windows file association for the .rmskin file extension and the <a href="!installing-skins/">Rainmeter Skin Installer</a>.</li>
 <li>Create Windows Start menu item for Rainmeter.</li>
-<li>Create Windows Start menu item for Startup/Rainmeter, so Rainmeter starts with Windows. This may be disabled by unchecking <b>Launch Rainmeter on startup</b>.</li>
+<li>Create a per-user Windows startup entry, so Rainmeter starts with Windows. This may be disabled by unchecking <b>Launch Rainmeter on startup</b>.</li>
 <li>Launch Rainmeter at the end of the installation.</li>
 </ul>
 
@@ -74,10 +74,9 @@ Rainmeter will restart after the installation if it was running when the install
 
 <ul>
 <li><code>/PORTABLE=</code> : Optional - This can be set to either the default <code>/PORTABLE=0</code> or <code>/PORTABLE=1</code>. If a "portable" installation is done, the <code>/D=</code> destination folder must be set.</li>
-<li><code>/AUTOSTARTUP=</code> : Optional - This will tell the installer whether or not to add a shortcut to Rainmeter in the Startup folder for your Windows account. On a new installation, this will default to <code>/AUTOSTARTUP=1</code>. On an upgrade of an existing installation, it will default to the current setting, but may be overridden.<br>
+<li><code>/AUTOSTARTUP=</code> : Optional - This tells the installer whether to create a <code>Rainmeter</code> value under <code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code>, so Rainmeter starts with your Windows account. On a new installation, this will default to <code>/AUTOSTARTUP=1</code>. On an upgrade of an existing installation, it will default to the current setting, but may be overridden.<br>
 <i>This setting is ignored on a "portable" install, as no registry changes are made and no icons are created with a portable installation.</i></li>
 <li><code>/RESTART=</code> : Optional - By default, Rainmeter will restart after the installation if it was running when the installation was started. This option can override this behavior with <code>/RESTART=1</code> (restart Rainmeter when done), or <code>/RESTART=0</code> (do not restart Rainmeter when done).</li>
-<li><code>/VERSION=</code> : Optional - This should be set to either <code>/VERSION=64</code> or <code>/VERSION=32</code>, depending on the architecture of the Windows version you are running. On a new installation, this will default to <code>/VERSION=64</code> on 64-bit Windows and <code>/VERSION=32</code> on 32-bit Windows. On an upgrade installation, it will default to the current setting, but may be overridden.</li>
 <li><code>/LANGUAGE=</code> : Optional - If defined as a <a href="https://www.rainmeter.net/localization/#Status">4-digit numeric code</a>, this sets the installer language and saves it to the registry. Any subsequent non-silent GUI installations will use this language for the installer. Also, on new installations, this language will be saved to Rainmeter.ini as the installed language - but ONLY on new installations. This will default to <code>/LANGUAGE=1033</code> (English) on new installations.</li>
 </ul>
 
@@ -98,9 +97,9 @@ Rainmeter will restart after the installation if it was running when the install
 
 <h3 id="SilentExamples">Examples</h3>
 <pre>
-Rainmeter-4.5.0.exe /S /AUTOSTARTUP=0 /VERSION=32
-Rainmeter-4.5.0.exe /S /RESTART=0
-Rainmeter-4.5.0.exe /S /PORTABLE=1 /D=E:\MyRainmeter
+Rainmeter-5.0.0.exe /S /AUTOSTARTUP=0
+Rainmeter-5.0.0.exe /S /RESTART=0
+Rainmeter-5.0.0.exe /S /PORTABLE=1 /D=E:\MyRainmeter
 </pre><br>
 
 <h2 id="WinGetInstallation">WinGet Installation</h2>

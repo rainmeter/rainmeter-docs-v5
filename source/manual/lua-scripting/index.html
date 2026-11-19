@@ -3,7 +3,7 @@ layout: docs
 permalink: manual/lua-scripting/
 title: 'Lua Scripting'
 ---
-<p>Rainmeter has the ability to load and execute scripts in <b>Lua</b>, a <a href="https://en.wikipedia.org/wiki/Lua_(programming_language)">functional programming language</a>. Rainmeter includes the <a href="https://www.lua.org/manual/5.1/manual.html#5">Lua 5.1 standard libraries</a>, which encompass a variety of powerful features.</p>
+<p>Rainmeter has the ability to load and execute scripts in <b>Lua</b>, a <a href="https://en.wikipedia.org/wiki/Lua_(programming_language)">functional programming language</a>. Rainmeter uses LuaJIT 2.1, which is compatible with Lua 5.1 and includes the <a href="https://www.lua.org/manual/5.1/manual.html#5">standard libraries</a>.</p>
 
 <p>A <b>script</b> refers to a set of Lua functions that is associated with a <a href="!measures/script/">script measure</a>. These functions may be executed when the skin <a href="#Initialize">loads</a>, when it <a href="#Update">updates</a>, or <a href="#CommandMeasure">on command</a>.</p>
 
@@ -272,25 +272,25 @@ SKIN:SetVariable({'MyFontSize', 14}, {'MyFontColor', '255,255,255,255'})
 
 	<dt id="GetX"><code>GetX</code></dt>
 	<dd>
-		<p>Returns the current X position</a> of the skin window as a number.</p>
+		<p>Returns the current X position of the skin window in virtualized desktop coordinates. See <a href="!settings/skin-sections/#WindowXY">WindowX / WindowY</a> for the coordinate system.</p>
 		<p><b>Example:</b> <code>MyX = SKIN:GetX()</code></p>
 	</dd>
 
 	<dt id="GetY"><code>GetY</code></dt>
 	<dd>
-		<p>Returns the current Y position</a> of the skin window as a number.</p>
+		<p>Returns the current Y position of the skin window in virtualized desktop coordinates. See <a href="!settings/skin-sections/#WindowXY">WindowX / WindowY</a> for the coordinate system.</p>
 		<p><b>Example:</b> <code>MyY = SKIN:GetY()</code></p>
 	</dd>
 
 	<dt id="GetW"><code>GetW</code></dt>
 	<dd>
-		<p>Returns the current W size</a> of the skin window as a number.</p>
+		<p>Returns the skin window width in logical skin units, before DPI scaling and skin zoom.</p>
 		<p><b>Example:</b> <code>MyW = SKIN:GetW()</code></p>
 	</dd>
 
 	<dt id="GetH"><code>GetH</code></dt>
 	<dd>
-		<p>Returns the current H size</a> of the skin window as a number.</p>
+		<p>Returns the skin window height in logical skin units, before DPI scaling and skin zoom.</p>
 		<p><b>Example:</b> <code>MyH = SKIN:GetH()</code></p>
 	</dd>
 	
@@ -538,30 +538,26 @@ roundedNum = SKIN:ParseFormula('(Round('..numToRound..'))')
 </dl>
 
 <br>
-<div class="alert alert-warning alert-tight" role="alert">
-	<h2 class="alert-heading h5" id="Restrictions"><i class="fa-solid fa-bomb"></i> Alert: Restrictions</h2>
-	<p>The following Lua features are not available in Rainmeter at this time:</p>
-
-	<ul>
-		<li>External compiled libraries, such as <a href="https://github.com/Lua-cURL">Lua-cURL</a>.</li>
-		<li>The <code><a href="https://www.lua.org/manual/5.1/manual.html#pdf-require">require</a></code>, <code>os.exit</code>, <code>os.setlocale</code>, <code>io.popen</code>, and <code>collectgarbage</code> functions.</li>
-	</ul>
+<div class="alert alert-info alert-tight" role="alert">
+	<h2 class="alert-heading h5" id="Restrictions"><i class="fa-solid fa-thumbtack"></i> Lua runtime</h2>
+	<p>The LuaJIT runtime includes functions such as <code>require</code>, <code>collectgarbage</code>, <code>os.exit</code>, <code>os.setlocale</code> and <code>io.popen</code>. These are not excluded by Rainmeter. Scripts run inside the Rainmeter process; for example, calling <code>os.exit</code> exits Rainmeter.</p>
+	<p>Availability of a particular external module depends on its LuaJIT compatibility, dependencies and architecture. Inclusion of <code>require</code> does not guarantee that an arbitrary compiled Lua module will load.</p>
 </div>
 
 <div class="alert alert-warning alert-tight" role="alert">
 	<h2 class="alert-heading h5" id="Deprecated"><i class="fa-solid fa-bomb"></i> Alert: Deprecated Features</h2>
 
-	<p>The following Rainmeter-specific features have been deprecated and should not be used. They are still supported, but may be removed in future versions.</p>
+	<p>The following Rainmeter-specific features have been deprecated and should not be used. The compatibility limits for each feature are described below.</p>
 
 	<ul>
 		<li><p><code>PROPERTIES = { ... }</code><br>
-			This table was previously used to read options on the script measure. Instead, use:<br>
+			This table is supported only for non-Unicode scripts with <a href="!skins/rainmeter-section/#SyntaxVersion">SyntaxVersion=1</a>. It was previously used to read options on the script measure. Instead, use:<br>
 			<code>SELF:GetOption('MyOption')</code> or <code>SELF:GetNumberOption('MyOption')</code></p></li>
 		<li><p><code>MyMeter:SetText('...')</code><br>
 			This function was used to change a <a href="!meters/string/">string meter's</a> text. Instead, use:<br>
 			<code>SKIN:Bang('!SetOption', 'MeterName', 'Text', '...')</code></p></li>
 		<li><p><code>function GetStringValue()</code><br>
-			This function was used to set the script measure's value. Instead, use:<br>
+			This script-level callback is supported only for non-Unicode scripts with <a href="!skins/rainmeter-section/#SyntaxVersion">SyntaxVersion=1</a>. It was used to set the script measure's value. The measure-object <a href="#GetStringValue">GetStringValue()</a> method is unaffected. Instead, use:<br>
 			<code>function Update() ... return ... end</code></p></li>
 	</ul>
 </div>

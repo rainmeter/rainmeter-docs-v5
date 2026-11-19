@@ -6,6 +6,7 @@ title: 'Bangs'
 <p>Bangs are action commands that control various aspects of skins and Rainmeter. They are executed when used with <a href="!skins/option-types/#Action">action options</a> in the skin.</p>
 
 <ul>
+<li><a href="#Namespaces">Namespaced bangs and targeting</a></li>
 <li><a href="#OS">Operating System bangs</a></li>
 <li><a href="#Application">Application bangs</a></li>
 <li><a href="#Options">Option and Variable bangs</a></li>
@@ -48,6 +49,27 @@ title: 'Bangs'
 </div>
 
 
+<h2 id="Namespaces">Namespaced bangs and targeting</h2>
+<p>Rainmeter 5.0 adds namespaced bangs alongside the existing bangs. Legacy forms remain supported.</p>
+<h3 id="SkinNamespace">Skin namespace</h3>
+<p>The following aliases control skin loading and editing:</p>
+<ul>
+<li><code>!Skin:Load Config</code> or <code>!Skin:Load Config File</code>: see <a href="#ActivateConfig">!ActivateConfig</a>.</li>
+<li><code>!Skin:Unload Config</code>: see <a href="#DeactivateConfig">!DeactivateConfig</a>. Use <code>[!Skin:Unload *]</code> to unload all skins.</li>
+<li><code>!Skin:Toggle Config File</code>: see <a href="#ToggleConfig">!ToggleConfig</a>.</li>
+<li><code>!Skin:Edit Config File</code>: see <a href="#EditSkin">!EditSkin</a>.</li>
+</ul>
+<p>For bangs that act on a loaded skin, the <code>!Skin:</code> prefix also allows the skin target to come first. For example, <code>[!Skin:Move "illustro\Clock" 100 200]</code> is the target-first form of <code>[!Move 100 200 "illustro\Clock"]</code>. Use <code>Group=GroupName</code> as the target to act on all loaded skins in that group, such as <code>[!Skin:Hide "Group=Widgets"]</code>.</p>
+<p>This target-first form applies to skin bangs, not application-wide bangs such as <code>!Quit</code>. The named aliases above have their own argument rules; they are not interpreted as the general target-first form.</p>
+<h3 id="SectionNamespaces">Meter and measure namespaces</h3>
+<p>Meter- and measure-specific bangs include <a href="!meters/textedit/">!TextEdit:</a>, <a href="!measures/webparser/">!WebParser:</a>, <a href="!measures/nowplaying/">!NowPlaying:</a> and <a href="!measures/mouse/">!Mouse:</a>. Their command arguments are described on the corresponding meter or measure page.</p>
+<ul>
+<li>Put the target section before the command arguments: <code>[!TextEdit:SetText InputField "New text"]</code>.</li>
+<li>Use <code>Group=GroupName</code> instead of a section name to target matching meters or measures in a group: <code>[!TextEdit:Clear "Group=Inputs"]</code>. Only sections of the command's meter or measure type are affected.</li>
+<li>Omit the section selector when the action is running in a section of the matching type: <code>OnSubmitAction=[!TextEdit:Clear]</code> on a TextEdit meter clears that meter.</li>
+</ul>
+<p>Section bangs run in a skin context. To address a section in another loaded skin, use the skin prefix: <code>[!Skin:TextEdit:SetText "MySuite\Input" InputField "New text"]</code>. From the command line, supply that loaded-skin target explicitly.</p>
+
 <h2 id="OS">Operating System bangs</h2>
 <dl>
 	<dt id="SetClip"><code>!SetClip</code> <small>Parameter: <code><b>String</b></code></small></dt>
@@ -74,11 +96,8 @@ title: 'Bangs'
 <dl>
 	<dt id="About"><code>!About</code> <small>Parameter: <code><em>TabName</em></code></small></dt>
 	<dd>
-		Opens the <a href="!user-interface/about/">About</a> window.
-		<ul>
-		<li><code>TabName</code> (optional): Name of the tab to open. Valid values are: <code>Log</code> (default), <code>Skins</code>, <code>Plugins</code>, and <code>Version</code>. The value <code>Measures</code> is deprecated and will open the <code>Skins</code> tab.</li>
-		</ul>
-		<br><b>Example:</b> <code>!About Skins</code>
+		<p>Compatibility bang for the former About interface. With no argument, opens <a href="!user-interface/debug/">Debug</a>. Diagnostic tab names such as <code>Log</code>, <code>Skins</code> and <code>Plugins</code> select the corresponding Debug tab. <code>Measures</code> is a legacy alias for Skins.</p>
+		<p><code>!About Version</code> opens the separate <a href="!user-interface/about/">About</a> dialog with version information. Use <a href="#Debug">!Debug</a> for new diagnostic actions.</p>
 	</dd>
 
 	<dt id="Debug"><code>!Debug</code> <small>Parameters: <code><em>TabName, Config</em></code></small></dt>
@@ -117,7 +136,7 @@ title: 'Bangs'
 
 	<dt id="Log"><code>!Log</code> <small>Parameters: <code><b>String</b><em>, ErrorType</em></code></small></dt>
 	<dd>
-		Writes a message to the <a href="!user-interface/about/#LogTab">log</a>.
+		Writes a message to the <a href="!user-interface/debug/#LogTab">log</a>.
 		<ul>
 		<li><code>String</code> (required): The string to be written to the log. If the string contains spaces, enclose the string in quotes.</li>
 		<li><code>ErrorType</code> (optional): Specifies the type of error. Valid values are: <code>Notice</code> (default), <code>Error</code>, <code>Warning</code>, and <code>Debug</code>.</li>
@@ -180,17 +199,18 @@ title: 'Bangs'
 
 <h2 id="Options">Option and Variable bangs</h2>
 <dl>
-	<dt id="SetOption"><code>!SetOption</code> <small>Parameters: <code><b>Meter/Measure, Option, Value</b><em>, Config</em></code></small></dt>
+	<dt id="SetOption"><code>!SetOption</code> <small>Parameters: <code><em>Meter/Measure, </em><b>Option, Value</b><em>, Config</em></code></small></dt>
 	<dd>
 		Sets an option (ie. FontSize, Text, Formula, etc.) of a <a href="!meters/">meter</a> or <a href="!measures/">measure</a>.
 		<ul>
-		<li><code>Meter/Measure</code> (required): Name of the meter or measure section.</li>
+		<li><code>Meter/Measure</code>: Name of the meter or measure section. It may be omitted when the action has a current section; the option is then set on that section. Use an explicit section name from other contexts, including the command line.</li>
 		<li><code>Option</code> (required): Name of the option to be changed.</li>
 		<li><code>Value</code> (required): New value to be set.</li>
 		<li><code>Config</code> (optional)</li>
 		</ul>
 		<p>Details at <a href="/tips/setoption-guide/">!SetOption Guide</a>.</p>
 		<br><b>Example:</b> <code>!SetOption SomeStringMeter Text "New Text"</code>
+		<p>Within a String meter named MyStringMeter, <code>LeftMouseUpAction=[!SetOption Text "New Text"][!UpdateMeter MyStringMeter][!Redraw]</code> uses the shortened form.</p>
 	</dd>
 
 	<dt id="SetVariable"><code>!SetVariable</code> <small>Parameters: <code><b>Variable, Value</b><em>, Config</em></code></small></dt>
@@ -459,7 +479,7 @@ title: 'Bangs'
 	<dd>
 		<p>Delays execution for a defined number of milliseconds when embedded in an <a href="!skins/option-types/#Action">action option</a>. The lowest possible value is 16 milliseconds.</p><br>
 		<div class="alert alert-warning alert-tight" role="alert">
-		<h2 class="alert-heading h5" id="DelayAlert"><i class="fa-solid fa-bomb"></i> Alert:</h2><p>This is a very limited form of what is offered by the <a href="!plugins/actiontimer/">ActionTimer plugin</a>. There is no way to interrupt or cancel this short of a <code>!Refresh</code> of the skin, and nothing in the action itself can be dynamically changed during the execution of the action. It is simply a brute-force way to delay part of an action that has multiple components. This is not "threaded", and will in effect delay all processing of the entire skin while it is running.</p>
+		<h2 class="alert-heading h5" id="DelayAlert"><i class="fa-solid fa-bomb"></i> Alert:</h2><p>This delays only the remaining commands in the current action. Normal skin updates and other actions can continue while Rainmeter waits for the timer. Use the <a href="!measures/actiontimer/">ActionTimer measure</a> for more complex sequences that need explicit control.</p>
 		</div>
 		<p><b>Example:</b> <code>[!ShowMeter SomeMeter][!Delay 5000][!HideMeter SomeMeter]</code></p>
 	</dd>	

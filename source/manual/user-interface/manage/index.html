@@ -9,7 +9,7 @@ title: 'Manage'
 <li><b><a href="#SkinsTab">Skins</a></b>: Displays a <a href="#SkinsList">list</a> of installed and loaded skins. This tab is used to view <a href="#Metadata">information</a> about skins, manage skin <a href="#SkinSettings">settings</a>, and <a href="#SkinButtons">control buttons</a> to load/unload/refresh skins.</li>
 <li><b><a href="#LayoutsTab">Layouts</a></b>: Used to <a href="#SaveNewLayout">save</a> and <a href="#SavedLayouts">load</a> the current state of Rainmeter. Active and inactive skins, skin positions, and other Rainmeter settings.</li>
 <li><b><a href="#GameModeTab">Game mode</a></b>: Used to unload some or all skins when running a full-screen game, in order to save Rainmeter CPU and GPU resources while playing.</li>
-<li><b><a href="#SettingsTab">Settings</a></b>: Controls high-level Rainmeter settings such as the interface language and logging.</li>
+<li><b><a href="#SettingsTab">Settings</a></b>: Controls high-level Rainmeter settings such as the interface language, theme, default zoom and automatic updates.</li>
 </ul>
 
 <p>Manage is accessed in several ways:</p>
@@ -26,7 +26,7 @@ title: 'Manage'
 <ul>
 <li><b>Refresh all</b>: Refresh the entire Rainmeter application, including all currently active skins.</li>
 <li><b>Edit settings</b>: Manually edit the settings in Rainmeter.ini with the text editor associated with .ini files.</li>
-<li><b>Open log</b>: View the <a href="!user-interface/about/#LogTab">Log</a> tab of the Rainmeter <a href="!user-interface/about/">About</a> window.<br>&nbsp;</li>
+<li><b>Open log</b>: View the <a href="!user-interface/debug/#LogTab">Log</a> tab of the Rainmeter <a href="!user-interface/debug/">Debug</a> window.<br>&nbsp;</li>
 <li><b>Create .rmskin package</b>: Package skins(s) for <a href="!publishing-skins/">distribution</a> in the .rmskin format.</li>
 </ul>
 
@@ -43,7 +43,7 @@ title: 'Manage'
 </div>
 
 <h3 id="SkinsList">The skins list</h3>
-<p>List of currently installed skins. This contains all <a href="!skins/#FilesFolders">Skins</a> found when Rainmeter is started or refreshed.</p>
+<p>List of currently installed <a href="!skins/#FilesFolders">skins</a>. Rainmeter detects changes to the Skins folder and rescans the list when Manage is activated.</p>
 <p>The list consists of the <a href="!skins/#Config">config</a> folder for each skin, and the skin .ini files for each config.</p>
 
 <div class="next-to-float">
@@ -109,7 +109,7 @@ title: 'Manage'
 <div style="clear: both;"></div>
 
 <ul>
-<li><b>Coordinates</b>: The <a href="!settings/skin-sections/#WindowXY">window X and Y</a> location of the skin on the screen in pixels.</li>
+<li><b>Coordinates</b>: The <a href="!settings/skin-sections/#WindowXY">window X and Y</a> location of the skin in virtualized desktop coordinates. See <a href="!settings/skin-sections/#WindowXY">WindowX / WindowY</a> for the coordinate system and DPI-override compatibility behavior.</li>
 <li><b>Position</b>: The <a href="!settings/skin-sections/#AlwaysOnTop">z-position</a> of the skin on the desktop relative to other windows.</li>
 <li><b>Zoom</b>: The <a href="!settings/skin-sections/#Zoom">zoom</a> percentage (10 - 500) of the skin on the desktop. Hold down CTRL to increase - decrease by 10.</li>
 <li><b>Transparency</b>: The <a href="!settings/skin-sections/#AlphaValue">transparency</a> of the skin.</li>
@@ -234,7 +234,7 @@ title: 'Manage'
 
 <h2 id="SettingsTab">The Settings tab</h2>
 
-<p>This tab has some high level settings for the Rainmeter application, as well as controls for Rainmeter's logging capability.</p>
+<p>This tab controls the interface language and theme, default skin zoom, dragging, the notification area icon, hardware acceleration, editor and automatic updates.</p>
 
 <div class="exampleprev">
 <a href="!img/user-interface/Settings01.png" data-fancybox><img src="!img/user-interface/Settings01.png"></a>
@@ -243,22 +243,16 @@ title: 'Manage'
 <h3 id="General">General</h3>
 <ul>
 <li><b>Language:</b><br>Use the pull-down menu to select the desired language for all Rainmeter user interfaces. This does not have any effect on languages used in skins.</li>
+<li><b>Theme:</b><br>Choose <b>Auto</b> to follow the Windows application theme, or select <b>Light</b> or <b>Dark</b>. This changes Rainmeter's interface, not the appearance of skins. See <a href="!settings/rainmeter-section/#UITheme">UITheme</a>.</li>
 <li><b>Editor:</b><br>Enter or browse to the text editor that will be used when "Edit skin" or "Edit settings" is selected.</li>
-<li><b>Default zoom:</b><br>The zoom value in a percentage (10 - 500) for all loaded skins. This can be forced and not allowd to change, with the <code>Force</code> radio button. This defaults to 100%.</li>
-<li><b>Check for updates</b><br>When started, Rainmeter will check for a newer version. A notification will be raised to alert the user to the new version, and clicking on the notification will take the user to https://www.rainmeter.net in the default browser, where the new version can be manually downloaded and installed if desired.</li>
-<li><b>Automatically install updates</b><br>If both this checkbox and "Check for updates" are enabled, Rainmeter will automatically download and install any new version of the software it finds when started. If "Check for updates" is not checked, this setting is disabled and ignored.</li>
+<li><b>Default zoom:</b><br>The zoom value in a percentage (10 - 500) for all loaded skins. The <b>Force</b> checkbox locks this value and prevents individual skins from changing it. This defaults to 100%.</li>
+<li><b>Download updates automatically</b><br>When enabled, Rainmeter checks for updates five minutes after startup and then once daily, and downloads an available update. A downloaded update is installed when Rainmeter next starts. Disabling this option stops scheduled update checks. Updates can still be downloaded manually from <a href="https://www.rainmeter.net">rainmeter.net</a>.</li>
 <li><b>Disable dragging</b><br>If selected, automatically sets the <b>draggable</b> state of all active skins to prevent dragging skins with the mouse.</li>
 <li><b>Show notification area icon</b><br>Shows or hides the Rainmeter icon in the Windows notification area (system tray).<br><b>Note:</b> If all skins are unloaded, the notification area icon will appear, regardless of this setting, in order to avoid a situation where you can't interact with Rainmeter at all.<br></li>
 <li><b>Use hardware acceleration</b><br>Turns on or off the use of the GPU to accelerate drawing, and offload some processing and memory from the CPU to the GPU. This requires that Rainmeter be restarted to change.<br></li>
-<li><b>Reset statistics</b><br>When clicked, clears all saved <b>network</b> and other statistics from the Rainmeter.stat file in the <a href="!variables/built-in-variables/#SETTINGSPATH">settings folder</a>.</li>
 </ul>
 <br>
 
 <h3 id="Logging">Logging</h3>
-<p>In addition to the real-time logging of errors, warnings and notices in the <a href="!user-interface/debug/#LogTab">Log</a> tab of the Rainmeter <a href="!user-interface/debug/">Debug</a> window, Rainmeter can log activity to a <b>Rainmeter.log</b> text file, which will be created in the <a href="!variables/built-in-variables/#SETTINGSPATH">settings folder</a>.</p>
-<ul>
-<li><b>Debug mode</b><br>If selected, a more detailed logging mode will be used in the <a href="!user-interface/debug/#LogTab">Debug</a> window when <b>Log to file</b> is active. This should only be used when debugging a problem, as leaving this level of detailed logging on can impact Rainmeter performance.</li>
-<li><b>Log to file</b><br>If selected, Rainmeter will append log entries to the Rainmeter.log file while running. Unchecking this item will turn off logging, but the Rainmeter.log file will be retained.</li>
-<li><b>Show log file</b><br>If clicked, the Rainmeter.log file will be loaded in the text editor associated with .log files.</li>
-<li><b>Delete log file</b><br>If clicked, the Rainmeter.log file will be deleted. If <b>Log to file</b> is currently active, it will automatically be turned off.</li>
-</ul>
+<p>Logging controls are in the <a href="!user-interface/debug/#LogTab">Log tab of Debug</a>. Use <b>Open log</b> to open it. The <b>Type</b> menu controls message filtering and Debug mode; the <b>Log file</b> menu controls saving, viewing and deleting <code>Rainmeter.log</code>.</p>
+<p>To reset network statistics, use <b>Reset statistics</b> in <a href="!user-interface/debug/#NetworkTab">Debug &gt; Network</a> or the <a href="!bangs/#ResetStats">!ResetStats</a> bang.</p>

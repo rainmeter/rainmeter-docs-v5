@@ -91,7 +91,8 @@ title: 'Built-In Variables'
 	<dt id="SKINPXYWH"><code>[$SkinPhysicalX]</code>,&nbsp;&nbsp;<code>[$SkinPhysicalY]</code>,&nbsp;&nbsp;<code>[$SkinPhysicalW]</code>,&nbsp;&nbsp;<code>[$SkinPhysicalH]</code></dt>
 	<dd>
 		Position and size of the current skin.<br><br>
-		Equal to e.g. [$SkinW] multiplied by [$SkinZoomFactor] and [$SkinDpiFactor]. Represents the actual pixel position or width / height on the physical screen.<br><br>
+		<code>[$SkinPhysicalW]</code> and <code>[$SkinPhysicalH]</code> give the size in physical screen pixels, after multiplying the logical size by <code>[$SkinZoomFactor]</code> and <code>[$SkinDpiFactor]</code> and rounding.<br><br>
+		<code>[$SkinPhysicalX]</code> and <code>[$SkinPhysicalY]</code> give the physical desktop position. Position is converted between desktop coordinate spaces; it is not obtained by multiplying SkinX or SkinY by the zoom and DPI factors.<br><br>
 		<b>Note:</b> These variables are <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where they are used to reflect changing values.
 	</dd>
 	
@@ -119,7 +120,7 @@ title: 'Built-In Variables'
 	<dt id="SKINZPOS"><code>[$SkinZPos]</code></dt>
 	<dd>
 		<a href="https://docs.rainmeter.net/manual/settings/skin-sections/#AlwaysOnTop">Z-Position</a> (front to back) of the current skin.<br><br><b>Note:</b> This variable is <a href="!variables/#DynamicVariables">dynamic</a>, and will require <code>DynamicVariables=1</code> where it is used to reflect changing values.<br>
-		<b>Note:</b> This variables name is equal to and replace the deprecated: #ZPOS#
+		<b>Note:</b> This variable replaces the deprecated <code>#CURRENTCONFIGZPOS#</code>.
 	</dd>
 	
 	<dt id="SKINVISIBLE"><code>[$SkinVisible]</code></dt>

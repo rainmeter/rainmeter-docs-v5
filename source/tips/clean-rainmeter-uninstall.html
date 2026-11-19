@@ -24,7 +24,8 @@ title: 'Clean Rainmeter Uninstall'
 	C:\Users\<em>YourName</em>\Documents\Rainmeter<br><br>
 	Rainmeter settings, Layouts and 3rd-party plugins:<br>
 	C:\Users\<em>YourName</em>\Appdata\Roaming\Rainmeter</em></li><br>
-	<li>Delete the Rainmeter shortcut icon from the Windows Startup folder:<br><br>
+	<li>Rainmeter 5.0 uses the <code>Rainmeter</code> value under <code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code> to start with Windows. The uninstaller normally removes this entry. If it remains after uninstalling, remove that value.</li>
+	<li>For older installations, delete any remaining Rainmeter shortcut from the Windows Startup folder:<br><br>
 	If installed for your user account<br>
 	C:\Users\<em>YourName</em>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup<br><br>
 	If installed for "all users"<br>

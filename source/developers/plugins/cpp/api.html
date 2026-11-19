@@ -315,3 +315,36 @@ RmLogF(rm, LOG_NOTICE, L"I am a '%s' log message with a source", notice.c_str())
 		```
 	</dd>
 </dl>
+
+<h2 id="SkinSettings">Skin scale and settings (API version 2)</h2>
+<p>Use an API header that includes the Rainmeter 5.0 interfaces. Each query takes the plugin measure pointer <code>rm</code>. Use <a href="!plugin/cpp/#HandleSkinSettingChange">HandleSkinSettingChange</a> to react when a setting changes.</p>
+<dl>
+	<dt id="RmApiVersion"><code>RmApiVersion</code> <small><code>int RmApiVersion()</code></small></dt>
+	<dd>
+		<p>Returns the plugin API version. API version 2 provides the skin setting queries below. On older versions of Rainmeter, the current wrapper returns 1.</p>
+	</dd>
+	<dt id="GetSkinScale"><code>RmGetSkinScale</code> <small><code>float RmGetSkinScale(void* rm)</code></small></dt>
+	<dd>
+		<p>Returns the effective scale: the skin DPI scale multiplied by its zoom scale. Multiply a logical skin size by this factor to obtain its physical screen size. With the current API wrapper on Rainmeter versions before API version 2, returns <code>1.0</code>.</p>
+	</dd>
+	<dt id="GetSkinDpiScale"><code>RmGetSkinDpiScale</code> <small><code>float RmGetSkinDpiScale(void* rm)</code></small></dt>
+	<dd>
+		<p>Returns the window DPI scale. For example, 150% display scaling returns 1.5. With the current API wrapper on Rainmeter versions before API version 2, returns <code>1.0</code>.</p>
+	</dd>
+	<dt id="GetSkinZoomScale"><code>RmGetSkinZoomScale</code> <small><code>float RmGetSkinZoomScale(void* rm)</code></small></dt>
+	<dd>
+		<p>Returns the skin zoom scale. For example, 200% skin zoom returns 2.0. With the current API wrapper on Rainmeter versions before API version 2, returns <code>1.0</code>.</p>
+	</dd>
+	<dt id="GetSkinTransparency"><code>RmGetSkinTransparency</code> <small><code>int RmGetSkinTransparency(void* rm)</code></small></dt>
+	<dd>
+		<p>Returns the skin transparency setting as an alpha value from 0 (transparent) to 255 (opaque), as used by !SetTransparency. With the current API wrapper on Rainmeter versions before API version 2, returns <code>255</code>.</p>
+	</dd>
+	<dt id="GetSkinClickThrough"><code>RmGetSkinClickThrough</code> <small><code>bool RmGetSkinClickThrough(void* rm)</code></small></dt>
+	<dd>
+		<p>Returns whether the skin is set to click through. With the current API wrapper on Rainmeter versions before API version 2, returns <code>false</code>.</p>
+	</dd>
+	<dt id="GetSkinDraggable"><code>RmGetSkinDraggable</code> <small><code>bool RmGetSkinDraggable(void* rm)</code></small></dt>
+	<dd>
+		<p>Returns whether the skin is set to be draggable. With the current API wrapper on Rainmeter versions before API version 2, returns <code>true</code>.</p>
+	</dd>
+</dl>

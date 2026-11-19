@@ -12,6 +12,12 @@ title: '[Rainmeter] section'
 
 <h2 id="General">General Options</h2>
 <dl>
+	<dt id="SyntaxVersion"><code>SyntaxVersion</code> <small>Default: <code>1</code></small></dt>
+	<dd>
+		<p>Selects the skin syntax version. Version <code>1</code> retains legacy behavior. Version <code>2</code> enables accurate text rendering regardless of the AccurateText option, uses <code>[%VariableName]</code> for <a href="!variables/#EnvironmentVariables">environment variables</a>, and does not expand legacy <code>%VariableName%</code> forms.</p>
+		<p>Version 2 does not support the Image meter's legacy <code>Path</code> option, WebParser's standalone <code>ForceReload</code> option, or the deprecated Lua <code>PROPERTIES</code> table and script-level <code>GetStringValue()</code> callback. Use <code>ImagePath</code>, <code>Flags=ForceReload</code>, and the current Lua APIs instead. A skin requesting a newer syntax version than Rainmeter supports is not loaded.</p>
+	</dd>
+
 	<dt id="Update"><code>Update</code> <small>Default: <code>1000</code></small></dt>
 	<dd>
 		<p>Defines the update interval of the skin in milliseconds. On each update, measures and meters are updated, and the skin is redrawn when visible.</p>
@@ -61,9 +67,9 @@ Update=1000 | Invisible (60*1000)
 		<p><b>Note:</b> This option is designed to set a default UpdateDivider for all measures and meters in the skin. It can be overridden by setting <code>UpdateDivider</code> on individual measures or meters. This option should be used when a low <code>Update</code> is desired to support animations or other skin elements requiring rapid update, while avoiding having to manually set an UpdateDivider on a great many other measures and meters that do not need to be updated as quickly.</p>
 	</dd>
 
-	<dt id="AccurateText"><code>AccurateText</code> <small>Default: <code>0</code></small></dt>
+	<dt id="AccurateText"><code>AccurateText</code> <small>Default: <code>0</code> with SyntaxVersion=1</small></dt>
 	<dd>
-		<p>If set to <code>1</code>, String meters are measured and rendered using improved padding and character spacing similar to that provided by Direct2D.</p>
+		<p>If set to <code>1</code>, String meters are measured and rendered using improved padding and character spacing similar to that provided by Direct2D. With <a href="#SyntaxVersion">SyntaxVersion=2</a>, accurate text rendering is always enabled, even if AccurateText is omitted or set to 0.</p>
 	</dd>
 
 	<dt id="DynamicWindowSize"><code>DynamicWindowSize</code> <small>Default: <code>0</code></small></dt>

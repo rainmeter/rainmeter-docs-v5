@@ -75,17 +75,15 @@ MyVar2=https://www.#MyVar1#.net/
 
 <p>Note that any <code>[MeasureName]</code> used in a bang as a <a href="!variables/section-variables/">Section Variable</a> is automatically dynamic, and <code>DynamicVariables=1</code> is not required.</p>
 
-<p>In addition, there are some [Sections] and <a href="!plugins/">plugins</a> which do not support dynamic variables at this time. The following are sections where dynamic variables cannot be used:</p>
+<p>The following skin sections do not support dynamic variables:</p>
 
 <ul>
 	<li><a href="!skins/rainmeter-section/">[Rainmeter]</a></li>
 	<li><a href="!variables/#Section">[Variables]</a></li>
 	<li><a href="!skins/metadata-section/">[Metadata]</a></li>
-	<li><a href="!plugins/deprecated/itunes/">iTunes</a></li>
-	<li><a href="!measures/mediakey/">MediaKey</a></li>
-	<li><a href="!plugins/power/">Power</a></li>
-	<li>3rd-party plugins are not guaranteed to support dynamic variables.</li>
 </ul>
+
+<p>Built-in measures such as Power and iTunes use the general DynamicVariables option. Individual options may have limitations described on their measure pages. Support in third-party plugins depends on the plugin.</p>
 
 <p>When a meter or measure has dynamic variables enabled, Rainmeter uses marginally more processor power. This difference is negligible for most skins, but it may be noticeable in very large, complex skins with many dynamic variables, or on <a href="!meters/image/">image</a> meters with very large images. For this reason, it is recommended to use dynamic variables only when necessary, and use alternatives such as <a href="!bangs/#SetOption">!SetOption</a> in other cases.</p>
 
@@ -103,11 +101,12 @@ MyVar2=https://www.#MyVar1#.net/
 
 <h2 id="EventVariables">Event Variables</h2>
 
-<p>Some <a href="!skins/option-types/#Action">action options</a> allow the use of special variables that are related to the specific event that triggers the action. These variables are referenced by surrounding the name with dollar signs (<code>$</code>), as in <code>$Foo$</code>. Event variables are evaluated at the time the action is triggered, used to execute the action, and then immediately discarded. For example, when using a command with the <a href="!plugins/inputtext/">InputText</a> plugin, the event variable <code>$UserInput$</code> refers to the string that was entered into a text input box by the user.</p>
+<p>Some <a href="!skins/option-types/#Action">action options</a> allow the use of special variables that are related to the specific event that triggers the action. These variables are referenced by surrounding the name with dollar signs (<code>$</code>), as in <code>$Foo$</code>. Event variables are evaluated at the time the action is triggered, used to execute the action, and then immediately discarded. For example, when using a command with the <a href="!measures/inputtext/">InputText</a> measure, the event variable <code>$UserInput$</code> refers to the string that was entered into a text input box by the user.</p>
 
 <h2 id="EnvironmentVariables">Environment Variables</h2>
 
-<p>Windows <a href="https://en.wikipedia.org/wiki/Environment_variable#Windows">environment variables</a> can be referenced as variables in Rainmeter by using the variable name contained between percent signs (<code>%</code>), such as <code>%APPDATA%</code> or <code>%SystemDrive%</code>. To see a complete list of environment variables available on your system, open a Windows command prompt (cmd.exe) and type <code>set</code>.</p>
+<p>Windows <a href="https://en.wikipedia.org/wiki/Environment_variable#Windows">environment variables</a> can be referenced with <code>[%VariableName]</code>, such as <code>[%APPDATA]</code> or <code>[%SystemDrive]</code>. To list environment variables on your system, open a Windows command prompt (cmd.exe) and type <code>set</code>.</p>
+<p>Legacy forms such as <code>%APPDATA%</code> and <code>%SystemDrive%</code> are expanded with the default <a href="!skins/rainmeter-section/#SyntaxVersion">SyntaxVersion=1</a>. With <code>SyntaxVersion=2</code>, those legacy forms remain literal; use the bracketed forms instead.</p>
 
 <h2 id="Escape">Escaping Variables</h2>
 

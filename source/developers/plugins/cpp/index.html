@@ -89,6 +89,10 @@ PLUGIN_EXPORT void Finalize(void* data)
 	</dd>
 </dl>
 
+<h2 id="Scaling">DPI and skin zoom</h2>
+<p>Exporting <code>HandleSkinSettingChange</code> identifies a plugin as DPI-aware. Such a plugin reads logical skin values and is responsible for applying the effective scale when it needs physical pixel sizes. The <a href="!plugin/cpp/api/#SkinSettings">API version 2 scale queries</a> provide the current DPI, zoom and combined scale.</p>
+<p>For plugins without that export, Rainmeter provides compatibility scaling when they read options named <code>X</code>, <code>Y</code>, <code>W</code>, <code>H</code> or <code>FontSize</code> through <code>RmReadString</code> or <code>RmReadFormula</code>. Do not multiply those compatibility-scaled values a second time. The FromSection readers do not apply that automatic conversion.</p>
+
 <h2 id="Optional">Optional functions</h2>
 <dl>
 	<dt id="GetString"><code>GetString</code> <small><code>LPCWSTR GetString(void* data)</code></small></dt>
@@ -135,10 +139,26 @@ PLUGIN_EXPORT void ExecuteBang(void* data, LPCWSTR args)
 }
 ```
 	</dd>
+	<dt id="HandleSkinSettingChange"><code>HandleSkinSettingChange</code> <small><code>void HandleSkinSettingChange(void* data, void* rm, RmSkinSettingChange setting)</code></small></dt>
+	<dd>
+		<p>Optional exported callback available with Rainmeter 5.0. Called when the skin's effective scale, transparency, click-through setting or draggable setting changes. <code>data</code> is the plugin's measure data and <code>rm</code> is the plugin measure pointer.</p>
+		<p>The setting values are <code>0</code> Scale, <code>1</code> Transparency, <code>2</code> ClickThrough and <code>3</code> Draggable. These are named by the <code>RmSkinSettingChange</code> enum in RainmeterAPI.h.</p>
+		<p>Query the current value through the <a href="!plugin/cpp/api/#SkinSettings">skin scale and settings API</a>. Read the initial values during Initialize or Reload as well; do not rely on receiving a callback for initialization.</p>
+``` cpp
+PLUGIN_EXPORT void HandleSkinSettingChange(void* data, void* rm, RmSkinSettingChange setting)
+{
+    if (setting == RmSkinSettingChange::Scale)
+    {
+        float scale = RmGetSkinScale(rm);
+        // Recalculate physical sizes used by the plugin from this scale.
+    }
+}
+```
+	</dd>
 	<dt id="Custom"><code>Custom function</code> <small><code>LPCWSTR <em>func</em>(void* data, const int argc, const WCHAR* argv[])</code></small></dt>
 	<dd>
 		<p>You can define a custom function to be used in a section variable. The name of the function is the name to be used in the skin file as a section variable. The function <u>must</u> be exported and the function prototype must be: <code>LPCWSTR <em>func</em>(void*data, const int argc, const WCHAR* argv[])</code>.</p>
-		<p>The function name can be anything <b>except</b> the following: <code>Initialize</code>, <code>Reload</code>, <code>Update</code>, <code>Finialize</code>, <code>GetString</code>, <code>ExecuteBang</code>, <code>Update2</code>, <code>GetPluginAuthor</code>, and <code>GetPluginVersion</code>.</p>
+		<p>The function name can be anything <b>except</b> the following: <code>Initialize</code>, <code>Reload</code>, <code>Update</code>, <code>Finialize</code>, <code>GetString</code>, <code>ExecuteBang</code>, <code>HandleSkinSettingChange</code>, <code>Update2</code>, <code>GetPluginAuthor</code>, and <code>GetPluginVersion</code>.</p>
 		<p>The skin will call this function (as a section variable) like this: <code>[PluginMeasure:func(someArg1, someArg2)]</code>.</p>
 		<p>
 			<ul>
