@@ -8,7 +8,7 @@ title: 'SVG meter'
 
 <h2 id="Options">Options</h2>
 
-<p>All of the <a href="!meters/general-options/">General Meter Options</a> are available on the meter.<p>
+<p>All of the <a href="!meters/general-options/">General Meter Options</a> are available on the meter.</p>
 
 	<dt id="SVGImage"><code>SVGImage</code></dt>
 	<dd>
@@ -20,26 +20,38 @@ title: 'SVG meter'
 		<i>As with all option values in Rainmeter, the code must be all on one line, with no line breaks.</i></li>
 		</ul>
 		
-		<br><a href="https://www.w3schools.com/graphics/svg_intro.asp">SVG code documentation</a><br><br>
+		<br>See <a href="#SVGSupport">SVG support and limitations</a> for the elements and attributes that Rainmeter can render.<br><br>
 		
 		Examples:<br>
 		SVGImage=#@#Images\RedDot.svg<br>
-		SVGImage=&lt;svg height="100" width="100"&gt;&lt;id "dot" circle r="45" cx="50" cy="50" fill="red" /&gt;&lt;/svg&gt;
+		SVGImage=&lt;svg height="100" width="100"&gt;&lt;circle id="dot" r="45" cx="50" cy="50" fill="red" /&gt;&lt;/svg&gt;
 	</dd>
 	
 	<dt id="Attribute"><code>Attribute, Attribute2, Attribute3...</code> <small>Format: <code>selector | attribute | value</code></small></dt>
 	<dd>
 		One or more changes to be applied to elements in the SVG file or embedded code.<br><br>
 		
-		Use <code>svg</code> as the selector to target the root element, or <code>*</code> to apply the attribute to every element in the document, or any <b>id name</b> from the document (e.g. &lt;id "dot" circle...&gt;).<br><br>
+		Use <code>svg</code> as the selector to target the root element, or <code>*</code> to apply the attribute to every element in the document, or any <b>id name</b> from the document (e.g. &lt;circle id="dot"...&gt;).<br><br>
 		
-		<a href="https://learn.microsoft.com/en-us/windows/win32/direct2d/svg-support#supported-svg-elements-and-attributes">SVG supported elements and attributes</a><br><br>
+		See <a href="#SVGSupport">SVG support and limitations</a> for the attributes that Direct2D recognizes.<br><br>
 		
 		Examples:<br>
 		Attribute=svg | opacity | 0.75<br>
 		Attribute2=* | stroke-width | 5<br>
 		Attribute3=dot | fill | #fce3c3
 	</dd>
+
+<h2 id="SVGSupport">SVG support and limitations</h2>
+
+<p>Rainmeter uses Windows Direct2D to render SVG files and inline SVG code. Direct2D supports a subset of SVG 1.1 and ignores unsupported elements and attributes. An SVG that displays correctly in a browser may therefore appear incomplete in Rainmeter.</p>
+
+<ul>
+	<li>Supported features include shapes such as <code>&lt;rect&gt;</code> and <code>&lt;circle&gt;</code>, vector paths, fills, strokes, linear and radial gradients, and clipping paths.</li>
+	<li>Text elements such as <code>&lt;text&gt;</code> and <code>&lt;tspan&gt;</code>, as well as SVG filters and masks, are ignored. Convert fixed lettering to paths in a vector editor or use a <a href="!meters/string/">String meter</a> for text that changes.</li>
+	<li>Images referenced by <code>&lt;image&gt;</code> must be embedded as base64 data. Direct2D ignores references to external images.</li>
+</ul>
+
+<p>For the full list of supported elements, attributes, and length units, see <a href="https://learn.microsoft.com/en-us/windows/win32/direct2d/svg-support">Microsoft's Direct2D SVG support reference</a>.</p>
 
 <h2>Example</h2>
 		
