@@ -59,6 +59,13 @@ title: 'Skin sections'
 		<br><p>As an example, by setting <code>WindowX</code>, <code>WindowY</code>, <code>AnchorX</code> and <code>AnchorY</code> all to 50% the config will be truly centered in the primary monitor regardless of screen resolution or aspect ratio.</p>
 	</dd>
 
+	<dt id="Zoom"><code>Zoom</code> <small>Default: Inherits <code>DefaultZoom</code></small></dt>
+	<dd>
+		<p>Sets the skin's zoom as a whole-number percentage from <code>10</code> to <code>500</code>. For example, <code>Zoom=125</code> in the skin's config section of <code>Rainmeter.ini</code> displays the skin at 125% of its normal size for the monitor's DPI. The skin expands or contracts around its <a href="#AnchorXY">anchor point</a>.</p>
+		<p>If <code>Zoom</code> is omitted, the skin uses <a href="!settings/rainmeter-section/#DefaultZoom">DefaultZoom</a> from the global <code>[Rainmeter]</code> section. Setting <a href="!settings/rainmeter-section/#ForceDefaultZoom">ForceDefaultZoom</a> to <code>1</code> makes the global value take precedence over any saved per-skin zoom.</p>
+		<p>Rainmeter saves per-skin zoom changes in this setting. To return a skin to the global default, remove its <code>Zoom</code> entry or select <b>Default</b> under <b>Settings &gt; Zoom</b> in the skin's context menu. See <a href="!scale-and-zoom/#Zoom">Zooming skins</a>.</p>
+	</dd>
+
 	<dt id="SavePosition"><code>SavePosition</code> <small>Default: <code>1</code></small></dt>
 	<dd>
 		<p>If set to <code>1</code>, changes to the window position will be saved to Rainmeter.ini.</p>
