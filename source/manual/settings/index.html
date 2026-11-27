@@ -51,30 +51,27 @@ Key=Value
 
 <p>This file records Windows' network usage statistics over time. These statistics are used by the <a href="!measures/net/">Net measures</a> to display "cumulative" network usage data. The contents of Rainmeter.stats may be cleared using the <a href="!bangs/#ResetStats">!ResetStats bang</a>.</p>
 
-<h3 id="NewSkinTempate">NewSkin.template</h3>
+<span id="NewSkinTempate"></span>
+<h3 id="Templates">Templates</h3>
 
-<p>This file contains a template for a new skin used by the <a href="!user-interface/manage/#CreateNewSkin">Create new skin</a> button in Manage. This can be <a href="!user-interface/manage/#SkinsTab">edited</a> as desired.</p>
+<p>Named <code>.template</code> files are stored in the <code>Templates</code> subfolder of the Rainmeter settings folder. Create, edit, and delete templates in the <a href="!user-interface/manage/new-skin/#ManagingTemplates">Template tab of the New Skin dialog</a>. Rainmeter saves the selected template in <a href="#RainmeterData">Rainmeter.data</a>.</p>
+
+<p>When the dialog finds an older <code>NewSkin.template</code> in the settings folder, it moves it into <code>Templates</code>.</p>
 
 <h3 id="Layouts">Layouts</h3>
 
 <p>A <b>layout</b> (formerly <b>theme</b>) is a saved "session" or "state". The user can create a layout using the <a href="!user-interface/manage/#LayoutsTab">Manager</a>, which copies the settings in <a href="#RainmeterIni">Rainmeter.ini</a> to the layout file. These settings can later be restored using the Manager or the <a href="!bangs/#LoadLayout">!LoadLayout bang</a>. Layouts may also be <a href="!installing-skins/">installed with 3rd-party skins</a>.</p>
 
-<p>Global options under [Rainmeter] are not replaced when a layout is loaded, preserving local settings such as:</p>
+<p>Loading a layout replaces the current Rainmeter.ini with the layout's copy. Rainmeter then restores the following settings from the previous <code>[Rainmeter]</code> section:</p>
 <ul>
-<li>ConfigEditor</li>
-<li>DisableAutoUpdate</li>
-<li>DisableRDP</li>
-<li>DisableVersionCheck</li>
-<li>HardwareAcceleration</li>
-<li>Language</li>
-<li>Logging</li>
-<li>NetInSpeed</li>
-<li>NetOutSpeed</li>
-<li>NormalStayDesktop</li>
-<li>SelectedColor</li>
-<li>SkinPath</li>
-<li>TrayExecuteM, TrayExecuteR, TrayExecuteDM, TrayExecuteDR</li>
+<li><code>SkinPath</code>, <code>ConfigEditor</code>, <code>Language</code>, and <code>UITheme</code></li>
+<li><code>Logging</code>, <code>DisableAutoUpdate</code>, and the compatibility setting <code>DisableVersionCheck</code></li>
+<li><code>NormalStayDesktop</code>, <code>SelectedColor</code>, and <code>HardwareAcceleration</code></li>
+<li><code>DefaultZoom</code> and <code>ForceDefaultZoom</code></li>
+<li><code>TrayExecuteM</code>, <code>TrayExecuteR</code>, <code>TrayExecuteDM</code>, and <code>TrayExecuteDR</code></li>
 </ul>
+
+<p>Loading <code>@Backup</code> restores the saved INI directly and skips this step.</p>
 
 <h3 id="Plugins">Plugins</h3>
 

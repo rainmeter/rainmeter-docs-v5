@@ -3,12 +3,12 @@ layout: docs
 permalink: snippets/autoscale/
 title: 'AutoScale'
 ---
-<p>Automatically scales a number of bytes with an optional number of decimal places. Returns a second string value of the scale suffix.</p>
+<p>Automatically scales a number of bytes with an optional number of decimal places. Returns a second string value of the scale suffix. The first argument accepts a number or a numeric string.</p>
 
 <div class="noscroll">
 ``` lua
 function AutoScale(num, idp)
-	assert(tonumber(num), 'AutoScale expects a number.')
+	num = assert(tonumber(num), 'AutoScale expects a number.')
 	local scales = {'B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'}
 	local places = idp or 0
 	local scale = ""
@@ -26,7 +26,7 @@ function AutoScale(num, idp)
 end
 
 function Round(num, idp)
-	assert(tonumber(num), 'Round expects a number.')
+	num = assert(tonumber(num), 'Round expects a number.')
 	local mult = 10 ^ (idp or 0)
 	if num >= 0 then
 		return math.floor(num * mult + 0.5) / mult

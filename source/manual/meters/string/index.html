@@ -190,14 +190,14 @@ Text=This is text containing %1 and %2.
 		<p>If set to <code>1</code>, the value of bound measures are converted to a <a href="!measures/#Percentage">percentage</a>. This is useful if a measure does not return a percentage value, but either automatically defines a valid "range" of values (e.g. <a href="!measures/freediskspace/">FreeDiskSpace</a>) or when the <a href="!measures/general-options/#MinValue">MinValue</a> and/or <a href="!measures/general-options/#MaxValue">MaxValue</a> options are manually set on the measure.</p>
 	</dd>
 
-	<dt id="NumOfDecimals"><code>NumOfDecimals</code> <small>Default: <code>0</code></small></dt>
+	<dt id="NumOfDecimals"><code>NumOfDecimals</code> <small>Default: <code>-1</code> (automatic)</small></dt>
 	<dd>
-		<p>Number of decimals to display with numerical measure values.</p>
+		<p>Number of decimals to display for numeric measure values. With <code>-1</code>, Rainmeter shows zero decimals when <code>Scale</code> has no decimal point and either <code>Percentual=1</code> or <code>AutoScale=0</code>. Otherwise it shows one decimal.</p>
 	</dd>
 
 	<dt id="Scale"><code>Scale</code> <small>Default: <code>1</code></small></dt>
 	<dd>
-		<p>Scaling factor used for the measure values. The measure value is divided by the specified value. If the specified value has a decimal point (e.g. <code>1000.0</code>), the result will also display decimals.</p>
+		<p>Scaling factor used for the measure values. The measure value is divided by the specified value. A decimal point in the specified value (for example, <code>1000.0</code>) affects automatic precision. See <a href="#NumOfDecimals">NumOfDecimals</a>.</p>
 
 		<p><b>Note:</b> If <code>AutoScale</code> is enabled, this option is ignored.</p>
 	</dd>
@@ -213,7 +213,7 @@ Text=This is text containing %1 and %2.
 		<li><code>2k</code>: Scales by 1000 with kilo as the lowest unit.</li>
 		</ul>
 
-		<p>By default the value will be displayed with one decimal point of precision. Use <a href="#NumOfDecimals">NumOfDecimals</a> to control this.</p>
+		<p>Use <a href="#NumOfDecimals">NumOfDecimals</a> to control display precision.</p>
 		
 		<p><b>Note:</b> The value returned by AutoScale adds a space between the scaled number and the scale unit abbreviation. To remove this space simply add <code>Substitute=" ":""</code> to the Measure that the AutoScale is being applied to.</p>
 	</dd>

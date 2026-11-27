@@ -79,7 +79,7 @@ title: 'RunCommand measure'
 
 		<p><b>Note:</b> Care should be taken to properly "quote" commands with a path or parameters having spaces in values.</p>
 
-		<p><b>Example:</b> <code>Parameter=wmic os get lastbootuptime</code>.</p>
+		<p><b>Example:</b> <code>Parameter=echo Hello from Rainmeter</code>.</p>
 	</dd>
 
 	<dt id="State"><code>State</code> <small>Default: <code>Hide</code></small></dt>
@@ -90,15 +90,15 @@ title: 'RunCommand measure'
 		 Attempts to hide the program's window from being visible. This option is not recommended for GUI programs and/or programs that expect any form of input.</li>
 		<li>Show<br>
 		Shows the program's normal window.</li>
-		<li>Minimized<br>
+		<li><code>Minimize</code><br>
 		 Attempts to start the program minimized.</li>
-		<li>Maximized<br>
+		<li><code>Maximize</code><br>
 		 Attempts to start the program maximized.</li>
 		</ul>
 
 		<p><b>Notes:</b> If <code>State=Hide</code>, the measure will automatically "kill" any program it executed, when either the skin is refreshed or unloaded, or Rainmeter is exited.</p>
 
-		<p>A few programs with a windowed GUI user-interface (for instance Calc.exe) explicitly show themselves and will not respond to initial state requests like Hidden or Minimized. This will be a rare problem, as normally there is no useful reason to use this measure to execute GUI programs from the command line. They will likely take no desirable independent action, and will have no STDOUT "output" in any case.</p>
+		<p>A few programs with a windowed GUI user-interface (for instance Calc.exe) explicitly show themselves and will not respond to initial state requests such as <code>Hide</code> or <code>Minimize</code>. This will be a rare problem, as normally there is no useful reason to use this measure to execute GUI programs from the command line. They will likely take no desirable independent action, and will have no STDOUT "output" in any case.</p>
 	</dd>
 
 	<dt id="FinishAction"><code>FinishAction</code> <small>Default: <code>None</code></small></dt>
@@ -145,6 +145,7 @@ title: 'RunCommand measure'
 </div>
 
 <h2 id="MeasureCommands">Measure Commands</h2>
+<p>Use <code>[!RunCommand:Run MeasureName]</code> to start the program, <code>[!RunCommand:Close MeasureName]</code> to request a normal close, or <code>[!RunCommand:Kill MeasureName]</code> to terminate it. Replace <code>MeasureName</code> with the name of the RunCommand measure. The <a href="!bangs/#CommandMeasure">!CommandMeasure</a> forms below also work.</p>
 <dl>
 	<dt id="Run"><code>Run</code></dt>
 	<dd>

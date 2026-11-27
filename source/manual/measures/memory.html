@@ -3,9 +3,12 @@ layout: docs
 permalink: manual/measures/memory/
 title: 'Memory measures'
 ---
-<p><code>Measure=PhysicalMemory</code> measures Physical Memory (equal to RAM).<br>
-	<code>Measure=SwapMemory</code> measures Swap Memory (equal to RAM + Pagefile.sys).<br>
-	<code>Measure=Memory</code> measures Virtual Memory (equal to RAM + RAM + Pagefile.sys).</p>
+<ul>
+	<li><code>Measure=PhysicalMemory</code> reports physical RAM. It uses <code>ullTotalPhys</code> for the total and subtracts <code>ullAvailPhys</code> for used RAM.</li>
+	<li><code>Measure=SwapMemory</code> uses <code>ullTotalPageFile</code> for the commit limit reported to Rainmeter. Its used value is that limit minus <code>ullAvailPageFile</code>.</li>
+	<li><code>Measure=Memory</code> adds the physical-memory and commit figures used by the other two measures.</li>
+</ul>
+<p>Windows can limit the commit figures for the calling process. These figures describe memory commitment, so use a different source to measure the size or disk usage of a page file. See <a href="https://learn.microsoft.com/windows/win32/api/sysinfoapi/ns-sysinfoapi-memorystatusex">the Windows memory status fields</a>.</p>
 
 <p>By default the value will be the amount of used memory. To obtain the free memory, add <a href="!measures/general-options/#InvertMeasure">InvertMeasure=1</a>.</p>
 

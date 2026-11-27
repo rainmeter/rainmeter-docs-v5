@@ -3,7 +3,7 @@ layout: docs
 permalink: snippets/round/
 title: 'Round'
 ---
-<p>Adds a function to the math library to round a number (num) to any optional number of decimal places (idp).</p>
+<p>Adds a function to the math library to round a number (num) to any optional number of decimal places (idp). The first argument accepts a number or a numeric string.</p>
 
 <p><code>math.round(num, idp)</code></p>
 
@@ -11,7 +11,7 @@ title: 'Round'
 ``` lua
 function math.round(num, idp)
 
-	assert(tonumber(num), 'Round expects a number.')
+	num = assert(tonumber(num), 'Round expects a number.')
 
 	local mult = 10 ^ (idp or 0)
 	if num >= 0 then

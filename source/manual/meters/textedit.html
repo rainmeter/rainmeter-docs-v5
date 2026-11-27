@@ -17,7 +17,7 @@ title: 'TextEdit meter'
 
 <p>Supports standard Windows text field conventions, including CTRL-Z (undo), clipboard pasting, arrow-key navigation, and selection for copy, cut, or delete operations.</p>
 
-<h2 id="Multiline">Single or Multiline Input</h2>
+<h2 id="SingleOrMultiline">Single or Multiline Input</h2>
 
 <p>The meter can be designed as either a single line input "field", or a multiline input "box".</p>
 
@@ -29,7 +29,7 @@ title: 'TextEdit meter'
 
 <p>The width of the meter will grow as text is entered, or you may set a fixed input field size with <code>W</code> or limit the growing input field with <code>ClipStringW</code> and <code>ClipString=2</code>. The text will scroll if typing continues past the defined width. <em>Note that ellipses ... are not added to indicate truncation, as the text is not truncated, just scrolled.</em></p>
 
-<p>If <code>Multiline=1</code>, then you will need to create a way to execute <code>[!TextEdit:Submit (meter)]</code> to submit the input, as Enter, CTRL-Enter and SHIFT-Enter will all create new lines. Either that, or have <code>OnDismissAction</code> replace <code>OnSubmitAction</code> in your design, and just clicking away from the meter will take the actions. The <code>[$Input]</code> variable is created by any of the Action types.</p>
+<p>For multiline input, set <code>SubmitOnEnter=1</code> to submit with Enter. Shift+Enter inserts a newline in editable multiline fields without a regular-expression filter. With <code>SubmitOnEnter=0</code>, you can submit from a separate action using <code>[!TextEdit:Submit MeterName]</code> or handle the text when the field loses focus with <code>OnDismissAction</code>. The actions receive the text in <code>[$Input]</code>.</p>
 
 <h2 id="Formatting">Formatting Options</h2>
 
@@ -65,7 +65,7 @@ title: 'TextEdit meter'
 		Determines whether the field can hold multiple lines (1) or a single line (0, default).
 	</dd>
 	
-	<dt id="SubmitOnEnter"><code>SubmitOnEnter</code> <small>Default: <code>1</code></small></dt>
+	<dt id="SubmitOnEnter"><code>SubmitOnEnter</code> <small>Default: <code>1</code> for single-line, <code>0</code> for multiline</small></dt>
 	<dd>
 		Controls whether the Enter key submits the input (1) or creates a new line (0). Defaults to 1 for single-line fields and 0 for multiline boxes.
 	</dd>
@@ -90,14 +90,14 @@ title: 'TextEdit meter'
 		Color of the background when text is selected in the input area.
 	</dd>
 	
-	<dt id="FocusBorderWidth"><code>FocusBorderWidth</code> <small>Default: <code>0</code></small></dt>
+	<dt id="FocusBorderWidth"><code>FocusBorderWidth</code> <small>Default: <code>1.0</code></small></dt>
 	<dd>
-		If larger than 0, and <code>FocusBorderColor</code> is defined, a border is drawn around the text area.
+		Draws a focus border of this width when <code>FocusBorderColor</code> is visible. Set the width to <code>0</code> to hide the border.
 	</dd>
 	
 	<dt id="FocusBorderColor"><code>FocusBorderColor</code></dt>
 	<dd>
-		If <code>FocusBorderWidth</code> is larger than 0, the color of the border.
+		Color of the focus border. The default color is fully transparent.
 	</dd>
 	
 	<dt id="MaxLength"><code>MaxLength</code> <small>Default: <code>0</code></small></dt>
@@ -294,7 +294,8 @@ AccurateText=1
 
 [MeterEdit]
 Meter=TextEdit
-; No W or H are set, so the meter will grow to accommodate PlaceholderText or grow / shrink to accommodate the entered or InitialTextFontColor=255,134,87,255
+; No W or H are set, so the meter will grow to accommodate PlaceholderText or grow / shrink to accommodate the entered text or InitialText.
+FontColor=255,134,87,255
 SolidColor=0,0,0,255
 FontSize=13
 Padding=5,5,5,5

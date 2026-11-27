@@ -151,20 +151,14 @@ title: 'Built-In Variables'
 [$SkinZoomedW] = [$SkinW] * [$SkinZoomFactor] = #CURRENTCONFIGWIDTH#  * [$SkinZoomFactor]
 [$SkinZoomedH] = [$SkinH] * [$SkinZoomFactor] = #CURRENTCONFIGHEIGHT# * [$SkinZoomFactor]
 
-> Physical / actual, i.e. scaled but not zoomed if coordinates,
-	scaled and zoomed if dimensions [integer]:
-	
-[$SkinPhysicalX] = [$SkinX] * [$SkinDpiFactor]
-	#CURRENTCONFIGX#      * [$SkinDpiFactor]
-	
-[$SkinPhysicalY] = [$SkinX] * [$SkinDpiFactor]
-	#CURRENTCONFIGY#      * [$SkinDpiFactor]
-	
-[$SkinPhysicalW] = [$SkinW] * [$SkinDpiFactor] * [$SkinZoomFactor]
-	#CURRENTCONFIGWIDTH#  * [$SkinDpiFactor] * [$SkinZoomFactor]
-	
-[$SkinPhysicalH] = [$SkinH] * [$SkinDpiFactor] * [$SkinZoomFactor]
-	#CURRENTCONFIGHEIGHT# * [$SkinDpiFactor] * [$SkinZoomFactor]
+> Physical desktop position [pixels]:
+[$SkinPhysicalX] and [$SkinPhysicalY] give the skin window's position on the
+physical desktop. Moving between monitors can change how logical desktop
+coordinates map to physical pixels.
+
+> Physical dimensions [pixels]:
+[$SkinPhysicalW] = round([$SkinW] * [$SkinZoomFactor] * [$SkinDpiFactor])
+[$SkinPhysicalH] = round([$SkinH] * [$SkinZoomFactor] * [$SkinDpiFactor])
 </pre>
 </details>
 

@@ -308,16 +308,17 @@ OnUpdateAction=!CommandMeasure MeasureFolder Update
 		<p>Increases the page count.</p>
 	</dd>
 
-	<dt id="IndexUp"><code>IndexUp</code></dt>
+	<dt id="IndexUp"><code>IndexUp <em>[count]</em></code></dt>
 	<dd>
-		<p>Decreases the index by 1. This is useful for mouse scroll actions.</p>
+		<p>Decreases the index by the optional step count. The default and minimum are <code>1</code>. This is useful for mouse scroll actions.</p>
 
 		<p><b>Example:</b> <code>MouseScrollUpAction=!CommandMeasure "ParentMeasureName" "IndexUp"</code></p>
 	</dd>
 
-	<dt id="IndexDown"><code>IndexDown</code></dt>
+	<dt id="IndexDown"><code>IndexDown <em>[count]</em></code></dt>
 	<dd>
-		<p>Increases the index by 1. This is useful for mouse scroll actions.</p>
+		<p>Increases the index by the optional step count. The default and minimum are <code>1</code>.</p>
+		<p><b>Example</b> <code>[!CommandMeasure "ParentMeasureName" "IndexDown 3"]</code></p>
 	</dd>
 
 	<dt id="PreviousFolder"><code>PreviousFolder</code></dt>

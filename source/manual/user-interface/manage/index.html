@@ -181,15 +181,7 @@ title: 'Manage'
 
 <div style="clear: both;"></div>
 
-<p>Global options under [Rainmeter] are not replaced when a layout is loaded, preserving local settings such as:</p>
-<ul>
-<li>ConfigEditor</li>
-<li>SkinPath</li>
-<li>DisableVersionCheck</li>
-<li>Language</li>
-</ul>
-
-<p>When loading a layout, the current Rainmeter state will automatically be saved as a layout named <b>@Backup</b>.</p>
+<p>Before loading a named layout, Rainmeter saves the current settings as <b>@Backup</b>. It preserves <a href="!settings/#Layouts">specific global options</a> when loading a layout. Loading <b>@Backup</b> restores the saved INI directly.</p>
 
 <p><b>Hint:</b> A layout can be loaded from the Windows command line using the <a href="!bangs/#LoadLayout">!LoadLayout</a> bang.</p>
 
@@ -246,7 +238,7 @@ title: 'Manage'
 <li><b>Theme:</b><br>Choose <b>Auto</b> to follow the Windows application theme, or select <b>Light</b> or <b>Dark</b>. This changes Rainmeter's interface, not the appearance of skins. See <a href="!settings/rainmeter-section/#UITheme">UITheme</a>.</li>
 <li><b>Editor:</b><br>Enter or browse to the text editor that will be used when "Edit skin" or "Edit settings" is selected.</li>
 <li><b>Default zoom:</b><br>The zoom value in a percentage (10 - 500) for all loaded skins. The <b>Force</b> checkbox locks this value and prevents individual skins from changing it. This defaults to 100%.</li>
-<li><b>Download updates automatically</b><br>When enabled, Rainmeter checks for updates five minutes after startup and then once daily, and downloads an available update. A downloaded update is installed when Rainmeter next starts. Disabling this option stops scheduled update checks. Updates can still be downloaded manually from <a href="https://www.rainmeter.net">rainmeter.net</a>.</li>
+<li><b>Download updates automatically</b><br>When enabled, Rainmeter checks for new versions and downloads available updates. Uncheck it to stop scheduled checks and automatic downloads. See <a href="!installing-rainmeter/auto-update/">Auto Updating Rainmeter</a> for how to install or skip a downloaded update.</li>
 <li><b>Disable dragging</b><br>If selected, automatically sets the <b>draggable</b> state of all active skins to prevent dragging skins with the mouse.</li>
 <li><b>Show notification area icon</b><br>Shows or hides the Rainmeter icon in the Windows notification area (system tray).<br><b>Note:</b> If all skins are unloaded, the notification area icon will appear, regardless of this setting, in order to avoid a situation where you can't interact with Rainmeter at all.<br></li>
 <li><b>Use hardware acceleration</b><br>Turns on or off the use of the GPU to accelerate drawing, and offload some processing and memory from the CPU to the GPU. This requires that Rainmeter be restarted to change.<br></li>

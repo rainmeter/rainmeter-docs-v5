@@ -7,7 +7,7 @@
 	<meta itemprop="name" content="<% if (page.title) { %><%= page.title %> - <% } %>Rainmeter Docs">
 	<meta property="og:title" content="<% if (page.title) { %><%= page.title %> - <% } %>Rainmeter Docs">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://www.rainmeter.net">
+	<meta property="og:url" content="<%= page.permalink.replace(/\/index\.html$/, '/') %>">
 	<meta property="og:image" content="https://www.rainmeter.net/img/media_image.png">
 	<meta property="og:site_name" content="Rainmeter">
 	<meta property="og:locale" content="en_US" />

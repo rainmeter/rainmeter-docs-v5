@@ -3,34 +3,34 @@ layout: docs
 permalink: tips/screen-position-variables/
 title: 'Screen Position Variables'
 ---
-<p><em>Tip by Kaelri</em></p>
-<p>The following built-in variables in Rainmeter can help you position things on the screen even on different screen resolutions.</p>
-<p><b>#SCREENAREAHEIGHT#</b><br>
-<b>#SCREENAREAWIDTH#</b><br>
-The total dimensions of the user's screen resolution.</p>
-<p><b>#WORKAREAWIDTH#</b><br>
-<b>#WORKAREAHEIGHT#</b><br>
-The dimensions of the "work area" - the desktop as constrained by the taskbar and any "docking" or "ranging" software.</p>
-<p><b>#WORKAREAX#</b><br>
-<b>#WORKAREAY#</b><br>
-The absolute X and Y position of the work area's top-left corner.</p>
-<p>In the past, if your users wanted to change the width of something, they had to open a window full of scary code and find the appropriate line. We shall hereafter refer to these as the Dark Ages of Rainmeter. Now my Taskbar skin, for example, is nothing more than this:</p>
+<p><a href="/manual/variables/built-in-variables/#MonitorVariables">Display variables</a> let you size and position skins using the monitor's current dimensions. The work area is the part of the display left after Windows reserves space for the taskbar and other desktop toolbars.</p>
+
+<h2>Size a meter to the work area</h2>
+
+<p>To make a meter one-third the width of the work area on the display the skin is mostly on, set its width to <code>W=([$DisplayWorkAreaW] / (3 * [$SkinZoomFactor]))</code>. Dividing by the skin zoom factor keeps the rendered width at one-third of the work area in logical desktop pixels. Rainmeter applies <a href="/manual/scale-and-zoom/">skin zoom and monitor DPI scaling</a> when it renders the meter.</p>
+
+<h2>Position a skin in a layout</h2>
+
+<p>This example places the illustro Clock 16 logical pixels inside the bottom-right corner of the primary monitor's work area at 125% zoom. Edit the existing <code>[illustro\Clock]</code> section in <a href="/manual/settings/#RainmeterIni">Rainmeter.ini</a> while Rainmeter is closed, or edit the section in <code>Layouts\&lt;layout&gt;\Rainmeter.ini</code> and <a href="/manual/user-interface/manage/#LayoutsTab">load the layout</a>. The Clock skin must be installed.</p>
+
 ``` ini
-[Taskbar]
-Meter=IMAGE
-ImageName=Taskbar.jpg
-W=#WORKAREAWIDTH#
-H=33
+[illustro\Clock]
+Active=1
+Zoom=125
+AnchorX=100%
+AnchorY=100%
+WindowX=([$Display1X] + [$Display1W] - [$Display1WorkAreaX] - [$Display1WorkAreaW] + 16)R@1
+WindowY=([$Display1Y] + [$Display1H] - [$Display1WorkAreaY] - [$Display1WorkAreaH] + 16)B@1
 ```
-<p>These variables support mathematical transformations, too. If I wanted a bar that filled up a third of the screen, for instance, I'd write:</p>
-<code>W=(#WORKAREAWIDTH# / 3)</code>
-<p>Even more powerful, however, is that you can use these variables to set the initial positions of whole skins in a .thm file for RainThemes.</p>
-<p>Placing a skin relative to the top or left sides of the desktop area is effortless - (#WORKAREAX# + X) or (#WORKAREAY# + Y). The right or bottom sides are a bit tricker, but just as effective. For example, if I want the Taskbar to be 33 pixels from the bottom - since it's 33 pixels high - I'd type:</p>
-<code>WindowY=(#WORKAREAY# + (#WORKAREAHEIGHT# - 33))</code>
-<p>In other words, you're telling Rainmeter to start at the top of the work area, go all the way down, then back up by 33.</p>
-<p>Centering a skin is just as easy. It's a tad more complicated in that you can't just make X and Y the center of the screen - the skin has its own height and width, remember. With Enigma, I've kept a consistent format for all of my "Taskbar" skins, in which the text is center-aligned at X=60. So if I wanted to center the whole skin as part of a theme, I'd use this format:</p>
-<code>WindowX=((#SCREENAREAWIDTH# / 2) - 60)</code>
-<p>It depends on the number of skins you've got, but in general, it's pretty easy to construct an entire theme that automatically adjusts to the user's resolution when it loads. As an example, I've copied the whole of Enigma's new default state below. It's easy for me to imagine most skins being packaged with themes like this, now that you can guarantee a proper and instantaneous presentation on any screen, large or small.</p>
+
+<p><code>R@1</code> and <code>B@1</code> measure inward from the primary monitor's right and bottom edges. Each expression computes how much space is reserved between that edge and the work area, then adds the 16-pixel inset. <code>AnchorX=100%</code> and <code>AnchorY=100%</code> align the skin's right and bottom edges using its zoomed dimensions, so the inset stays the same when the skin's size changes.</p>
+
+<p>Rainmeter evaluates the formulas when it reads the skin settings. Moving the skin with <a href="/manual/settings/skin-sections/#SavePosition">SavePosition</a> enabled can replace the formulas with the saved coordinates. See <a href="/manual/settings/skin-sections/#WindowXY">WindowX and WindowY</a> for the positioning syntax.</p>
+
+<details>
+<summary>Historical RainThemes example</summary>
+<p>Kaelri's original Enigma example used a RainThemes <code>.thm</code> file and the older work-area variables.</p>
+
 ``` ini
 [Enigma\_Home]
 Active=1
@@ -121,3 +121,5 @@ SnapEdges=0
 KeepOnScreen=1
 AlwaysOnTop=0
 ```
+
+</details>

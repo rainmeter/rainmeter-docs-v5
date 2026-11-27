@@ -170,8 +170,7 @@ If we search for <code>data-ip=</code>, it will take us to the right place. What
 
 ``` ini
 [MeasureIP]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=1
 ```
@@ -207,8 +206,7 @@ StringIndex=1
 
 ```ini
 [MeasureSite]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=https://browserleaks.com/ip
 RegExp=(?siU)data-ip="(.*)".*<tr><td>Country</td>.*src="(.*)"
 UpdateRate=3600
@@ -220,8 +218,7 @@ Creating the child measure for the the second StringIndex, the flag image value
 
 ``` ini
 [MeasureFlagImage]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=https://browserleaks.com[MeasureSite]
 StringIndex=2
 Download=1
@@ -254,8 +251,7 @@ RegExp=(?siU)data-ip="(.*)".*<tr><td>Country</td>.*src="(.*)".*<span class="flag
 
 ``` ini
 [MeasureCountryName]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=3
 ```
@@ -266,8 +262,7 @@ StringIndex=3
 
 ``` ini
 [MeasureSite]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=https://browserleaks.com/ip
 RegExp=(?siU)data-ip="(.*)".*<tr><td>Country</td>.*src="(.*)".*<span class="flag-text wball">(.*)<.*<tr><td>State/Region</td><td>(.*)<.*<tr><td>City</td><td>(.*)<.*<span id="coords-click">Coordinates</span>.*data-lat="(.*)".*data-lon="(.*)"
 UpdateRate=3600
@@ -278,45 +273,38 @@ UpdateRate=3600
 
 ``` ini
 [MeasureIP]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=1
 
 [MeasureFlagImage]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=https://browserleaks.com[MeasureSite]
 StringIndex=2
 Download=1
 
 [MeasureCountryName]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=3
 
 [MeasureRegion]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=4
 
 [MeasureCity]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=5
 
 [MeasureLatitude]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=6
 
 [MeasureLongitude]
-Measure=Plugin
-Plugin=WebParser
+Measure=WebParser
 URL=[MeasureSite]
 StringIndex=7
 ```

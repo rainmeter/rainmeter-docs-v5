@@ -45,13 +45,14 @@ title: 'RecycleManager measure'
 	</dd>
 </dl>
 
-<h2>Bangs</h2>
-<p>RecycleManager measures can be controlled with the <a href="!bangs/#CommandMeasure">!CommandMeasure bang</a> with the argument parameter being:</p>
+<h2 id="Bangs">Bangs</h2>
+<p>Replace <code>MeasureName</code> with the name of the RecycleManager measure.</p>
 <ul>
-<li><code>OpenBin</code></li>
-<li><code>EmptyBin</code>: Empties the bin after confirmation.</li>
-<li><code>EmptyBinSilent</code>: Empties the bin silently without confirmation.</li>
+	<li><code>[!RecycleManager:OpenBin MeasureName]</code> opens the Recycle Bin.</li>
+	<li><code>[!RecycleManager:EmptyBin MeasureName]</code> empties the bin after confirmation.</li>
+	<li><code>[!RecycleManager:EmptyBinSilent MeasureName]</code> empties the bin without confirmation.</li>
 </ul>
+<p>The same verbs remain available through <a href="!bangs/#CommandMeasure">!CommandMeasure</a>, for example <code>[!CommandMeasure MeasureName "OpenBin"]</code>.</p>
 
 <h2>Example</h2>
 ``` ini

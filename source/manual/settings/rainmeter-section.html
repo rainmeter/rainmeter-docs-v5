@@ -37,8 +37,8 @@ title: '[Rainmeter] section'
 
 	<dt id="DesktopWorkAreaType"><code>DesktopWorkAreaType</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>If set to <code>1</code>, <code>DesktopWorkArea</code> will be define margins relative to the edges of the screen.</p>
-		<p><b>Example:</b> With <code>DesktopWorkAreaType=0</code> and <code>DesktopWorkArea=10,20,600,500</code>, maximized windows will use an area of 600x500 pixels, which is located 10 pixels from the left and 20 pixels from the top of the screen. With <code>DesktopWorkAreaType=1</code> and <code>DesktopWorkArea=10,20,30,40</code>, the area for maximized windows will be 10 pixels from the left, 20 pixels from the top, 30 pixels from the right, and 40 pixels from the bottom of the screen.</p>
+		<p>With <code>0</code>, the four values are the left, top, right, and bottom coordinates of the work-area rectangle. With <code>1</code>, they are margins from the corresponding screen edges.</p>
+		<p><b>Example:</b> With <code>DesktopWorkAreaType=0</code> and <code>DesktopWorkArea=10,20,600,500</code>, the rectangle runs from (10, 20) to (600, 500), giving an area 590 pixels wide and 480 pixels high. With <code>DesktopWorkAreaType=1</code> and <code>DesktopWorkArea=10,20,30,40</code>, the area for maximized windows will be 10 pixels from the left, 20 pixels from the top, 30 pixels from the right, and 40 pixels from the bottom of the screen.</p>
 	</dd>
 	
 	<dt id="DefaultZoom"><code>DefaultZoom</code> <small>Default: <code>100</code></small></dt>
@@ -61,15 +61,15 @@ title: '[Rainmeter] section'
 		<p>If set to <code>1</code>, <a href="#Logging">logging</a> will be more verbose. Use <code>Debug=1</code> only when needed, as it degrades performance.</p>
 	</dd>
 
-	<dt id="DisableVersionCheck"><code>DisableVersionCheck</code> <small>Default: <code>0</code></small></dt>
-	<dd>
-		<p>If set to <code>1</code>, checking for new updates will be disabled.</p>
-	</dd>
-	
 	<dt id="DisableAutoUpdate"><code>DisableAutoUpdate</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>If set to <code>1</code>, automatic installation of new updates will be disabled.</p>
-	</dd>	
+		<p>If set to <code>1</code>, Rainmeter stops scheduled checks for new versions and automatic downloads. An update already downloaded can still open its installer when Rainmeter starts. This setting is controlled by <b>Download updates automatically</b> in <a href="!user-interface/manage/#SettingsTab">Manage &gt; Settings</a>. See <a href="!installing-rainmeter/auto-update/">Auto Updating Rainmeter</a>.</p>
+	</dd>
+
+	<dt id="DisableVersionCheck"><code>DisableVersionCheck</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>Compatibility setting. If set to <code>1</code>, Rainmeter disables scheduled update checks and downloads even if <code>DisableAutoUpdate</code> is <code>0</code>. Changing the checkbox in Manage saves <code>DisableAutoUpdate</code> and removes <code>DisableVersionCheck</code> from Rainmeter.ini.</p>
+	</dd>
 
 	<dt id="DisableDragging"><code>DisableDragging</code> <small>Default: <code>0</code></small></dt>
 	<dd>
@@ -99,6 +99,11 @@ title: '[Rainmeter] section'
 	<dt id="Language"><code>Language</code> <small>Default: <code>1033</code></small></dt>
 	<dd>
 		<p><a href="https://learn.microsoft.com/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c">LCID</a> language code by the Rainmeter dialogs to display text in different languages. Visit the <a href="https://www.rainmeter.net/localization/">Localization</a> page for a list of languages that Rainmeter supports.</p>
+	</dd>
+
+	<dt id="NetInSpeed"><code>NetInSpeed</code>, <code>NetOutSpeed</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>Legacy bandwidth limits in bits per second for <a href="!measures/net/">NetIn and NetOut</a>. NetTotal uses their sum. These global values apply when the measure has neither an explicit <code>MaxValue</code> nor a per-measure speed limit. Prefer setting <a href="!measures/general-options/#MaxValue">MaxValue</a> on the measure.</p>
 	</dd>
 
 	<dt id="HardwareAcceleration"><code>HardwareAcceleration</code> <small>Default: <code>0</code></small></dt>

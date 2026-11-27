@@ -53,8 +53,9 @@ title: 'WindowMessage measure'
 	</dd>
 </dl>
 
-<h2>Bangs</h2>
-<p>Messages can also be sent on demand with the <a href="!bangs/#CommandMeasure">!CommandMeasure</a> bang. The arguments are similar that of the <code>WindowMessage</code> option. <code>!CommandMeasure "MeasureName" "SendMessage Msg wParam lParam"</code></p>
+<h2 id="Bangs">Bangs</h2>
+<p>To send a message on demand to the window configured on the measure, use <code>[!WindowMessage:Send MeasureName Msg wParam lParam]</code>. Supply the message ID and its two numeric parameters.</p>
+<p>The equivalent <a href="!bangs/#CommandMeasure">!CommandMeasure</a> form is <code>[!CommandMeasure "MeasureName" "SendMessage Msg wParam lParam"]</code>.</p>
 
 <h2>Examples</h2>
 

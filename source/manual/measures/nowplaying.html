@@ -96,25 +96,26 @@ title: 'NowPlaying measure'
 	</dd>
 </dl>
 
-<h2>Bangs</h2>
-<p>NowPlaying measures can be controlled with the <a href="!bangs/#CommandMeasure">!CommandMeasure bang</a> with the argument parameter being:</p>
+<h2 id="Bangs">Bangs</h2>
+<p>Use a <code>!NowPlaying:</code> command with the target measure as its first argument. Replace <code>MeasureName</code> with the name of the NowPlaying measure.</p>
 <ul class="spaced">
-<li><code>Pause</code>: Pause current track.</li>
-<li><code>Play</code>: Play current track.</li>
-<li><code>PlayPause</code>: Play (if stopped/paused) or pause (if playing) current track.</li>
-<li><code>Stop</code>: Stop current track.</li>
-<li><code>Next</code>: Change to next track.</li>
-<li><code>Previous</code>: Change to previous track.</li>
-<li><code>OpenPlayer</code>: Opens the player. If already open, the player will be brought to the top.</li>
-<li><code>ClosePlayer</code>: Closes the player.</li>
-<li><code>TogglePlayer</code>: Opens/closes the player depending on current state.</li>
-<li><code>SetPosition <em>n</em></code>: Where <em>n</em> is either an absolute value (<code>SetPosition 50</code> to jump to 50% of the track) or a relative value (<code>SetPosition +5</code> to jump 5% forward or <code>SetPosition -10</code> to jump 10% backward).</li>
-<li><code>SetRating <em>n</em></code>: Where <em>n</em> is a value between <code>0</code> (no rating) and <code>5</code> (maximum rating).</li>
-<li><code>SetShuffle <em>n</em></code>: Where <em>n</em> is <code>1</code> (shuffle on), <code>0</code> (shuffle off), or <code>-1</code> (toggle shuffle).</li>
-<li><code>SetRepeat <em>n</em></code>: Where <em>n</em> is <code>1</code> (repeat on), <code>0</code> (repeat off), or <code>-1</code> (toggle repeat).</li>
-<li><code>SetVolume <em>n</em></code>: Where <em>n</em> is either an absolute value (<code>SetVolume 50</code> to set volume to 50%) or a relative value (<code>SetVolume +20</code> to increase volume by 20% or<code>SetVolume -40</code> to decrease volume by 40%).</li>
+<li><code>!NowPlaying:Play MeasureName</code>: Resume playback.</li>
+<li><code>!NowPlaying:Pause MeasureName</code>: Pause playback.</li>
+<li><code>!NowPlaying:TogglePlay MeasureName</code>: Toggle playback. The legacy command is <code>PlayPause</code>.</li>
+<li><code>!NowPlaying:Stop MeasureName</code>: Stop playback.</li>
+<li><code>!NowPlaying:Next MeasureName</code>: Play the next track.</li>
+<li><code>!NowPlaying:Previous MeasureName</code>: Play the previous track.</li>
+<li><code>!NowPlaying:OpenPlayer MeasureName</code>: Open or bring the player to the front.</li>
+<li><code>!NowPlaying:ClosePlayer MeasureName</code>: Close the player.</li>
+<li><code>!NowPlaying:TogglePlayer MeasureName</code>: Open or close the player.</li>
+<li><code>!NowPlaying:SetPosition MeasureName <em>n</em></code>: Seek to an absolute percentage of the track, or use a signed offset such as <code>+5</code> or <code>-10</code>.</li>
+<li><code>!NowPlaying:SetRating MeasureName <em>n</em></code>: Set the rating to an integer from <code>0</code> (unrated) to <code>5</code>.</li>
+<li><code>!NowPlaying:SetVolume MeasureName <em>n</em></code>: Set the volume from <code>0</code> to <code>100</code>, or use a signed integer to adjust it.</li>
+<li><code>!NowPlaying:SetShuffle MeasureName <em>n</em></code>: Use <code>0</code> (off), <code>1</code> (on), or <code>-1</code> (toggle).</li>
+<li><code>!NowPlaying:SetRepeat MeasureName <em>n</em></code>: Use <code>0</code> (off), <code>1</code> (on), or <code>-1</code> (toggle).</li>
 </ul>
-<p><b>Note:</b> On partially supported players, as well as players not listed here, the <a href="!measures/mediakey/">MediaKey</a> measure can be used to substitute some of the bangs listed above.</p>
+<p><b>Examples</b> <code>[!NowPlaying:TogglePlay MeasureName]</code>, <code>[!NowPlaying:SetPosition MeasureName +5]</code>.</p>
+<p>The same verbs work with <a href="!bangs/#CommandMeasure">!CommandMeasure</a>, except that the legacy form of <code>TogglePlay</code> is <code>[!CommandMeasure MeasureName "PlayPause"]</code>. The <a href="#Windows">Windows media session</a> limitations apply to both forms. To send Windows media keys independently of NowPlaying, see <a href="!bangs/#SendKey">!SendKey</a>.</p>
 
 <h2 id="playerlist">Fully supported players</h2>
 <p>The following players are fully supported. All features should work unless stated otherwise.</p>

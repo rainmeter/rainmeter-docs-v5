@@ -9,19 +9,19 @@ title: 'Plugin Guidelines'
 <p>Some skin authors can be overzealous about turning on <a href="/manual/variables/#DynamicVariables">DynamicVariables</a> on measures even if it is not needed. Because of this, you should attempt to minimize any overhead that might be caused if an author uses DynamicVariables. Common optimzations include:</p>
 <p>
 	<ul>
-		<li>Move any code that should only be run once from the <a href="!plugin/cpp/#Reload">Reload</a> function to the <a href="!plugin/cpp/#Intialize">Initialize</a> function.</li>
-		<li>If an option cannot support DynamicVariables, call it from <a href="!plugin/cpp/#Intialize">Intialize</a>.</li>
+		<li>Move any code that should only be run once from the <a href="!plugin/cpp/#Reload">Reload</a> function to the <a href="!plugin/cpp/#Initialize">Initialize</a> function.</li>
+		<li>If an option cannot support DynamicVariables, call it from <a href="!plugin/cpp/#Initialize">Initialize</a>.</li>
 		<li>If possible, cache values that require more computation to reduce resource overhead.</li>
 	</ul>
 </p>
 
 <h3 id="Data">Taking advantage of <code>data</code> argument</h3>
 <p>You might notice that every single function you can implement that Rainmeter can call has a argument called <code>data</code>. You should set any measure specific data to this variable and Rainmeter will automatically pass it to most of the other functions when called. Care should be taken when modifying any data across multiple threads (see <a href="!plugin/guidelines/#Multithreading">multithreading</a>).</p>
-<p>In all of our examples you will find that we use a "Measure" structure/class and store it in the <code>data</code> variable. It is best to do this in the <a href="!plugin/cpp/#Intialize">Intialize</a> function, but not required. If you decide to utilize the <code>data</code> variable, you may set/modify/use that structure in any function and it will stay specific to that measure.</p>
+<p>In all of our examples you will find that we use a "Measure" structure/class and store it in the <code>data</code> variable. It is best to do this in the <a href="!plugin/cpp/#Initialize">Initialize</a> function, but not required. If you decide to utilize the <code>data</code> variable, you may set/modify/use that structure in any function and it will stay specific to that measure.</p>
 <p>Don't forget to clean up any data in the Finalize function!</p>
 
 <h3 id="RM">When to save the <code>rm</code> reference?</h3>
-<p>Most of the <a href="!plugin/cpp/api/">API functions</a> that require the use of <code>rm</code> pointer should be called in the <a href="!plugin/cpp/#Intialize">Initialize</a> or <a href="!plugin/cpp/#Reload">Reload</a> functions. The main expection to this is calling the <a href="!plugin/cpp/api/#Log">log</a> functions, which often need to be called outside of the Initialize or Reload functions. Because of this, it might be required to save the <code>rm</code> pointer for later use. The best place to save this is in the Initialize function since it's value will not change for the life of the measure.</p>
+<p>Most of the <a href="!plugin/cpp/api/">API functions</a> that require the use of <code>rm</code> pointer should be called in the <a href="!plugin/cpp/#Initialize">Initialize</a> or <a href="!plugin/cpp/#Reload">Reload</a> functions. The main expection to this is calling the <a href="!plugin/cpp/api/#Log">log</a> functions, which often need to be called outside of the Initialize or Reload functions. Because of this, it might be required to save the <code>rm</code> pointer for later use. The best place to save this is in the Initialize function since it's value will not change for the life of the measure.</p>
 <p>While it is not required to send the <code>rm</code> pointer to the logging functions, without it, there will be no <a href="/manual/user-interface/debug/#LogTab">source</a> in the log.</p>
 
 <h3 id="CustomBangs">Adding custom bangs</h3>

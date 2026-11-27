@@ -31,23 +31,12 @@ title: 'WebParser: How UpdateRate Works'
 
 <p><code>UpdateDivider</code> defaults to "1", and that is how it should always be left on WebParser measures. Multiplying a value by "1" has no impact. That is what you want.</p>
 
-<p><b>Why do you NEVER use an !UpdateMeasure bang on a WebParser measure?</b></p>
+<h2 id="Refetch">Fetch on demand</h2>
 
-<p>Normally, you would use an <a href="https://docs.rainmeter.net/manual/bangs/#UpdateMeasure">!UpdateMeasure</a> bang in an action to force a measure to update NOW, rather than waiting for the next normal update. This is not effective on WebParser measures, and should never be used.</p>
+<p><a href="/manual/bangs/#UpdateMeasure">!UpdateMeasure</a> updates the measure once. By itself, it normally advances WebParser's interval counter without starting a new fetch.</p>
 
-<p>While using <code>!UpdateMeasure</code> will cause an immediate update of the measure, all that will do in the WebParser plugin is increment our internal UpdateCounter loop by one. Depending on where the plugin currently is in the  internal UpdateCounter loop, this might be from say 458 to 459, and you are only one measure update closer to your goal. If <ocde>UpdateRate</code> is the default 600, You still have 141 measure updates to go before anything happens.</p>
+<p>To start a fetch on demand, first reset the parent's counter with <a href="/manual/measures/webparser/#CommandMeasureUpdate">!WebParser:Refetch</a>, then update the same measure.</p>
 
-<p><code>!UpdateMeasure</code> will not cause the plugin to immediately access the remote resource, and should never be used on WebParser measures.</p>
+<p><b>Example</b> <code>LeftMouseUpAction=[!WebParser:Refetch MeasureName][!UpdateMeasure MeasureName]</code></p>
 
-<p><b>So how DO you update the measure immediately?</b></p>
-
-<p>You can do so, by using the <a href="https://docs.rainmeter.net/manual/bangs/#CommandMeasure">!CommandMeasure</a> bang to send an <a href="https://docs.rainmeter.net/manual/measures/webparser/#CommandMeasureUpdate">Update</a> command to the WebParser parent measure.</p>
-
-<p>Example: <code>LeftMouseUpAction=[!CommandMeasure MeasureName "Update"]</code></p>
-
-<p>What an action like <code>[!CommandMeasure MeasureName "Update"]</code> does is very simple. It immediately sets the value of our internal UpdateCounter in the plugin to zero. That will cause the plugin to immediately access and parse the remote resource, and start the cycle over. This is the only effective way to do this.</p>
-
-<p>&nbsp;</p>
-
-<p><b>Note:</b> All of this is about controlling WebParser "parent" measures. Never use ANY of this on WebParser "child" measures, as they are entirely controlled by their "parent". When the parent WebParser measure completes accessing and parsing the information you want, it will automatically "force" the values on each of its child measures, based on the StringIndex option on them. Child measures take no independent action, and are simply set by their parent measure. Only use <code>UpdateRate</code> and / or <code>[!CommandMeasure MeasureName "Update"]</code> on parent WebParser measures.</p>
- 
+<p>The compatibility command <code>[!CommandMeasure MeasureName "Update"]</code> also resets the counter. Target the parent that fetches the resource. Its child measures receive results after the parent parses the response.</p>

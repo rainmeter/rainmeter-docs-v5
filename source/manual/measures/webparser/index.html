@@ -88,15 +88,20 @@ StringIndex=2
 		<p><b>Note:</b> If the <code>RegExp</code> is not defined in this measure, the <code>StringIndex2</code> has no effect.</p>
 	</dd>
 
+	<dt id="JsonPointer"><code>JsonPointer</code></dt>
+	<dd>
+		<p>Selects a value from a JSON response. If <code>RegExp</code> is defined, it takes precedence. For JSON Pointer syntax and parent-child examples, see <a href="!measures/webparser/jsonpointer/">JSON Parsing</a>.</p>
+	</dd>
+
 	<dt id="UpdateRate"><code>UpdateRate</code> <small>Default: <code>600</code></small></dt>
 	<dd>
-		<p>The rate in milliseconds determining how often the webpage is downloaded. This is relative to the config's main <a href="!skins/#Update">Update</a> rate <b>and</b> any <a href="!measures/general-options/#UpdateDivider">UpdateDivider</a> on the measure. So the formula would be <code>Update</code> X <code>UpdateDivider</code> X <code>UpdateRate</code> = "how often the measure connects to the site".</p>
+		<p>The number of WebParser measure updates between fetches. During regular updates, the interval in milliseconds is the skin's <a href="!skins/rainmeter-section/#Update">Update</a> interval multiplied by the measure's <a href="!measures/general-options/#UpdateDivider">UpdateDivider</a> and <code>UpdateRate</code>.</p>
 
 		<p><b>Notes:</b> Some caution should be used in determining how often to connect to a site with WebParser. Excessively accessing a site can cause your computer to be seen as an "attack" and result in being blocked. The <code>UpdateRate</code> option defaults to <code>600</code> as a safety measure. This should not be changed unless there is some reason to connect more or less often to the site.</p>
 
-		<p>In order to override the UpdateRate set on a WebParser measure, to have it connect to the site and download the data "right now", the <a href="#CommandMeasureUpdate">!CommandMeasure</a> bang must be used, with the name of the "parent" measure as the first parameter, and "Update" as the second.</p>
+		<p>Use <a href="#CommandMeasureUpdate">!WebParser:Refetch</a> on the parent measure to bypass the remaining interval. Follow it with <code>!UpdateMeasure</code> to start the fetch without waiting for the next scheduled update.</p>
 
-		<p><code>LeftMouseUpAction=[!SetOption WebMeasure URL "https://SomeNewSite.com"][!CommandMeasure WebMeasure Update]</code></p>
+		<p><code>LeftMouseUpAction=[!SetOption WebMeasure URL "https://SomeNewSite.com"][!WebParser:Refetch WebMeasure][!UpdateMeasure WebMeasure]</code></p>
 
 		<br>
 		<p>More information on <code>UpdateRate</code> is at <a href="https://docs.rainmeter.net/tips/webparser-updaterate/">WebParser: How UpdateRate Works</a>.</p>
@@ -356,30 +361,28 @@ Flags=ForceReload | NoCookies
 
 <h2 id="MeasureCommands">Measure Commands</h2>
 
-<p>Commands that can be sent to a parent WebParser measure using the <a href="!bangs/#CommandMeasure">!CommandMeasure</a> bang.</p>
-
-<p>These are only valid with a target <a href="#ParentChild">parent</a> measure that connects to a site or file with <code>URL</code>, and / or has a <code>RegExp</code> option. They are not valid with a <a href="#ParentChild">child</a> measure as the target.</p>
+<p>Target the parent WebParser measure that fetches the resource in <code>URL</code>. Replace <code>MeasureName</code> with the parent section name.</p>
 
 <dl>
-	<dt id="CommandMeasureUpdate"><code>Update</code></dt>
+	<dt id="CommandMeasureUpdate"><code>!WebParser:Refetch</code></dt>
 	<dd>
-		<p>This will cause a WebParser parent measure to override any current <a href="#UpdateRate">UpdateRate</a> setting, and immediately access and parse the resource defined in <code>URL</code>.</p>
+		<p>Cancels any active fetch or download for the target and resets its <a href="#UpdateRate">UpdateRate</a> counter. The parent fetches and parses the resource on its next measure update.</p>
 
-		<p>Example: <code>[!CommandMeasure MeasureName "Update"]</code></p>
+		<p><b>Example</b> <code>[!WebParser:Refetch MeasureName][!UpdateMeasure MeasureName]</code>. The compatibility command <code>[!CommandMeasure MeasureName "Update"]</code> also resets the counter.</p>
 
 		<br>
 		<p>More information on <code>UpdateRate</code> is at <a href="https://docs.rainmeter.net/tips/webparser-updaterate/">WebParser: How UpdateRate Works</a>.</p>
 	</dd>
 
-	<dt id="CommandMeasureReset"><code>Reset</code></dt>
+	<dt id="CommandMeasureReset"><code>!WebParser:ClearResults</code></dt>
 	<dd>
-		<p>This will cause a WebParser parent measure to reset all values for the parent and any related child measures to their initial empty values.</p>
+		<p>Clears the saved result and downloaded-file path for the target measure and its immediate children.</p>
 
 		<p>If a WebParser measure is able to connect and parse information from a web site or file, then that information is "remembered", and is only replaced when new information is successfully received on subsequent connections to the resource. This is both to allow a seamless transition from the old data to the new, and to allow a skin to continue displaying information if it is temporarily unable to connect or parse the resource.</p>
 
 		<p>Generally, the above behavior works best. However, this command might be used in conjunction with the <a href="#OnConnectErrorAction">OnConnectErrorAction</a> and / or <a href="#OnRegExpErrorAction">OnRegExpErrorAction</a> actions if the skin design makes it desirable that WebParser "forget" old information when some error condition is triggered on subsequent connections to the resource.</p>
 
-		<p>Example: <code>[!CommandMeasure MeasureName "Reset"]</code></p>
+		<p><b>Example</b> <code>[!WebParser:ClearResults MeasureName]</code>. The compatibility command <code>[!CommandMeasure MeasureName "Reset"]</code> does the same.</p>
 	</dd>
 </dl>
 
@@ -389,11 +392,11 @@ Flags=ForceReload | NoCookies
 
 <p>WebParser uses <a href="#UpdateRate">UpdateRate</a> to determine how often the measure should actually access the site or file. While you can dynamically change any option on a WebParser measure, the measure will not use the changes and access the site again until the next UpdateRate is reached. Just using <a href="!bangs/#Update">!Update</a> or <a href="!bangs/#UpdateMeasure">!UpdateMeasure</a> will NOT override the UpdateRate.</p>
 
-<p>In order to have a dynamic change make WebParser parse the site "right now", you will use the <a href="#CommandMeasureUpdate">!CommandMeasure</a> bang with the "parent" WebParser measure as the first parameter, and "Update" as the second.</p>
+<p>To fetch the resource after changing a URL, call <a href="#CommandMeasureUpdate">!WebParser:Refetch</a> and update the parent measure.</p>
 
-<p><code>LeftMouseUpAction=[!SetOption WebMeasure URL "https://SomeNewSite.com"][!CommandMeasure WebMeasure Update]</code></p>
+<p><code>LeftMouseUpAction=[!SetOption WebMeasure URL "https://SomeNewSite.com"][!WebParser:Refetch WebMeasure][!UpdateMeasure WebMeasure]</code></p>
 
-<p>If you dynamically change an option on a "child" WebParser measure that depends on a "parent" measure, (like StringIndex for instance) you MUST use !CommandMeasure with "Update", targeting the "parent" WebParser measure. The values of child WebParser measures are a function of the parent measure, and are only updated when the parent is. You should never use !CommandMeasure on a "child" measure.</p>
+<p>If you change an option on a child, such as <code>StringIndex</code>, refetch and update the parent. The parent parses the response and supplies the matching child results.</p>
 
 <p>If you want to use the current value of a measure in a dynamic way as a <a href="!variables/section-variables/">Section Variable</a>, rather than as a reference to a "parent" WebParser measure, you must prefix the name of the measure with the <code>&</code> character.</p>
 

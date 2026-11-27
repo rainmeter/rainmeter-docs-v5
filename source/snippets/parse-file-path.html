@@ -3,42 +3,49 @@ layout: docs
 permalink: snippets/parse-file-path/
 title: 'Parse File Path'
 ---
-<p>A function that breaks down a file or folder path and returns the components as a table.</p>
+<p>Breaks down a Windows path written with backslashes. It accepts drive-qualified absolute paths, UNC paths, and relative paths. End a folder path with a backslash to mark its final component as a folder. A drive or UNC share root may be given on its own.</p>
+
+<p>The result contains <code>Vol</code> for the drive or UNC share root, <code>Dir</code> for directories between that root and the final component, <code>Name</code> for the final component, and <code>Ext</code> for the file extension without the dot. Absent components are omitted. <code>Vol</code>, <code>Dir</code>, and folder names end in a backslash.</p>
 
 <div class="noscroll">
 ``` lua
-function ParseFilePath(s)
-	assert(type(s) == 'string', 'ParseFilePath: string expected, got ' .. type(s) .. '.')
-	local t = {}
+function ParseFilePath(path)
+	assert(type(path) == 'string', 'ParseFilePath expects a string.')
 
-	for Piece in s:gmatch('[^\\]+') do
-		table.insert(t, Piece)
+	local volume, rest = path:match('^(%a:\\)(.*)$')
+	if not volume and path:sub(1, 2) == '\\\\' then
+		volume, rest = path:match('^(\\\\[^\\]+\\[^\\]+)\\?(.*)$')
+		assert(volume and path:sub(3, 4) ~= '?\\' and path:sub(3, 4) ~= '.\\',
+			'ParseFilePath expects a UNC server and share.')
+		volume = volume .. '\\'
+	elseif not volume then
+		assert(not path:match('^[\\/]') and not path:match('^%a:'),
+			'ParseFilePath expects a drive-qualified absolute, UNC, or relative path.')
+		rest = path
 	end
 
-	-- VOLUME
-	if #t > 0 then
-		local UNCprefix = s:match('^(\\\\)') or ''
-		t.Vol = UNCprefix .. t[1] .. '\\'
+	local result = { Vol = volume }
+	if rest == '' then
+		return result
 	end
 
-	-- NAME
-	if #t > 1 then
-		-- DETECT FOLDER OR SEPARATE EXTENSION
-		if s:match('\\$') then
-			t.Name = t[#t] .. '\\'
-		elseif t[#t]:match('.+%..+') then
-			t.Name, t.Ext = t[#t]:match('(.-)%.([^%.]-)$')
-		else
-			t.Name = t[#t]
-		end
-	end
+	local folders, name = rest:match('^(.*\\)([^\\]+\\?)$')
+	result.Dir = folders
+	name = name or rest
 
-	-- FOLDER
-	if #t > 2 then
-		t.Dir = table.concat(t, '\\', 2, #t-1) .. '\\'
-	end
-
-	return t
+	local stem, extension = name:match('^(.+)%.([^%.\\]+)$')
+	result.Name = stem or name
+	result.Ext = extension
+	return result
 end
+
+-- { Vol = 'C:\\', Dir = 'Skins\\', Name = 'Clock', Ext = 'ini' }
+ParseFilePath([[C:\Skins\Clock.ini]])
+
+-- { Vol = '\\\\server\\share\\', Name = 'Skins\\' }
+ParseFilePath([[\\server\share\Skins\]])
+
+-- { Dir = 'Skins\\', Name = 'Clock', Ext = 'ini' }
+ParseFilePath([[Skins\Clock.ini]])
 ```
 </div>

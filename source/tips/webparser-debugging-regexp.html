@@ -3,140 +3,96 @@ layout: docs
 permalink: tips/webparser-debugging-regexp/
 title: 'WebParser: Debugging RegExp'
 ---
-<p>One of the keys to using <a href="/manual/measures/webparser/">WebParser</a> in Rainmeter is the all-important <a href="/manual/measures/webparser/#RegExp">RegExp</a> option.</p>
+<p>Use these methods to build and test the <a href="/manual/measures/webparser/#RegExp">RegExp</a> option on a <a href="/manual/measures/webparser/">WebParser</a> measure. For an introduction to parent and child measures, see the <a href="/tips/webparser-tutorial/">WebParser Tutorial</a>.</p>
 
-<p>It is not the intention of this guide to teach WebParser or regular expressions. There is a lot of help to get you started at:</p>
+<h2>Set up the local example</h2>
 
-<ul>
-<li><a href="/tips/webparser-tutorial">WebParser Tutorial</a></li>
-<li><a href="https://www.regular-expressions.info/tutorial.html">Regular-Expressions.com Tutorial</a></li>
-<li><a href="https://www.rexegg.com/">RexEgg Tutorial</a></li>
-</ul>
+<p><a href="/tips/examples/IP-example.html" download>Download IP-example.html</a> and save it in your skin's <code>@Resources</code> folder. The sample uses the documentation address <code>192.0.2.1</code> and produces the same values in Rainmeter and RainRegExp. The flag path is sample text for the regular expression to capture.</p>
 
-<p>What we are going to focus on is the methods you can use to debug your <code>RegExp</code> (regular expression) option in Rainmeter, to build, test and find problems when parsing a web site or local file.</p>
+<p>To start building a regular expression, look at the row containing the first value you want:</p>
 
-<h2>Overview</h2>
+``` html
+<tr><td width="100">Your IP Address:</td><td>192.0.2.1</td></tr>
+```
 
-<p>Just as a quick overview, WebParser is used with a parent measure to connect to a resource, a web site or local file, and parse the text that is returned into <a href="/manual/measures/webparser/#StringIndex">StringIndex</a> values that can be used in child measures to extract the individual elements of information you want. You can then display the information in String, Image or other meters.</p>
+<p>Start with <code>RegExp=(?siU)&lt;td.*&gt;Your IP Address.*&lt;td&gt;(.*)&lt;/td&gt;</code>. The <code>(.*)</code> captures the IP address from the second table cell. Give the child measure <code>StringIndex=1</code> to retrieve that capture. Add another capture for each value you want, then save and refresh the skin to test the result.</p>
 
-<p>At its simplest, you use WebParser like this:</p>
+<h2>Check the captures in Rainmeter</h2>
+
+<p>In this complete skin example, <code>MeasureSite</code> reads the local file and captures eight values in order. The child measures specify which capture to return. The string meter displays the first capture.</p>
 
 ``` ini
 [Rainmeter]
 Update=1000
 AccurateText=1
-DynamicWindowSize=1
 
 [MeasureSite]
 Measure=WebParser
-URL=https://www.tell-my-ip.com/index.html
-RegExp=(?siU)<td.*>Your IP Address.*<td>(.*)</td>
+URL=file://#@#IP-example.html
+RegExp=(?siU)<td.*>Your IP Address.*<td>(.*)</td>.*<td.*>Country:.*<img src="(.*)"> (.*)</td>.*<td>Region.*<td>(.*)</td>.*<td>City.*<td>(.*)</td>.*<td>ISP:.*<td>(.*)</td>.*<td>Latitude:.*<td>(.*)</td>.*<td>Longitude:.*<td>(.*)</td>
 
 [MeasureIP]
 Measure=WebParser
 URL=[MeasureSite]
 StringIndex=1
+
+[MeasureFlag]
+Measure=WebParser
+URL=[MeasureSite]
+StringIndex=2
+
+[MeasureCountry]
+Measure=WebParser
+URL=[MeasureSite]
+StringIndex=3
+
+[MeasureRegion]
+Measure=WebParser
+URL=[MeasureSite]
+StringIndex=4
+
+[MeasureCity]
+Measure=WebParser
+URL=[MeasureSite]
+StringIndex=5
+
+[MeasureISP]
+Measure=WebParser
+URL=[MeasureSite]
+StringIndex=6
+
+[MeasureLatitude]
+Measure=WebParser
+URL=[MeasureSite]
+StringIndex=7
+
+[MeasureLongitude]
+Measure=WebParser
+URL=[MeasureSite]
+StringIndex=8
 
 [MeterIP]
 Meter=String
 MeasureName=MeasureIP
 FontSize=12
 FontColor=255,255,255,255
+SolidColor=0,0,0,255
 AntiAlias=1
 ```
-<p>Where you provide a <code>URL</code> to connect to, and a <code>RegExp</code> to parse the text, finding and capturing the information you want with <code>(.*)</code> into <code>StringIndex</code> numbers. You then use the information in those StringIndexes to display the data.</p>
 
-<p>Generally, you are going to be capturing multiple bits of information from the site, so you can use multiple child measures and meters to create your skin.</p>
-
-``` ini
-[MeasureSite]
-Measure=WebParser
-URL=http://www.tell-my-ip.com/index.html
-RegExp=(?siU)<td.*>Your IP Address.*<td>(.*)</td>.*<td.*>Country:.*<img src="(.*)"> (.*)</td>.*<td>Region.*<td>(.*)</td>.*<td>City.*<td>(.*)</td>.*<td>ISP:.*<td>(.*)</td>.*<td>Latitude:.*<td>(.*)</td>.*<td>Longitude:.*<td>(.*)</td>
-```
-
-<p>In the above, we have eight captures <code>(.*)</code>, creating eight StringIndex numbers.  So we would create eight child WebParser measures to pick off each one, and we can then display the data any way we like in meters. Again, refer to <a href="/tips/webparser-tutorial">WebParser Tutorial</a> for a full explanation of how WebParser works.</p>
-
-<h2>Starting our RegExp</h2>
-
-<p>To create that <code>RegExp</code> option, what you will generally want to do is get a copy of the text / HTML that the website is returning to WebParser, and use that as a reference to iteratively build your regular expression. In our example above, this is part of the text that the site returns, which we use to create our <code>RegExp</code>.</p>
-
-``` html
-<thead>
-<tr><th colspan="2" style="background-color: #ccc"><b>IP Address Location</b></th></tr>
-</thead>
-<tbody>
-<tr><td width="100">Your IP Address:</td><td>72.205.25.79</td></tr>
-<tr><td>Country:</td><td> <img src="flags/us.png"> United States</td></tr>
-<tr><td>Region:</td><td>Virginia</td></tr>
-<tr><td>City:</td><td>Great Falls</td></tr>
-<tr><td>ISP:</td><td>Cox Communications</td></tr>
-<tr><td>Latitude:</td><td>38.9981689453</td></tr>
-<tr><td>Longitude:</td><td>-77.2883224487</td></tr>
-<tr><td>Host:</td><td>ip72-205-25-79.dc.dc.cox.net</td></tr>
-<tr><td>Anonymity Level:</td><td>Elite (or no proxy)</td></tr>
-<tr><td>Map:</td><td><a href='detailed.html'>View your IP on satellite map (Big)</a></td></tr>
-</tbody>
-```
-
-<p>We then start building our <code>RegExp</code>, using <code>&lt;td.*&gt;Your IP Address.*&lt;td&gt;(.*)&lt;/td&gt;</code> to search for <code>&lt;td.*&gt;Your IP Address.*&lt;td&gt;</code>, then capture that IP address into a <code>StringIndex</code> with <code>(.*)</code> until we hit <code>&lt;/td&gt;</code>.
-
-<p>So we would start with:</p>
-
-``` ini
-[MeasureSite]
-Measure=WebParser
-URL=http://www.tell-my-ip.com/index.html
-RegExp=(?siU)<td.*>Your IP Address.*<td>(.*)</td>
-
-[MeasureIP]
-Measure=WebParser
-URL=[MeasureSite]
-StringIndex=1
-```
-
-<p>And add on to the <code>RegExp</code>, saving and refreshing the skin as we go to ensure it is working as we want.</p>
-
-``` ini
-[MeasureSite]
-Measure=WebParser
-URL=http://www.tell-my-ip.com/index.html
-RegExp=(?siU)<td.*>Your IP Address.*<td>(.*)</td>.*<td.*>Country:.*<img src="(.*)"> (.*)</td>.*<td>Region.*<td>(.*)</td>.*<td>City.*<td>(.*)</td>.*<td>ISP:.*<td>(.*)</td>.*<td>Latitude:.*<td>(.*)</td>.*<td>Longitude:.*<td>(.*)</td>
-```
-
-<p>Use <a href="/manual/user-interface/debug/#SkinsTab">Debug / Skins</a> to check that our measures are returning the correct values.</p>
+<p>Open <a href="/manual/user-interface/debug/#SkinsTab">Debug → Skins</a> and select the loaded skin. The String column shows the eight captures, from <code>192.0.2.1</code> through <code>-77.2883224487</code>.</p>
 
 <div class="exampleprev">
-	<a href="!img/webparser-debugging-regexp/AboutSkins.jpg" data-fancybox><img src="!img/webparser-debugging-regexp/AboutSkins.jpg"></a>
+	<a href="!img/webparser-debugging-regexp/AboutSkins.png" data-fancybox><img src="!img/webparser-debugging-regexp/AboutSkins.png" alt="Rainmeter Debug showing the eight WebParser captures from IP-example.html"></a>
 </div>
 
-<h2>Getting the HTML / text</h2>
+<h2>Get the source text from a website</h2>
 
-<p>So what is the best way to get a copy of the text the site is returning to WebParser, so we can use that to create our <code>RegExp</code>?  There are a few options...</p>
+<p>When debugging a website, start with the response WebParser receives. Your browser's “View page source” command shows the response sent to the browser, which may differ.</p>
 
-<h2>View page source</h2>
+<h3 id="Debug">Debug=2</h3>
 
-<p>If you connect to the site in your web browser, (Internet Explorer, Google Chrome, Firefox, whatever you use) you can right click and select "View page source" from the context menu. That will open a tab with the HTML code that the site is sending to the browser displayed as text. You can copy and paste that into a local text file on your PC, to use while you are working on your skin.</p>
-
-<p><b>However...</b> There is an issue that can cause this approach to give you some problems. Many websites will tailor the code that is output based on detecting the browser you are using.  This is generally to ensure compatibility in many different browsers, not all of which support the standards for HTML / CSS / Javascript in quite the same way.  The upshot of this is that what is returned to your Google Chrome browser <em>may be different</em> than what is returned to the WebParser measure. This can cause a lot of confusion and frustration.  We recommend that you <b>don't use "View page source"</b> in your browser. There are more reliable methods...</p>
-
-<h2 id="Debug">Debug=2</h2>
-
-<p>If you set <a href="/manual/measures/webparser/#Debug">Debug=2</a> on the parent WebParser measure, (the one with the <code>RegExp</code> on it) and load the skin, it will create a text file <b>WebParserDump.txt</b> in the same folder as your skin .ini file. WebParserDump.txt is simply an exact copy of what the site sent to WebParser, and is an excellent resource when building your <code>RegExp</code> option.</p>
-
-``` ini
-[MeasureSite]
-Measure=WebParser
-URL=http://www.tell-my-ip.com/index.html
-RegExp=
-Debug=2
-```
-
-<p>As you can see, we don't even have a <code>RegExp</code> option yet, just a WebParser measure that connects to the site and downloads the HTML to our WebParserDump.txt text file.</p> Open that file in your favorite text editor, and it can be used as a reference as you continue.</p>
-
-<p><b>Note:</b> When you are done building and testing your <code>RegExp</code> option, be sure to remove the <code>Debug=2</code> line, so it isn't constantly downloading and writing that file as you actually use your skin.</p>
-
-<p>This is a good approach. It ensures that you have exactly the same output from the site that WebParer gets, and if you "refresh" the skin from time to time you can be sure that it is also the most current version of the information from the site. However there is one more method that can be even more useful...</p>
+<p>Set <a href="/manual/measures/webparser/#Debug">Debug=2</a> on the parent measure and load or refresh the skin. WebParser writes the response to <code>WebParserDump.txt</code> in the folder containing the skin's INI file. You can leave <code>RegExp</code> empty while you inspect the response. Remove <code>Debug=2</code> when you finish testing to stop writing the file.</p>
 
 <h2 id="RainRegExp">RainRegExp</h2>
 
@@ -148,12 +104,12 @@ Debug=2
 	<a href="!img/webparser-debugging-regexp/RainRegExp.png" data-fancybox><img src="!img/webparser-debugging-regexp/RainRegExp.png"></a>
 </div>
 
-<p><b>(1)</b>: Type or paste in the URL to connect to and press "Connect", or use "Browse" to open a local HTML / text file. The screenshot uses a local copy of the example HTML with sample values.</p>
+<p><b>(1)</b>: Type or paste in the URL to connect to and press "Connect", or use "Browse" to open a local HTML / text file. For this example, browse to the downloaded <code>IP-example.html</code>.</p>
 
-<p><b>(2)</b>: The HTML / text returned by the site will be in this panel. You can scroll through it or use the "Search" capability to find the text you want to search for.</p>
+<p><b>(2)</b>: The HTML or text from the selected source appears in this panel. You can scroll through it or use the "Search" capability to find the text you want to search for.</p>
 
 <p><b>(3)</b>: Create your <code>RegExp</code> statement here. Click on "Parse" to test as you go. Once you are happy that your expression is working correctly, click on "Copy" to copy the entire <code>RegExp</code> to the Windows clipboard, so you can paste it in your skin.</p>
 
-<p><b>(4)</b>: The output of the "Parse" test will be here. It will consist of the <code>StringIndex</code> number that will be assigned in WebParser and the current value based on the text from the site.</p>
+<p><b>(4)</b>: The output of the "Parse" test will be here. It will consist of the <code>StringIndex</code> number that will be assigned in WebParser and the value captured from the selected source.</p>
 
 <p>Hope this helps with creating and debugging those pesky <code>RegExp</code> statements.</p>

@@ -50,8 +50,15 @@ title: 'Audio measure'
 Measure=Audio
 ```
 
-<h2>Bangs</h2>
-<p>To control the sound device or volume, use the <a href="!bangs/#CommandMeasure">!CommandMeasure</a> bang. In the examples below <code>MeasureAudio</code> is the section name for the Audio measure. Your <a href="!skins/#Format">section name</a> may differ.</p>
+<h2 id="Bangs">Bangs</h2>
+<p>In these examples the target measure is named <code>MeasureAudio</code>.</p>
+<ul>
+	<li><code>[!Audio:SetVolume MeasureAudio 50]</code> sets the volume to 50%. A leading <code>+</code> or <code>-</code> adjusts the current volume, as in <code>[!Audio:SetVolume MeasureAudio +10]</code>.</li>
+	<li><code>[!Audio:SetOutputIndex MeasureAudio 2]</code> selects the second output device. A signed value such as <code>+1</code> or <code>-1</code> cycles through the devices.</li>
+	<li><code>[!Audio:Mute MeasureAudio]</code>, <code>[!Audio:Unmute MeasureAudio]</code>, and <code>[!Audio:ToggleMute MeasureAudio]</code> control mute.</li>
+</ul>
+<h3>Compatibility commands</h3>
+<p>Existing skins can continue using <a href="!bangs/#CommandMeasure">!CommandMeasure</a>, including the device-cycling and relative volume commands below.</p>
 <dl>
 	<dt id="ToggleNext"><code>!CommandMeasure "MeasureAudio" "ToggleNext"</code></dt>
 	<dd>

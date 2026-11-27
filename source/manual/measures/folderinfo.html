@@ -45,7 +45,7 @@ title: 'FolderInfo measure'
 		<b>Important:</b> If multiple measures use the same folder, specify the actual path on the first FolderInfo measure and specify the name of the first measure in subsequent measures. See example below for proper usage.
 	</dd>
 
-	<dt id="InfoType"><code>InfoType</code></dt>
+	<dt id="InfoType"><code>InfoType</code> <small>Default: <code>FileCount</code></small></dt>
 	<dd>
 		Defines the type of information. Valid values are:
 		<ul>
@@ -53,6 +53,7 @@ title: 'FolderInfo measure'
 		<li><code>FolderCount</code>: Number of found folders.</li>
 		<li><code>FolderSize</code>: Size of the folder in bytes.</li>
 		</ul>
+		<p><code>FileCountStr</code>, <code>FolderCountStr</code>, and <code>FolderSizeStr</code> are compatibility aliases for the corresponding options above.</p>
 	</dd>
 
 	<dt id="RegExpFilter"><code>RegExpFilter</code></dt>

@@ -14,6 +14,7 @@ title: 'Bangs'
 <li><a href="#Meter">Meter bangs</a></li>
 <li><a href="#Measure">Measure bangs</a></li>
 <li><a href="#MouseAction">Mouse Action state bangs</a></li>
+<li><a href="#LegacyAeroBlur">Legacy Aero Blur bangs</a></li>
 <li><a href="#Deprecated"><em>Deprecated bangs</a></em></li>
 </ul>
 
@@ -62,7 +63,19 @@ title: 'Bangs'
 <p>For bangs that act on a loaded skin, the <code>!Skin:</code> prefix also allows the skin target to come first. For example, <code>[!Skin:Move "illustro\Clock" 100 200]</code> is the target-first form of <code>[!Move 100 200 "illustro\Clock"]</code>. Use <code>Group=GroupName</code> as the target to act on all loaded skins in that group, such as <code>[!Skin:Hide "Group=Widgets"]</code>.</p>
 <p>This target-first form applies to skin bangs, not application-wide bangs such as <code>!Quit</code>. The named aliases above have their own argument rules; they are not interpreted as the general target-first form.</p>
 <h3 id="SectionNamespaces">Meter and measure namespaces</h3>
-<p>Meter- and measure-specific bangs include <a href="!meters/textedit/">!TextEdit:</a>, <a href="!measures/webparser/">!WebParser:</a>, <a href="!measures/nowplaying/">!NowPlaying:</a> and <a href="!measures/mouse/">!Mouse:</a>. Their command arguments are described on the corresponding meter or measure page.</p>
+<p>See the corresponding reference page for the arguments of these namespaces:</p>
+<ul>
+<li><a href="!measures/actiontimer/"><code>!ActionTimer:</code></a></li>
+<li><a href="!measures/audio/"><code>!Audio:</code></a></li>
+<li><a href="!measures/loop/"><code>!Loop:</code></a></li>
+<li><a href="!measures/mouse/"><code>!Mouse:</code></a></li>
+<li><a href="!measures/nowplaying/"><code>!NowPlaying:</code></a></li>
+<li><a href="!measures/recyclemanager/"><code>!RecycleManager:</code></a></li>
+<li><a href="!measures/runcommand/"><code>!RunCommand:</code></a></li>
+<li><a href="!meters/textedit/"><code>!TextEdit:</code></a></li>
+<li><a href="!measures/webparser/"><code>!WebParser:</code></a></li>
+<li><a href="!measures/windowmessage/"><code>!WindowMessage:</code></a></li>
+</ul>
 <ul>
 <li>Put the target section before the command arguments: <code>[!TextEdit:SetText InputField "New text"]</code>.</li>
 <li>Use <code>Group=GroupName</code> instead of a section name to target matching meters or measures in a group: <code>[!TextEdit:Clear "Group=Inputs"]</code>. Only sections of the command's meter or measure type are affected.</li>
@@ -86,9 +99,14 @@ title: 'Bangs'
 		Sets the Windows desktop background to the specified image file.
 		<ul>
 		<li><code>File</code> (required): The file to be set as the desktop background. The following formats are supported: <code>.bmp</code>, <code>.jpg</code>, <code>.png</code>, <code>.gif</code>, and <code>.tiff</code>. If the filename contains spaces, you must enclose the filename in quotes.</li>
-		<li><code>Position</code> (optional): Sets the position of the wallpaper. Valid values are: <code>Center</code>, <code>Tile</code>, <code>Stretch</code>. Windows 7 (and above) also have the values: <code>Fit</code> and <code>Fill</code>. Windows 10 also has the value: <code>Span</code>.</li>
+		<li><code>Position</code> (optional): Sets the wallpaper style. Available values are <code>Center</code>, <code>Tile</code>, <code>Stretch</code>, <code>Fit</code>, <code>Fill</code>, and <code>Span</code>.</li>
 		</ul>
 		<br><b>Example:</b> <code>!SetWallpaper "Some Image.png" Center</code>
+	</dd>
+	<dt id="SendKey"><code>!SendKey</code> <small>Parameter: <code><b>Key</b></code></small></dt>
+	<dd>
+		<p>Sends a Windows media or volume key. Supported keys are <code>MediaNextTrack</code>, <code>MediaPrevTrack</code>, <code>MediaStop</code>, <code>MediaPlayPause</code>, <code>VolumeMute</code>, <code>VolumeDown</code>, and <code>VolumeUp</code>.</p>
+		<p><b>Example</b> <code>[!SendKey MediaPlayPause]</code></p>
 	</dd>
 </dl>
 
@@ -293,23 +311,6 @@ title: 'Bangs'
 		</ul>
 	</dd>
 
-	<dt id="ShowHideToggleBlur"><code>!ShowBlur</code>, <code>!HideBlur</code>, <code>!ToggleBlur</code> <small>Parameter: <code><em>Config</em></code></small></dt>
-	<dd>
-		Shows or hides the <a href="!skins/rainmeter-section/#AeroBlur">blur</a> behind a skin.
-		<ul>
-		<li><code>Config</code> (optional)</li>
-		</ul>
-	</dd>
-
-	<dt id="AddRemoveBlur"><code>!AddBlur</code>, <code>!RemoveBlur</code> <small>Parameter: <code><b>Region</b><em>, Config</em></code></small></dt>
-	<dd>
-		Adds or removes a <a href="!skins/rainmeter-section/#AeroBlur">blur</a> region to/from existing blur areas.
-		<ul>
-		<li><code>Region</code> (required): <a href="!skins/rainmeter-section/#BlurRegion">Region</a> to add or remove a blur effect.</li>
-		<li><code>Config</code> (optional)</li>
-		</ul>
-	</dd>
-
 	<dt id="Move"><code>!Move</code> <small>Parameters: <code><b>X, Y</b><em>, Config</em></code></small></dt>
 	<dd>
 		Sets the position of a skin.
@@ -452,6 +453,13 @@ title: 'Bangs'
 		<br><b>Example:</b> <code>[!SetUpdate 1000]</code>
 	</dd>
 
+	<dt id="ForceEnableVisibleMode"><code>!ForceEnableVisibleMode</code> <small>Parameter: <code><em>Config</em></code></small></dt>
+	<dd>
+		<p>Disables occlusion tracking for the target skin until its next refresh. The skin continues updating and drawing as visible when other windows cover it. See <a href="!skins/rainmeter-section/#InvisibleUpdates">Invisible Updates</a>.</p>
+		<p>Supply the config name, use <code>*</code> for all loaded skins, or omit it in a skin action to target the current skin.</p>
+		<p><b>Example</b> <code>[!ForceEnableVisibleMode "MySuite\Visualizer"]</code></p>
+	</dd>
+
 	<dt id="Redraw"><code>!Redraw</code> <small>Parameter: <code><em>Config</em></code></small></dt>
 	<dd>
 		Immediately redraws all visible elements of the entire skin, independent of the normal skin update cycle.
@@ -460,7 +468,7 @@ title: 'Bangs'
 		</ul><br>
 		
 	<div class="alert alert-info alert-tight" role="alert">
-		<h2 class="alert-heading h5" id="Redraw"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
+		<h2 class="alert-heading h5" id="RedrawNote"><i class="fa-solid fa-thumbtack"></i> Note:</h2>
 		<p>This simply redraws the skin. Meters will use the values obtained when they were last updated. Since by itself !Redraw accomplishes nothing useful, this bang will always be used in conjunction
 		with bangs that update specific things before redrawing the skin. Depending on the case, this might be with <a href="!bangs/#UpdateMeasure">!UpdateMeasure</a> bangs to immediately update measure values, and certainly <a href="!bangs/#UpdateMeter">!UpdateMeter</a> bangs to update meter values and options. The idea is to update specific meters and redraw the skin before the next normal update cycle. This can allow immediate visible changes, while not having to force an update of the entire skin.<br><br>
 		<b>Example:</b> <code>LeftMouseUpAction=[!UpdateMeasure SomeMeasure][!UpdateMeter SomeMeter][!Redraw]</code>
@@ -578,14 +586,10 @@ title: 'Bangs'
 
 <h3 id="SkinGroup">Skin group bangs:</h3>
 <dl>
-	<dt id="SetZoomFactorGroup"><code>!SetZoomFactorGroup</code> <small>Parameters: <code><b>Factor, Group</b></code></small></dt>
+	<dt id="SetZoomFactorGroup">Zooming a skin group</dt>
 	<dd>
-		<p>Sets the zoom factor for skins in a <a href="!groups/">skin group</a>. See <a href="!scale-and-zoom/">Scale and Zoom</a> for more about zooming skins.</p>
-		<ul>
-		<li><code>Factor</code> (required): A zoom factor from <code>0.1</code> (10%) to <code>5.0</code> (500%), or <code>Default</code> to reset the skins to the default zoom. See <a href="#SetZoomFactor">!SetZoomFactor</a>.</li>
-		<li><code>Group</code> (required): The name of the skin group.</li>
-		</ul>
-		<br><b>Example:</b> <code>[!SetZoomFactorGroup 1.25 "GroupName"]</code>
+		<p>Use the <a href="#SkinNamespace">skin namespace</a> with <a href="#SetZoomFactor">SetZoomFactor</a> to zoom all loaded skins in a group.</p>
+		<p><b>Example</b> <code>[!Skin:SetZoomFactor "Group=GroupName" 1.25]</code></p>
 	</dd>
 
 	<dt id="ShowHideToggleGroup"><code>!ShowGroup</code>, <code>!HideGroup</code>, <code>!ToggleGroup</code> <small>Parameter: <code><b>Group</b></code></small></dt>
@@ -1044,6 +1048,27 @@ title: 'Bangs'
 	<code>!DisableMouseAction MyMeter "LeftMouseUpAction"</code><br>
 	<code>!EnableMouseAction MyMeter "MouseOverAction|MouseLeaveAction"</code><br>
 	<code>!ToggleMouseAction Rainmeter "MouseScrollDownAction|MouseScrollUpAction"</code></p>
+</dl>
+
+<h2 id="LegacyAeroBlur">Legacy Aero Blur bangs</h2>
+<p>These bangs are retained for compatibility with Windows 7 skins. The <a href="!skins/rainmeter-section/#AeroBlur">legacy Aero Blur effect</a> does not render on Windows 10 or Windows 11.</p>
+<dl>
+	<dt id="ShowHideToggleBlur"><code>!ShowBlur</code>, <code>!HideBlur</code>, <code>!ToggleBlur</code> <small>Parameter: <code><em>Config</em></code></small></dt>
+	<dd>
+		Shows or hides the <a href="!skins/rainmeter-section/#AeroBlur">blur</a> behind a skin.
+		<ul>
+		<li><code>Config</code> (optional)</li>
+		</ul>
+	</dd>
+
+	<dt id="AddRemoveBlur"><code>!AddBlur</code>, <code>!RemoveBlur</code> <small>Parameter: <code><b>Region</b><em>, Config</em></code></small></dt>
+	<dd>
+		Adds or removes a <a href="!skins/rainmeter-section/#AeroBlur">blur</a> region to/from existing blur areas.
+		<ul>
+		<li><code>Region</code> (required): <a href="!skins/rainmeter-section/#BlurRegion">Region</a> to add or remove a blur effect.</li>
+		<li><code>Config</code> (optional)</li>
+		</ul>
+	</dd>
 </dl>
 
 <h2 id="Deprecated">Deprecated bangs</h2>

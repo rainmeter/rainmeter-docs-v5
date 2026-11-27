@@ -6,7 +6,7 @@ title: 'C/C++ API Overview'
 <p>This is an overview of the functions available in C/C++ SDK for Rainmeter.</p>
 
 <dl>
-	<dt id="ReadString"><code>RmReadString</code> <small><code>LPCWSTR ReadString(void* rm, LPCWSTR option, LPCWSTR defValue, BOOL replaceMeasures)</code></small></dt>
+	<dt id="ReadString"><code>RmReadString</code> <small><code>LPCWSTR RmReadString(void* rm, LPCWSTR option, LPCWSTR defValue, BOOL replaceMeasures)</code></small></dt>
 	<dd>
 		<p>Returns a string representation of an option.</p>
 		<p>
@@ -210,7 +210,7 @@ PLUGIN_EXPORT void Initialize(void** data, void* rm)
 }
 ```
 	</dd>
-	<dt id="GetSettingsFile"><code>RmGetSettingsFile</code> <small><code>LPCWSTR GetSettingsFile()</code></small></dt>
+	<dt id="GetSettingsFile"><code>RmGetSettingsFile</code> <small><code>LPCWSTR RmGetSettingsFile()</code></small></dt>
 	<dd>
 		<p>Retrieves a path to the Rainmeter data file (Rainmeter.data).</p>
 ``` cpp
@@ -230,7 +230,7 @@ PLUGIN_EXPORT void Initialize(void** data, void* rm)
 		<p>
 			<ul>
 				<li><code>rm</code> : Pointer to the plugin measure.</li>
-				<li><code>type</code> : Log level (<a href="https://github.com/rainmeter/rainmeter-plugin-sdk/blob/master/API/RainmeterAPI.h#L362-L368">LOG_ERROR, LOG_WARNING, LOG_NOITICE, or LOG_DEBUG</a>)</li>
+				<li><code>type</code> : Log level (<a href="https://github.com/rainmeter/rainmeter-plugin-sdk/blob/master/API/RainmeterAPI.h#L362-L368">LOG_ERROR, LOG_WARNING, LOG_NOTICE, or LOG_DEBUG</a>)</li>
 				<li><code>message</code> : Message to be logged.</li>
 			</ul>
 		</p>
@@ -245,7 +245,7 @@ RmLog(rm, LOG_NOTICE, L"I am a 'notice' log message with a source");
 		<p>
 			<ul>
 				<li><code>rm</code> : Pointer to the plugin measure.</li>
-				<li><code>type</code> : Log level (<a href="https://github.com/rainmeter/rainmeter-plugin-sdk/blob/master/API/RainmeterAPI.h#L362-L368">LOG_ERROR, LOG_WARNING, LOG_NOITICE, or LOG_DEBUG</a>)</li>
+				<li><code>type</code> : Log level (<a href="https://github.com/rainmeter/rainmeter-plugin-sdk/blob/master/API/RainmeterAPI.h#L362-L368">LOG_ERROR, LOG_WARNING, LOG_NOTICE, or LOG_DEBUG</a>)</li>
 				<li><code>format</code> : Formatted message to be logged, follows <a href="https://learn.microsoft.com/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions">printf syntax</a>.</li>
 				<li><code>args</code> : Comma separated list of arguments referenced in the formatted message.</li>
 			</ul>

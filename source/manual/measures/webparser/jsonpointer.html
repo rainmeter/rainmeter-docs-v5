@@ -11,7 +11,7 @@ title: 'JSON Parsing'
  
 <h2>Options</h2>
 
-<br><p>The <code>JSONPointer</code> option is used with normal <a href="!measures/webparser/">WebParser</a> measure(s), and supports all WebParser options except RegExp and StringIndex.</p>
+<br><p>The <code>JSONPointer</code> option is used with normal <a href="!measures/webparser/">WebParser</a> measure(s), to select JSON values without <code>StringIndex</code>. Defining <code>RegExp</code> instead selects regular-expression parsing.</p>
 
 <dl>
 	<dt id="URL"><code>URL</code></dt>
@@ -26,7 +26,7 @@ title: 'JSON Parsing'
 		It uses forward slashes <code>/</code> to separate keys (for objects) or numbers (for zero-based arrays).<br><br>
 		Any literal <code>/</code> or <code>~</code> inside a JSON key name must be escaped:<br>
 		<code>~1</code> represents a literal forward slash <code>~0</code> represents a literal tilde <code>~</code><br><br>
-		If set to <code>1</code>, the measure will act as a traditional WebParser "parent". Not required, as any measure with a URL to a resource is at once a "parent" and a "child" if JSONPointer is defined as a key/element.<br><br>
+		Use <code>JsonPointer=1</code> to pass the current JSON node to children without selecting a value on this measure. A measure with a pointer can both return a value and serve as a parent for other measures.<br><br>
 		Example:<br>
 		<code>JSONPointer=/books/1/title</code><br>
 		Will return the "title" of the second element of the "books" array.
@@ -97,3 +97,21 @@ JsonPointer=/books/1/title
 	<tr>
 	</table>
 </div>
+
+<h2 id="NestedPointers">Pointers relative to a parent</h2>
+
+<p>Each child evaluates its pointer relative to the JSON node selected by its parent. In the document above, the following child returns <code>1984</code>:</p>
+
+``` ini
+[MeasureSecondBook]
+Measure=WebParser
+URL=file://#@#SomeJSON.txt
+JsonPointer=/books/1
+
+[MeasureSelectedTitle]
+Measure=WebParser
+URL=[MeasureSecondBook]
+JsonPointer=/title
+```
+
+<p>An intermediate measure with <code>JsonPointer=1</code> passes the inherited node through unchanged. If the parent's pointer cannot resolve a node, WebParser skips that branch.</p>

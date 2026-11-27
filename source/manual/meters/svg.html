@@ -10,6 +10,7 @@ title: 'SVG meter'
 
 <p>All of the <a href="!meters/general-options/">General Meter Options</a> are available on the meter.</p>
 
+<dl>
 	<dt id="SVGImage"><code>SVGImage</code></dt>
 	<dd>
 		The SVG image to display.<br><br>
@@ -27,6 +28,17 @@ title: 'SVG meter'
 		SVGImage=&lt;svg height="100" width="100"&gt;&lt;circle id="dot" r="45" cx="50" cy="50" fill="red" /&gt;&lt;/svg&gt;
 	</dd>
 	
+	<dt id="PreserveAspectRatio"><code>PreserveAspectRatio</code> <small>Default: <code>0</code></small></dt>
+	<dd>
+		<p>Controls how the SVG is drawn when both meter dimensions are set.</p>
+		<ul>
+			<li><code>0</code>: Stretch the SVG to fill the meter.</li>
+			<li><code>1</code>: Fit and center the whole SVG within the meter, preserving its aspect ratio.</li>
+			<li><code>2</code>: Scale and center the SVG to fill the meter, preserving its aspect ratio and clipping any portion outside it.</li>
+		</ul>
+		<p>When you set only <code>W</code> or <code>H</code>, Rainmeter computes the other dimension from the SVG's aspect ratio. With neither set, the meter uses the SVG's dimensions. The SVG document's own <code>preserveAspectRatio</code> attribute controls how its content fits its viewport.</p>
+	</dd>
+
 	<dt id="Attribute"><code>Attribute, Attribute2, Attribute3...</code> <small>Format: <code>selector | attribute | value</code></small></dt>
 	<dd>
 		One or more changes to be applied to elements in the SVG file or embedded code.<br><br>
@@ -40,6 +52,8 @@ title: 'SVG meter'
 		Attribute2=* | stroke-width | 5<br>
 		Attribute3=dot | fill | #fce3c3
 	</dd>
+
+</dl>
 
 <h2 id="SVGSupport">SVG support and limitations</h2>
 

@@ -30,16 +30,17 @@ title: 'DragDrop measure'
 <p><b>These options can be used on both parent and child measures.</b></p>
 
 <dl>
-<dt id="Action"><code>Action</code> <small>Default: <code>Path</code></small></dt>
+<dt id="Action"><code>Action</code> <small>Default: <code>None</code></small></dt>
 	<dd>
-		<p>The action defines what function the measure has, there are currently five options:</p>
+		<p>Selects the operation to perform on the dropped item.</p>
 
 	<ul>
 		<li> <b>Move</b><br>Moves the file / folder dropped to the path specified in the Path option.</li>
 		<li> <b>Copy</b><br>Copies the file / folder dropped to the path specified in the Path option.</li>
 		<li> <b>Shortcut</b><br>Creates a shortcut file (.lnk) to the file / folder dropped to the path specified in the Path option.</li>
 		<li> <b>Delete</b><br>This moves the file / folder to the recycle bin.</li>
-		<li> <b>Path</b><br>This is used to get information about the file dropped.</li>
+		<li><b>None</b><br>Reports the dropped path and runs the configured action without performing a file operation.</li>
+		<li><b>Path</b><br>Also reports the dropped path without performing a file operation.</li>
 	</ul>
 	<br><p>Example: <code>Action=Path</code></p>
 	</dd>
@@ -62,17 +63,9 @@ title: 'DragDrop measure'
 </dl>
 
 <dl>
-<dt id="ReplaceIfExists"><code>ReplaceIfExists</code> <small>Default: <code>0</code></small></dt>
+<dt id="OverrideExisting"><code>OverrideExisting</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>A value of <code>1</code> allows the measure to overwrite existing files.</p>
-	</dd>
-</dl>
-
-<dl>
-<dt id="FancyRenderer"><code>FancyRenderer</code> <small>Default: <code>1</code></small></dt>
-	<dd>
-		<p>A value of <code>0</code> disables the object preview rendered while dragging a file or folder.</p>
-		<br><b>Note:</b> This option is only valid on a parent measure.</p>
+		<p>A value of <code>1</code> lets <code>Action=Copy</code> overwrite existing files at the destination.</p>
 	</dd>
 </dl>
 
@@ -117,7 +110,7 @@ title: 'DragDrop measure'
 <dl>
 <dt id="OnDropAction"><code>OnDropAction</code></dt>
 	<dd>
-		<p>Action to execute when the file is dropped on the target.</p>
+		<p>Action to execute when a file or folder is dropped on the target. If this is empty, Rainmeter accepts the compatibility name <code>OnDroppedAction</code>.</p>
 	</dd>
 </dl>
 
@@ -150,21 +143,22 @@ title: 'DragDrop measure'
 		<p><code>OnDropAction</code>, <code>OnEnterAction</code>, <code>OnLeaveAction</code>, <code>OnOverAction</code></p><br>
 		<ul>
 			<li> <b>$Name$</b><br>
-					Replaced with the file name</li>
+					File name without the extension, or the folder name.</li>
 			<li> <b>$Directory$</b><br>
-					Replaced with the folder name</li>
+					Directory containing the dropped item.</li>
 			<li> <b>$Type$</b><br>
-					Replaced with the file extension. (e.g exe, lnk, txt)</li>
+					File extension without the leading dot, or <code>folder</code> for a folder.</li>
 			<li> <b>$File$</b><br>
 					Replaced with the full file or folder path and name.</li>
 			<li> <b>$FileNr$</b><br>
 					Replaced with the number of the currently processed file.</li>
 			<li> <b>$MouseX$</b><br>
-					X position of the mouse</li>
+					X position of the mouse in screen coordinates.</li>
 			<li> <b>$MouseY$</b><br>
-					Y position of the mouse</li>
+					Y position of the mouse in screen coordinates.</li>
 		</ul>
-		<br><p>Example: <code>OnDropAction=[!Log "You dropped the file $File$ on the target."]</code></p>
+		<br><p>Existing skins can also use <code>$FileName$</code> for <code>$Name$</code>, <code>$FileType$</code> for <code>$Type$</code>, <code>$FileDirectory$</code> for <code>$Directory$</code>, and <code>$FilePath$</code> for <code>$File$</code>.</p>
+		<p>Example: <code>OnDropAction=[!Log "You dropped the file $File$ on the target."]</code></p>
 	</dd>
 </dl>
 

@@ -28,6 +28,8 @@ title: '[Rainmeter] section'
 
 		<p><b>Note:</b> While <code>Update=1000</code> will update the skin "once a second",  Update is not related to the system clock, and if a computer is busy or a complicated skin takes longer than the interval to complete a full update of the skin, updates can be unreliable in relation to elapsed time. Do not use the Update value to control clocks or other timing sensitive functions.</p>
 
+		<p><b>Compatibility:</b> Rainmeter 5 ignores the old <code>UpdateMode</code> option and logs a warning if its value is nonempty. Remove it and use <code>Update</code> to set the update interval.</p>
+
 		<h3 id="InvisibleUpdates" style="font-weight: bold; color: #003366;">Invisible Updates</h3>
 
 		<p>Skins are not redrawn while they are fully covered by other windows or a full-screen application. When a skin becomes visible again, it immediately updates and redraws as needed.</p>
@@ -53,7 +55,7 @@ Update=1000 | Invisible (60*1000)
 
 		<p>For most skins, an invisible interval of at least one minute is recommended. A longer interval, such as 15 minutes, or <code>Invisible 0</code> may be appropriate. Visualizers and network charts may need to keep updating normally to maintain the history displayed by their meters.</p>
 
-		<p><b>Note:</b> The <code>!SetUpdate</code> bang changes only the visible update interval. It does not change the invisible interval.</p>
+		<p><b>Note:</b> The <a href="!bangs/#SetUpdate">!SetUpdate</a> bang changes the visible update interval. The <a href="!bangs/#ForceEnableVisibleMode">!ForceEnableVisibleMode</a> bang disables occlusion tracking so a covered skin can continue updating and drawing.</p>
 	</dd>
 
 	<dt id="DefaultUpdateDivider"><code>DefaultUpdateDivider</code> <small>Default: <code>1</code></small></dt>
@@ -244,12 +246,12 @@ Update=1000 | Invisible (60*1000)
 	</dd>
 </dl>
 
-<h2 id="AeroBlur">Aero Blur options</h2>
+<h2 id="AeroBlur">Legacy Aero Blur options</h2>
+<p>These options are retained for compatibility with Windows 7 skins. The legacy <a href="https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmenableblurbehindwindow">DWM blur effect</a> does not render on Windows 10 or Windows 11.</p>
 <dl>
 	<dt id="Blur"><code>Blur</code> <small>Default: <code>0</code></small></dt>
 	<dd>
-		<p>Set to 1 to enable Aero Blur on the Windows 7 operating system. If no BlurRegions are specified, the entire skin background is blurred.</p>
-		<p><b>Note:</b> The function will not work on Window 8.1 or Windows 10.</p>
+		<p><code>Blur=1</code> enabled Aero Blur on Windows 7. When no regions were specified, the effect applied to the entire skin background.</p>
 	</dd>
 
 	<dt id="BlurRegion"><code>BlurRegion, BlurRegion2, ..., BlurRegion<em>N</em></code></dt>

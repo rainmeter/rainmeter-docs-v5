@@ -25,8 +25,7 @@ Update=1000
 Measure=CPU
 
 [MeasureUser]
-Measure=Plugin
-Plugin=SysInfo
+Measure=SysInfo
 SysInfoType=USER_NAME
 UpdateDivider=3600
 
@@ -39,7 +38,7 @@ UpdateDivider=-1
 
 <h3>What about UpdateRate?</h3>
 
-<p>UpdateDivider is an option available to <em>all</em> meters and measures. <a href="/manual/measures/webparser/#UpdateRate">UpdateRate</a>, on the other hand, is only available with the WebParser and Ping plugins. For the purpose of this example, let us use a plugin measure using WebParser.</p>
+<p>UpdateDivider is an option available to <em>all</em> meters and measures. <a href="/manual/measures/webparser/#UpdateRate">UpdateRate</a>, on the other hand, is available on WebParser and Ping measures. This example uses WebParser.</p>
 
 <p>UpdateRate essentially states how often the WebParser should connect to the internet to download the specified URL. The general formula for this is in seconds is as follows: (Update x UpdateDivider x UpdateRate / 1000).</p>
 
@@ -55,6 +54,6 @@ RegExp="(?siU)<fullcount>(.*)</fullcount>"
 StringIndex=1
 UpdateRate=1200
 ```
-<p>Generally, you want to use UpdateRate in place of UpdateDivider on a WebParser measure, not in addition to it. In some instances, using both can cause a "lag" between when the plugin is finished getting and parsing the data from the site, and when it is actually used and displayed in the skin.</p>
+<p>Generally, you want to use UpdateRate in place of UpdateDivider on a WebParser measure, not in addition to it. In some instances, using both can cause a "lag" between when WebParser finishes fetching and parsing the data from the site, and when it is actually used and displayed in the skin.</p>
 
 <p>Since WebParser connects to the internet, it is important to have a high enough "download interval". If you try to download a page too often (e.g. every second), you may end up causing a high load on the target site, which ultimately may cause the site to block all access from your computer. As a safety measure, UpdateRate has a default value of 600, or 10 minutes when <code>Update=1000</code> and UpdateDivider is not set.</p>

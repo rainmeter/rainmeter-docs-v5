@@ -31,7 +31,7 @@ Format=%#I:%M
 
 <p>Do check out the manual entry for the <a href="!measures/time/#FormatCodes">Time</a> measure to see how that <a href="!measures/time/#Format">Format</a> option is used to obtain the time information you want. We are using a format of <b>"hour in 12 hour time:minutes"</b> for this measure.</p>
 
-<p>So let's add a meter to display this value we obtained with our measure. First, we are going to use the <a href="!meters/general-options/meterstyles/">MeterStyle</a> option by creating a <b>[TextStyle]</b> section to set up some common string formatting options. This way we won't have to repeat them in every meter we create. Then add the new <b>[MeterTime]</b> meter.</p>
+<p>So let's add a meter to display this value we obtained with our measure. First, we are going to use the <a href="!skins/inherit/"><code>@Inherit</code></a> option by creating a <b>[TextStyle]</b> section to set up some common string formatting options. This way we won't have to repeat them in every meter we create. Then add the new <b>[MeterTime]</b> meter.</p>
 
 ``` ini
 [TextStyle]
@@ -44,7 +44,7 @@ AntiAlias=1
 
 [MeterTime]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureTime
 X=165
 Y=0
@@ -96,7 +96,7 @@ Format=%A
 ``` ini
 [MeterSeconds]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureSeconds
 X=204
 Y=8
@@ -106,9 +106,9 @@ FontColor=255,231,135,255
 
 <p>Note that we are using the <code>MeasureName=MeasureSeconds</code> option to bind this meter to the appropriate measure.</p>
 
-<p>Now, if you look above, you will see that in the MeterStyle section <b>[TextStyle]</b> we have defined many format options for our string meters that we want to share with the meters rather than repeating them in each one. One of these is the <a href="!meters/string/#StringAlign">StringAlign</a> option, which will allow us to align the text in the meter based on the <a href="!meters/general-options/#XY">X and Y</a> options for the meter. In this case, we are going to right-align all of our meters. You will see why as we continue with the layout. In the previous <b>[MeterTime]</b> meter, we aligned the meter so the right-most edge was at the <b>X</b> position of <b>165</b> in the skin. For this meter, we are aligning the right-most edge at the <b>X</b> position of <b>204</b>.</p>
+<p>Now, if you look above, you will see that in the shared <b>[TextStyle]</b> section we have defined many format options for our string meters that we want to share with the meters rather than repeating them in each one. One of these is the <a href="!meters/string/#StringAlign">StringAlign</a> option, which will allow us to align the text in the meter based on the <a href="!meters/general-options/#XY">X and Y</a> options for the meter. In this case, we are going to right-align all of our meters. You will see why as we continue with the layout. In the previous <b>[MeterTime]</b> meter, we aligned the meter so the right-most edge was at the <b>X</b> position of <b>165</b> in the skin. For this meter, we are aligning the right-most edge at the <b>X</b> position of <b>204</b>.</p>
 
-</p>In addition, we want this meter to have a different color. So, we are "overriding" the <code>FontColor=255,245,207,255</code> option we set in the <b>[TextStyle]</b> MeterStyle, by specifically setting <code>FontColor=255,231,135,255</code> for this meter.</p>
+<p>In addition, we want this meter to have a different color. So, we are "overriding" the <code>FontColor=255,245,207,255</code> option we set in <b>[TextStyle]</b>, by specifically setting <code>FontColor=255,231,135,255</code> for this meter.</p>
 
 <div class="exampleprev float-left thumbnail">
 	<a href="!img/getting-started/basic-tutorials/clock/ClockImage02.jpg" data-fancybox><img src="!img/getting-started/basic-tutorials/clock/ClockImage02.jpg"></a>
@@ -121,7 +121,7 @@ FontColor=255,231,135,255
 ``` ini
 [MeterAMPM]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureAMPM
 X=204
 Y=30
@@ -130,7 +130,7 @@ FontColor=255,231,135,255
 
 [MeterMonthDayYear]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureMonthName
 MeasureName2=MeasureDayOfMonth
 MeasureName3=MeasureYear
@@ -141,7 +141,7 @@ Text=%1 %2, %3
 
 [MeterDayOfWeek]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureDayOfWeek
 X=204
 Y=0R
@@ -153,7 +153,7 @@ FontSize=13
 ``` ini
 [MeterMonthDayYear]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureMonthName
 MeasureName2=MeasureDayOfMonth
 MeasureName3=MeasureYear
@@ -210,7 +210,7 @@ AntiAlias=1
 ``` ini
 [MeterTime]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureTime
 X=165
 Y=0
@@ -317,7 +317,7 @@ AntiAlias=1
 
 [MeterTime]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureTime
 X=165
 Y=0
@@ -327,7 +327,7 @@ MouseLeaveAction=[!SetOption MeasureTime Format "%#I:%M"][!UpdateMeasure Measure
 
 [MeterSeconds]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureSeconds
 X=204
 Y=8
@@ -336,7 +336,7 @@ FontColor=255,231,135,255
 
 [MeterAMPM]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureAMPM
 X=204
 Y=30
@@ -345,7 +345,7 @@ FontColor=255,231,135,255
 
 [MeterMonthDayYear]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureMonthName
 MeasureName2=MeasureDayOfMonth
 MeasureName3=MeasureYear
@@ -356,7 +356,7 @@ Text=%1 %2, %3
 
 [MeterDayOfWeek]
 Meter=String
-MeterStyle=TextStyle
+@Inherit=TextStyle
 MeasureName=MeasureDayOfWeek
 X=204
 Y=0R
