@@ -750,6 +750,45 @@ pre code {
 .docs-content a.spoiler:hover {
   text-decoration: underline;
 }
+.docs-content .skin-categories {
+  margin: .5rem 0 1rem;
+  padding: .75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: .4rem;
+  background: var(--color-surface-alt);
+}
+.docs-content .skin-categories summary {
+  color: var(--color-heading);
+  font-weight: 600;
+  cursor: pointer;
+}
+.docs-content .skin-categories summary:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 4px;
+}
+.docs-content .skin-categories[open] summary {
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.docs-content .skin-category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: .25rem .75rem;
+  margin: .75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.docs-content .skin-category-list > li {
+  margin: 0;
+}
+.docs-content .skin-category-list a {
+  display: block;
+  padding: .35rem .5rem;
+  border-radius: .25rem;
+}
+.docs-content .skin-category-list a:hover {
+  background: var(--color-surface-muted);
+}
 .docs-content .dd_value {
   font-size: 1.2rem;
   font-weight: 600;
